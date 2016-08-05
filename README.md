@@ -27,3 +27,4 @@ Todo List:
 - [ ] Make background image configurable
 - [ ] Make theme plugins configurable
 - [ ] Make content background colour configurable
+- [ ] Rework the theme settings completely
