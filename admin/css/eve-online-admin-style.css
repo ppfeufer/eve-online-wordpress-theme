@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+/* fix for oEmbed videos
+----------------------------------------------------------------------------- */
+.embed-video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+	height: auto;
+}
+
+.embed-video-container iframe,
+.embed-video-container object,
+.embed-video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
