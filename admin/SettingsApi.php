@@ -616,21 +616,26 @@ class SettingsApi {
 				case 'radio':
 				case 'checkbox':
 					if($this->hasItems()) {
-						$horizontal = (isset($args['align']) && (string) $args['align'] == 'horizontal') ? true : false;
-						$out .= ($horizontal === true) ? '<p>' : '';
+//						$horizontal = (isset($args['align']) && (string) $args['align'] == 'horizontal') ? true : false;
+						$horizontal = (isset($args['align']) && (string) $args['align'] == 'horizontal') ? ' class="horizontal"' : '';
+//						$out .= ($horizontal === true) ? '<p>' : '';
+
+						$out .= '<ul class="settings-type-' . $args['type'] . '">';
 
 						foreach($args['choices'] as $slug => $choice) {
 							$checked = $this->checked($slug);
 
-							$out .= ($horizontal === false) ? '<p>' : '';
-							$out .= '<label>';
+//							$out .= ($horizontal === false) ? '<p>' : '';
+							$out .= '<li' . $horizontal . '><label>';
 							$out .= '<input value="' . $slug . '" type="' . $args['type'] . '" name="' . $this->name($slug) . '"' . $checked . '>';
 							$out .= $choice;
-							$out .= '</label>';
-							$out .= ($horizontal === false) ? '</p>' : '';
+							$out .= '</label></li>';
+//							$out .= ($horizontal === false) ? '</p>' : '';
 						}
 
-						$out .= ($horizontal === true) ? '</p>' : '';
+						$out .= '</ul>';
+
+//						$out .= ($horizontal === true) ? '</p>' : '';
 					}
 					break;
 
@@ -688,16 +693,26 @@ class SettingsApi {
 					$value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : '';
 					?>
 					<div data-id="<?php echo $args['field_id']; ?>">
-						<div class="upload" id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
-							<a href="#"><?php \__('Upload', 'thamm-it'); ?></a>
+						<div class="upload" data-field-id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
+							<span class="button upload-button">
+								<a href="#">
+									<i class="fa fa-upload"></i>
+									<?php echo \__('Upload', 'thamm-it'); ?>
+								</a>
+							</span>
 						</div>
 						<div class="url">
-							<code title="Attachment ID: <?php echo $value; ?>" id="<?php echo $args['field_id']; ?>">
+							<code class="uploaded-file-url" title="Attachment ID: <?php echo $value; ?>" data-field-id="<?php echo $args['field_id']; ?>">
 								<?php echo $file_url; ?>
 							</code>
 						</div>
 						<div class="remove"<?php echo $remove_status; ?>>
-							<a href="#"><?php \__('Remove', 'thamm-it'); ?></a>
+							<span class="button upload-button">
+								<a href="#">
+									<i class="fa fa-trash"></i>
+									<?php echo \__('Remove', 'thamm-it'); ?>
+								</a>
+							</span>
 						</div>
 						<input type="hidden" class="attachment_id" value="<?php echo $value; ?>" name="<?php echo $option_name; ?>[<?php echo $args['field_id']; ?>]">
 					</div>
@@ -893,15 +908,33 @@ class SettingsApi {
 
 	public function adminScripts() {
 		if(!empty($this->isSettingsPage())) {
+			\wp_enqueue_media();
+			\wp_enqueue_style(
+				'font-awesome',
+				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css',
+				array(),
+				'4.6.3',
+				'all'
+			);
 			?>
 			<script>
 			jQuery(document).ready(function($) {
+				/**
+				 * Check all upload sections for uploaded files
+				 */
+				$('code.uploaded-file-url').each(function() {
+					if($(this).html().trim() !== '') {
+						$(this).css('display', 'inline-block');
+					} // END if($(this).html().trim() !== '')
+				});
+
 				// Upload attachment
 				$('.upload, .image img, .url code').click(function(e) {
 					e.preventDefault();
 
 					var send_attachment_bkp = wp.media.editor.send.attachment;
-					var data_id = $(this).attr('id');
+//					var data_id = $(this).attr('id');
+					var data_id = $(this).data('field-id');
 
 					wp.media.editor.send.attachment = function (props, attachment) {
 						var current = '[data-id="' + data_id + '"]';

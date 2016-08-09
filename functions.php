@@ -68,18 +68,29 @@ if(!isset($content_width)) {
 
 function eve_get_options_default() {
 	$defaultOptions = array(
+		// generel settings tab
 		'type' => '',
 		'name' => '',
 		'show_corp_logos' => array(
 			'show' => 'show'
 		),
-		'favicon' => '',
-		'analytics' => '',
-		'footertext' => '',
+
+		// background settings tab
+		'use_background_image' => array(
+			'yes' => 'yes'
+		),
+		'background_image' => 'amarr.jpg',
+		'background_image_upload' => '',
+		'background_color' => '',
+
+		// slider settings tab
 		'default_slider' => '',
 		'default_slider_on' => array(
 			'frontpage_only' => 'frontpage_only'
-		)
+		),
+
+		// footer settings tab
+		'footertext' => '',
 	);
 
 	return \apply_filters('eve_theme_options', $defaultOptions);
@@ -1096,3 +1107,62 @@ function eve_check_recommend_plugins() {
 function eve_get_recommend_plugins() {
 
 }
+
+function eve_get_default_background_images($withThumbnail = false, $baseClass = null) {
+	$imagePath = \get_stylesheet_directory() . '/img/background/';
+	$handle = \opendir($imagePath);
+
+	if($baseClass !== null) {
+		$baseClass = '-' . $baseClass;
+	} // END if($baseClass !== null)
+
+	if($handle) {
+		while(false !== ($entry = readdir($handle))) {
+			$files[$entry] = $entry;
+		} // END while(false !== ($entry = readdir($handle)))
+
+		\closedir($handle);
+
+		// we are only looking for images
+		$images = \preg_grep('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
+
+		if($withThumbnail === true) {
+			foreach($images as &$image) {
+				$image = '<figure class="bg-image' . $baseClass . '"><img src="' . \get_stylesheet_directory_uri() . '/img/background/' . $image . '" style="width:100px; height:auto;"><figcaption>' . $image . '</figcaption></figure>';
+			} // END foreach($images as &$image)
+		} // END if($withThumbnail === true)
+
+		return $images;
+	} // END if($handle)
+} // END function eve_get_default_background_images($withThumbnail = false, $baseClass = null)
+
+function eve_get_theme_background_image() {
+	$themeSettings = \get_option('eve_theme_options', eve_get_options_default());
+
+	$backgroundImage = \get_stylesheet_directory_uri() . '/img/background/' . $themeSettings['background_image'];
+	$uploadedBackground = (empty($themeSettings['background_image_upload'])) ? false : true;
+
+	// we have an uploaded image, so overwrite the background
+	if($uploadedBackground === true) {
+		$backgroundImage = \wp_get_attachment_url($themeSettings['background_image_upload']);
+	} // END if($uploadedBackground === true)
+
+	return $backgroundImage;
+} // END function eve_get_background_image()
+
+/**
+ * Adding the custom style to the theme
+ */
+function eve_get_theme_custom_style() {
+	$themeSettings = \get_option('eve_theme_options', eve_get_options_default());
+	$themeCustomStyle = null;
+
+	// background image
+	$backgroundImage = eve_get_theme_background_image();
+	if(!empty($backgroundImage) && isset($themeSettings['use_background_image']['yes'])) {
+		$themeCustomStyle .= 'body {background-image: url("' . $backgroundImage . '")}';
+	} // END if(!empty(eve_get_theme_background_image()))
+
+	\wp_add_inline_style('eve-online', $themeCustomStyle);
+} // END function eve_get_theme_custom_style()
+\add_action( 'wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_get_theme_custom_style' );

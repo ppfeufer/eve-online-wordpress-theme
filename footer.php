@@ -1,5 +1,8 @@
-<?php defined('ABSPATH') or die(); ?>
+<?php
+defined('ABSPATH') or die();
 
+$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
+?>
 		</main>
 		<footer>
 			<div class="footer-wrapper">
@@ -22,22 +25,25 @@
 							<div class="col-md-12">
 								<div class="pull-left copyright-text">
 									<?php
-//									$options = \get_option('eve_theme_options', \EveOnline\eve_get_options_default());
-//
-//									if($options['footertext'] != '') {
-//										echo '<p>';
-//										echo stripslashes($options['footertext']);
-//										echo '</p>';
-//									} else {
-										?>
-										<ul class="credit">
-											<li>&copy; <?php echo date('Y'); ?> <a href="<?php \bloginfo('url'); ?>"><?php \bloginfo(); ?></a></li>
-											<!--<li><?php \_e('Proudly powered by ', 'eve-online') ?> <a href="<?php echo \esc_url(\__('http://wordpress.org/', 'eve-online')); ?>" ><?php \_e('WordPress', 'eve-online') ?></a>.</li>-->
-											<li>(<?php \printf(\__('Design and Programming by Rounon Dax', 'eve-online')); ?>)</li>
-										</ul><!-- end .credit -->
-										<?php
-//									} // END if($options['footertext'] != '')
+									if(!empty($options['footertext'])) {
+										echo '<p>';
+										echo stripslashes($options['footertext']);
+										echo '</p>';
+									} // END if(!empty($options['footertext']))
 									?>
+									<ul class="credit">
+										<li>
+											&copy; <?php echo date('Y'); ?> <a href="<?php \bloginfo('url'); ?>"><?php \bloginfo(); ?></a>
+										</li>
+										<li>
+											(<?php
+											\printf(\__('%1$s design and programming by %2$s', 'eve-online'),
+												'<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>',
+												'<a href="https://gate.eveonline.com/Profile/Rounon%20Dax" rel="nofollow">Rounon Dax</a>'
+											);
+											?>)
+										</li>
+									</ul><!-- end .credit -->
 								</div>
 
 								<div class="footer-menu-wrapper">

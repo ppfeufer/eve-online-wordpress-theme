@@ -25,7 +25,9 @@ class ThemeSettings {
 			'page_title' => \__('EVE Online Theme Settings', 'eve-online'),
 			'option_name' => 'eve_theme_options',
 			'tabs' => array(
-				/* general settings tab */
+				/**
+				 * general settings tab
+				 */
 				'general-settings' => array(
 					'tab_title' => \__('General Settings', 'eve-online'),
 					'tab_description' => \__('General Theme Settings', 'eve-online'),
@@ -54,9 +56,40 @@ class ThemeSettings {
 								'show' => \__('Show corp logos in menu for corp pages.', 'eve-online')
 							),
 							'description' => \__('Only available if you are running an alliance website, so you can have the corp logos in your "Our Corporations" menu.', 'eve-online')
+						),
+					),
+				),
+				'background-settings' => array(
+					'tab_title' => \__('Background Settings', 'eve-online'),
+					'tab_description' => \__('Background Settings', 'eve-online'),
+					'fields' => array(
+						'use_background_image' => array(
+							'type' => 'checkbox',
+							'title' => \__('Use Background Image', 'eve-online'),
+							'choices' => array(
+								'yes' => \__('Yes, I want to use background images on this website.', 'eve-online')
+							),
+							'description' => \__('If this option is checked, the website will use your selected (down below) background image instead of a simple colored background.', 'eve-online')
+						),
+						'background_image' => array(
+							'type' => 'radio',
+							'choices' => EveOnline\eve_get_default_background_images(true),
+							'empty' => \__('Please Select', 'eve-online'),
+							'title' => \__('Background Image', 'eve-online'),
+							'description' => \__('Select one of the default Background images ...', 'eve-online'),
+							'align' => 'horizontal'
+						),
+						'background_image_upload' => array(
+							'type' => 'file',
+							'title' => \__('', 'eve-online'),
+							'description' => \__('... or upload your own', 'eve-online')
 						)
 					)
 				),
+
+				/**
+				 * slider settings tab
+				 */
 				'slider-settings' => array(
 					'tab_title' => \__('Slider Settings', 'eve-online'),
 					'tab_description' => \__('Slider Settings', 'eve-online'),
@@ -96,7 +129,7 @@ class ThemeSettings {
 						'content' => '<pre>' . \print_r(EveOnline\eve_get_options_default(), true) . '</pre>',
 						'title' => \__('Options Array<br>(sane from functions.php)', 'eve-online'),
 						'callback' => null,
-						'description' => \__('This are the sane options defined in functions.php via <code>EveOnline\eve_get_options_default()</code>', 'eve-online')
+						'description' => \__('This are the sane options defined in functions.php via <code>\WordPress\Themes\EveOnline\eve_get_options_default()</code>', 'eve-online')
 					),
 					'eve_theme_options_from_db' => array(
 						'type' => 'custom',
@@ -114,7 +147,7 @@ class ThemeSettings {
 					)
 				)
 			);
-		}
+		} // END if(\preg_match('/development/', \APPLICATION_ENV))
 
 		return $themeOptionsPage;
 	} // END public function renderSettingsPage()
