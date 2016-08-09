@@ -658,7 +658,7 @@ function eve_widgets_init() {
 function eve_excerpt_more($more) {
 	return ' ... <br/><a class="read-more" href="'. \get_permalink(\get_the_ID()) . '">'.__('Read More', 'eve-online').'</a>';
 } // END function eve_excerpt_more($more)
-add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
+ \add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
 
 /**
  * prevent scrolling when using more-tag
