@@ -1147,6 +1147,13 @@ function eve_get_default_background_images($withThumbnail = false, $baseClass = 
 	} // END if($handle)
 } // END function eve_get_default_background_images($withThumbnail = false, $baseClass = null)
 
+/**
+ * Disable Smilies
+ *
+ * @todo Make it configurable
+ */
+add_filter('option_use_smilies', '__return_false');
+
 function eve_get_theme_background_image() {
 	$themeSettings = \get_option('eve_theme_options', eve_get_options_default());
 
@@ -1176,4 +1183,4 @@ function eve_get_theme_custom_style() {
 
 	\wp_add_inline_style('eve-online', $themeCustomStyle);
 } // END function eve_get_theme_custom_style()
-\add_action( 'wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_get_theme_custom_style' );
+\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_get_theme_custom_style');
