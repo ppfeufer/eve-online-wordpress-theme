@@ -25,7 +25,11 @@ Your corporation/alliance is also using this theme and you guys like it? Let me 
 
 Todo List:
 - [ ] Clean up the CSS files
-- [x] Make background image configurable
+- [x] ~~Make background image configurable~~
 - [ ] Make theme plugins configurable
 - [ ] Make content background colour configurable
 - [ ] Rework the theme settings completely
+- [ ] Generate color theme for Amarr
+- [ ] Generate color theme for Gallente
+- [ ] Generate color theme for Caldari
+- [ ] Generate color theme for Minmatar
