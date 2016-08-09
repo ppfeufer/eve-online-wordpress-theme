@@ -15,54 +15,54 @@ namespace WordPress\Themes\EveOnline;
  * set the following in your webservers vhosts config.
  *		SetEnv APPLICATION_ENV "development"
  */
-defined('APPLICATION_ENV') || define('APPLICATION_ENV', (preg_match('/development/', getenv('APPLICATION_ENV')) || preg_match('/staging/', getenv('APPLICATION_ENV'))) ? getenv('APPLICATION_ENV') : 'production');
+\defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
  * EVE API Class
  */
-require_once(get_stylesheet_directory() . '/helper/EveApi.php');
+require_once(\get_stylesheet_directory() . '/helper/EveApi.php');
 
 /**
  * String Helper
  */
-require_once(get_stylesheet_directory() . '/helper/String.php');
+require_once(\get_stylesheet_directory() . '/helper/String.php');
 
 /**
  * Metaslider Plugin
  */
-require_once(get_stylesheet_directory() . '/plugins/Metaslider.php');
+require_once(\get_stylesheet_directory() . '/plugins/Metaslider.php');
 
 /**
  * Theme Shortcodes
  */
-require_once(get_stylesheet_directory() . '/plugins/Shortcodes.php');
+require_once(\get_stylesheet_directory() . '/plugins/Shortcodes.php');
 
 /**
  * Bootstrap Image Gallery
  */
-require_once(get_stylesheet_directory() . '/plugins/BootstrapImageGallery.php');
+require_once(\get_stylesheet_directory() . '/plugins/BootstrapImageGallery.php');
 
 /**
  * Bootstrap Video Gallery
  */
-require_once(get_stylesheet_directory() . '/plugins/BootstrapVideoGallery.php');
+require_once(\get_stylesheet_directory() . '/plugins/BootstrapVideoGallery.php');
 
 /**
  * EVE Corp Page
  * Adds a little box to the page edit site to set a page as corp page
  */
-require_once(get_stylesheet_directory() . '/plugins/Corppage.php');
+require_once(\get_stylesheet_directory() . '/plugins/Corppage.php');
 
 /**
  * Lazy Loading
  */
-require_once(get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
+require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
 
 /**
  * WP Security
  */
-require_once(get_stylesheet_directory() . '/security/WordPressSecurity.php');
-require_once(get_stylesheet_directory() . '/security/WordPressCoreUpdateCleaner.php');
+require_once(\get_stylesheet_directory() . '/security/WordPressSecurity.php');
+require_once(\get_stylesheet_directory() . '/security/WordPressCoreUpdateCleaner.php');
 
 /**
  * Theme Options
