@@ -7,6 +7,17 @@
 namespace WordPress\Themes\EveOnline;
 
 /**
+ * Just to make sure, if this line is not in wp-config, that our environment
+ * variable is still set right.
+ *
+ * This is to determine between "development/staging" and "live/production" environments.
+ * If you are testing this theme in your own test environment, make sure you
+ * set the following in your webservers vhosts config.
+ *		SetEnv APPLICATION_ENV "development"
+ */
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', (preg_match('/development/', getenv('APPLICATION_ENV')) || preg_match('/staging/', getenv('APPLICATION_ENV'))) ? getenv('APPLICATION_ENV') : 'production');
+
+/**
  * EVE API Class
  */
 require_once(get_stylesheet_directory() . '/helper/EveApi.php');
