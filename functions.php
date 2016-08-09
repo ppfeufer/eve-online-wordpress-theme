@@ -1084,12 +1084,12 @@ if(\preg_match('/development/', \APPLICATION_ENV)) {
 }
 
 function eve_add_defer_attribute($tag) {
-	return str_replace(' src', ' defer="defer" src', $tag);
+	return \str_replace(' src', ' defer="defer" src', $tag);
 } // END function add_defer_attribute($tag)
 //add_filter('script_loader_tag', '\\EveOnline\eve_add_defer_attribute', 10, 2);
 
 function eve_add_async_attribute($tag) {
-	return str_replace(' src', ' async="async" src', $tag);
+	return \str_replace(' src', ' async="async" src', $tag);
 } // END function add_async_attribute($tag)
 //add_filter('script_loader_tag', '\\EveOnline\eve_add_async_attribute', 10, 2);
 
@@ -1117,7 +1117,7 @@ function eve_get_default_background_images($withThumbnail = false, $baseClass = 
 	} // END if($baseClass !== null)
 
 	if($handle) {
-		while(false !== ($entry = readdir($handle))) {
+		while(false !== ($entry = \readdir($handle))) {
 			$files[$entry] = $entry;
 		} // END while(false !== ($entry = readdir($handle)))
 
