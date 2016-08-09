@@ -1186,8 +1186,10 @@ function eve_get_theme_custom_style() {
 
 	// main navigation
 	if(isset($themeSettings['navigation_even_cells']['yes'])) {
-		$themeCustomStyle .= 'ul.main-navigation {display:table; width:100%;}' . "\n";
-		$themeCustomStyle .= 'ul.main-navigation li {display:table-cell; text-align:center; float:none;}' . "\n";
+		$themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
+		$themeCustomStyle .= '	ul.main-navigation {display:table; width:100%;}' . "\n";
+		$themeCustomStyle .= '	ul.main-navigation li {display:table-cell; text-align:center; float:none;}' . "\n";
+		$themeCustomStyle .= '}' . "\n";
 	} // END if(isset($themeSettings['navigation_even_cells']['yes']))
 
 	\wp_add_inline_style('eve-online', $themeCustomStyle);
