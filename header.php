@@ -1,16 +1,5 @@
-<?php
-defined('ABSPATH') or die();
-/**
- * Default Page Header
- *
- * @author Nina Taberski-Besserdich (nina.taberski@besserdich.com)
- * @package WordPress
- * @subpackage BIC Bootstrap Wordpress Theme
- */
-?>
-
+<?php defined('ABSPATH') or die(); ?>
 <!DOCTYPE html>
-<!-- HTML5 -->
 <html <?php \language_attributes(); ?>>
 	<head>
 		<meta charset="<?php \bloginfo('charset'); ?>">
