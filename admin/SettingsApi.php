@@ -923,10 +923,7 @@ class SettingsApi {
 			\wp_enqueue_media();
 			\wp_enqueue_style(
 				'font-awesome',
-				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css',
-				array(),
-				'4.6.3',
-				'all'
+				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css'
 			);
 			?>
 			<script>
