@@ -54,6 +54,15 @@ class ThemeSettings {
 			)
 		);
 
+		if($this->metaSlider->metasliderPluginExists() === false) {
+			$themeOptionsPage['eve-online-theme-settings']['tabs']['slider-settings']['fields']['slider-warning']  = array(
+				'type' => 'custom',
+				'title' => \__('Meta Slider Warning', 'eve-online'),
+				'content' => \sprintf(\__('Please make sure you have the %1$s plugin installed and activated.', 'eve-online'), '<a href="https://de.wordpress.org/plugins/ml-slider/" target="_blank">Meta Slider</a>'),
+				'callback' => null
+			);
+		} // END if($this->metaSlider->metasliderPluginExists() === false)
+
 		if(\preg_match('/development/', \APPLICATION_ENV)) {
 			$themeOptionsPage['eve-online-theme-settings']['tabs']['development'] = array(
 				'tab_title' => \__('Development Infos', 'eve-online'),
