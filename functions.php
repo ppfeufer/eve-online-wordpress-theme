@@ -1095,24 +1095,14 @@ function eve_bootstrapDebug() {
 }
 if(\preg_match('/development/', \APPLICATION_ENV)) {
 	\add_action('wp_footer', '\\WordPress\Themes\EveOnline\eve_bootstrapDebug', 99);
-}
-
-function eve_add_defer_attribute($tag) {
-	return \str_replace(' src', ' defer="defer" src', $tag);
-} // END function add_defer_attribute($tag)
-//add_filter('script_loader_tag', '\\EveOnline\eve_add_defer_attribute', 10, 2);
-
-function eve_add_async_attribute($tag) {
-	return \str_replace(' src', ' async="async" src', $tag);
-} // END function add_async_attribute($tag)
-//add_filter('script_loader_tag', '\\EveOnline\eve_add_async_attribute', 10, 2);
+} // END if(\preg_match('/development/', \APPLICATION_ENV))
 
 /**
  * Disable Smilies
  *
  * @todo Make it configurable
  */
-add_filter('option_use_smilies', '__return_false');
+\add_filter('option_use_smilies', '__return_false');
 
 function eve_check_recommend_plugins() {
 	$recommendPlugins = eve_get_recommend_plugins();
@@ -1155,7 +1145,7 @@ function eve_get_default_background_images($withThumbnail = false, $baseClass = 
  *
  * @todo Make it configurable
  */
-add_filter('option_use_smilies', '__return_false');
+\add_filter('option_use_smilies', '__return_false');
 
 function eve_get_theme_background_image() {
 	$themeSettings = \get_option('eve_theme_options', eve_get_options_default());
