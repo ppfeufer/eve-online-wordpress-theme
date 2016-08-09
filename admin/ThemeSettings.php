@@ -59,6 +59,10 @@ class ThemeSettings {
 						),
 					),
 				),
+
+				/**
+				 * background settings tab
+				 */
 				'background-settings' => array(
 					'tab_title' => \__('Background Settings', 'eve-online'),
 					'tab_description' => \__('Background Settings', 'eve-online'),

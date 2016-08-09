@@ -671,7 +671,7 @@ class SettingsApi {
 					$image = (!empty($image_obj)) ? $image_obj[0] : '';
 					$upload_status = (!empty($image_obj)) ? ' style="display: none"' : '';
 					$remove_status = (!empty($image_obj)) ? '' : ' style="display: none"';
-					$value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : ' Empty';
+					$value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : '';
 					?>
 					<div data-id="<?php echo $args['field_id']; ?>">
 						<div class="upload" data-field-id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
