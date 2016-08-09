@@ -19,6 +19,7 @@ or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme
 
 Website using this Theme:
 * [Yulai Federation](http://yulaifederation.net/)
+* [Terra Nanotech](http://terra-nanotech.de/)
 
 Your corporation/alliance is also using this theme and you guys like it? Let me know :-)
 
