@@ -146,7 +146,7 @@
 												'theme_location' => 'main-menu',
 												'depth' => 2,
 												'container' => false,
-												'menu_class' => 'nav navbar-nav',
+												'menu_class' => 'nav navbar-nav main-navigation',
 												'fallback_cb' => 'WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
 												'walker' => new WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
 											));

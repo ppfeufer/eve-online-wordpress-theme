@@ -85,6 +85,9 @@ function eve_get_options_default() {
 		'show_corp_logos' => array(
 			'show' => 'show'
 		),
+		'navigation_even_cells' => array(
+			'yes' => ''
+		),
 
 		// background settings tab
 		'use_background_image' => array(
@@ -1178,8 +1181,14 @@ function eve_get_theme_custom_style() {
 	// background image
 	$backgroundImage = eve_get_theme_background_image();
 	if(!empty($backgroundImage) && isset($themeSettings['use_background_image']['yes'])) {
-		$themeCustomStyle .= 'body {background-image: url("' . $backgroundImage . '")}';
+		$themeCustomStyle .= 'body {background-image:url("' . $backgroundImage . '")}' . "\n";
 	} // END if(!empty(eve_get_theme_background_image()))
+
+	// main navigation
+	if(isset($themeSettings['navigation_even_cells']['yes'])) {
+		$themeCustomStyle .= 'ul.main-navigation {display:table; width:100%;}' . "\n";
+		$themeCustomStyle .= 'ul.main-navigation li {display:table-cell; text-align:center; float:none;}' . "\n";
+	} // END if(isset($themeSettings['navigation_even_cells']['yes']))
 
 	\wp_add_inline_style('eve-online', $themeCustomStyle);
 } // END function eve_get_theme_custom_style()

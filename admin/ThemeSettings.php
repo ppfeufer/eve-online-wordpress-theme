@@ -101,6 +101,14 @@ class ThemeSettings {
 				),
 				'description' => \__('Only available if you are running an alliance website, so you can have the corp logos in your "Our Corporations" menu.', 'eve-online')
 			),
+			'navigation_even_cells' => array(
+				'type' => 'checkbox',
+				'title' => \__('Navigation', 'eve-online'),
+				'choices' => array(
+					'yes' => \__('Even navigation cells in main navigation', 'eve-online')
+				),
+				'description' => \__('Transforms the main navigation into even cells instead of a random width.', 'eve-online')
+			),
 		);
 	} // END private function getGeneralTabFields()
 
