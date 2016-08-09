@@ -80,7 +80,7 @@ class ThemeSettings {
 							'align' => 'horizontal'
 						),
 						'background_image_upload' => array(
-							'type' => 'file',
+							'type' => 'image',
 							'title' => \__('', 'eve-online'),
 							'description' => \__('... or upload your own', 'eve-online')
 						)

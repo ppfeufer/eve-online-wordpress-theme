@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: EVE Online\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Thu Jun 02 2016 23:18:11 GMT+0200 (CEST)\n"
-"PO-Revision-Date: Fri Aug 05 2016 11:44:40 GMT+0200\n"
+"PO-Revision-Date: Tue Aug 09 2016 12:56:33 GMT+0200\n"
 "Last-Translator: ppfeufer <p.pfeufer@thamm-it.de>\n"
 "Language-Team: \n"
 "Language: German\n"
@@ -22,56 +22,99 @@ msgstr ""
 "X-Loco-Target-Locale: de_DE\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: ../admin/ThemeSettings.php:41
+#: ../admin/ThemeSettings.php:43
 msgid "Is this a Corporation or an Alliance Website?"
+msgstr "Ist dies eine Corp oder Allianz Webseite?"
+
+#: ../admin/ThemeSettings.php:63 ../admin/ThemeSettings.php:64
+msgid "Background Settings"
+msgstr "Hintergrund Einstellungen"
+
+#: ../admin/ThemeSettings.php:68
+msgid "Use Background Image"
+msgstr "Hintergrundbild nutzen"
+
+#: ../admin/ThemeSettings.php:70
+msgid "Yes, I want to use background images on this website."
+msgstr "Ja, ich möchte ein hintergrundbild nutzen."
+
+#: ../admin/ThemeSettings.php:72
+msgid ""
+"If this option is checked, the website will use your selected (down below) "
+"background image instead of a simple colored background."
+msgstr ""
+"Ist diese Option gewählt, so wird das in einer der unteren Optionen gesetzte "
+"Hintergundbild verwendet, anstelle eines einfarbigen Hintergrundes."
+
+#: ../admin/ThemeSettings.php:78
+msgid "Background Image"
+msgstr "Hintergrundbild"
+
+#: ../admin/ThemeSettings.php:79
+msgid "Select one of the default Background images ..."
+msgstr "Wähle eines der folgenden ..."
+
+#: ../admin/ThemeSettings.php:85
+msgid "... or upload your own"
+msgstr "... oder lade ein eigenes Bild hoch."
+
+#: ../admin/ThemeSettings.php:132
+msgid ""
+"This are the sane options defined in functions.php via "
+"<code>\\WordPress\\Themes\\EveOnline\\eve_get_options_default()</code>"
 msgstr ""
 
-#: ../functions.php:521 ../functions.php:523
+#: ../footer.php:40
+#, php-format
+msgid "%1$s design and programming by %2$s"
+msgstr ""
+
+#: ../functions.php:532 ../functions.php:534
 msgid "Home Column 1"
 msgstr ""
 
-#: ../functions.php:533 ../functions.php:535
+#: ../functions.php:544 ../functions.php:546
 msgid "Home Column 2"
 msgstr ""
 
-#: ../functions.php:545 ../functions.php:547
+#: ../functions.php:556 ../functions.php:558
 msgid "Home Column 3"
 msgstr ""
 
-#: ../functions.php:557 ../functions.php:559
+#: ../functions.php:568 ../functions.php:570
 msgid "Home Column 4"
 msgstr ""
 
-#: ../functions.php:569 ../functions.php:571
+#: ../functions.php:580 ../functions.php:582
 msgid "Footer Column 1"
 msgstr ""
 
-#: ../functions.php:581 ../functions.php:583
+#: ../functions.php:592 ../functions.php:594
 msgid "Footer Column 2"
 msgstr ""
 
-#: ../functions.php:593 ../functions.php:595
+#: ../functions.php:604 ../functions.php:606
 msgid "Footer Column 3"
 msgstr ""
 
-#: ../functions.php:605 ../functions.php:607
+#: ../functions.php:616 ../functions.php:618
 msgid "Footer Column 4"
 msgstr ""
 
-#: ../functions.php:724
+#: ../functions.php:735
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: ../functions.php:870
+#: ../functions.php:881
 msgid "Archive by category "
 msgstr ""
 
-#: ../functions.php:932
+#: ../functions.php:943
 msgid "Posts tagged \""
 msgstr ""
 
-#: ../functions.php:939
+#: ../functions.php:950
 msgid "Articles posted by "
 msgstr ""
 
@@ -117,11 +160,11 @@ msgstr "(Keine beschreibung verfügbar)"
 msgid "Add a menu"
 msgstr "Menü hinzufügen"
 
-#: ../admin/SettingsApi.php:673 ../admin/SettingsApi.php:692
+#: ../admin/SettingsApi.php:678 ../admin/SettingsApi.php:700
 msgid "Upload"
 msgstr "Hochladen"
 
-#: ../admin/SettingsApi.php:677 ../admin/SettingsApi.php:700
+#: ../admin/SettingsApi.php:682 ../admin/SettingsApi.php:713
 msgid "Remove"
 msgstr "Entfernen"
 
@@ -133,52 +176,52 @@ msgstr "Optionen"
 msgid "EVE Online Theme Settings"
 msgstr "EVE Online Theme Einstellungen"
 
-#: ../admin/ThemeSettings.php:30
+#: ../admin/ThemeSettings.php:32
 msgid "General Settings"
 msgstr "Generelle Einstellungen"
 
-#: ../admin/ThemeSettings.php:31
+#: ../admin/ThemeSettings.php:33
 msgid "General Theme Settings"
 msgstr "Generelle Theme Einstellungen"
 
-#: ../admin/ThemeSettings.php:36
+#: ../admin/ThemeSettings.php:38
 msgid "Alliance"
 msgstr "Allianz"
 
-#: ../admin/ThemeSettings.php:37
+#: ../admin/ThemeSettings.php:39
 msgid "Corporation"
 msgstr "Corporation"
 
-#: ../admin/ThemeSettings.php:39
+#: ../admin/ThemeSettings.php:41 ../admin/ThemeSettings.php:77
 msgid "Please Select"
 msgstr "Bitte wählen"
 
-#: ../admin/ThemeSettings.php:40
+#: ../admin/ThemeSettings.php:42
 msgid "Entity Type"
 msgstr "Typ"
 
-#: ../admin/ThemeSettings.php:45
+#: ../admin/ThemeSettings.php:47
 msgid "Entity Name"
 msgstr "Name"
 
-#: ../admin/ThemeSettings.php:46
+#: ../admin/ThemeSettings.php:48
 #, php-format
 msgid "The Name of your Corp/Alliance %1$s"
 msgstr "Der Name Deiner Corp/Allianz %1$s"
 
-#: ../admin/ThemeSettings.php:47
+#: ../admin/ThemeSettings.php:49
 msgid "Your Logo"
 msgstr "Dein Logo"
 
-#: ../admin/ThemeSettings.php:52
+#: ../admin/ThemeSettings.php:54
 msgid "Corp Logos"
 msgstr "Corp Logos"
 
-#: ../admin/ThemeSettings.php:54
+#: ../admin/ThemeSettings.php:56
 msgid "Show corp logos in menu for corp pages."
 msgstr "Zeige Corp Logos im Menü für Corp Seiten."
 
-#: ../admin/ThemeSettings.php:56
+#: ../admin/ThemeSettings.php:58
 msgid ""
 "Only available if you are running an alliance website, so you can have the "
 "corp logos in your \"Our Corporations\" menu."
@@ -186,62 +229,54 @@ msgstr ""
 "Nur verfügbar, wenn dies eine Allianzseite ist. Somit können die Corp Logos "
 "im Untermenü \"Unsere Corporationen\" angezeigt werden."
 
-#: ../admin/ThemeSettings.php:61 ../admin/ThemeSettings.php:62
+#: ../admin/ThemeSettings.php:94 ../admin/ThemeSettings.php:95
 msgid "Slider Settings"
 msgstr "Slider Einstellungen"
 
-#: ../admin/ThemeSettings.php:72
+#: ../admin/ThemeSettings.php:105
 msgid "Default Slider on Front Page"
 msgstr "Standard Slider auf der Startseite"
 
-#: ../admin/ThemeSettings.php:74
+#: ../admin/ThemeSettings.php:107
 msgid "Select the default slider for your front page"
 msgstr "Wähle den Standard Slider für die Startseite"
 
-#: ../admin/ThemeSettings.php:74
+#: ../admin/ThemeSettings.php:107
 #, php-format
 msgid "Please make sure you have the %1$s plugin installed and activated."
 msgstr "Stelle dicher, dass das %1$s Plugin installiert und aktiviert ist."
 
-#: ../admin/ThemeSettings.php:78
+#: ../admin/ThemeSettings.php:111
 msgid "Pages with Slider"
 msgstr "Seiten mit Slider"
 
-#: ../admin/ThemeSettings.php:80
+#: ../admin/ThemeSettings.php:113
 msgid "Show only on front page."
 msgstr "Nur auf der Startseite anzeigen."
 
-#: ../admin/ThemeSettings.php:82
+#: ../admin/ThemeSettings.php:115
 msgid "Show this slider only on front page in case no other slider is defined."
 msgstr ""
 "Zeige diesen Slider nur auf der Startseite an, falls dort kein anderer "
 "gewählt wurde."
 
-#: ../admin/ThemeSettings.php:91
+#: ../admin/ThemeSettings.php:124
 msgid "Development Infos"
 msgstr "Development Infos"
 
-#: ../admin/ThemeSettings.php:92
+#: ../admin/ThemeSettings.php:125
 msgid "Delevopment Information"
 msgstr "Delevopment Information"
 
-#: ../admin/ThemeSettings.php:97
+#: ../admin/ThemeSettings.php:130
 msgid "Options Array<br>(sane from functions.php)"
 msgstr "Options Array<br>(sane from functions.php)"
 
-#: ../admin/ThemeSettings.php:99
-msgid ""
-"This are the sane options defined in functions.php via "
-"<code>EveOnline\\eve_get_options_default()</code>"
-msgstr ""
-"Dies sind die Optionen wie sie ind er functions.php definiert wurden. "
-"<code>EveOnline\\eve_get_options_default()</code>"
-
-#: ../admin/ThemeSettings.php:104
+#: ../admin/ThemeSettings.php:137
 msgid "Options Array<br>(from DB)"
 msgstr "Options Array<br>(from DB)"
 
-#: ../admin/ThemeSettings.php:106
+#: ../admin/ThemeSettings.php:139
 msgid ""
 "This are the options from our database via "
 "<code>\\get_option('eve_theme_options')</code>"
@@ -249,11 +284,11 @@ msgstr ""
 "Dies sind die Optionen die in der Datenbank gespeichert sind. "
 "<code>\\get_option('eve_theme_options')</code>"
 
-#: ../admin/ThemeSettings.php:111
+#: ../admin/ThemeSettings.php:144
 msgid "Options Array<br>(merged / used for Theme)"
 msgstr "Options Array<br>(merged / used for Theme)"
 
-#: ../admin/ThemeSettings.php:113
+#: ../admin/ThemeSettings.php:146
 msgid ""
 "This are the options used for the theme via "
 "<code>\\get_option('eve_theme_options', "
@@ -323,7 +358,7 @@ msgstr "Permalink zu %s"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ../content-single.php:76 ../functions.php:1002
+#: ../content-single.php:76 ../functions.php:1013
 msgid "Pages:"
 msgstr "Seiten:"
 
@@ -331,42 +366,26 @@ msgstr "Seiten:"
 msgid "Posted by "
 msgstr "Geschrieben von"
 
-#: ../footer.php:35
-msgid "Proudly powered by "
-msgstr "Proudly powered by"
-
-#: ../footer.php:35
-msgid "http://wordpress.org/"
-msgstr "http://wordpress.org/"
-
-#: ../footer.php:35
-msgid "WordPress"
-msgstr "WordPress"
-
-#: ../footer.php:36
-msgid "Design and Programming by Rounon Dax"
-msgstr "Design und Programmierung: Rounon Dax"
-
-#: ../footer.php:78
+#: ../footer.php:84
 msgid "back to top"
 msgstr "Nach oben"
 
-#: ../functions.php:350
+#: ../functions.php:361
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: ../functions.php:351
+#: ../functions.php:362
 msgid "Footer Menu"
 msgstr "Fußmenü"
 
-#: ../functions.php:352
+#: ../functions.php:363
 msgid "Header Menu"
 msgstr "Kopfmenü"
 
 #. Translators: If there are characters in your language that are not
 #. supported by Source Sans Pro, translate this to 'off'. Do not translate
 #. into your own language.
-#: ../functions.php:404
+#: ../functions.php:415
 msgctxt "Source Sans Pro font: on or off"
 msgid "on"
 msgstr "on"
@@ -374,24 +393,24 @@ msgstr "on"
 #. Translators: If there are characters in your language that are not
 #. supported by Bitter, translate this to 'off'. Do not translate into your
 #. own language.
-#: ../functions.php:411
+#: ../functions.php:422
 msgctxt "Bitter font: on or off"
 msgid "on"
 msgstr "on"
 
-#: ../functions.php:487
+#: ../functions.php:498
 msgid "Page Sidebar"
 msgstr "Page Sidebar"
 
-#: ../functions.php:498
+#: ../functions.php:509
 msgid "Post Sidebar"
 msgstr "Post Sidebar"
 
-#: ../functions.php:509
+#: ../functions.php:520
 msgid "General Sidebar"
 msgstr "Generelle Sidebar"
 
-#: ../functions.php:511
+#: ../functions.php:522
 msgid ""
 "General sidebar that is always right from the topic, below the side specific "
 "sidebars"
@@ -399,43 +418,43 @@ msgstr ""
 "Generelle Sidebar welche immer unter den seitenspezifischen Sidebars "
 "angezeigt wird."
 
-#: ../functions.php:618 ../functions.php:620
+#: ../functions.php:629 ../functions.php:631
 msgid "Header Widget Area"
 msgstr "Header Widget Bereich"
 
-#: ../functions.php:634
+#: ../functions.php:645
 msgid "Read More"
 msgstr "Weiterlesen"
 
-#: ../functions.php:658
+#: ../functions.php:669
 msgid "Post navigation"
 msgstr "Atrikelnavigation"
 
-#: ../functions.php:660
+#: ../functions.php:671
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Artikel"
 
-#: ../functions.php:663
+#: ../functions.php:674
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Neuere Artikel <span class=\"meta-nav\">&rarr;</span>"
 
-#: ../functions.php:685
+#: ../functions.php:696
 msgid "Pingback:"
 msgstr "Pingback"
 
-#: ../functions.php:704
+#: ../functions.php:715
 msgid "Post author"
 msgstr "Artikelautor"
 
-#: ../functions.php:712
+#: ../functions.php:723
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar befindet sich in Moderation"
 
-#: ../functions.php:731
+#: ../functions.php:742
 msgid "Reply <span>&darr;</span>"
 msgstr "Antwort <span>&darr;</span>"
 
-#: ../functions.php:752
+#: ../functions.php:763
 #, php-format
 msgid ""
 "Posted on <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time><span "
@@ -446,25 +465,25 @@ msgstr ""
 "class=\"byline\"> <span class=\"sep\"> von </span> <span class=\"author "
 "vcard\">%7$s</span></span>"
 
-#: ../functions.php:758
+#: ../functions.php:769
 #, php-format
 msgid "View all posts by %s"
 msgstr "Alle Artikel von %s anschauen"
 
-#: ../functions.php:833
+#: ../functions.php:844
 #, php-format
 msgid "Page %s"
 msgstr "Seite %s"
 
-#: ../functions.php:844
+#: ../functions.php:855
 msgid "Home"
 msgstr "Home"
 
-#: ../functions.php:928
+#: ../functions.php:939
 msgid "Search results for \""
 msgstr "Suchergebnis für \""
 
-#: ../functions.php:943
+#: ../functions.php:954
 msgid "Error 404"
 msgstr "Fehler 404"
 

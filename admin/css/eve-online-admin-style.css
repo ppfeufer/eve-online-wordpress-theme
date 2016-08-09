@@ -23,7 +23,7 @@
 
 /* settings api file upload
 ----------------------------------------------------------------------------- */
-.uploaded-file-url {
+.uploaded-file-url, .uploaded-image {
 	display: none;
 	padding: 0.5rem;
 }

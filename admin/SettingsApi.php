@@ -674,12 +674,24 @@ class SettingsApi {
 					$value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : ' Empty';
 					?>
 					<div data-id="<?php echo $args['field_id']; ?>">
-						<div class="upload" id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
-							<a href="#"><?php \__('Upload', 'thamm-it'); ?></a>
+						<div class="upload" data-field-id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
+							<span class="button upload-button">
+								<a href="#">
+									<i class="fa fa-upload"></i>
+									<?php echo \__('Upload', 'eve-online'); ?>
+								</a>
+							</span>
 						</div>
-						<div class="image"><img src="<?php echo $image; ?>" id="<?php echo $args['field_id']; ?>" /></div>
+						<div class="image">
+							<img class="uploaded-image" src="<?php echo $image; ?>" id="<?php echo $args['field_id']; ?>" />
+						</div>
 						<div class="remove"<?php echo $remove_status; ?>>
-							<a href="#"><?php \__('Remove', 'thamm-it'); ?></a>
+							<span class="button upload-button">
+								<a href="#">
+									<i class="fa fa-trash"></i>
+									<?php echo \__('Remove', 'eve-online'); ?>
+								</a>
+							</span>
 						</div>
 						<input type="hidden" class="attachment_id" value="<?php echo $value; ?>" name="<?php echo $option_name; ?>[<?php echo $args['field_id']; ?>]">
 					</div>
@@ -697,7 +709,7 @@ class SettingsApi {
 							<span class="button upload-button">
 								<a href="#">
 									<i class="fa fa-upload"></i>
-									<?php echo \__('Upload', 'thamm-it'); ?>
+									<?php echo \__('Upload', 'eve-online'); ?>
 								</a>
 							</span>
 						</div>
@@ -710,7 +722,7 @@ class SettingsApi {
 							<span class="button upload-button">
 								<a href="#">
 									<i class="fa fa-trash"></i>
-									<?php echo \__('Remove', 'thamm-it'); ?>
+									<?php echo \__('Remove', 'eve-online'); ?>
 								</a>
 							</span>
 						</div>
@@ -928,6 +940,12 @@ class SettingsApi {
 					} // END if($(this).html().trim() !== '')
 				});
 
+				$('img.uploaded-image').each(function() {
+					if($(this).attr('src').trim() !== '') {
+						$(this).css('display', 'block');
+					} // END if($(this).html().trim() !== '')
+				});
+
 				// Upload attachment
 				$('.upload, .image img, .url code').click(function(e) {
 					e.preventDefault();
@@ -941,6 +959,7 @@ class SettingsApi {
 
 						if(attachment.sizes && attachment.sizes.thumbnail && attachment.sizes.thumbnail.url) {
 							$(current + ' .image img').attr('src', attachment.sizes.thumbnail.url);
+							$(current + ' .image img').css('display', 'block');
 						} // END if(attachment.sizes && attachment.sizes.thumbnail && attachment.sizes.thumbnail.url)
 
 						$(current + ' .url code').html(attachment.url).show();
@@ -966,6 +985,7 @@ class SettingsApi {
 					$(current + ' .url code').html('').hide();
 					$(current + ' .attachment_id').val('');
 					$(current + ' .image img').attr('src', '');
+					$(current + ' .image img').css('display', 'none');
 					$(current + ' .remove').hide();
 					$(current + ' .upload').show();
 
