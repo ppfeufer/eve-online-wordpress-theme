@@ -1,3 +1,7 @@
+/**
+ * Lazy Loading Plugin
+ */
+
 (function($) {
 	lazy_load_init();
 

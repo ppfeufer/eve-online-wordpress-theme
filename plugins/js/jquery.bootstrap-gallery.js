@@ -1,3 +1,7 @@
+/**
+ * Bootstrap Gallery Plugin
+ */
+
 (function($) {
 	"use strict";
 	$.fn.bootstrapGallery = function(options) {
