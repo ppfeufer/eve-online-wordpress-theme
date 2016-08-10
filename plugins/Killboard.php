@@ -81,7 +81,7 @@ class Killboard {
 		$pluginOptionsPage['eve-online-theme-killboard-plugin-settings'] = array(
 			'type' => 'plugin',
 			'menu_title' => \__('Killboard Settings', 'eve-online'),
-			'page_title' => \__('EVE Online Theme Settings', 'eve-online'),
+			'page_title' => \__('Killboard Settings', 'eve-online'),
 			'option_name' => 'eve_theme_killboard_plugin_options',
 			'tabs' => array(
 				/**
