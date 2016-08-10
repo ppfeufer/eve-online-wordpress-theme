@@ -161,7 +161,7 @@ function eve_get_javascripts() {
 			'deps' => array(
 				'jquery'
 			),
-			'version' => '3.3.6',
+			'version' => '3.3.7',
 			'in_footer' => true
 		),
 		/* Bootstrap Toolkit */
@@ -261,7 +261,7 @@ function eve_get_stylesheets() {
 			'source' => \get_stylesheet_directory_uri() . '/bootstrap/css/bootstrap.min.css',
 			'source-development' => \get_stylesheet_directory_uri() . '/bootstrap/css/bootstrap.css',
 			'deps' => array(),
-			'version' => '3.3.6',
+			'version' => '3.3.7',
 			'media' => 'all'
 		),
 //		'Bootstrap Theme' => array(
