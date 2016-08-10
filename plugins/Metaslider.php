@@ -2,6 +2,7 @@
 /**
  * Utilizing the ML-Slider Plugin in our theme
  */
+
 namespace WordPress\Themes\EveOnline\Plugins;
 
 use WordPress\Themes\EveOnline;

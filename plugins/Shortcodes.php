@@ -1,4 +1,8 @@
 <?php
+/**
+ * Theme Shortcodes
+ */
+
 namespace WordPress\Themes\EveOnline\Plugins;
 
 \defined('ABSPATH') or die();

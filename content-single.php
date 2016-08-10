@@ -10,13 +10,13 @@
 		<aside class="entry-details">
 			<p class="meta">
 				<?php
-//				echo \EveOnline\eve_posted_on();
+				echo \WordPress\Themes\EveOnline\eve_posted_on();
 
 				\edit_post_link(__('Edit', 'eve-online'));
 				?>
 				<!--<br/>-->
 				<?php
-				// \EveOnline\eve_cats_tags();
+				\WordPress\Themes\EveOnline\eve_cats_tags();
 				?>
 			</p>
 		</aside><!--end .entry-details -->

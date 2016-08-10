@@ -1,4 +1,8 @@
 <?php
+/**
+ * Getting some basic information from the EVE API
+ */
+
 namespace WordPress\Themes\EveOnline\Helper;
 
 use WordPress\Themes\EveOnline;

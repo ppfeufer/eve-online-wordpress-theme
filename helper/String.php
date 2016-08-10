@@ -1,4 +1,8 @@
 <?php
+/**
+ * Helper for all stuff we may do with strings that is not covered by WordPress
+ */
+
 namespace WordPress\Themes\EveOnline\Helper;
 
 \defined('ABSPATH') or die();

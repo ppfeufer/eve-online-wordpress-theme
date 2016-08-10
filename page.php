@@ -25,7 +25,6 @@
 				\the_post();
 				?>
 				<div class="row main-content">
-					<!--<div class="<?php //echo $contentColClass; ?>">-->
 					<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
 						<div class="content">
 							<header>

@@ -40,6 +40,7 @@
  *
  * @author H.-Peter Pfeufer <dev@ppfeufer.de>
  */
+
 namespace WordPress\Themes\EveOnline\Plugins;
 
 use WordPress\Themes\EveOnline;

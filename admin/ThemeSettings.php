@@ -1,4 +1,8 @@
 <?php
+/**
+ * Theme Settings
+ */
+
 namespace WordPress\Themes\EveOnline\Admin;
 
 use WordPress\Themes\EveOnline;

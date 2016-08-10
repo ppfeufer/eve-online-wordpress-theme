@@ -28,7 +28,7 @@ defined('ABSPATH') or die();
 				} else {
 					?>
 					<header class="post-title">
-						<h1><?php _e('No Results Found', 'eve-online'); ?></h1>
+						<h1><?php \_e('No Results Found', 'eve-online'); ?></h1>
 					</header>
 					<?php
 				} // END if(have_posts())s

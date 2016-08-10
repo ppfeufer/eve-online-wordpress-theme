@@ -1,6 +1,6 @@
 <?php
 /**
- * Settings API ( http://www.wp-load.com/register-settings-api/ )
+ * Settings API ( modified from http://www.wp-load.com/register-settings-api/ )
  */
 
 namespace WordPress\Themes\EveOnline\Admin;

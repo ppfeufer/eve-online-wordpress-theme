@@ -21,6 +21,7 @@ defined('ABSPATH') or die();
 				<?php
 				if(\have_posts()) {
 					echo \get_post_format();
+
 					while(\have_posts()) {
 						\the_post();
 						\get_template_part('content', \get_post_format());

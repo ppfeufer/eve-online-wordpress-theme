@@ -2,6 +2,7 @@
 /**
  * EVE Killboard Theme Plugin for fetching Killmails from EDK killboard software
  */
+
 namespace WordPress\Themes\EveOnline\Plugins;
 
 use WordPress\Themes\EveOnline;

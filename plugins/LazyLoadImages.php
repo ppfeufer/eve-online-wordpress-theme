@@ -1,4 +1,8 @@
 <?php
+/**
+ * Image Lazy Loading
+ */
+
 namespace WordPress\Themes\EveOnline\Plugins;
 
 \defined('ABSPATH') or die();
