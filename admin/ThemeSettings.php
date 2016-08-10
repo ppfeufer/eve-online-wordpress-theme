@@ -10,12 +10,21 @@ class ThemeSettings {
 	private $metaSlider = null;
 	private $themeOptions = null;
 
+	private $settingsApi = null;
+	private $settingsFilter = null;
+
 	public function __construct() {
+		// trigger the settings API
+		$this->settingsFilter = 'register_eve_online_theme_settings_api';
+		$this->settingsApi = new SettingsApi($this->settingsFilter);
+		$this->settingsApi->init();
+
 		$this->eveApi = new EveOnline\Helper\EveApi;
 		$this->metaSlider = new EveOnline\Plugins\Metaslider(false);
 		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 
-		\add_filter('register_eve_online_theme_settings_api', array($this, 'renderSettingsPage'));
+//		\add_filter('register_eve_online_theme_settings_api', array($this, 'renderSettingsPage'));
+		\add_filter($this->settingsFilter, array($this, 'renderSettingsPage'));
 	} // END public function __construct()
 
 	public function renderSettingsPage() {

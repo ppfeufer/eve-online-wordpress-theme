@@ -16,15 +16,16 @@ class SettingsApi {
 	 * @since 1.4
 	 */
 	private $args = null;
-	private $settings_array = null;
+	private $settingsArray = null;
+	private $settingsFilter = null;
 
 	/**
 	 * Construct contains all actions that runs on init
 	 *
 	 * @since 1.4
 	 */
-	public function __construct() {
-		;
+	public function __construct($settingsFilter = null) {
+		$this->settingsFilter = $settingsFilter;
 	} // END public function __construct()
 
 	public function init() {
@@ -38,14 +39,15 @@ class SettingsApi {
 
 	/**
 	 * Init settings runs before admin_init
-	 * Put $settings_array to private variable
+	 * Put $settingsArray to private variable
 	 * Add admin_head for scripts and styles
 	 *
 	 * @since 1.4
 	 */
 	public function initSettings() {
 		if(\is_admin()) {
-			$this->settings_array = \apply_filters('register_eve_online_theme_settings_api', array());
+//			$this->settingsArray = \apply_filters('register_eve_online_theme_settings_api', array());
+			$this->settingsArray = \apply_filters($this->settingsFilter, array());
 
 			if(!empty($this->isSettingsPage())) {
 				\add_action('admin_head', array($this, 'adminStyles'));
@@ -55,12 +57,12 @@ class SettingsApi {
 	} // END public function initSettings()
 
 	/**
-	 * Creating pages and menus from the settings_array
+	 * Creating pages and menus from the settingsArray
 	 *
 	 * @since 1.4
 	 */
 	public function menuPage() {
-		foreach($this->settings_array as $menu_slug => $options) {
+		foreach($this->settingsArray as $menu_slug => $options) {
 			if(!empty($options['page_title']) && !empty($options['menu_title']) && !empty($options['option_name'])) {
 				$options['capability'] = (!empty($options['capability']) ) ? $options['capability'] : 'manage_options';
 
@@ -82,16 +84,16 @@ class SettingsApi {
 						break;
 				} // END switch($options['type'])
 			} // END if(!empty($options['page_title']) && !empty($options['menu_title']) && !empty($options['option_name']))
-		} // END foreach($this->settings_array as $menu_slug => $options)
+		} // END foreach($this->settingsArray as $menu_slug => $options)
 	} // END public function menuPage()
 
 	/**
-	 * Register all fields and settings bound to it from the settings_array
+	 * Register all fields and settings bound to it from the settingsArray
 	 *
 	 * @since 1.4
 	 */
 	public function registerFields() {
-		foreach($this->settings_array as $page_id => $settings) {
+		foreach($this->settingsArray as $page_id => $settings) {
 			if(!empty($settings['tabs']) && \is_array($settings['tabs'])) {
 				foreach($settings['tabs'] as $tab_id => $item) {
 					$sanitized_tab_id = \sanitize_title($tab_id);
@@ -139,7 +141,7 @@ class SettingsApi {
 					} // END if(!empty($item['fields']) && is_array($item['fields']))
 				} // END foreach($settings['tabs'] as $tab_id => $item)
 			} // END if(!empty($settings['tabs']) && is_array($settings['tabs']))
-		} // END foreach($this->settings_array as $page_id => $settings)
+		} // END foreach($this->settingsArray as $page_id => $settings)
 	} // END public function registerFields()
 
 	/**
@@ -178,9 +180,9 @@ class SettingsApi {
 		$menus = array();
 		$get_page = (!empty($_GET['page']) ) ? $_GET['page'] : '';
 
-		foreach($this->settings_array as $menu => $page) {
+		foreach($this->settingsArray as $menu => $page) {
 			$menus[] = $menu;
-		} // END foreach($this->settings_array as $menu => $page)
+		} // END foreach($this->settingsArray as $menu => $page)
 
 		if(\in_array($get_page, $menus)) {
 			return true;
@@ -472,7 +474,7 @@ class SettingsApi {
 
 	/**
 	 * Return the value. If the value is not saved the default value is used if
-	 * exists in the settings_array.
+	 * exists in the settingsArray.
 	 *
 	 * Return as string or array
 	 *
@@ -784,7 +786,7 @@ class SettingsApi {
 		global $wp_settings_sections;
 
 		$page = $_GET['page'];
-		$settings = $this->settings_array[$page];
+		$settings = $this->settingsArray[$page];
 		$message = \get_option('rsa-message');
 
 		if(!empty($settings['tabs']) && \is_array($settings['tabs'])) {
@@ -1010,9 +1012,9 @@ class SettingsApi {
 				} // END if($('.nav-tab').length)
 
 				<?php
-				$settings_array = $this->settings_array;
+				$settingsArray = $this->settingsArray;
 
-				foreach($settings_array as $page) {
+				foreach($settingsArray as $page) {
 					foreach($page['tabs'] as $tab) {
 						foreach($tab['fields'] as $field_key => $field) {
 							if($field['type'] == 'datepicker') {
@@ -1025,7 +1027,7 @@ class SettingsApi {
 							} // END if($field['type'] == 'datepicker')
 						} // END foreach($tab['fields'] as $field_key => $field)
 					} // END foreach($page['tabs'] as $tab)
-				} // END foreach($settings_array as $page)
+				} // END foreach($settingsArray as $page)
 				?>
 			});
 			</script>
@@ -1034,5 +1036,5 @@ class SettingsApi {
 	} // END public function adminScripts()
 } // END class SettingsApi
 
-$settingsApi = new SettingsApi();
-$settingsApi->init();
+//$settingsApi = new SettingsApi();
+//$settingsApi->init();
