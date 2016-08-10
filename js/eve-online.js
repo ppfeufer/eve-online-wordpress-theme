@@ -4,9 +4,8 @@
  * Author: Rounon Dax (Terra Nanotech / Yulai Federation)
  */
 
-/**
- * Stuff without jQuery
- */
+/* Stuff without jQuery
+----------------------------------------------------------------------------- */
 /**
  * Detecting JS Support
  *
@@ -26,9 +25,8 @@ function isMobile() {
 	return navigator.userAgent.match(/(iPhone|iPod|iPad|blackberry|android|Kindle|htc|lg|midp|mmp|mobile|nokia|opera mini|palm|pocket|psp|sgh|smartphone|symbian|treo mini|Playstation Portable|SonyEricsson|Samsung|MobileExplorer|PalmSource|Benq|Windows Phone|Windows Mobile|IEMobile|Windows CE|Nintendo Wii)/i);
 } // END function isMobile()
 
-/**
- * Stuff that needs jQuery
- */
+/* Stuff that needs jQuery
+----------------------------------------------------------------------------- */
 jQuery(function($) {
 	// Detecting jQuery Support
 	$('body').addClass('jquery');
