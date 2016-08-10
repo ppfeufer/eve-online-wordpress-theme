@@ -5,8 +5,6 @@
 
 namespace WordPress\Themes\EveOnline\Admin;
 
-use WordPress\Themes\EveOnline;
-
 \defined('ABSPATH') or die();
 
 class SettingsApi {
@@ -18,14 +16,16 @@ class SettingsApi {
 	private $args = null;
 	private $settingsArray = null;
 	private $settingsFilter = null;
+	private $optionsDefault = null;
 
 	/**
 	 * Construct contains all actions that runs on init
 	 *
 	 * @since 1.4
 	 */
-	public function __construct($settingsFilter = null) {
+	public function __construct($settingsFilter = null, $defaultOptions = null) {
 		$this->settingsFilter = $settingsFilter;
+		$this->optionsDefault = $defaultOptions;
 	} // END public function __construct()
 
 	public function init() {
@@ -586,7 +586,7 @@ class SettingsApi {
 		$args['field_id'] = \sanitize_title($args['field_id']);
 		$this->args = $args;
 
-		$options = \get_option($args['option_name'], EveOnline\eve_get_options_default());
+		$options = \get_option($args['option_name'], $this->optionsDefault);
 		$this->options = $options;
 
 		$screen = \get_current_screen();
@@ -622,7 +622,7 @@ class SettingsApi {
 						$horizontal = (isset($args['align']) && (string) $args['align'] == 'horizontal') ? ' class="horizontal"' : '';
 //						$out .= ($horizontal === true) ? '<p>' : '';
 
-						$out .= '<ul class="settings-type-' . $args['type'] . '">';
+						$out .= '<ul class="settings-group settings-type-' . $args['type'] . '">';
 
 						foreach($args['choices'] as $slug => $choice) {
 							$checked = $this->checked($slug);
@@ -638,7 +638,7 @@ class SettingsApi {
 						$out .= '</ul>';
 
 //						$out .= ($horizontal === true) ? '</p>' : '';
-					}
+					} // END if($this->hasItems())
 					break;
 
 				case 'text':

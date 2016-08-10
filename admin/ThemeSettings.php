@@ -24,7 +24,7 @@ class ThemeSettings {
 
 	private function fireSettingsApi() {
 		$this->settingsFilter = 'register_eve_online_theme_settings';
-		$this->settingsApi = new SettingsApi($this->settingsFilter);
+		$this->settingsApi = new SettingsApi($this->settingsFilter, EveOnline\eve_get_options_default());
 		$this->settingsApi->init();
 
 		\add_filter($this->settingsFilter, array($this, 'renderSettingsPage'));
@@ -202,4 +202,9 @@ class ThemeSettings {
 	} // END private function getDevelopmentTabFields()
 } // END class ThemeSettings
 
-new ThemeSettings;
+/**
+ * only if we are in backend
+ */
+if(\is_admin()) {
+	new ThemeSettings;
+} // END if(\is_admin())

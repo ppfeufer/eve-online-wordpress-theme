@@ -62,3 +62,7 @@
 .remove {
 	margin-top: 0.5rem;
 }
+
+ul.settings-group {
+	margin-top: 0;
+}

@@ -18,6 +18,11 @@ namespace WordPress\Themes\EveOnline;
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
+ * Settings API
+ */
+require_once(\get_stylesheet_directory() . '/admin/SettingsApi.php');
+
+/**
  * EVE API Class
  */
 require_once(\get_stylesheet_directory() . '/helper/EveApi.php');
@@ -64,6 +69,11 @@ require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
 require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
 
 /**
+ * Killboard
+ */
+require_once(\get_stylesheet_directory() . '/plugins/Killboard.php');
+
+/**
  * WP Security
  */
 require_once(\get_stylesheet_directory() . '/security/WordPressSecurity.php');
@@ -72,7 +82,6 @@ require_once(\get_stylesheet_directory() . '/security/WordPressCoreUpdateCleaner
 /**
  * Theme Options
  */
-require_once(\get_stylesheet_directory() . '/admin/SettingsApi.php');
 require_once(\get_stylesheet_directory() . '/admin/ThemeSettings.php');
 
 /**
