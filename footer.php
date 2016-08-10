@@ -55,8 +55,8 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_
 											'depth' => 1,
 											'container' => false,
 											'menu_class' => 'footer-menu',
-											'fallback_cb' => 'WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
-											'walker' => new WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
+											'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
+											'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
 										));
 									} // END if(has_nav_menu('footer-menu'))
 									?>
