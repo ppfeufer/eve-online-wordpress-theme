@@ -59,6 +59,11 @@ require_once(\get_stylesheet_directory() . '/plugins/Corppage.php');
 require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
 
 /**
+ * Whitelabel
+ */
+require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
+
+/**
  * WP Security
  */
 require_once(\get_stylesheet_directory() . '/security/WordPressSecurity.php');
