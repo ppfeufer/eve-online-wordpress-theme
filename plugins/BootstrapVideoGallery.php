@@ -105,7 +105,7 @@ class BootstrapVideoGallery {
 			$videoGalleryHtml .= '<script type="text/javascript">
 									jQuery(document).ready(function() {
 										jQuery("ul.bootstrap-video-gallery-' . $uniqueID . '").bootstrapGallery({
-											"classes" : "col-lg-3 col-md-4 col-sm-6 col-xs-12",
+											"classes" : "' . EveOnline\eve_get_loopContentClasses() . '",
 											"hasModal" : false
 										});
 									});

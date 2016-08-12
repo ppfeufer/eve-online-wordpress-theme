@@ -153,7 +153,7 @@ jQuery(function($) {
 	/**
 	 * Fix for youtube and vimeo oEmbed being responsive
 	 */
-	var $oEmbedVideos = $('iframe[src*="youtube"], iframe[src*="vimeo"]');
+	var $oEmbedVideos = $('iframe[src*="youtube"], iframe[src*="vimeo"], iframe[src*="videopress"]');
 	$oEmbedVideos.each(function() {
 		$(this).removeAttr('height').removeAttr('width').wrap('<div class="embed-video-container"></div>');
 	});

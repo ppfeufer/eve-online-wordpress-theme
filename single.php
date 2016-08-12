@@ -17,7 +17,7 @@ defined('ABSPATH') or die();
 
 	<div class="row">
 		<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
-			<div class="content">
+			<div class="content single">
 				<?php
 				if(\have_posts()) {
 					while(\have_posts()) {

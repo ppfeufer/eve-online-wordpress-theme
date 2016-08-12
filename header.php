@@ -159,6 +159,16 @@
 						<?php
 					} // END if(has_nav_menu('main-menu'))
 
+					if(!\is_home() && \get_post_type() === 'post' && \has_post_thumbnail()) {
+						?>
+						<figure class="post-header-image">
+							<?php
+							\the_post_thumbnail('header-image');
+							?>
+						</figure>
+						<?php
+					} // END if(!\is_home() && \get_post_type() === 'post' && \has_post_thumbnail())
+
 					/**
 					 * Render our Slider, if we have one
 					 */

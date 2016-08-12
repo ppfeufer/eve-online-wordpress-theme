@@ -1,11 +1,11 @@
 <?php defined('ABSPATH') or die(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php \post_class('clearfix'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php \post_class('clearfix content-single'); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title">
-			<!--<a href="<?php \the_permalink(); ?>" title="<?php \printf(\esc_attr__('Permalink to %s', 'eve-online'), \the_title_attribute('echo=0')); ?>" rel="bookmark">-->
-				<?php \the_title(); ?>
-			<!--</a>-->
+		  <!--<a href="<?php \the_permalink(); ?>" title="<?php \printf(\esc_attr__('Permalink to %s', 'eve-online'), \the_title_attribute('echo=0')); ?>" rel="bookmark">-->
+			<?php \the_title(); ?>
+		  <!--</a>-->
 		</h1>
 		<aside class="entry-details">
 			<p class="meta">
@@ -25,39 +25,6 @@
 	<section class="post-content">
 		<div class="entry-content">
 			<?php
-			// only show if option set TODO
-			$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
-
-			if(isset($options['featured_single']) && $options['featured_single'] == true) {
-				if(\has_post_thumbnail()) {
-					?>
-					<a href="<?php \the_permalink(); ?>" title="<?php \the_title_attribute('echo=0'); ?>">
-						<?php
-						switch($options['featured_img_sing_size']) {
-							case 1:
-								$thumbnail_size="thumbnail";
-								break;
-
-							case 2:
-								$thumbnail_size="medium";
-								break;
-
-							case 3:
-								$thumbnail_size="large";
-								break;
-
-							default:
-								$thumbnail_size="thumbnail";
-								break;
-						} // END switch($options['featured_img_sing_size'])
-
-						\the_post_thumbnail($thumbnail_size);
-						?>
-					</a>
-					<?php
-				} // END if(has_post_thumbnail())
-			} // END if(isset($options['featured_single']) && $options['featured_single'] == true)
-
 			echo \the_content();
 
 			if(\function_exists('\WordPress\Themes\EveOnline\eve_link_pages')) {
