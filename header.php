@@ -159,7 +159,7 @@
 						<?php
 					} // END if(has_nav_menu('main-menu'))
 
-					if(!\is_home() && \get_post_type() === 'post' && \has_post_thumbnail()) {
+					if(\is_single() && \get_post_type() === 'post' && \has_post_thumbnail()) {
 						?>
 						<figure class="post-header-image">
 							<?php

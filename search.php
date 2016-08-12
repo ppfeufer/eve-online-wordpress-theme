@@ -31,7 +31,7 @@ defined('ABSPATH') or die();
 						<h1><?php \_e('No Results Found', 'eve-online'); ?></h1>
 					</header>
 					<?php
-				} // END if(have_posts())s
+				} // END if(have_posts())
 
 				if(\have_posts()) {
 					while(\have_posts()) {
