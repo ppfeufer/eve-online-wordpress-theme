@@ -23,7 +23,10 @@ class KillboardHelper {
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
 
 		$this->db = $this->initiateKillboardDatabase();
-		$this->killboardUri = $this->getKillboardUri();
+
+		if($this->db !== false) {
+			$this->killboardUri = $this->getKillboardUri();
+		} // END if($this->db !== false)
 	} // END public function __construct()
 
 	/**
