@@ -71,6 +71,8 @@ require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
 /**
  * Killboard
  */
+require_once(\get_stylesheet_directory() . '/plugins/helper/KillboardHelper.php');
+require_once(\get_stylesheet_directory() . '/plugins/widgets/KillboardWidget.php');
 require_once(\get_stylesheet_directory() . '/plugins/Killboard.php');
 
 /**

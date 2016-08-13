@@ -12,7 +12,7 @@ use WordPress\Themes\EveOnline;
 class Killboard {
 	private $themeSettings = null;
 	private $pluginSettings = null;
-	private $kbDB = null;
+//	private $kbDB = null;
 
 	private $settingsApi = null;
 	private $settingsFilter = null;
@@ -20,7 +20,13 @@ class Killboard {
 	/**
 	 * constructor
 	 */
-	public function __construct() {
+	public function __construct($init = true) {
+		if($init === true) {
+			$this->initPlugin();
+		}
+	} // END public function __construct()
+
+	private function initPlugin() {
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->getDefaultPluginOptions());
 
@@ -31,21 +37,43 @@ class Killboard {
 
 		// frontend actions
 		if(!\is_admin()) {
-			$this->kbDB = $this->initiateKillboardDatabase();
+			$this->addStyle();
 		} // END if(!\is_admin())
-	} // END public function __construct()
 
-	private function getDefaultPluginOptions() {
+		// common actions
+		$this->initWidget();
+	}
+
+	public function initWidget() {
+		\add_action('widgets_init', \create_function('', 'return register_widget("WordPress\Themes\EveOnline\Plugins\Widgets\KillboardWidget");'));
+	} // END public function initWidget()
+
+	public function addStyle() {
+		if(!\is_admin()) {
+			\add_action('wp_enqueue_scripts', array($this, 'enqueueStyle'));
+		} // END if(!\is_admin())
+	} // END public function addStyle()
+
+	public function enqueueStyle() {
+		if(\preg_match('/development/', \APPLICATION_ENV)) {
+			\wp_enqueue_style('eve-killboard', \get_stylesheet_directory_uri() . '/plugins/css/killboard-widget.css');
+		} else {
+			\wp_enqueue_style('eve-killboard', \get_stylesheet_directory_uri() . '/plugins/css/killboard-widget.min.css');
+		} // END if(\preg_match('/development/', \APPLICATION_ENV))
+	} // END public function enqueueStyle()
+
+	public function getDefaultPluginOptions() {
 		$defaultOptions = array(
 			// generel settings tab
 			'number_of_kills' => 5,
-			'show_losses' => array(
-				'yes' => 'yes'
-			),
+//			'show_losses' => array(
+//				'yes' => 'yes'
+//			),
 			'killboard_db_host' => 'localhost',
 			'killboard_db_name' => '',
 			'killboard_db_user' => '',
-			'killboard_db_password' => ''
+			'killboard_db_password' => '',
+			'killboard_domain' => ''
 		);
 
 		return \apply_filters('eve_theme_killboard_plugin_options', $defaultOptions);
@@ -62,21 +90,6 @@ class Killboard {
 		\add_filter($this->settingsFilter, array($this, 'renderSettingsPage'));
 	} // END private function fireSettingsApi()
 
-	/**
-	 * Load the killboard database
-	 *
-	 * @return \wpdb new instance of WordPress DB wrapper
-	 */
-	private function initiateKillboardDatabase() {
-		$returnValue = false;
-
-		if(!empty($this->themeSettings['killboard_db_user']) && !empty($this->themeSettings['killboard_db_password']) && !empty($this->themeSettings['killboard_db_name']) && !empty($this->themeSettings['killboard_db_host'])) {
-			$returnValue = new \wpdb($this->themeSettings['killboard_db_user'], $this->themeSettings['killboard_db_password'], $this->themeSettings['killboard_db_name'], $this->themeSettings['killboard_db_host']);
-		} // END if(!empty($this->themeSettings['killboard_db_user']) && !empty($this->themeSettings['killboard_db_password']) && !empty($this->themeSettings['killboard_db_name']) && !empty($this->themeSettings['killboard_db_host']))
-
-		return $returnValue;
-	} // END private function initiateKillboardDatabase()
-
 	public function renderSettingsPage() {
 		$pluginOptionsPage['eve-online-theme-killboard-plugin-settings'] = array(
 			'type' => 'plugin',
@@ -87,33 +100,29 @@ class Killboard {
 				/**
 				 * general settings
 				 */
-				'general-settings' => array(
-					'tab_title' => \__('General Settings', 'eve-online'),
-					'tab_description' => \__('Killboard General Settings', 'eve-online'),
-					'fields' => $this->getGeneralTabFields()
-				),
+				'general-settings' => $this->getGeneralSettings(),
 
 				/**
 				 * database settings tab
 				 */
-				'database-settings' => array(
-					'tab_title' => \__('Database Settings', 'eve-online'),
-					'tab_description' => \__('Killboard Database Settings', 'eve-online'),
-					'fields' => $this->getDatabaseTabFields()
-				)
+				'database-settings' => $this->getDatabaseSettings()
 			)
 		);
 
 		if(\preg_match('/development/', \APPLICATION_ENV)) {
-			$pluginOptionsPage['eve-online-theme-killboard-plugin-settings']['tabs']['development'] = array(
-				'tab_title' => \__('Development Infos', 'eve-online'),
-				'tab_description' => \__('Delevopment Information', 'eve-online'),
-				'fields' => $this->getDevelopmentTabFields()
-			);
+			$pluginOptionsPage['eve-online-theme-killboard-plugin-settings']['tabs']['development'] = $this->getDevelopmentSettings();
 		} // END if(\preg_match('/development/', \APPLICATION_ENV))
 
 		return $pluginOptionsPage;
 	} // END public function renderSettingsPage()
+
+	private function getGeneralSettings() {
+		return array(
+			'tab_title' => \__('General Settings', 'eve-online'),
+			'tab_description' => \__('Killboard General Settings', 'eve-online'),
+			'fields' => $this->getGeneralTabFields()
+		);
+	} // END private function getGeneralSettings()s
 
 	private function getGeneralTabFields() {
 		return array(
@@ -123,17 +132,25 @@ class Killboard {
 				'description' => \__('Number of kills to show', 'eve-online'),
 				'default' => 5
 			),
-			'show_losses' => array(
-				'type' => 'checkbox',
-				'title' => \__('Show Losses', 'eve-online'),
-				'choices' => array(
-					'yes' => \__('Show your losses as well?', 'eve-online')
-				),
-				'default' => 'yes',
-				'description' => 'Only if you are tough enough :-P'
-			),
+//			'show_losses' => array(
+//				'type' => 'checkbox',
+//				'title' => \__('Show Losses', 'eve-online'),
+//				'choices' => array(
+//					'yes' => \__('Show your losses as well?', 'eve-online')
+//				),
+//				'default' => 'yes',
+//				'description' => 'Only if you are tough enough :-P'
+//			),
 		);
 	} // END private function getGeneralTabFields()
+
+	private function getDatabaseSettings() {
+		return array(
+			'tab_title' => \__('Database Settings', 'eve-online'),
+			'tab_description' => \__('Killboard Database Settings', 'eve-online'),
+			'fields' => $this->getDatabaseTabFields()
+		);
+	} // END private function getDatabaseSettings()
 
 	private function getDatabaseTabFields() {
 		return array(
@@ -156,6 +173,14 @@ class Killboard {
 			)
 		);
 	} // END private function getDatabaseTabFields()
+
+	private function getDevelopmentSettings() {
+		return array(
+			'tab_title' => \__('Development Infos', 'eve-online'),
+			'tab_description' => \__('Delevopment Information', 'eve-online'),
+			'fields' => $this->getDevelopmentTabFields()
+		);
+	}
 
 	private function getDevelopmentTabFields() {
 		return array(

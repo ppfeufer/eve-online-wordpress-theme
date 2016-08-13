@@ -165,6 +165,14 @@ jQuery(function($) {
 	});
 
 	/**
+	 * External Links, open in new window
+	 */
+	var $externalLinks = $('a[rel="external"]');
+	$externalLinks.each(function() {
+		$(this).attr('target', '_blank');
+	})
+
+	/**
 	 * Set bootstrap modal window to max possible height
 	 *
 	 * @param {string} element

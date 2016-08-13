@@ -165,6 +165,37 @@ class EveApi {
 		return $html;
 	} // END public function getEntityLogoByName($name, $imageOnly = true, $size = 128)
 
+	public function getCharacterImageByName($name, $imageOnly = true, $size = 128) {
+		$entitieID = $this->getEveIdFromName($name);
+
+		if($entitieID == 0) {
+			return false;
+		} // END if($entitieID == 0)
+
+		$ownerGroupID = $this->getEveGroupTypeFromName($name);
+		$imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$this->entitieGroups[$ownerGroupID]] . $entitieID . '_' . $size. '.jpg';
+
+		if($imageOnly === true) {
+			return $imagePath;
+		} // END if($imageOnly === true)
+
+		$html = '<img src="' . $imagePath . '" class="eve-alliance-logo">';
+
+		return $html;
+	} // END public function getCharacterImageByName($name, $imageOnly = true, $size = 128)
+
+	public function getCharacterImageById($id, $imageOnly = true, $size = 128) {
+		$imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$this->entitieGroups['3']] . $id . '_' . $size. '.jpg';
+
+		if($imageOnly === true) {
+			return $imagePath;
+		} // END if($imageOnly === true)
+
+		$html = '<img src="' . $imagePath . '" class="eve-alliance-logo">';
+
+		return $html;
+	} // END public function getCharacterImageByName($name, $imageOnly = true, $size = 128)
+
 	/**
 	 * get the EVE ID by it's name
 	 * @param type $name
