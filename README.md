@@ -8,8 +8,9 @@ Features:
 * Clean look and feel
 
 Recommended Plugins:
-* [Meta Slider](https://de.wordpress.org/plugins/ml-slider/)
-* [WP Retina 2x](https://de.wordpress.org/plugins/wp-retina-2x/)
+* [Force Regenerate Thumbnails](https://wordpress.org/plugins/force-regenerate-thumbnails/)
+* [Meta Slider](https://wordpress.org/plugins/ml-slider/)
+* [WP Retina 2x](https://wordpress.org/plugins/wp-retina-2x/)
 
 To install the theme use git to clone it to your wordpress installation
 ```bash
@@ -28,7 +29,7 @@ Todo List:
 - [x] ~~Make background image configurable~~
 - [ ] Make theme plugins configurable
 - [ ] Make content background colour configurable
-- [ ] Rework the theme settings completely
+- [x] ~~Rework the theme settings completely~~
 - [ ] Generate color theme for Amarr
 - [ ] Generate color theme for Gallente
 - [ ] Generate color theme for Caldari
