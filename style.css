@@ -592,8 +592,8 @@ figure.post-loop-thumbnail {
 /* sidebar and widgets
 ----------------------------------------------------------------------------- */
 .sidebar-wrapper {
-	padding-top: 0px;
-	padding-top: 0rem;
+	padding-top: 20px;
+	padding-top: 1.25rem;
 	padding-bottom: 30px;
 	padding-bottom: 1.875rem;
 	margin-bottom: 30px;
