@@ -80,7 +80,7 @@ class KillboardHelper {
 	} // END public function getKillList($count)
 
 	private function getVictimImage($victimName, $shipID, $size = 512) {
-		if(\preg_match('/Control Tower/', $kill->shp_name)) {
+		if(\preg_match('/Control Tower/', $victimName)) {
 			$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
 		} else {
 			$victimImage = $this->eveApi->getCharacterImageByName($victimName, true, $size);
