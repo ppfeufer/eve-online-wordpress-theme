@@ -52,7 +52,7 @@ class KillboardWidget extends \WP_Widget {
 
 		$control_options = array();
 
-		$this->WP_Widget('eve_killboard_widget', __('EVE Killboard Widget', 'eve-online'), $widget_options, $control_options);
+		parent::__construct('eve_killboard_widget', __('EVE Killboard Widget', 'eve-online'), $widget_options, $control_options);
 	} // END public function __construct($id_base, $name, $widget_options = array(), $control_options = array())
 
 	/**
