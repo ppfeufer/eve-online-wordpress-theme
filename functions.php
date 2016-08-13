@@ -401,7 +401,7 @@ function eve_theme_setup() {
 	\add_image_size('bootstrap-small', 300, 200);
 	\add_image_size('bootstrap-medium', 360, 270);
 	\add_image_size('header-image', 1680, 500, true);
-	\add_image_size('post-loop-thumbnail', 355, 200, true);
+	\add_image_size('post-loop-thumbnail', 705, 395, true);
 
 	// Register Custom Navigation Walker
 	require_once(\get_stylesheet_directory() .'/addons/BootstrapMenuWalker.php');

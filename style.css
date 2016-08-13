@@ -494,8 +494,12 @@ figure.post-header-image {
 }
 
 figure.post-loop-thumbnail {
-	max-width: 355px;
-	max-height: 200px;
+	width: 100%;
+	height: auto;
+	max-width: 705px;
+	max-width: 44.0625rem;
+	max-height: 395px;
+	max-height: 24.6875rem;
 	overflow: hidden;
 }
 
