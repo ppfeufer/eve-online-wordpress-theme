@@ -452,7 +452,6 @@ ins {
 	background-color: rgb(231,231,231);
 }
 
-
 /* home widget area
 ----------------------------------------------------------------------------- */
 .home-widget-area {
@@ -478,6 +477,26 @@ ins {
 	/*float: left;*/
 	margin-right: 15px;
 	margin-right: 0.9375rem;
+}
+
+.content-index {
+	margin-top: 16px;
+	margin-top: 1rem;
+}
+
+figure.post-header-image {
+	margin-left: -16px;
+	margin-left: -1rem;
+	margin-right: -16px;
+	margin-right: -1rem;
+	margin-bottom: 32px;
+	margin-bottom: 2rem;
+}
+
+figure.post-loop-thumbnail {
+	max-width: 355px;
+	max-height: 200px;
+	overflow: hidden;
 }
 
 .read-more {

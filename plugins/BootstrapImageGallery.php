@@ -7,6 +7,8 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
+use WordPress\Themes\EveOnline;
+
 \defined('ABSPATH') or die();
 
 class BootstrapImageGallery {
@@ -135,7 +137,7 @@ class BootstrapImageGallery {
 		$output .= '<script type="text/javascript">
 			jQuery(document).ready(function() {
 				jQuery("ul.bootstrap-' . $selector . '").bootstrapGallery({
-					"classes" : "col-lg-3 col-md-4 col-sm-6 col-xs-12",
+					"classes" : "' . EveOnline\eve_get_loopContentClasses() . '",
 					"hasModal" : true
 				});
 			});

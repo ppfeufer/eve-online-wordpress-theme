@@ -400,7 +400,8 @@ function eve_theme_setup() {
 	\set_post_thumbnail_size(1680, 500);
 	\add_image_size('bootstrap-small', 300, 200);
 	\add_image_size('bootstrap-medium', 360, 270);
-	\add_image_size('header-image', 1680, 500);
+	\add_image_size('header-image', 1680, 500, true);
+	\add_image_size('post-loop-thumbnail', 355, 200, true);
 
 	// Register Custom Navigation Walker
 	require_once(\get_stylesheet_directory() .'/addons/BootstrapMenuWalker.php');
@@ -1003,7 +1004,7 @@ function eve_get_headerColClasses($echo = false) {
 } // END function eve_get_headerColClasses($echo = false)
 
 function eve_get_mainContentColClasses($echo = false) {
-	if(eve_has_sidebar('sidebar-page') || eve_has_sidebar('sidebar-general')) {
+	if(eve_has_sidebar('sidebar-page') || eve_has_sidebar('sidebar-general') || eve_has_sidebar('sidebar-post')) {
 		$contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
 	} else {
 		$contentColClass = 'col-lg-12 col-md-12 col-sm-12 col-12';
@@ -1015,6 +1016,20 @@ function eve_get_mainContentColClasses($echo = false) {
 		return $contentColClass;
 	} // END if($echo === true)
 } // END function eve_get_mainContentColClasses($echo = false)
+
+function eve_get_loopContentClasses($echo = false) {
+	if(eve_has_sidebar('sidebar-page') || eve_has_sidebar('sidebar-general') || eve_has_sidebar('sidebar-post')) {
+		$contentColClass = 'col-lg-4 col-md-6 col-sm-12 col-xs-12';
+	} else {
+		$contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
+	} // END if(eve_has_sidebar('sidebar-page'))
+
+	if($echo === true) {
+		echo $contentColClass;
+	} else {
+		return $contentColClass;
+	} // END if($echo === true)
+} // END function eve_get_loopContentClasses($echo = false)
 
 /**
  * Returning some theme related data

@@ -17,15 +17,41 @@ defined('ABSPATH') or die();
 
 	<div class="row main-content">
 		<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
-			<div class="content">
+			<div class="content content-index">
 				<?php
 				if(\have_posts()) {
-					echo \get_post_format();
+					if(\get_post_type() === 'post') {
+						$uniqueID = \uniqid();
+
+						echo '<div class="gallery-row">';
+						echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
+					} // END if(\get_post_type() === 'post')
 
 					while(\have_posts()) {
 						\the_post();
+
+						if(\get_post_type() === 'post') {
+							echo '<li>';
+						}
 						\get_template_part('content', \get_post_format());
+						if(\get_post_type() === 'post') {
+							echo '</li>';
+						}
 					} // END while (have_posts())
+
+					if(\get_post_type() === 'post') {
+						echo '</ul>';
+						echo '</div>';
+
+						echo '<script type="text/javascript">
+								jQuery(document).ready(function() {
+									jQuery("ul.bootstrap-post-loop-gallery-' . $uniqueID . '").bootstrapGallery({
+										"classes" : "' . \WordPress\Themes\EveOnline\eve_get_loopContentClasses() . '",
+										"hasModal" : false
+									});
+								});
+								</script>';
+					} // END if(\get_post_type() === 'post')
 				} else {
 
 				} // END if(have_posts())

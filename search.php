@@ -17,7 +17,7 @@ defined('ABSPATH') or die();
 
 	<div class="row main-content">
 		<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
-			<div class="content">
+			<div class="content content-search">
 				<?php
 				if(\have_posts()) {
 					?>
@@ -31,7 +31,7 @@ defined('ABSPATH') or die();
 						<h1><?php \_e('No Results Found', 'eve-online'); ?></h1>
 					</header>
 					<?php
-				} // END if(have_posts())s
+				} // END if(have_posts())
 
 				if(\have_posts()) {
 					while(\have_posts()) {
