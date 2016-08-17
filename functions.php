@@ -696,19 +696,108 @@ if(!\function_exists('eve_content_nav')) {
 
 		if($wp_query->max_num_pages > 1) {
 			?>
-			<nav id="<?php echo $nav_id; ?>" class="navigation" role="navigation">
+			<nav id="<?php echo $nav_id; ?>" class="navigation post-navigation clearfix" role="navigation">
 				<h3 class="assistive-text"><?php \_e('Post navigation', 'eve-online'); ?></h3>
 				<div class="nav-previous pull-left">
-					<?php \next_posts_link(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online')); ?>
+					<?php eve_next_posts_link(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online')); ?>
 				</div>
 				<div class="nav-next pull-right">
-					<?php \previous_posts_link(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online')); ?>
+					<?php eve_previous_posts_link(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online')); ?>
 				</div>
 			</nav><!-- #<?php echo $nav_id; ?> .navigation -->
 			<?php
 		} // END if($wp_query->max_num_pages > 1)
 	} // END function eve_content_nav($nav_id)
 } // END if(!\function_exists('eve_content_nav'))
+
+/**
+ * Displays the previous posts page link.
+ *
+ * @param string $label Optional. Previous page link text.
+ */
+function eve_previous_posts_link($label = null) {
+	echo eve_get_previous_posts_link($label);
+} // END function eve_previous_posts_link($label = null)
+
+/**
+ * Retrieves the previous posts page link.
+ *
+ * @global int $paged
+ *
+ * @param string $label Optional. Previous page link text.
+ * @return string|void HTML-formatted previous page link.
+ */
+function eve_get_previous_posts_link($label = null) {
+	global $paged;
+
+	if(null === $label) {
+		$label = __('&laquo; Previous Page');
+	} // END if(null === $label)
+
+	if(!\is_single() && $paged > 1) {
+		/**
+		 * Filters the anchor tag attributes for the previous posts page link.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @param string $attributes Attributes for the anchor tag.
+		 */
+		$attr = \apply_filters('previous_posts_link_attributes', '');
+
+		return '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>". \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) .'</a>';
+	} // END if(!\is_single() && $paged > 1)
+} // END function eve_get_previous_posts_link($label = null)
+
+/**
+ * Displays the next posts page link.
+ *
+ * @param string $label    Content for link text.
+ * @param int    $max_page Optional. Max pages. Default 0.
+ */
+function eve_next_posts_link($label = null, $max_page = 0) {
+	echo eve_get_next_posts_link($label, $max_page);
+} // END function eve_next_posts_link($label = null, $max_page = 0)
+
+/**
+ * Retrieves the next posts page link.
+ *
+ * @global int      $paged
+ * @global WP_Query $wp_query
+ *
+ * @param string $label    Content for link text.
+ * @param int    $max_page Optional. Max pages. Default 0.
+ * @return string|void HTML-formatted next posts page link.
+ */
+function eve_get_next_posts_link($label = null, $max_page = 0) {
+	global $paged, $wp_query;
+
+	if(!$max_page) {
+		$max_page = $wp_query->max_num_pages;
+	} // END if(!$max_page)
+
+	if(!$paged) {
+		$paged = 1;
+	} // END if(!$paged)
+
+	$nextpage = \intval($paged) + 1;
+
+	if(null === $label) {
+		$label = __('Next Page &raquo;');
+	} // END if(null === $label)
+
+	if(!\is_single() && ($nextpage <= $max_page)) {
+		/**
+		 * Filters the anchor tag attributes for the next posts page link.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @param string $attributes Attributes for the anchor tag.
+		 */
+		$attr = \apply_filters('next_posts_link_attributes', '');
+
+		return '<a class="btn btn-default" href="' . \next_posts( $max_page, false ) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
+	} // END if(!\is_single() && ($nextpage <= $max_page))
+} // END function eve_get_next_posts_link($label = null, $max_page = 0)
 
 /**
  * Display template for comments and pingbacks.

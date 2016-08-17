@@ -406,41 +406,41 @@ ins {
 }
 
 .mobile-nav .caret {
-    position: absolute;
-    /*left: 100%;*/
-    right: 0;
-    top: 0;
-    z-index: 1;
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgb(153,153,153);
-    display: block !important;
-    height: 40px;
-    width: 40px;
-    border: none;
+	position: absolute;
+	/*left: 100%;*/
+	right: 0;
+	top: 0;
+	z-index: 1;
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.05);
+	border-bottom: 1px solid rgb(153,153,153);
+	display: block !important;
+	height: 40px;
+	width: 40px;
+	border: none;
 }
 
 .mobile-nav .caret i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
 .mobile-nav .caret i {
-    display: block;
-    width: 0.625rem;
-    height: 0.625rem;
-    -webkit-transform: translate(-50%, -50%) rotate(45deg);
-    -moz-transform: translate(-50%, -50%) rotate(45deg);
-    -ms-transform: translate(-50%, -50%) rotate(45deg);
-    transform: translate(-50%, -50%) rotate(45deg);
-    border: 2px solid currentColor;
-    border-width: 0 2px 2px 0;
-    transition: all 0.2s;
+	display: block;
+	width: 0.625rem;
+	height: 0.625rem;
+	-webkit-transform: translate(-50%, -50%) rotate(45deg);
+	-moz-transform: translate(-50%, -50%) rotate(45deg);
+	-ms-transform: translate(-50%, -50%) rotate(45deg);
+	transform: translate(-50%, -50%) rotate(45deg);
+	border: 2px solid currentColor;
+	border-width: 0 2px 2px 0;
+	transition: all 0.2s;
 }
 
 .mobile-nav .dropdown-submenu a::after {
@@ -450,6 +450,11 @@ ins {
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
 	color: rgb(38,38,38);
 	background-color: rgb(231,231,231);
+}
+
+.post-navigation {
+	margin-bottom: 16px;
+	margin-bottom: 1rem;
 }
 
 /* home widget area
