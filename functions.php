@@ -69,6 +69,11 @@ require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
 require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
 
 /**
+ * MO Cache
+ */
+require_once(\get_stylesheet_directory() . '/plugins/MoCache.php');
+
+/**
  * Killboard
  */
 require_once(\get_stylesheet_directory() . '/plugins/helper/KillboardHelper.php');
