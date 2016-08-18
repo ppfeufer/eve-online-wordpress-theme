@@ -55,7 +55,7 @@ $stringHelper = new WordPress\Themes\EveOnline\Helper\String();
 					<div class="entry-content">
 						<?php
 						echo \wpautop(\do_shortcode($stringHelper->cutString(\get_the_content(), '140')));
-						\_e('<span class="read-more">Read more</span>', 'eve-online');
+						\printf('<a href="%1$s"><span class="read-more">' . \__('Read more', 'eve-online') . '</span></a>', \get_the_permalink());
 
 //						if(isset($options['excerpts'])) {
 //							echo \the_excerpt();
