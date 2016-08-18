@@ -150,6 +150,11 @@ class ThemeSettings {
 				'type' => 'image',
 				'title' => \__('', 'eve-online'),
 				'description' => \__('... or upload your own', 'eve-online')
+			),
+			'background_color' => array(
+				'type' => 'colorpicker',
+				'title' => \__('Background Colour', 'eve-online'),
+				'description' => \__('The contents background colour. If empty, the default (white) will be taken.', 'eve-online')
 			)
 		);
 	} // END private function getBackgroundTabFields()

@@ -1299,6 +1299,13 @@ function eve_get_theme_custom_style() {
 		$themeCustomStyle .= 'body {background-image:url("' . $backgroundImage . '")}' . "\n";
 	} // END if(!empty(eve_get_theme_background_image()))
 
+	if(!empty($themeSettings['background_color'])) {
+		$stringHelper = new Helper\String;
+		$rgbValues = $stringHelper->hextoRgb($themeSettings['background_color'], '0.8');
+
+		$themeCustomStyle .= '.container {background-color:rgba(' . join(',', $rgbValues) . ');}' . "\n";
+	}
+
 	// main navigation
 	if(isset($themeSettings['navigation_even_cells']['yes'])) {
 		$themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
