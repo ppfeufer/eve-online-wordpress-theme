@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* settings api
+----------------------------------------------------------------------------- */
+.uploaded-file-url, .uploaded-image {
+	display: none;
+	padding: 0.5rem;
+}
+
+.settings-type-radio {
+	list-style-type: none;
+}
+
+.settings-type-radio li.horizontal {
+	display: inline-block;
+	text-align: center;
+	margin: 0.5rem;
+}
+
+.settings-type-radio li.horizontal:first-child {
+	margin-left: 0;
+}
+
+.settings-type-radio li.horizontal:last-child {
+	margin-right: 0;
+}
+
+.settings-type-radio li.horizontal input {
+	width: 100%;
+}
+
+.settings-type-radio figure {
+	margin: 0rem;
+	margin-top: 0.5rem;
+}
+
+.upload-button a {
+	text-decoration: none;
+}
+
+.remove {
+	margin-top: 0.5rem;
+}
+
+ul.settings-group {
+	margin-top: 0;
+}
