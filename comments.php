@@ -23,10 +23,10 @@ if(\post_password_required()) {
 			?>
 			<nav id="comment-nav-below" class="navigation" role="navigation">
 				<div class="nav-previous">
-					<?php \previous_comments_link( _e('&larr; Older Comments', 'eve-online')); ?>
+					<?php \previous_comments_link(\_e('&larr; Older Comments', 'eve-online')); ?>
 				</div>
 				<div class="nav-next">
-					<?php \next_comments_link(_e('Newer Comments &rarr;', 'eve-online')); ?>
+					<?php \next_comments_link(\_e('Newer Comments &rarr;', 'eve-online')); ?>
 				</div>
 			</nav>
 			<?php
