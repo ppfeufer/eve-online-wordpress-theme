@@ -13,7 +13,7 @@ if(\post_password_required()) {
 		<ul class="media-list">
 			<?php
 			\wp_list_comments(array(
-				'callback' => 'eve_comment'
+				'callback' => '\WordPress\Themes\EveOnline\eve_comment'
 			));
 			?>
 		</ul>
