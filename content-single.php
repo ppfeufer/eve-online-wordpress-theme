@@ -40,7 +40,7 @@
 				));
 			} else {
 				\wp_link_pages( array(
-					'before' => '<div class="page-links">' . __('Pages:', 'thamm-it'),
+					'before' => '<div class="page-links">' . __('Pages:', 'eve-online'),
 					'after'  => '</div>',
 				));
 			} // END if(\function_exists('\EveOnline\eve_link_pages'))
