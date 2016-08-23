@@ -6,21 +6,22 @@
 namespace WordPress\Themes\EveOnline\Plugins\Helper;
 
 use WordPress\Themes\EveOnline;
-use WordPress\Themes\EveOnline\Plugins;
 
 class KillboardHelper {
 	private $plugin = null;
 	private $pluginSettings = null;
+	private $themeSettings = null;
 	private $eveApi = null;
 	private $killboardUri = null;
 
 	public $db = null;
 
 	public function __construct() {
-		$this->plugin = new Plugins\Killboard(false);
+		$this->plugin = new EveOnline\Plugins\Killboard(false);
 		$this->eveApi = new EveOnline\Helper\EveApi;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
+		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 
 		$this->db = $this->initiateKillboardDatabase();
 
@@ -51,6 +52,8 @@ class KillboardHelper {
 	} // END public function getKillboardUri()
 
 	public function getKillList($count) {
+//		$entityData = $this->getEntityData();
+
 		$query = 'SELECT kll.kll_id,
 						kll.kll_isk_loss AS isk_loss,
 						kll.kll_ship_id AS shp_id,
@@ -61,11 +64,12 @@ class KillboardHelper {
 						inv.typeName AS shp_name,
 						sys.sys_sec
 					FROM kb3_kills kll
-						INNER JOIN kb3_invtypes inv ON ( inv.typeID = kll.kll_ship_id )
-						INNER JOIN kb3_pilots plt ON ( plt.plt_id = kll.kll_victim_id )
-						INNER JOIN kb3_pilots fbplt ON ( fbplt.plt_id = kll.kll_fb_plt_id )
-						INNER JOIN kb3_systems sys ON ( sys.sys_id = kll.kll_system_id )
-						order by kll_timestamp desc limit 0, ' . $count . ';';
+					INNER JOIN kb3_invtypes inv ON (inv.typeID = kll.kll_ship_id)
+					INNER JOIN kb3_pilots plt ON (plt.plt_id = kll.kll_victim_id)
+					INNER JOIN kb3_pilots fbplt ON (fbplt.plt_id = kll.kll_fb_plt_id)
+					INNER JOIN kb3_systems sys ON (sys.sys_id = kll.kll_system_id)
+					ORDER BY kll_timestamp DESC
+					LIMIT 0, ' . $count . ';';
 		$resultLastKills = $this->db->get_results($query, \OBJECT);
 
 		// get the number of involved pilots
@@ -78,6 +82,22 @@ class KillboardHelper {
 
 		return $resultLastKills;
 	} // END public function getKillList($count)
+
+	private function getEntityData() {
+		if(empty($this->themeSettings['type']) || empty($this->themeSettings['name'])) {
+			return false;
+		} // END if(empty($this->themeSettings['type']) || empty($this->themeSettings['name']))
+
+		$dbTable = ($this->themeSettings['type'] === 'alliance') ? '' : '';
+
+		$result = $this->db->get_var('SELECT cfg_value FROM ' . $dbTable . ' WHERE cfg_key = \'' . $this->themeSettings['name'] . '\';');
+
+		if($result) {
+			return $result;
+		}
+
+		return false;
+	} // END private function getEntityData()
 
 	private function getVictimImage($victimName, $shipID, $size = 512) {
 		if(\preg_match('/Control Tower/', $victimName)) {
