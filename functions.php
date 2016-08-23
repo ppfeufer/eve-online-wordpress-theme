@@ -74,6 +74,11 @@ require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
 require_once(\get_stylesheet_directory() . '/plugins/MoCache.php');
 
 /**
+ * Encode Emails Addresses
+ */
+require_once(\get_stylesheet_directory() . '/plugins/EncodeEmailAddresses.php');
+
+/**
  * Killboard
  */
 require_once(\get_stylesheet_directory() . '/plugins/helper/KillboardHelper.php');
