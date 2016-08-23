@@ -47,7 +47,7 @@ class KillboardWidget extends \WP_Widget {
 
 		$widget_options = array(
 			'classname' => 'eve-killboard-widget',
-			'description' => __('Displaying the latest kills (and maybe losses if you are tough enough) in your sidebar.', 'eve-online')
+			'description' => __('Displaying the latest kills and losses in your sidebar.', 'eve-online')
 		);
 
 		$control_options = array();
@@ -77,7 +77,7 @@ class KillboardWidget extends \WP_Widget {
 		// Database Warning
 		if(!$this->kbDB) {
 			echo '<p style="border-bottom: 1px solid #DFDFDF;"><strong>' . \__('Database Warning / Not Configured', 'eve-online') . '</strong></p>';
-			echo '<p>' . sprintf(\__('Please make sure you have your Killboard Database configured in your %1$s.', 'eve-online'), '<a href="' . admin_url('options-general.php?page=eve-online-theme-killboard-plugin-settings') . '">Plugin Settings</a>') . '</p>';
+			echo '<p>' . sprintf(\__('Please make sure you have your Killboard Database configured in your %1$s.', 'eve-online'), '<a href="' . admin_url('options-general.php?page=eve-online-theme-killboard-plugin-settings') . '">' . \__('Plugin Settings', 'eve-online') . '</a>') . '</p>';
 			echo '<p style="clear:both;"></p>';
 		} else {
 			// Titel

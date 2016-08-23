@@ -1,15 +1,13 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: EVE Online\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-23 12:30+0000\n"
-"POT-Revision-Date: Tue Aug 09 2016 12:58:28 GMT+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Rounon Dax <rounon.dax@terra-nanotech.de>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"PO-Revision-Date: 2016-08-23 12:37+0000\n"
+"Last-Translator: ppfeufer <p.pfeufer@thamm-it.de>\n"
+"Language-Team: German\n"
+"Language: de-DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,243 +22,12 @@ msgstr ""
 "X-Loco-Target-Locale: de_DE\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: 404.php:32
-msgid "This is Embarrassing"
-msgstr ""
-
-#: 404.php:36
-msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching, or one of the links below, can help."
-msgstr ""
-
-#: 404.php:43
-msgid "All Pages"
-msgstr ""
-
-#: 404.php:50
-msgid "Categories"
-msgstr ""
-
-#: archive.php:25
-msgid "Daily Archives: %s"
-msgstr ""
-
-#: archive.php:27
-msgid "Monthly Archives: %s"
-msgstr ""
-
-#: archive.php:27
-msgctxt "monthly archives date format"
-msgid "F Y"
-msgstr ""
-
-#: archive.php:29
-msgid "Yearly Archives: %s"
-msgstr ""
-
-#: archive.php:29
-msgctxt "yearly archives date format"
-msgid "Y"
-msgstr ""
-
-#: archive.php:31
-msgid "Tag Archives: %s"
-msgstr ""
-
-#: archive.php:38
-msgid "Category Archives: %s"
-msgstr ""
-
-#: archive.php:40
-msgid "Blog Archives"
-msgstr ""
-
-#: comments.php:26
-msgid "&larr; Older Comments"
-msgstr ""
-
-#: comments.php:29
-msgid "Newer Comments &rarr;"
-msgstr ""
-
-#: comments.php:36
-msgid "Comments are closed."
-msgstr ""
-
-#: content-aside.php:6 content-audio.php:6 content-chat.php:6 
-#: content-gallery.php:6 content-image.php:6 content-link.php:6 
-#: content-quote.php:6 content-single.php:6 content-status.php:6 
-#: content-video.php:6 content.php:24
-msgid "Permalink to %s"
-msgstr ""
-
-#: content-aside.php:15 content-audio.php:15 content-chat.php:15 
-#: content-gallery.php:15 content-image.php:15 content-link.php:15 
-#: content-quote.php:15 content-single.php:15 content-status.php:15 
-#: content-video.php:15 content.php:33
-msgid "Edit"
-msgstr ""
-
-#: content-single.php:61
-msgid "Posted by "
-msgstr ""
-
-#: content.php:58
-msgid "Read more"
-msgstr ""
-
-#: footer.php:40
-msgid "%1$s design and programming by %2$s"
-msgstr ""
-
-#: footer.php:84
-msgid "back to top"
-msgstr ""
-
-#: functions.php:409
-msgid "Main Menu"
-msgstr ""
-
-#: functions.php:410
-msgid "Footer Menu"
-msgstr ""
-
-#: functions.php:411
-msgid "Header Menu"
-msgstr ""
-
-#. Translators: If there are characters in your language that are not
-#. supported by Source Sans Pro, translate this to 'off'. Do not translate
-#. into your own language.
-#: functions.php:464
-msgctxt "Source Sans Pro font: on or off"
-msgid "on"
-msgstr ""
-
-#. Translators: If there are characters in your language that are not
-#. supported by Bitter, translate this to 'off'. Do not translate into your
-#. own language.
-#: functions.php:471
-msgctxt "Bitter font: on or off"
-msgid "on"
-msgstr ""
-
-#: functions.php:547
-msgid "Page Sidebar"
-msgstr ""
-
-#: functions.php:558
-msgid "Post Sidebar"
-msgstr ""
-
-#: functions.php:569
-msgid "General Sidebar"
-msgstr ""
-
-#: functions.php:571
-msgid ""
-"General sidebar that is always right from the topic, below the side specific "
-"sidebars"
-msgstr ""
-
-#: functions.php:581 functions.php:583
-msgid "Home Column 1"
-msgstr ""
-
-#: functions.php:593 functions.php:595
-msgid "Home Column 2"
-msgstr ""
-
-#: functions.php:605 functions.php:607
-msgid "Home Column 3"
-msgstr ""
-
-#: functions.php:617 functions.php:619
-msgid "Home Column 4"
-msgstr ""
-
-#: functions.php:629 functions.php:631
-msgid "Footer Column 1"
-msgstr ""
-
-#: functions.php:641 functions.php:643
-msgid "Footer Column 2"
-msgstr ""
-
-#: functions.php:653 functions.php:655
-msgid "Footer Column 3"
-msgstr ""
-
-#: functions.php:665 functions.php:667
-msgid "Footer Column 4"
-msgstr ""
-
-#: functions.php:678 functions.php:680
-msgid "Header Widget Area"
-msgstr ""
-
-#: functions.php:694
-msgid "Read More"
-msgstr ""
-
-#: functions.php:718
-msgid "Post navigation"
-msgstr ""
-
-#: functions.php:720
-msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
-msgstr ""
-
-#: functions.php:723
-msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
-msgstr ""
-
-#: functions.php:834
-msgid "Pingback:"
-msgstr ""
-
-#: functions.php:853
-msgid "Post author"
-msgstr ""
-
-#: functions.php:861
-msgid "Your comment is awaiting moderation."
-msgstr ""
-
 #: functions.php:873
 msgid "%1$s at %2$s"
-msgstr ""
-
-#: functions.php:880
-msgid "Reply <span>&darr;</span>"
-msgstr ""
-
-#: functions.php:901
-msgid ""
-"Posted on <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time><span "
-"class=\"byline\"> <span class=\"sep\"> by </span> <span class=\"author "
-"vcard\">%7$s</span></span>"
-msgstr ""
-
-#: functions.php:907
-msgid "View all posts by %s"
-msgstr ""
-
-#: functions.php:982
-msgid "Page %s"
-msgstr ""
-
-#: functions.php:993
-msgid "Home"
-msgstr ""
+msgstr "%1$s um %2$s"
 
 #: functions.php:1019
 msgid "Archive by category "
-msgstr ""
-
-#: functions.php:1077
-msgid "Search results for \""
 msgstr ""
 
 #: functions.php:1081
@@ -271,216 +38,10 @@ msgstr ""
 msgid "Articles posted by "
 msgstr ""
 
-#: functions.php:1092
-msgid "Error 404"
-msgstr ""
-
-#: header.php:133
-msgid "Toggle navigation"
-msgstr ""
-
-#: header.php:138
-msgid "Menu"
-msgstr ""
-
-#. Name of the template
-msgid "Default Page (Full Width)"
-msgstr ""
-
-#. Name of the template
-msgid "Default Page (With Sidebar)"
-msgstr ""
-
-#: search.php:25
-msgid "Search Results for: %s"
-msgstr ""
-
-#: search.php:31
-msgid "No Results Found"
-msgstr ""
-
 #: search.php:44
 msgid ""
 "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps you "
 "should try again with a different search term."
-msgstr ""
-
-#: searchform.php:5 searchform.php:6
-msgid "Search"
-msgstr ""
-
-#: addons/BootstrapMenuWalker.php:140
-msgid "(No description available)"
-msgstr ""
-
-#: addons/BootstrapMenuWalker.php:263
-msgid "Add a menu"
-msgstr ""
-
-#: admin/SettingsApi.php:625 admin/SettingsApi.php:656
-msgid "Upload"
-msgstr ""
-
-#: admin/SettingsApi.php:636 admin/SettingsApi.php:669
-msgid "Remove"
-msgstr ""
-
-#: admin/ThemeSettings.php:40
-msgid "Options"
-msgstr ""
-
-#: admin/ThemeSettings.php:41
-msgid "EVE Online Theme Settings"
-msgstr ""
-
-#: admin/ThemeSettings.php:48 plugins/Killboard.php:121
-msgid "General Settings"
-msgstr ""
-
-#: admin/ThemeSettings.php:49
-msgid "General Theme Settings"
-msgstr ""
-
-#: admin/ThemeSettings.php:57 admin/ThemeSettings.php:58
-msgid "Background Settings"
-msgstr ""
-
-#: admin/ThemeSettings.php:66 admin/ThemeSettings.php:67
-msgid "Slider Settings"
-msgstr ""
-
-#: admin/ThemeSettings.php:76
-msgid "Meta Slider Warning"
-msgstr ""
-
-#: admin/ThemeSettings.php:77 admin/ThemeSettings.php:174
-msgid "Please make sure you have the %1$s plugin installed and activated."
-msgstr ""
-
-#: admin/ThemeSettings.php:84 plugins/Killboard.php:179
-msgid "Development Infos"
-msgstr ""
-
-#: admin/ThemeSettings.php:85 plugins/Killboard.php:180
-msgid "Delevopment Information"
-msgstr ""
-
-#: admin/ThemeSettings.php:98
-msgid "Alliance"
-msgstr ""
-
-#: admin/ThemeSettings.php:99
-msgid "Corporation"
-msgstr ""
-
-#: admin/ThemeSettings.php:101 admin/ThemeSettings.php:144
-msgid "Please Select"
-msgstr ""
-
-#: admin/ThemeSettings.php:102
-msgid "Entity Type"
-msgstr ""
-
-#: admin/ThemeSettings.php:103
-msgid "Is this a Corporation or an Alliance Website?"
-msgstr ""
-
-#: admin/ThemeSettings.php:107
-msgid "Entity Name"
-msgstr ""
-
-#: admin/ThemeSettings.php:108
-msgid "The Name of your Corp/Alliance %1$s"
-msgstr ""
-
-#: admin/ThemeSettings.php:109
-msgid "Your Logo"
-msgstr ""
-
-#: admin/ThemeSettings.php:114
-msgid "Corp Logos"
-msgstr ""
-
-#: admin/ThemeSettings.php:116
-msgid "Show corp logos in menu for corp pages."
-msgstr ""
-
-#: admin/ThemeSettings.php:118
-msgid ""
-"Only available if you are running an alliance website, so you can have the "
-"corp logos in your \"Our Corporations\" menu."
-msgstr ""
-
-#: admin/ThemeSettings.php:122
-msgid "Navigation"
-msgstr ""
-
-#: admin/ThemeSettings.php:124
-msgid "Even navigation cells in main navigation"
-msgstr ""
-
-#: admin/ThemeSettings.php:126
-msgid ""
-"Transforms the main navigation into even cells instead of a random width."
-msgstr ""
-
-#: admin/ThemeSettings.php:135
-msgid "Use Background Image"
-msgstr ""
-
-#: admin/ThemeSettings.php:137
-msgid "Yes, I want to use background images on this website."
-msgstr ""
-
-#: admin/ThemeSettings.php:139
-msgid ""
-"If this option is checked, the website will use your selected (down below) "
-"background image instead of a simple colored background."
-msgstr ""
-
-#: admin/ThemeSettings.php:145
-msgid "Background Image"
-msgstr ""
-
-#: admin/ThemeSettings.php:146
-msgid "Select one of the default Background images ..."
-msgstr ""
-
-#: admin/ThemeSettings.php:152
-msgid "... or upload your own"
-msgstr ""
-
-#: admin/ThemeSettings.php:156
-msgid "Background Colour"
-msgstr ""
-
-#: admin/ThemeSettings.php:157
-msgid ""
-"The contents background colour. If empty, the default (white) will be taken."
-msgstr ""
-
-#: admin/ThemeSettings.php:172
-msgid "Default Slider on Front Page"
-msgstr ""
-
-#: admin/ThemeSettings.php:174
-msgid "Select the default slider for your front page"
-msgstr ""
-
-#: admin/ThemeSettings.php:178
-msgid "Pages with Slider"
-msgstr ""
-
-#: admin/ThemeSettings.php:180
-msgid "Show only on front page."
-msgstr ""
-
-#: admin/ThemeSettings.php:182
-msgid "Show this slider only on front page in case no other slider is defined."
-msgstr ""
-
-#: admin/ThemeSettings.php:192 plugins/Killboard.php:190
-msgid "Options Array<br>(sane from functions.php)"
 msgstr ""
 
 #: admin/ThemeSettings.php:194
@@ -489,113 +50,8 @@ msgid ""
 "\\WordPress\\Themes\\EveOnline\\eve_get_options_default()</code>"
 msgstr ""
 
-#: admin/ThemeSettings.php:199 plugins/Killboard.php:197
-msgid "Options Array<br>(from DB)"
-msgstr ""
-
-#: admin/ThemeSettings.php:201
-msgid ""
-"This are the options from our database via <code>"
-"\\get_option('eve_theme_options')</code>"
-msgstr ""
-
-#: admin/ThemeSettings.php:206 plugins/Killboard.php:204
-msgid "Options Array<br>(merged / used for Theme)"
-msgstr ""
-
-#: admin/ThemeSettings.php:208
-msgid ""
-"This are the options used for the theme via <code>"
-"\\get_option('eve_theme_options', "
-"\\WordPress\\Themes\\EveOnline\\eve_get_options_default())</code>"
-msgstr ""
-
-#: plugins/BootstrapVideoGallery.php:133
-msgid "Video Gallery Page?"
-msgstr ""
-
-#: plugins/BootstrapVideoGallery.php:142
-msgid "Video Gallery Settings"
-msgstr ""
-
-#: plugins/BootstrapVideoGallery.php:145
-msgid "Is Video Gallery Page?"
-msgstr ""
-
 #: plugins/BootstrapVideoGallery.php:149
 msgid "Only list if it's parent gallery"
-msgstr ""
-
-#: plugins/BootstrapVideoGallery.php:152
-msgid "Video URL:"
-msgstr ""
-
-#: plugins/BootstrapVideoGallery.php:159
-msgid "Your Video"
-msgstr ""
-
-#: plugins/Corppage.php:102
-msgid "Corp Page?"
-msgstr ""
-
-#: plugins/Corppage.php:110
-msgid "Corp Page Settings"
-msgstr ""
-
-#: plugins/Corppage.php:113
-msgid "Is Corp Page?"
-msgstr ""
-
-#: plugins/Corppage.php:116
-msgid "Corporation Name:"
-msgstr ""
-
-#: plugins/Corppage.php:123
-msgid "Corporation ID"
-msgstr ""
-
-#: plugins/Corppage.php:127
-msgid "Corporation Logo"
-msgstr ""
-
-#: plugins/Killboard.php:96 plugins/Killboard.php:97
-msgid "Killboard Settings"
-msgstr ""
-
-#: plugins/Killboard.php:122
-msgid "Killboard General Settings"
-msgstr ""
-
-#: plugins/Killboard.php:131
-msgid "Number Of Kills"
-msgstr ""
-
-#: plugins/Killboard.php:132 plugins/widgets/KillboardWidget.php:89
-msgid "Number of kills to show"
-msgstr ""
-
-#: plugins/Killboard.php:149
-msgid "Database Settings"
-msgstr ""
-
-#: plugins/Killboard.php:150
-msgid "Killboard Database Settings"
-msgstr ""
-
-#: plugins/Killboard.php:159
-msgid "DB Host"
-msgstr ""
-
-#: plugins/Killboard.php:164
-msgid "DB Name"
-msgstr ""
-
-#: plugins/Killboard.php:168
-msgid "DB User"
-msgstr ""
-
-#: plugins/Killboard.php:172
-msgid "DB Password"
 msgstr ""
 
 #: plugins/Killboard.php:192
@@ -617,71 +73,636 @@ msgid ""
 "getDefaultPluginOptions())</code>"
 msgstr ""
 
-#: plugins/Metaslider.php:30
-msgid "Page Meta Slider"
-msgstr ""
-
-#: plugins/Metaslider.php:56
-msgid "Display Page Meta Slider"
-msgstr ""
-
-#: plugins/Metaslider.php:70
-msgid "Stretch Page Meta Slider"
-msgstr ""
-
 #: plugins/Metaslider.php:106
 msgid "None"
-msgstr ""
-
-#: plugins/Metaslider.php:115
-msgid "Slider: "
-msgstr ""
-
-#: security/WordPressCoreUpdateCleaner.php:80
-msgid "Removing"
-msgstr ""
-
-#: plugins/widgets/KillboardWidget.php:50
-msgid "Displaying the latest kills and losses in your sidebar."
-msgstr ""
-
-#: plugins/widgets/KillboardWidget.php:55
-msgid "EVE Killboard Widget"
-msgstr ""
-
-#: plugins/widgets/KillboardWidget.php:79
-msgid "Database Warning / Not Configured"
-msgstr ""
-
-#: plugins/widgets/KillboardWidget.php:80
-msgid ""
-"Please make sure you have your Killboard Database configured in your %1$s."
-msgstr ""
-
-#: plugins/widgets/KillboardWidget.php:80
-msgid "Plugin Settings"
 msgstr ""
 
 #: plugins/widgets/KillboardWidget.php:84
 msgid "Title"
 msgstr ""
 
+#: content.php:58
+msgid "Read more"
+msgstr "Weiter lesen"
+
+#: footer.php:40
+msgid "%1$s design and programming by %2$s"
+msgstr "%1$s designed und programmiert von %2$s"
+
+#: functions.php:581 functions.php:583
+msgid "Home Column 1"
+msgstr "Home Column 1"
+
+#: functions.php:593 functions.php:595
+msgid "Home Column 2"
+msgstr "Home Column 2"
+
+#: functions.php:605 functions.php:607
+msgid "Home Column 3"
+msgstr "Home Column 3"
+
+#: functions.php:617 functions.php:619
+msgid "Home Column 4"
+msgstr "Home Column 4"
+
+#: functions.php:629 functions.php:631
+msgid "Footer Column 1"
+msgstr "Footer Column 1"
+
+#: functions.php:641 functions.php:643
+msgid "Footer Column 2"
+msgstr "Footer Column 2"
+
+#: functions.php:653 functions.php:655
+msgid "Footer Column 3"
+msgstr "Footer Column 3"
+
+#: functions.php:665 functions.php:667
+msgid "Footer Column 4"
+msgstr "Footer Column 4"
+
+#: admin/ThemeSettings.php:76
+msgid "Meta Slider Warning"
+msgstr "Meta Slider Warnung"
+
+#: admin/ThemeSettings.php:122
+msgid "Navigation"
+msgstr "Navigation"
+
+#: admin/ThemeSettings.php:124
+msgid "Even navigation cells in main navigation"
+msgstr "Gleiche Breite für Menüpunkte"
+
+#: admin/ThemeSettings.php:126
+msgid ""
+"Transforms the main navigation into even cells instead of a random width."
+msgstr ""
+"Sorgt dafür, dass die Menüpunkte der Navigation einigermaßen gleich breit "
+"sind."
+
+#: admin/ThemeSettings.php:156
+msgid "Background Colour"
+msgstr "Hintergrund Farbe"
+
+#: admin/ThemeSettings.php:157
+msgid ""
+"The contents background colour. If empty, the default (white) will be taken."
+msgstr ""
+"Der Hintergrund des Content Bereiches. Wenn leer, wird die Standardfarbe "
+"(weiß) hergenommen."
+
+#: plugins/Killboard.php:96 plugins/Killboard.php:97
+msgid "Killboard Settings"
+msgstr "Killboard Einstellungen"
+
+#: plugins/Killboard.php:122
+msgid "Killboard General Settings"
+msgstr "Generelle Killboard Einstellungen"
+
+#: plugins/Killboard.php:131
+msgid "Number Of Kills"
+msgstr "Anzahl Kills"
+
+#: plugins/Killboard.php:132 plugins/widgets/KillboardWidget.php:89
+msgid "Number of kills to show"
+msgstr "Wieviele Kills sollen angezeigt werden"
+
+#: plugins/Killboard.php:149
+msgid "Database Settings"
+msgstr "Datenbank Einstellungen"
+
+#: plugins/Killboard.php:150
+msgid "Killboard Database Settings"
+msgstr "Killboard Datenbank Einstellungen"
+
+#: plugins/Killboard.php:159
+msgid "DB Host"
+msgstr "DB Host"
+
+#: plugins/Killboard.php:164
+msgid "DB Name"
+msgstr "DB Name"
+
+#: plugins/Killboard.php:168
+msgid "DB User"
+msgstr "DB User"
+
+#: plugins/Killboard.php:172
+msgid "DB Password"
+msgstr "DB Password"
+
+#: plugins/widgets/KillboardWidget.php:50
+msgid "Displaying the latest kills and losses in your sidebar."
+msgstr "Zeigt die letzten Abschüsse und Verluste in der Sidebar an."
+
+#: 404.php:32
+msgid "This is Embarrassing"
+msgstr "Das ist peinlich"
+
+#: 404.php:36
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching, or one of the links below, can help."
+msgstr ""
+"Sieht so aus als könnten wir nicht finden was Du erhofft hast. Vielleicht "
+"hilft die Suche weiter?"
+
+#: 404.php:43
+msgid "All Pages"
+msgstr "Alle Seiten"
+
+#: 404.php:50
+msgid "Categories"
+msgstr "Kategorien"
+
+#: archive.php:25
+msgid "Daily Archives: %s"
+msgstr "Tagesarchiv: %s"
+
+#: archive.php:27
+msgid "Monthly Archives: %s"
+msgstr "Monatsarchiv: %s"
+
+#: archive.php:27
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: archive.php:29
+msgid "Yearly Archives: %s"
+msgstr "Jahresarchiv: %s"
+
+#: archive.php:29
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: archive.php:31
+msgid "Tag Archives: %s"
+msgstr "Schlagwortarchiv: %s"
+
+#: archive.php:38
+msgid "Category Archives: %s"
+msgstr "Kategoriearchiv: %s"
+
+#: archive.php:40
+msgid "Blog Archives"
+msgstr "Blogarchiv"
+
+#: comments.php:26
+msgid "&larr; Older Comments"
+msgstr "&larr; Ältere Kommentare"
+
+#: comments.php:29
+msgid "Newer Comments &rarr;"
+msgstr "Neuere kommentare &rarr;"
+
+#: comments.php:36
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen"
+
+#: content-aside.php:6 content-audio.php:6 content-chat.php:6 
+#: content-gallery.php:6 content-image.php:6 content-link.php:6 
+#: content-quote.php:6 content-single.php:6 content-status.php:6 
+#: content-video.php:6 content.php:24
+msgid "Permalink to %s"
+msgstr "Permalink zu %s"
+
+#: content-aside.php:15 content-audio.php:15 content-chat.php:15 
+#: content-gallery.php:15 content-image.php:15 content-link.php:15 
+#: content-quote.php:15 content-single.php:15 content-status.php:15 
+#: content-video.php:15 content.php:33
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: content-single.php:61
+msgid "Posted by "
+msgstr "Geschrieben von"
+
+#: footer.php:84
+msgid "back to top"
+msgstr "Nach oben"
+
+#: functions.php:409
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: functions.php:410
+msgid "Footer Menu"
+msgstr "Fußmenü"
+
+#: functions.php:411
+msgid "Header Menu"
+msgstr "Kopfmenü"
+
+#. Translators: If there are characters in your language that are not
+#. supported by Source Sans Pro, translate this to 'off'. Do not translate
+#. into your own language.
+#: functions.php:464
+msgctxt "Source Sans Pro font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not
+#. supported by Bitter, translate this to 'off'. Do not translate into your
+#. own language.
+#: functions.php:471
+msgctxt "Bitter font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:547
+msgid "Page Sidebar"
+msgstr "Page Sidebar"
+
+#: functions.php:558
+msgid "Post Sidebar"
+msgstr "Post Sidebar"
+
+#: functions.php:569
+msgid "General Sidebar"
+msgstr "Generelle Sidebar"
+
+#: functions.php:571
+msgid ""
+"General sidebar that is always right from the topic, below the side specific "
+"sidebars"
+msgstr ""
+"Generelle Sidebar welche immer unter den seitenspezifischen Sidebars "
+"angezeigt wird."
+
+#: functions.php:678 functions.php:680
+msgid "Header Widget Area"
+msgstr "Header Widget Bereich"
+
+#: functions.php:694
+msgid "Read More"
+msgstr "Weiterlesen"
+
+#: functions.php:718
+msgid "Post navigation"
+msgstr "Atrikelnavigation"
+
+#: functions.php:720
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Artikel"
+
+#: functions.php:723
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Neuere Artikel <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:834
+msgid "Pingback:"
+msgstr "Pingback"
+
+#: functions.php:853
+msgid "Post author"
+msgstr "Artikelautor"
+
+#: functions.php:861
+msgid "Your comment is awaiting moderation."
+msgstr "Dein Kommentar befindet sich in Moderation"
+
+#: functions.php:880
+msgid "Reply <span>&darr;</span>"
+msgstr "Antwort <span>&darr;</span>"
+
+#: functions.php:901
+msgid ""
+"Posted on <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time><span "
+"class=\"byline\"> <span class=\"sep\"> by </span> <span class=\"author "
+"vcard\">%7$s</span></span>"
+msgstr ""
+"Veröffentlich am <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time>"
+"<span class=\"byline\"> <span class=\"sep\"> von </span> <span "
+"class=\"author vcard\">%7$s</span></span>"
+
+#: functions.php:907
+msgid "View all posts by %s"
+msgstr "Alle Artikel von %s anschauen"
+
+#: functions.php:982
+msgid "Page %s"
+msgstr "Seite %s"
+
+#: functions.php:993
+msgid "Home"
+msgstr "Home"
+
+#: functions.php:1077
+msgid "Search results for \""
+msgstr "Suchergebnis für \""
+
+#: functions.php:1092
+msgid "Error 404"
+msgstr "Fehler 404"
+
+#: header.php:133
+msgid "Toggle navigation"
+msgstr "Navigation umschalten"
+
+#: header.php:138
+msgid "Menu"
+msgstr "Menü"
+
+#. Name of the template
+msgid "Default Page (Full Width)"
+msgstr "Default Page (Volle Breite)"
+
+#. Name of the template
+msgid "Default Page (With Sidebar)"
+msgstr "Default Page (Mit Sidebar)"
+
+#: search.php:25
+msgid "Search Results for: %s"
+msgstr "Suchergebnis für: %s"
+
+#: search.php:31
+msgid "No Results Found"
+msgstr "Nichts gefunden"
+
+#: searchform.php:5 searchform.php:6
+msgid "Search"
+msgstr "Suche"
+
+#: addons/BootstrapMenuWalker.php:140
+msgid "(No description available)"
+msgstr "(Keine beschreibung verfügbar)"
+
+#: addons/BootstrapMenuWalker.php:263
+msgid "Add a menu"
+msgstr "Menü hinzufügen"
+
+#: admin/SettingsApi.php:625 admin/SettingsApi.php:656
+msgid "Upload"
+msgstr "Hochladen"
+
+#: admin/SettingsApi.php:636 admin/SettingsApi.php:669
+msgid "Remove"
+msgstr "Entfernen"
+
+#: admin/ThemeSettings.php:40
+msgid "Options"
+msgstr "Optionen"
+
+#: admin/ThemeSettings.php:41
+msgid "EVE Online Theme Settings"
+msgstr "EVE Online Theme Einstellungen"
+
+#: admin/ThemeSettings.php:48 plugins/Killboard.php:121
+msgid "General Settings"
+msgstr "Generelle Einstellungen"
+
+#: admin/ThemeSettings.php:49
+msgid "General Theme Settings"
+msgstr "Generelle Theme Einstellungen"
+
+#: admin/ThemeSettings.php:57 admin/ThemeSettings.php:58
+msgid "Background Settings"
+msgstr "Hintergrund Einstellungen"
+
+#: admin/ThemeSettings.php:66 admin/ThemeSettings.php:67
+msgid "Slider Settings"
+msgstr "Slider Einstellungen"
+
+#: admin/ThemeSettings.php:77 admin/ThemeSettings.php:174
+msgid "Please make sure you have the %1$s plugin installed and activated."
+msgstr "Stelle dicher, dass das %1$s Plugin installiert und aktiviert ist."
+
+#: admin/ThemeSettings.php:84 plugins/Killboard.php:179
+msgid "Development Infos"
+msgstr "Development Infos"
+
+#: admin/ThemeSettings.php:85 plugins/Killboard.php:180
+msgid "Delevopment Information"
+msgstr "Delevopment Information"
+
+#: admin/ThemeSettings.php:98
+msgid "Alliance"
+msgstr "Allianz"
+
+#: admin/ThemeSettings.php:99
+msgid "Corporation"
+msgstr "Corporation"
+
+#: admin/ThemeSettings.php:101 admin/ThemeSettings.php:144
+msgid "Please Select"
+msgstr "Bitte wählen"
+
+#: admin/ThemeSettings.php:102
+msgid "Entity Type"
+msgstr "Typ"
+
+#: admin/ThemeSettings.php:103
+msgid "Is this a Corporation or an Alliance Website?"
+msgstr "Ist dies eine Corp oder Allianz Webseite?"
+
+#: admin/ThemeSettings.php:107
+msgid "Entity Name"
+msgstr "Name"
+
+#: admin/ThemeSettings.php:108
+msgid "The Name of your Corp/Alliance %1$s"
+msgstr "Der Name Deiner Corp/Allianz %1$s"
+
+#: admin/ThemeSettings.php:109
+msgid "Your Logo"
+msgstr "Dein Logo"
+
+#: admin/ThemeSettings.php:114
+msgid "Corp Logos"
+msgstr "Corp Logos"
+
+#: admin/ThemeSettings.php:116
+msgid "Show corp logos in menu for corp pages."
+msgstr "Zeige Corp Logos im Menü für Corp Seiten."
+
+#: admin/ThemeSettings.php:118
+msgid ""
+"Only available if you are running an alliance website, so you can have the "
+"corp logos in your \"Our Corporations\" menu."
+msgstr ""
+"Nur verfügbar, wenn dies eine Allianzseite ist. Somit können die Corp Logos "
+"im Untermenü \"Unsere Corporationen\" angezeigt werden."
+
+#: admin/ThemeSettings.php:135
+msgid "Use Background Image"
+msgstr "Hintergrundbild nutzen"
+
+#: admin/ThemeSettings.php:137
+msgid "Yes, I want to use background images on this website."
+msgstr "Ja, ich möchte ein hintergrundbild nutzen."
+
+#: admin/ThemeSettings.php:139
+msgid ""
+"If this option is checked, the website will use your selected (down below) "
+"background image instead of a simple colored background."
+msgstr ""
+"Ist diese Option gewählt, so wird das in einer der unteren Optionen gesetzte "
+"Hintergundbild verwendet, anstelle eines einfarbigen Hintergrundes."
+
+#: admin/ThemeSettings.php:145
+msgid "Background Image"
+msgstr "Hintergrundbild"
+
+#: admin/ThemeSettings.php:146
+msgid "Select one of the default Background images ..."
+msgstr "Wähle eines der folgenden ..."
+
+#: admin/ThemeSettings.php:152
+msgid "... or upload your own"
+msgstr "... oder lade ein eigenes Bild hoch."
+
+#: admin/ThemeSettings.php:172
+msgid "Default Slider on Front Page"
+msgstr "Standard Slider auf der Startseite"
+
+#: admin/ThemeSettings.php:174
+msgid "Select the default slider for your front page"
+msgstr "Wähle den Standard Slider für die Startseite"
+
+#: admin/ThemeSettings.php:178
+msgid "Pages with Slider"
+msgstr "Seiten mit Slider"
+
+#: admin/ThemeSettings.php:180
+msgid "Show only on front page."
+msgstr "Nur auf der Startseite anzeigen."
+
+#: admin/ThemeSettings.php:182
+msgid "Show this slider only on front page in case no other slider is defined."
+msgstr ""
+"Zeige diesen Slider nur auf der Startseite an, falls dort kein anderer "
+"gewählt wurde."
+
+#: admin/ThemeSettings.php:192 plugins/Killboard.php:190
+msgid "Options Array<br>(sane from functions.php)"
+msgstr "Options Array<br>(sane from functions.php)"
+
+#: admin/ThemeSettings.php:199 plugins/Killboard.php:197
+msgid "Options Array<br>(from DB)"
+msgstr "Options Array<br>(from DB)"
+
+#: admin/ThemeSettings.php:201
+msgid ""
+"This are the options from our database via <code>"
+"\\get_option('eve_theme_options')</code>"
+msgstr ""
+"Dies sind die Optionen die in der Datenbank gespeichert sind. <code>"
+"\\get_option('eve_theme_options')</code>"
+
+#: admin/ThemeSettings.php:206 plugins/Killboard.php:204
+msgid "Options Array<br>(merged / used for Theme)"
+msgstr "Options Array<br>(merged / used for Theme)"
+
+#: admin/ThemeSettings.php:208
+msgid ""
+"This are the options used for the theme via <code>"
+"\\get_option('eve_theme_options', "
+"\\WordPress\\Themes\\EveOnline\\eve_get_options_default())</code>"
+msgstr ""
+"Dies sind die Optionen wie sie im Theme genutzt werden. <code>"
+"\\get_option('eve_theme_options', "
+"\\WordPress\\Themes\\EveOnline\\eve_get_options_default())</code>"
+
+#: plugins/BootstrapVideoGallery.php:133
+msgid "Video Gallery Page?"
+msgstr "Video Gallery Seite?"
+
+#: plugins/BootstrapVideoGallery.php:142
+msgid "Video Gallery Settings"
+msgstr "Video Gallery Einstellungen"
+
+#: plugins/BootstrapVideoGallery.php:145
+msgid "Is Video Gallery Page?"
+msgstr "Ist dies eine Video Seite?"
+
+#: plugins/BootstrapVideoGallery.php:152
+msgid "Video URL:"
+msgstr "Video URL:"
+
+#: plugins/BootstrapVideoGallery.php:159
+msgid "Your Video"
+msgstr "Dein Video"
+
+#: plugins/Corppage.php:102
+msgid "Corp Page?"
+msgstr "Corp Seite?"
+
+#: plugins/Corppage.php:110
+msgid "Corp Page Settings"
+msgstr "Corp Seiten Einstellungen"
+
+#: plugins/Corppage.php:113
+msgid "Is Corp Page?"
+msgstr "Ist dies eine Corp Seite?"
+
+#: plugins/Corppage.php:116
+msgid "Corporation Name:"
+msgstr "Corporation Name:"
+
+#: plugins/Corppage.php:123
+msgid "Corporation ID"
+msgstr "Corporation ID"
+
+#: plugins/Corppage.php:127
+msgid "Corporation Logo"
+msgstr "Corporation Logo"
+
+#: plugins/Metaslider.php:30
+msgid "Page Meta Slider"
+msgstr "Page Meta Slider"
+
+#: plugins/Metaslider.php:56
+msgid "Display Page Meta Slider"
+msgstr "Page Meta Slider anzeigen"
+
+#: plugins/Metaslider.php:70
+msgid "Stretch Page Meta Slider"
+msgstr "Page Meta Slider strecken"
+
+#: plugins/Metaslider.php:115
+msgid "Slider: "
+msgstr "Slider: "
+
+#: security/WordPressCoreUpdateCleaner.php:80
+msgid "Removing"
+msgstr "Removing"
+
+#: plugins/widgets/KillboardWidget.php:55
+msgid "EVE Killboard Widget"
+msgstr "EVE Killboard Widget"
+
+#: plugins/widgets/KillboardWidget.php:79
+msgid "Database Warning / Not Configured"
+msgstr "Datenbank Warnung / Nicht konfiguriert"
+
+#: plugins/widgets/KillboardWidget.php:80
+msgid ""
+"Please make sure you have your Killboard Database configured in your %1$s."
+msgstr ""
+"Stelle sicher, dass die Killboard Datenbank in den %1$s eingreichtet ist."
+
+#: plugins/widgets/KillboardWidget.php:80
+msgid "Plugin Settings"
+msgstr "Plugin Einstellungen"
+
 #. Name of the theme
 msgid "EVE Online"
-msgstr ""
+msgstr "EVE Online"
 
 #. Description of the theme
 msgid "A beatyfull WordPress Theme inspired by the MMORPG EVE Online"
-msgstr ""
+msgstr "Ein schönes WordPress THeme, inspiriert durch das MMORPG EVE Online"
 
 #. Theme URI of the theme
 msgid "https://github.com/ppfeufer/eve-online-wordpress-theme"
-msgstr ""
+msgstr "https://github.com/ppfeufer/eve-online-wordpress-theme"
 
 #. Author of the theme
 msgid "YF [TN-NT] Rounon Dax"
-msgstr ""
+msgstr "YF [TN-NT] Rounon Dax"
 
 #. Theme URI of the theme
 msgid "http://yulaifederation.net"
-msgstr ""
+msgstr "http://yulaifederation.net"
