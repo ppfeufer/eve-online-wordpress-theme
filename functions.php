@@ -103,6 +103,15 @@ if(!isset($content_width)) {
 	$content_width = 1680;
 } // END if(!isset($content_width))
 
+/**
+ * Return the current DB version used for the themes settings
+ *
+ * @return string
+ */
+function eve_get_current_db_version() {
+	return '20160825';
+} // END function yf_get_current_db_version()
+
 function eve_get_options_default() {
 	$defaultOptions = array(
 		// generel settings tab
@@ -387,6 +396,11 @@ if(!\function_exists('eve_enqueue_admin_styles')) {
  */
 function eve_theme_setup() {
 	/**
+	 * Check if options have to be updated
+	 */
+	eve_update_options('eve_theme_options', 'eve_theme_db_version', eve_get_current_db_version(), eve_get_options_default());
+
+	/**
 	 * Loading out textdomain
 	 */
 	\load_theme_textdomain('eve-online', \get_stylesheet_directory() . '/l10n');
@@ -441,6 +455,35 @@ function eve_theme_setup() {
  * style in css.
  */
 \add_filter('gallery_style', \create_function('$a', 'return "<div class=\'gallery\'>";'));
+
+/**
+ * Update the options array for our theme, if needed
+ *
+ * @param string $optionsName
+ * @param string $dbVersionFieldName
+ * @param string $newDbVersion
+ * @param array $defaultOptions
+ */
+function eve_update_options($optionsName, $dbVersionFieldName, $newDbVersion, $defaultOptions) {
+	$currentDbVersion = \get_option($dbVersionFieldName);
+
+	// Check if the DB needs to be updated
+	if($currentDbVersion !== $newDbVersion) {
+		$currentOptions = \get_option($optionsName);
+
+		if(\is_array($currentOptions)) {
+			$newOptions = \array_merge($defaultOptions, $currentOptions);
+		} else {
+			$newOptions = $defaultOptions;
+		} // END if(\is_array($currentOptions))
+
+		// Update the options
+		\update_option($optionsName, $newOptions);
+
+		// Update the DB Version
+		\update_option($dbVersionFieldName, $newDbVersion);
+	} // END if($currentDbVersion !== $newDbVersion)
+} // END function yf_update_options($dbVersionName, $optionsName, $newDbVersion, $defaultOptions)
 
 /**
  * Return the Google font stylesheet URL, if available.
