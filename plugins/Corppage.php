@@ -52,7 +52,7 @@ class Corppage {
 
 					$corplistHTML .= '<li>';
 					$corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
-					$corplistHTML .= '<header><h4><a href="' . \get_permalink($page->ID) . '">' . $page->post_title . '</a></h4></header>';
+					$corplistHTML .= '<header><h2 class="corporationlist-title"><a href="' . \get_permalink($page->ID) . '">' . $page->post_title . '</a></h2></header>';
 
 					$corplistHTML .= '<p>' . $this->string->cutString(strip_shortcodes($page->post_content), '200') . '</p>';
 

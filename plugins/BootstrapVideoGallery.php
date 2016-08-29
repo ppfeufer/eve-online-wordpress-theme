@@ -90,7 +90,7 @@ class BootstrapVideoGallery {
 			foreach($childPages as $child) {
 				$videoGalleryHtml .= '<li>';
 				$videoGalleryHtml .= $child->eve_page_video_oEmbed_code;
-				$videoGalleryHtml .= '<header><h4><a href="' . \get_permalink($child->ID) . '">' . $child->post_title . '</a></h4></header>';
+				$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . \get_permalink($child->ID) . '">' . $child->post_title . '</a></h2></header>';
 
 				if($child->post_content) {
 					$videoGalleryHtml .= '<p>' . $this->string->cutString($child->post_content, '140') . '</p>';

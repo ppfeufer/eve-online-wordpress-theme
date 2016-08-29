@@ -23,8 +23,8 @@
 	</header><!--end .entry-header -->
 
 	<section class="post-content">
-		<div class="row">
-			<div class="col-md-12">
+<!--		<div class="row">
+			<div class="col-md-12">-->
 				<?php
 				if(\is_search()) { // Only display excerpts without thumbnails for search.
 					?>
@@ -76,8 +76,8 @@
 					<?php
 				} // END if(is_search())
 				?>
-			</div><!-- end .col -->
-		</div><!-- end .row -->
+<!--			</div> end .col
+		</div> end .row -->
 	</section>
 </article><!-- /.post-->
 <hr>

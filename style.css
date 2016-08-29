@@ -135,6 +135,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6  {
 	font-family: 'Amethysta', serif;
 }
 
+.content-index h2.entry-title, .video-gallery-title, .corporationlist-title {
+	font-size: 18px;
+	font-size: 1.125rem;
+}
+
 header, .marketing-widget-area, main, article, footer {
 	margin-bottom: 32px;
 	margin-bottom: 2rem;

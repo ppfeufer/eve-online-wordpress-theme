@@ -17,7 +17,7 @@ defined('ABSPATH') or die();
 
 	<div class="row main-content">
 		<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
-			<div class="content content-index">
+			<div class="content content-index content-loop">
 				<?php
 				if(\have_posts()) {
 					if(\get_post_type() === 'post') {
