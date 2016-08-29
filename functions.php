@@ -109,7 +109,7 @@ if(!isset($content_width)) {
  * @return string
  */
 function eve_get_current_db_version() {
-	return '20160825';
+	return '20160829';
 } // END function yf_get_current_db_version()
 
 function eve_get_options_default() {
@@ -122,6 +122,9 @@ function eve_get_options_default() {
 		),
 		'navigation_even_cells' => array(
 			'yes' => ''
+		),
+		'show_post_meta' => array(
+			'yes' => 'yes'
 		),
 
 		// background settings tab
@@ -940,7 +943,7 @@ if(!\function_exists('eve_posted_on')) {
 	function eve_posted_on() {
 		$options = \get_option('eve_theme_options', eve_get_options_default());
 
-		if(isset($options['meta_data']) && $options['meta_data'] === true) {
+		if(!empty($options['show_post_meta']['yes'])) {
 			\printf(\__('Posted on <time class="entry-date" datetime="%3$s">%4$s</time><span class="byline"> <span class="sep"> by </span> <span class="author vcard">%7$s</span></span>', 'eve-online'),
 				\esc_url(\get_permalink()),
 				\esc_attr(\get_the_time()),
@@ -952,7 +955,7 @@ if(!\function_exists('eve_posted_on')) {
 				)),
 				\esc_html(get_the_author())
 			);
-		} // END if(isset($options['meta_data']) && $options['meta_data'] === true)
+		} // END if(!empty($options['show_post_meta']['yes']))
 	} // END function eve_posted_on()
 } // END if(!\function_exists('eve_posted_on'))
 
@@ -961,17 +964,21 @@ if(!\function_exists('eve_posted_on')) {
  */
 if(!\function_exists('eve_cats_tags')) {
 	function eve_cats_tags() {
-		\printf('<span class="cats_tags"><span class="glyphicon glyphicon-folder-open" title="My tip"></span><span class="cats">');
-		\printf(\the_category(', '));
-		\printf('</span>');
+		$options = \get_option('eve_theme_options', eve_get_options_default());
 
-		if(\has_tag() === true) {
-			\printf('<span class="glyphicon glyphicon-tags"></span><span class="tags">');
-			\printf(\the_tags(' '));
+		if(!empty($options['show_post_meta']['yes'])) {
+			\printf('<span class="cats_tags"><span class="glyphicon glyphicon-folder-open" title="My tip"></span><span class="cats">');
+			\printf(\the_category(', '));
 			\printf('</span>');
-		} // END if(has_tag() === true)
 
-		\printf('</span>');
+			if(\has_tag() === true) {
+				\printf('<span class="glyphicon glyphicon-tags"></span><span class="tags">');
+				\printf(\the_tags(' '));
+				\printf('</span>');
+			} // END if(has_tag() === true)
+
+			\printf('</span>');
+		} // END if(!empty($options['show_post_meta']['yes']))
 	} // END function eve_cats_tags()
 } // END if(!\function_exists('eve_cats_tags'))
 

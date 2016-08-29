@@ -29,12 +29,8 @@ $stringHelper = new WordPress\Themes\EveOnline\Helper\String();
 			<p class="meta">
 				<?php
 				echo \WordPress\Themes\EveOnline\eve_posted_on();
-
-				\edit_post_link(__('Edit', 'eve-online'));
-				?>
-				<br/>
-				<?php
 				\WordPress\Themes\EveOnline\eve_cats_tags();
+				\edit_post_link(__('Edit', 'eve-online'));
 				?>
 			</p>
 		</aside><!--end .entry-details -->

@@ -125,6 +125,14 @@ class ThemeSettings {
 				),
 				'description' => \__('Transforms the main navigation into even cells instead of a random width.', 'eve-online')
 			),
+			'show_post_meta' => array(
+				'type' => 'checkbox',
+				'title' => \__('Post Meta', 'eve-online'),
+				'choices' => array(
+					'yes' => \__('Show post meta (categories and all that stuff) in article loop and article view.', 'eve-online')
+				),
+				'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view.', 'eve-online')
+			),
 		);
 	} // END private function getGeneralTabFields()
 

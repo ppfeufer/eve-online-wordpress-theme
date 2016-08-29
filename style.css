@@ -235,10 +235,10 @@ ins {
 }
 
 .sr-hint {
-    width: 1px;
-    clip: rect(1px, 1px, 1px, 1px);
-    overflow: hidden;
-    position: absolute !important;
+	width: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	overflow: hidden;
+	position: absolute !important;
 }
 
 /* header
@@ -488,6 +488,10 @@ ins {
 	/*float: left;*/
 	margin-right: 15px;
 	margin-right: 0.9375rem;
+}
+
+.cats_tags {
+	display: block;
 }
 
 .content-index {
