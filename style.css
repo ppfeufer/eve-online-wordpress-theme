@@ -491,6 +491,10 @@ ins {
 	margin-right: 0.9375rem;
 }
 
+.post-header-image .wp-post-image {
+	margin-right: 0;
+}
+
 .cats_tags {
 	display: block;
 }
