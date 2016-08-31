@@ -1320,7 +1320,8 @@ function eve_get_default_background_images($withThumbnail = false, $baseClass = 
 
 		if($withThumbnail === true) {
 			foreach($images as &$image) {
-				$image = '<figure class="bg-image' . $baseClass . '"><img src="' . \get_stylesheet_directory_uri() . '/img/background/' . $image . '" style="width:100px; height:auto;"><figcaption>' . $image . '</figcaption></figure>';
+				$imageName = ucwords(str_replace('-', ' ', preg_replace("/\\.[^.\\s]{3,4}$/", "", $image)));
+				$image = '<figure class="bg-image' . $baseClass . '"><img src="' . \get_stylesheet_directory_uri() . '/img/background/' . $image . '" style="width:100px; height:auto;" title="' . $imageName . '"><figcaption>' . $imageName . '</figcaption></figure>';
 			} // END foreach($images as &$image)
 		} // END if($withThumbnail === true)
 
