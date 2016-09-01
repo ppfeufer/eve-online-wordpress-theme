@@ -100,7 +100,7 @@ class LazyLoadImages {
 	} // END public function isEnabled()
 
 	public function getUrl($path = '') {
-		return \get_stylesheet_directory_uri() . '/plugins/' . $path;
+		return \get_template_directory_uri() . '/plugins/' . $path;
 	} // END public function getUrl($path = '')
 } // END class LazyLoadImages
 

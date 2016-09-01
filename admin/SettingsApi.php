@@ -811,7 +811,7 @@ class SettingsApi {
 			\wp_enqueue_script('jquery-ui-datepicker');
 			\wp_enqueue_script(
 				'settings-api',
-				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/admin/js/settings-api.js' : \get_stylesheet_directory_uri() . '/admin/js/settings-api.min.js'
+				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/js/settings-api.js' : \get_template_directory_uri() . '/admin/js/settings-api.min.js'
 			);
 		} // END if(!empty($isSettingsPage))
 	} // END public function enqueueScripts()
@@ -824,14 +824,14 @@ class SettingsApi {
 
 		if(!empty($isSettingsPage)) {
 			\wp_enqueue_style('wp-color-picker');
-			\wp_enqueue_style('jquery-ui', \get_stylesheet_directory_uri() . '/admin/css/jquery-ui.min.css');
+			\wp_enqueue_style('jquery-ui', \get_template_directory_uri() . '/admin/css/jquery-ui.min.css');
 			\wp_enqueue_style(
 				'font-awesome',
-				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_stylesheet_directory_uri() . '/font-awesome/css/font-awesome.min.css'
+				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css'
 			);
 			\wp_enqueue_style(
 				'settings-api',
-				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_stylesheet_directory_uri() . '/admin/css/settings-api.css' : \get_stylesheet_directory_uri() . '/admin/css/settings-api.min.css'
+				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/css/settings-api.css' : \get_template_directory_uri() . '/admin/css/settings-api.min.css'
 			);
 		} // END if(!empty($isSettingsPage))
 	} // END public function enqueueStyles()

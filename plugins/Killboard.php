@@ -56,9 +56,9 @@ class Killboard {
 
 	public function enqueueStyle() {
 		if(\preg_match('/development/', \APPLICATION_ENV)) {
-			\wp_enqueue_style('eve-killboard', \get_stylesheet_directory_uri() . '/plugins/css/killboard-widget.css');
+			\wp_enqueue_style('eve-killboard', \get_template_directory_uri() . '/plugins/css/killboard-widget.css');
 		} else {
-			\wp_enqueue_style('eve-killboard', \get_stylesheet_directory_uri() . '/plugins/css/killboard-widget.min.css');
+			\wp_enqueue_style('eve-killboard', \get_template_directory_uri() . '/plugins/css/killboard-widget.min.css');
 		} // END if(\preg_match('/development/', \APPLICATION_ENV))
 	} // END public function enqueueStyle()
 
