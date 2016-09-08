@@ -7,7 +7,7 @@ namespace WordPress\Themes\EveOnline\Helper;
 
 \defined('ABSPATH') or die();
 
-class String {
+class StringHelper {
 	public function cutString($string, $pos) {
 		$string = strip_tags($string);
 
@@ -54,4 +54,4 @@ class String {
 
 		return $rgb;
 	 } // END public function hextoRgb($hex, $alpha = false)
-} // END class String
+} // END class StringHelper

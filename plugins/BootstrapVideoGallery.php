@@ -51,7 +51,7 @@ class BootstrapVideoGallery {
 	private $string = null;
 
 	public function __construct() {
-		$this->string = new EveOnline\Helper\String;
+		$this->string = new EveOnline\Helper\StringHelper;
 
 		$this->registerShortcode();
 		$this->registerMetabox();

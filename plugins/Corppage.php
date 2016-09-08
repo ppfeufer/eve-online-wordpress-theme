@@ -15,7 +15,7 @@ class Corppage {
 
 	public function __construct() {
 		$this->eveApi = new EveOnline\Helper\EveApi;
-		$this->string = new EveOnline\Helper\String;
+		$this->string = new EveOnline\Helper\StringHelper;
 
 		$this->registerMetaBoxes();
 		$this->registerShortcodes();

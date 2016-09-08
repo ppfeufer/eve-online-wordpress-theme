@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') or die();
 
-$stringHelper = new WordPress\Themes\EveOnline\Helper\String();
+$stringHelper = new WordPress\Themes\EveOnline\Helper\StringHelper;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php \post_class('clearfix'); ?>>
