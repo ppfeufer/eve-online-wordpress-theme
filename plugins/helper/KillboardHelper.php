@@ -75,9 +75,23 @@ class KillboardHelper {
 		// get the number of involved pilots
 		foreach($resultLastKills as &$kill) {
 			$kill->involved = $this->db->get_var('SELECT count(*) ipc FROM kb3_inv_detail WHERE ind_kll_id =' . $kill->kll_id . ';');
-			$kill->victimImage = $this->getVictimImage($kill->plt_name, $kill->shp_id);
 			$kill->killboardLink = $this->getKillboardLinkToKill($kill->kll_id);
 			$kill->isk_loss_formatted = $this->sanitizeIskLoss($kill->isk_loss);
+
+			/**
+			 * Overwrite Victim Image if its a Citadel
+			 */
+			$citadelNames = array(
+				'Astrahus',
+				'Fortizar',
+				'Keepstar'
+			);
+
+			if(\in_array($kill->shp_name, $citadelNames)) {
+				$kill->victimImage = $this->getCitadelImage($kill->shp_id);
+			} else {
+				$kill->victimImage = $this->getVictimImage($kill->plt_name, $kill->shp_id);
+			} // END if(\in_array($kill->shp_name, $citadelNames))
 		} // END foreach($resultLastKills as &$kill)
 
 		return $resultLastKills;
@@ -108,6 +122,12 @@ class KillboardHelper {
 
 		return $victimImage;
 	} // END private function getVictimImage($victimName, $shipID, $size = 512)
+
+	private function getCitadelImage($shipID, $size = 512) {
+		$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
+
+		return $victimImage;
+	} // END private function getCitadelImage($shipID, $size = 512)
 
 	private function getKillboardLinkToKill($killID) {
 		return $this->killboardUri . '?a=kill_detail&kll_id=' . $killID;

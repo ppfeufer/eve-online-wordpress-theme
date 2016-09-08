@@ -158,9 +158,8 @@ class KillboardWidget extends \WP_Widget {
 
 		if(!empty($killList) && is_array($killList)) {
 			$widgetHtml = null;
+
 			foreach($killList as $kill) {
-//				echo '<pre>' . print_r($kill, true) . '</pre>';
-//				$security = number_format($kill->security, 1);
 				$stringInvolved = ($kill->involved - 1 === 0) ? '' : ' (+' . ( $kill->involved - 1 ) . ')';
 
 				$widgetHtml .= '<div class="row killboard-entry">'
