@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 			$(current + ' .upload').hide();
 
 			wp.media.editor.send.attachment = send_attachment_bkp;
-		}
+		};
 
 		wp.media.editor.open();
 
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
 			$('.tab-content').hide();
 			$('#' + id).show();
 
-			$('.nav-tab').removeClass('nav-tab-active')
+			$('.nav-tab').removeClass('nav-tab-active');
 			$(this).addClass('nav-tab-active');
 		});
 	} // END if($('.nav-tab').length)

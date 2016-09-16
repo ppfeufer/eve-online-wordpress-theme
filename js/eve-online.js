@@ -1,3 +1,5 @@
+/* global ResponsiveBootstrapToolkit */
+
 /**
  * EVE Online Theme Main JavaScript
  *
@@ -13,7 +15,7 @@
  * @returns {undefined}
  */
 (function(body) {
-	body.className = body.className.replace(/\bno-js\b/,'js')
+	body.className = body.className.replace(/\bno-js\b/, 'js');
 })(document.body);
 
 /**
@@ -56,7 +58,7 @@ jQuery(function($) {
 		 * just in case we have the original bootstrap menu ...
 		 */
 		if($autMenuItems.length === 0) {
-			$autMenuItems = $('ul.nav > li.menu-item-has-children')
+			$autMenuItems = $('ul.nav > li.menu-item-has-children');
 		} // END if($autMenuItems.length === 0)
 
 		// fixing the menu for desktop
@@ -88,7 +90,7 @@ jQuery(function($) {
 				$(this).find('>ul.children').addClass('dropdown-menu multi-level');
 
 				// 2nd Level and maybe more?
-				$(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu')
+				$(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu');
 				$(this).find('>ul.children ul').addClass('dropdown-menu');
 			} // END if(device === 'desktop')
 
@@ -117,7 +119,7 @@ jQuery(function($) {
 				$(this).find('>ul.children').addClass('dropdown-menu multi-level');
 
 				// 2nd Level and maybe more?
-				$(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu')
+				$(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu');
 				$(this).find('>ul.children ul').addClass('dropdown-menu');
 			} // END if(device == 'mobile')
 		});
@@ -170,7 +172,7 @@ jQuery(function($) {
 	var $externalLinks = $('a[rel="external"]');
 	$externalLinks.each(function() {
 		$(this).attr('target', '_blank');
-	})
+	});
 
 	/**
 	 * Set bootstrap modal window to max possible height

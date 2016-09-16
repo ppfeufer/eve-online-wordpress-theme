@@ -1224,10 +1224,12 @@ function eve_link_pages($args = array()) {
 		'echo' => 1
 	);
 
-	$r = \wp_parse_args($args, $defaults);
-	$r = \apply_filters('wp_link_pages_args', $r);
+//	$r = \wp_parse_args($args, $defaults);
+//	$r = \apply_filters('wp_link_pages_args', $r);
 
-	\extract($r, \EXTR_SKIP);
+	$filtered = \apply_filters('wp_link_pages_args', \wp_parse_args($args, $defaults));
+
+	\extract($filtered, \EXTR_SKIP);
 
 	global $page, $numpages, $multipage, $more, $pagenow;
 
