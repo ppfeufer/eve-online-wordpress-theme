@@ -150,11 +150,11 @@
 
 */
 
-(function( $, win, doc, undefined ) {
+(function($, win, doc, undefined) {
 	$.fn.sonar = function(distance, full) {
 		// No callbacks, return the results from Sonar for
 		// the first element in the stack.
-		if(typeof distance === "boolean") {
+		if(typeof distance === 'boolean') {
 			full = distance;
 			distance = undefined;
 		}
@@ -164,13 +164,13 @@
 
 	var body = doc.body,
 		$win = $(win),
-		onScreenEvent = "scrollin",
-		offScreenEvent = "scrollout",
+		onScreenEvent = 'scrollin',
+		offScreenEvent = 'scrollout',
 
 		detect = function(elem, distance, full) {
 			if(elem) {
 				// Cache the body elem in our private global.
-				body || ( body = doc.body );
+				body || (body = doc.body);
 
 				var parentElem = elem, // Clone the elem for use in our loop.
 					elemTop = 0, // The resets the calculated elem top to 0.
@@ -220,8 +220,7 @@
 				// the elem top is below the screen bottom, it's false.
 				// If full is specified, it si subtracted or added
 				// as needed from the element's height.
-				return(!(elem.sonarElemTop + (full ? 0 : elemHeight) < scrollTop - distance) &&
-						!(elem.sonarElemTop + (full ? elemHeight : 0) > scrollTop + screenHeight + distance));
+				return(!(elem.sonarElemTop + (full ? 0 : elemHeight) < scrollTop - distance) && !(elem.sonarElemTop + (full ? elemHeight : 0) > scrollTop + screenHeight + distance));
 			}
 		},
 
@@ -336,7 +335,7 @@
 
 			// Activate the poll if not currently activated.
 			if(!pollActive) {
-				$win.bind("scroll", poll);
+				$win.bind('scroll', poll);
 				pollActive = 1;
 			}
 
