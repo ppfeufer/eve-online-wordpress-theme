@@ -47,7 +47,7 @@ class Whitelabel {
 
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 
-		$this->eveApi = new EveOnline\Helper\EveApi;
+		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->initActions();
 		$this->initFilters();

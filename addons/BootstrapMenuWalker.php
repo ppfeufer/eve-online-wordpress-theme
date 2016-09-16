@@ -20,7 +20,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
 	public function __construct() {
 		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
-		$this->eveApi = new EveOnline\Helper\EveApi;
+		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 	}
 
 	/**

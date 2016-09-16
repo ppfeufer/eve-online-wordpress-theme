@@ -11,11 +11,9 @@ use WordPress\Themes\EveOnline;
 
 class Corppage {
 	private $eveApi = null;
-	private $string = null;
 
 	public function __construct() {
-		$this->eveApi = new EveOnline\Helper\EveApi;
-		$this->string = new EveOnline\Helper\StringHelper;
+		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->registerMetaBoxes();
 		$this->registerShortcodes();
@@ -54,7 +52,7 @@ class Corppage {
 					$corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
 					$corplistHTML .= '<header><h2 class="corporationlist-title"><a href="' . \get_permalink($page->ID) . '">' . $page->post_title . '</a></h2></header>';
 
-					$corplistHTML .= '<p>' . $this->string->cutString(strip_shortcodes($page->post_content), '200') . '</p>';
+					$corplistHTML .= '<p>' . EveOnline\Helper\StringHelper::cutString(strip_shortcodes($page->post_content), '200') . '</p>';
 
 					$corplistHTML .= '</li>';
 				} // END if(!empty($page->post_content))

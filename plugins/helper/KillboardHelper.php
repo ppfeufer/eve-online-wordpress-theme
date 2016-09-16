@@ -18,7 +18,7 @@ class KillboardHelper {
 
 	public function __construct() {
 		$this->plugin = new EveOnline\Plugins\Killboard(false);
-		$this->eveApi = new EveOnline\Helper\EveApi;
+		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());

@@ -8,7 +8,7 @@ namespace WordPress\Themes\EveOnline\Helper;
 \defined('ABSPATH') or die();
 
 class StringHelper {
-	public function cutString($string, $pos) {
+	public static function cutString($string, $pos) {
 		$string = strip_tags($string);
 
 		if($pos < \strlen($string)) {
@@ -25,13 +25,40 @@ class StringHelper {
 	} // END function cutString($string, $pos)
 
 	/**
+	 * Make a string camelCase
+	 *
+	 * @param string $string
+	 * @param boolean $ucFirst
+	 * @param array $noStrip
+	 * @return string
+	 */
+	public static function camelCase($string, $ucFirst = false, $noStrip = array()) {
+		// First we make sure all is lower case
+		$string = \strtolower($string);
+
+		// non-alpha and non-numeric characters become spaces
+		$string = \preg_replace('/[^a-z0-9' . \implode('', $noStrip) . ']+/i', ' ', $string);
+		$string = \trim($string);
+
+		// uppercase the first character of each word
+		$string = \ucwords($string);
+		$string = \str_replace(' ', '', $string);
+
+		if($ucFirst === false) {
+			$string = \lcfirst($string);
+		} // END if($ucFirst === false)
+
+		return $string;
+	} // END public static function camelCase($string, $ucFirst = false, $noStrip = array())
+
+	/**
 	 * converts a hex color string into an array with it's respective rgb(a) values
 	 *
 	 * @param string $hex
 	 * @param string $alpha
 	 * @return array
 	 */
-	public function hextoRgb($hex, $alpha = false) {
+	public static function hextoRgb($hex, $alpha = false) {
 		$hex = \str_replace('#', '', $hex);
 
 		if(\strlen($hex) == 6) {

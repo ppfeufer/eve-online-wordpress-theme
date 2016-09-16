@@ -25,12 +25,12 @@ require_once(\get_stylesheet_directory() . '/admin/SettingsApi.php');
 /**
  * EVE API Class
  */
-require_once(\get_stylesheet_directory() . '/helper/EveApi.php');
+require_once(\get_stylesheet_directory() . '/helper/EveApiHelper.php');
 
 /**
  * String Helper
  */
-require_once(\get_stylesheet_directory() . '/helper/String.php');
+require_once(\get_stylesheet_directory() . '/helper/StringHelper.php');
 
 /**
  * Metaslider Plugin
@@ -1366,8 +1366,7 @@ function eve_get_theme_custom_style() {
 	} // END if(!empty(eve_get_theme_background_image()))
 
 	if(!empty($themeSettings['background_color'])) {
-		$stringHelper = new Helper\StringHelper;
-		$rgbValues = $stringHelper->hextoRgb($themeSettings['background_color'], '0.8');
+		$rgbValues = Helper\StringHelper::hextoRgb($themeSettings['background_color'], '0.8');
 
 		$themeCustomStyle .= '.container {background-color:rgba(' . join(',', $rgbValues) . ');}' . "\n";
 	}

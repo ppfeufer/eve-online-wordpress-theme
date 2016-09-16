@@ -18,7 +18,7 @@ class ThemeSettings {
 	private $settingsFilter = null;
 
 	public function __construct() {
-		$this->eveApi = new EveOnline\Helper\EveApi;
+		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 		$this->metaSlider = new EveOnline\Plugins\Metaslider(false);
 		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 

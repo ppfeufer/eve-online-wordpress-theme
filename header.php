@@ -28,7 +28,7 @@
 							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
 
 							if(!empty($options['name'])) {
-								$eveApi = new \WordPress\Themes\EveOnline\Helper\EveApi;
+								$eveApi = new \WordPress\Themes\EveOnline\Helper\EveApiHelper;
 								$siteLogo = $eveApi->getEntityLogoByName($options['name']);
 
 								if($siteLogo !== false) {

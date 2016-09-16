@@ -9,7 +9,7 @@ use WordPress\Themes\EveOnline;
 
 \defined('ABSPATH') or die();
 
-class EveApi {
+class EveApiHelper {
 	private $sUserAgent = 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 EVE Online WordPress Theme Website API Fetcher https://github.com/ppfeufer/eve-online-wordpress-theme';
 	private $apiUrl = 'http://eve-api.terra-nanotech.de:8080/'; // we are using the TN-NT proxy here
 	private $apiEndpoints = null;
