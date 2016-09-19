@@ -63,54 +63,69 @@ class BootstrapVideoGallery {
 	public function shortcodeVideogallery($attributes) {
 		$args = \shortcode_atts(
 			array(
-				'id' => ''
+				'id' => '',
+				'videolist' => ''
 			),
 			$attributes
 		);
 		$id = $args['id'];
+		$videoList = $args['videolist'];
 		$idList = null;
 
 		if(!empty($id)) {
 			$idList = (\preg_match('/,( )/', $id)) ? \explode(',', $id) : array($id);
 		} // END if(!empty($id))
 
-		$childPages = $this->getChildPages();
-
 		// loop through the pages and build the gallery code ....
-		if($childPages) {
-			$uniqueID = \uniqid();
-			$videoGalleryHtml = null;
-			$videoGalleryHtml .= '<div class="gallery-row">';
-			$videoGalleryHtml .= '<ul class="bootstrap-gallery bootstrap-video-gallery bootstrap-video-gallery-' . $uniqueID . ' clearfix">';
+		$uniqueID = \uniqid();
+		$videoGalleryHtml = null;
+		$videoGalleryHtml .= '<div class="gallery-row">';
+		$videoGalleryHtml .= '<ul class="bootstrap-gallery bootstrap-video-gallery bootstrap-video-gallery-' . $uniqueID . ' clearfix">';
 
-			foreach($childPages as $child) {
-				$videoGalleryHtml .= '<li>';
-				$videoGalleryHtml .= $child->eve_page_video_oEmbed_code;
-				$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . \get_permalink($child->ID) . '">' . $child->post_title . '</a></h2></header>';
+		if(empty($videoList)) {
+			// assume we have a list of childpages
+			$childPages = $this->getChildPages();
+			if($childPages) {
+				foreach($childPages as $child) {
+					$videoGalleryHtml .= '<li>';
+					$videoGalleryHtml .= $child->eve_page_video_oEmbed_code;
+					$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . \get_permalink($child->ID) . '">' . $child->post_title . '</a></h2></header>';
 
-				if($child->post_content) {
-					$videoGalleryHtml .= '<p>' . EveOnline\Helper\StringHelper::cutString($child->post_content, '140') . '</p>';
-				} // END if($child->post_content)
+					if($child->post_content) {
+						$videoGalleryHtml .= '<p>' . EveOnline\Helper\StringHelper::cutString($child->post_content, '140') . '</p>';
+					} // END if($child->post_content)
 
-				$videoGalleryHtml .= '</li>';
-			} // END foreach($childPages as $child)
+					$videoGalleryHtml .= '</li>';
+				} // END foreach($childPages as $child)
+			} else {
+				$videoGalleryHtml = false;
+			} // END if($childPages)
+		} else {
+			$videos = \explode(',', $videoList);
+			$youtubePattern = '/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/';
+//			$vimeoPattern = '';
+			foreach($videos as $video) {
+				if(preg_match($youtubePattern, $video)) {
+					$videoGalleryHtml .= '<li>';
+					$videoGalleryHtml .= \wp_oembed_get($video);
+					$videoGalleryHtml .= '</li>';
+				} // END if(preg_match($youtubePattern, $video))
+			} // END foreach($videos as $video)
+		} // END if(empty($videoList))
 
-			$videoGalleryHtml .= '</ul>';
-			$videoGalleryHtml .= '</div>';
+		$videoGalleryHtml .= '</ul>';
+		$videoGalleryHtml .= '</div>';
 
-			$videoGalleryHtml .= '<script type="text/javascript">
-									jQuery(document).ready(function() {
-										jQuery("ul.bootstrap-video-gallery-' . $uniqueID . '").bootstrapGallery({
-											"classes" : "' . EveOnline\eve_get_loopContentClasses() . '",
-											"hasModal" : false
-										});
+		$videoGalleryHtml .= '<script type="text/javascript">
+								jQuery(document).ready(function() {
+									jQuery("ul.bootstrap-video-gallery-' . $uniqueID . '").bootstrapGallery({
+										"classes" : "' . EveOnline\eve_get_loopContentClasses() . '",
+										"hasModal" : false
 									});
-									</script>';
+								});
+								</script>';
 
-			return $videoGalleryHtml;
-		} // END if($childPages)
-
-		return false;
+		return $videoGalleryHtml;
 	} // END public function shortcodeVideogallery($attributes)
 
 	public function registerMetabox() {
