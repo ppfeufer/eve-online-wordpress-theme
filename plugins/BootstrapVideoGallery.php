@@ -104,12 +104,12 @@ class BootstrapVideoGallery {
 			} // END if($childPages)
 		} else {
 			$videos = \explode(',', $videoList);
-			$youtubePattern = '/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/';
-//			$vimeoPattern = '';
+			$youtubePattern = '/https?:\/\/((m|www)\.)?youtube\.com\/watch.*/i';
+			$vimeoPattern = '/https?:\/\/(.+\.)?vimeo\.com\/.*/i';
 
 			$oEmbed = new \WP_oEmbed();
 			foreach($videos as $video) {
-				if(\preg_match($youtubePattern, $video)) {
+				if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video)) {
 					$provider = $oEmbed->get_provider($video);
 					$videoData = $oEmbed->fetch($provider, $video);
 					$videoGalleryHtml .= '<li>';
@@ -117,7 +117,7 @@ class BootstrapVideoGallery {
 					$videoGalleryHtml .= $videoData->html;
 					$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . $video . '" rel="external">' . $videoData->title . '</a></h2><span class="bootstrap-video-gallery-video-author small">' . sprintf(\__('&copy %1$s', 'eve-online'), $videoData->author_name) . ' (<a href="' . $videoData->author_url . '" rel=external">' . \__('Channel', 'eve-online') . '</a>)</span></header>';
 					$videoGalleryHtml .= '</li>';
-				} // END if(\preg_match($youtubePattern, $video))
+				} // END if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video))
 			} // END foreach($videos as $video)
 		} // END if(empty($videoList))
 
