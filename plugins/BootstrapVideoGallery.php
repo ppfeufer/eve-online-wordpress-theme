@@ -106,9 +106,10 @@ class BootstrapVideoGallery {
 			$videos = \explode(',', $videoList);
 			$youtubePattern = '/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/';
 //			$vimeoPattern = '';
+
+			$oEmbed = new \WP_oEmbed();
 			foreach($videos as $video) {
 				if(\preg_match($youtubePattern, $video)) {
-					$oEmbed = new \WP_oEmbed();
 					$provider = $oEmbed->get_provider($video);
 					$videoData = $oEmbed->fetch($provider, $video);
 					$videoGalleryHtml .= '<li>';
