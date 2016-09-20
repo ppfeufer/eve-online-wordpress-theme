@@ -64,12 +64,14 @@ class BootstrapVideoGallery {
 		$args = \shortcode_atts(
 			array(
 				'id' => '',
-				'videolist' => ''
+				'videolist' => '',
+				'classes' => ''
 			),
 			$attributes
 		);
 		$id = $args['id'];
 		$videoList = $args['videolist'];
+		$classes = $args['classes'];
 		$idList = null;
 
 		if(!empty($id)) {
@@ -105,21 +107,30 @@ class BootstrapVideoGallery {
 			$youtubePattern = '/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/';
 //			$vimeoPattern = '';
 			foreach($videos as $video) {
-				if(preg_match($youtubePattern, $video)) {
+				if(\preg_match($youtubePattern, $video)) {
+					$oEmbed = new \WP_oEmbed();
+					$provider = $oEmbed->get_provider($video);
+					$videoData = $oEmbed->fetch($provider, $video);
 					$videoGalleryHtml .= '<li>';
-					$videoGalleryHtml .= \wp_oembed_get($video);
+//					$videoGalleryHtml .= '<pre>' . htmlentities(print_r($videoData, true)) . '</pre>';
+					$videoGalleryHtml .= $videoData->html;
+					$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . $video . '" rel="external">' . $videoData->title . '</a></h2><span class="bootstrap-video-gallery-video-author small">' . sprintf(\__('&copy %1$s', 'eve-online'), $videoData->author_name) . ' (<a href="' . $videoData->author_url . '" rel=external">' . \__('Channel', 'eve-online') . '</a>)</span></header>';
 					$videoGalleryHtml .= '</li>';
-				} // END if(preg_match($youtubePattern, $video))
+				} // END if(\preg_match($youtubePattern, $video))
 			} // END foreach($videos as $video)
 		} // END if(empty($videoList))
 
 		$videoGalleryHtml .= '</ul>';
 		$videoGalleryHtml .= '</div>';
 
+		if(empty($classes)) {
+			$classes = EveOnline\eve_get_loopContentClasses();
+		} // END if(empty($classes))
+
 		$videoGalleryHtml .= '<script type="text/javascript">
 								jQuery(document).ready(function() {
 									jQuery("ul.bootstrap-video-gallery-' . $uniqueID . '").bootstrapGallery({
-										"classes" : "' . EveOnline\eve_get_loopContentClasses() . '",
+										"classes" : "' . $classes . '",
 										"hasModal" : false
 									});
 								});
@@ -148,7 +159,6 @@ class BootstrapVideoGallery {
 		$eve_page_is_video_gallery_page = \get_post_meta($post->ID, 'eve_page_is_video_gallery_page', true);
 		$eve_page_is_video_only_list_in_parent = \get_post_meta($post->ID, 'eve_page_video_only_list_in_parent_gallery', true);
 		$eve_page_video_url = \get_post_meta($post->ID, 'eve_page_video_url', true);
-//		$eve_page_corp_eve_ID = \get_post_meta($post->ID, 'eve_page_corp_eve_ID', true);
 		?>
 		<label><strong><?php _e('Video Gallery Settings', 'eve-online'); ?></strong></label>
 		<p class="checkbox-wrapper">
@@ -174,6 +184,12 @@ class BootstrapVideoGallery {
 				echo $oEmbed;
 				?>
 				<script type="text/javascript">
+				/**
+				 * Making the Video container responsive
+				 *
+				 * @param {type} $
+				 * @returns {undefined}
+				 */
 				jQuery(function($) {
 					var $oEmbedVideos = $('#eve-video-page-box iframe[src*="youtube"], #eve-video-page-box iframe[src*="vimeo"]');
 					$oEmbedVideos.each(function() {
