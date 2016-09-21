@@ -476,7 +476,6 @@ class SettingsApi {
 			'file'
 		);
 		$default_multiple = array('multiselect', 'checkbox');
-		$value = '';
 
 		if(\in_array($this->args['type'], $default_single)) {
 			return 'string';
