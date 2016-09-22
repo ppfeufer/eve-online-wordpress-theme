@@ -868,7 +868,7 @@ class SettingsApi {
 	public function adminStyles() {
 		if(!empty($this->isSettingsPage())) {
 			?>
-			<style>
+			<style type="text/css">
 			.image img {
 				border: 1px solid #ddd;
 				vertical-align: bottom;
@@ -895,7 +895,7 @@ class SettingsApi {
 	public function adminScripts() {
 		if(!empty($this->isSettingsPage())) {
 			?>
-			<script>
+			<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				<?php
 				$settingsArray = $this->settingsArray;
