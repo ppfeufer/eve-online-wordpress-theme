@@ -33,6 +33,7 @@ class Corppage {
 			),
 			$attributes
 		);
+
 		$type = $args['type'];
 
 		$corpPages = $this->getCorporationPages();
@@ -136,9 +137,11 @@ class Corppage {
 	} // END public function renderMetaBox($post)
 
 	public function savePageSettings($postID) {
-		if(empty($_POST['_eve_corp_page_nonce']) || !\wp_verify_nonce($_POST['_eve_corp_page_nonce'], 'save')) {
+		$postNonce = \filter_input(\INPUT_POST, '_eve_corp_page_nonce');
+
+		if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save')) {
 			return false;
-		} // END if(empty($_POST['_eve_corp_page_nonce']) || !\wp_verify_nonce($_POST['_eve_corp_page_nonce'], 'save'))
+		} // END if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save'))
 
 		if(!\current_user_can('edit_post', $postID)) {
 			return false;
@@ -148,13 +151,13 @@ class Corppage {
 			return false;
 		} // END if(defined('DOING_AJAX'))
 
-		\update_post_meta($postID, 'eve_page_corp_name', $_POST['eve_page_corp_name']);
+		\update_post_meta($postID, 'eve_page_corp_name', \filter_input(\INPUT_POST, 'eve_page_corp_name'));
 
-		$corpID = $this->eveApi->getEveIdFromName(\stripslashes($_POST['eve_page_corp_name']));
+		$corpID = $this->eveApi->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')));
 		\update_post_meta($postID, 'eve_page_corp_eve_ID', \esc_html($corpID));
 
 		$isCorpPage = \filter_input(INPUT_POST, 'eve_page_is_corp_page') == "on";
-		\update_post_meta($postID, 'eve_page_is_corp_page', $isCorpPage);(\stripslashes($_POST['eve_page_corp_name']));
+		\update_post_meta($postID, 'eve_page_is_corp_page', $isCorpPage);(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')));
 
 		\update_post_meta($postID, 'eve_page_corp_eve_ID', \esc_html($corpID));
 	} // END public function savePageSettings($postID)

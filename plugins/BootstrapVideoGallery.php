@@ -69,6 +69,7 @@ class BootstrapVideoGallery {
 			),
 			$attributes
 		);
+
 		$id = $args['id'];
 		$videoList = $args['videolist'];
 		$classes = $args['classes'];
@@ -103,22 +104,25 @@ class BootstrapVideoGallery {
 				$videoGalleryHtml = false;
 			} // END if($childPages)
 		} else {
-			$videos = \explode(',', $videoList);
-			$youtubePattern = '/https?:\/\/((m|www)\.)?youtube\.com\/watch.*/i';
-			$vimeoPattern = '/https?:\/\/(.+\.)?vimeo\.com\/.*/i';
+			if(\is_singular()) {
+				$videos = \explode(',', $videoList);
+				$youtubePattern = '/https?:\/\/((m|www)\.)?youtube\.com\/watch.*/i';
+				$vimeoPattern = '/https?:\/\/(.+\.)?vimeo\.com\/.*/i';
 
-			$oEmbed = new \WP_oEmbed();
-			foreach($videos as $video) {
-				if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video)) {
-					$provider = $oEmbed->get_provider($video);
-					$videoData = $oEmbed->fetch($provider, $video);
-					$videoGalleryHtml .= '<li>';
-//					$videoGalleryHtml .= '<pre>' . htmlentities(print_r($videoData, true)) . '</pre>';
-					$videoGalleryHtml .= $videoData->html;
-					$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . $video . '" rel="external">' . $videoData->title . '</a></h2><span class="bootstrap-video-gallery-video-author small">' . sprintf(\__('&copy %1$s', 'eve-online'), $videoData->author_name) . ' (<a href="' . $videoData->author_url . '" rel=external">' . \__('Channel', 'eve-online') . '</a>)</span></header>';
-					$videoGalleryHtml .= '</li>';
-				} // END if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video))
-			} // END foreach($videos as $video)
+				$oEmbed = new \WP_oEmbed();
+				foreach($videos as $video) {
+					if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video)) {
+						$provider = $oEmbed->get_provider($video);
+						$videoData = $oEmbed->fetch($provider, $video);
+						$videoGalleryHtml .= '<li>';
+						$videoGalleryHtml .= $videoData->html;
+						$videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . $video . '" rel="external">' . $videoData->title . '</a></h2><span class="bootstrap-video-gallery-video-author small">' . sprintf(\__('&copy %1$s', 'eve-online'), $videoData->author_name) . ' (<a href="' . $videoData->author_url . '" rel=external">' . \__('Channel', 'eve-online') . '</a>)</span></header>';
+						$videoGalleryHtml .= '</li>';
+					} // END if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video))
+				} // END foreach($videos as $video)
+			} else {
+				$videoGalleryHtml .= '<li>' . \__('The video gallery can only be displayed on a single site', 'eve-online') . '</li>';
+			}
 		} // END if(empty($videoList))
 
 		$videoGalleryHtml .= '</ul>';
@@ -212,9 +216,11 @@ class BootstrapVideoGallery {
 	 * @return boolean
 	 */
 	function saveMetaboxData($postID) {
-		if(empty($_POST['_eve_video_page_nonce']) || !\wp_verify_nonce($_POST['_eve_video_page_nonce'], 'save')) {
+		$postNonce = \filter_input(\INPUT_POST, '_eve_video_page_nonce');
+
+		if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save')) {
 			return false;
-		} // END if(empty($_POST['_eve_video_page_nonce']) || !wp_verify_nonce($_POST['_eve_video_page_nonce'], 'save'))
+		} // END if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save'))
 
 		if(!\current_user_can('edit_post', $postID)) {
 			return false;
@@ -224,7 +230,7 @@ class BootstrapVideoGallery {
 			return false;
 		} // END if(defined('DOING_AJAX'))
 
-		\update_post_meta($postID, 'eve_page_video_url', $_POST['eve_page_video_url']);
+		\update_post_meta($postID, 'eve_page_video_url', \filter_input(\INPUT_POST, 'eve_page_video_url'));
 
 		$isVideoPage = \filter_input(\INPUT_POST, 'eve_page_is_video_gallery_page') == "on";
 		\update_post_meta($postID, 'eve_page_is_video_gallery_page', $isVideoPage);
@@ -237,7 +243,6 @@ class BootstrapVideoGallery {
 		$pageObject = \get_queried_object();
 		$pageID = \get_queried_object_id();
 
-		$pageChildren = null;
 		// Set up the objects needed
 		$wpQuery = new \WP_Query();
 

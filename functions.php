@@ -765,7 +765,7 @@ function eve_remove_more_link_scroll($link) {
  */
 if(!\function_exists('eve_content_nav')) {
 	function eve_content_nav($nav_id) {
-		global $wp_query, $post;
+		global $wp_query;
 
 		if($wp_query->max_num_pages > 1) {
 			?>
@@ -877,8 +877,6 @@ function eve_get_next_posts_link($label = null, $max_page = 0) {
  */
 if(!\function_exists('eve_comment')) {
 	function eve_comment($comment, $args, $depth) {
-		$GLOBALS['comment'] = $comment;
-
 		switch($comment->comment_type) {
 			case 'pingback' :
 			case 'trackback' :
@@ -1220,7 +1218,7 @@ function eve_get_theme_data($parameter) {
  * Modification of wp_link_pages() with an extra element to highlight the current page.
  */
 function eve_link_pages($args = array()) {
-	$defaults = array(
+	$arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, array(
 		'before' => '<p>' . __('Pages:'),
 		'after' => '</p>',
 		'before_link' => '',
@@ -1231,35 +1229,28 @@ function eve_link_pages($args = array()) {
 		'link_after' => '',
 		'pagelink' => '%',
 		'echo' => 1
-	);
+	)));
 
-//	$r = \wp_parse_args($args, $defaults);
-//	$r = \apply_filters('wp_link_pages_args', $r);
-
-	$filtered = \apply_filters('wp_link_pages_args', \wp_parse_args($args, $defaults));
-
-	\extract($filtered, \EXTR_SKIP);
-
-	global $page, $numpages, $multipage, $more, $pagenow;
+	global $page, $numpages, $multipage, $more;
 
 	if(!$multipage) {
 		return;
 	} // END if(!$multipage)
 
-	$output = $before;
+	$output = $arguments['before'];
 
 	for($i = 1; $i < ($numpages + 1); $i++)	{
-		$j = \str_replace( '%', $i, $pagelink );
+		$j = \str_replace( '%', $i, $arguments['pagelink']);
 		$output .= ' ';
 
 		if($i != $page || (!$more && 1 == $page)) {
-			$output .= $before_link . \_wp_link_page($i) . $link_before . $j . $link_after . '</a>' . $after_link;
+			$output .= $arguments['before_link'] . \_wp_link_page($i) . $arguments['link_before'] . $j . $arguments['link_after'] . '</a>' . $arguments['after_link'];
 		} else {
-			$output .= $current_before . $link_before .'<a>' . $j . '</a>' . $link_after . $current_after;
+			$output .= $arguments['current_before'] . $arguments['link_before'] .'<a>' . $j . '</a>' . $arguments['link_after'] . $arguments['current_after'];
 		} // END if($i != $page || (!$more && 1 == $page))
 	} // END for($i = 1; $i < ($numpages + 1); $i++)
 
-	echo $output . $after;
+	echo $output . $arguments['after'];
 } // END function eve_link_pages($args = array())
 
 /**

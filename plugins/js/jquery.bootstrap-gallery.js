@@ -9,7 +9,7 @@
 		var settings = $.extend({}, $.fn.bootstrapGallery.defaults, options);
 		var id = generateId();
 		var classesString = settings.classes;
-		var classesArray = classesString.split(" ");
+		var classesArray = classesString.split(' ');
 		var clicked = {};
 
 		function getCurrentUl() {

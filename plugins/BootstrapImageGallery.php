@@ -100,7 +100,7 @@ class BootstrapImageGallery {
 			$output = "\n";
 
 			foreach($attachments as $att_id => $attachment) {
-				$output .= \wp_get_attachment_link($att_id, $size, true) . "\n";
+				$output .= \wp_get_attachment_link($att_id, 'post-loop-thumbnail', true) . "\n";
 			} // END foreach($attachments as $att_id => $attachment)
 
 			return $output;

@@ -79,9 +79,11 @@ class Metaslider {
 	} // END public function renderMetaBox($post)
 
 	public function saveMetaBox($post_id) {
-		if(empty($_POST['_eve_metaslider_nonce']) || !\wp_verify_nonce($_POST['_eve_metaslider_nonce'], 'save')) {
+		$postNonce = \filter_input(\INPUT_POST, '_eve_metaslider_nonce');
+
+		if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save')) {
 			return false;
-		} // END if(empty($_POST['_eve_metaslider_nonce']) || !wp_verify_nonce($_POST['_eve_metaslider_nonce'], 'save'))
+		} // END if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save'))
 
 		if(!\current_user_can('edit_post', $post_id)) {
 			return false;
@@ -91,7 +93,7 @@ class Metaslider {
 			return false;
 		} // END if(defined('DOING_AJAX'))
 
-		\update_post_meta($post_id, 'eve_metaslider_slider', \sanitize_title($_POST['eve_page_metaslider']));
+		\update_post_meta($post_id, 'eve_metaslider_slider', \sanitize_title(\filter_input(\INPUT_POST, 'eve_page_metaslider')));
 
 		$slider_stretch = \filter_input(\INPUT_POST, 'eve_page_metaslider_stretch') == "on";
 		\update_post_meta($post_id, 'eve_metaslider_slider_stretch', $slider_stretch);

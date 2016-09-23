@@ -325,6 +325,8 @@ class EveApiHelper {
 	 * @return boolean
 	 */
 	private function ping($host, $port = 80, $timeout = 3) {
+		$returnValue = false;
+
 		if(\preg_match('/http|https/', $host)) {
 			$host = \parse_url($host, \PHP_URL_HOST);
 		} // END if(preg_match('/http|https/', $host))
@@ -336,13 +338,17 @@ class EveApiHelper {
 			$port = '8080';
 		} // END if(preg_match('/' . $host . '/', $this->apiUrl))
 
+		$errno = null;
+		$errstr = null;
 		$fsock = \fsockopen($host, $port, $errno, $errstr, $timeout);
 
 		if(!$fsock) {
-			return false;
+			$returnValue = false;
 		} else {
-			return true;
+			$returnValue = true;
 		} // END if(!$fsock)
+
+		return $returnValue;
 	} // END private function ping($host, $port = 80, $timeout = 3)
 
 	/**

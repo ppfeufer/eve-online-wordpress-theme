@@ -54,12 +54,19 @@ class Shortcodes {
 	}
 
 	public function shortcodeButton($atts, $content = null) {
-		\extract(\shortcode_atts(array(
-			'type' => 'standard',
-			'link' => '#',
-			'target' => '_self',
-			'size' => '',
-		), $atts));
+		$args = \shortcode_atts(
+			array(
+				'id' => '',
+				'videolist' => '',
+				'classes' => ''
+			),
+			$atts
+		);
+
+		$type = $args['type'];
+		$link = $args['link'];
+		$target = $args['target'];
+		$size = $args['size'];
 
 		$type = ($type) ? ' btn-' . $type : '';
 		$size = ($size) ? ' btn-' . $size : '';
