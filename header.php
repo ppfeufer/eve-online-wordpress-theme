@@ -132,7 +132,11 @@
 						?>
 						<figure class="post-header-image">
 							<?php
-							\the_post_thumbnail('header-image');
+							if(\function_exists('\fly_get_attachment_image')) {
+								echo \fly_get_attachment_image(\get_post_thumbnail_id(), array(1680, 500), true);
+							} else {
+								\the_post_thumbnail('header-image');
+							} // END if(\function_exists('\fly_get_attachment_image'))
 							?>
 						</figure>
 						<?php
