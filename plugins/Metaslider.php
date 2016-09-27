@@ -177,7 +177,7 @@ class Metaslider {
 				if($slider_stretch == 1) {
 					$sliderHtml = '<div class="meta-slider slider-' . $slider_id . '" data-stretch="true">';
 				} else {
-					$sliderHtml = '<div id="meta-slider slider-' . $slider_id . '">';
+					$sliderHtml = '<div class="meta-slider slider-' . $slider_id . '">';
 				} // END if($slider_stretch == 1)
 
 				$sliderHtml .= \do_shortcode('[metaslider id=' . $slider_id . ']');
