@@ -47,10 +47,10 @@ class SettingsApi {
 		if(\is_admin()) {
 			$this->settingsArray = \apply_filters($this->settingsFilter, array());
 
-			if(!empty($this->isSettingsPage())) {
+			if($this->isSettingsPage() === true) {
 				\add_action('admin_head', array($this, 'adminStyles'));
 				\add_action('admin_head', array($this, 'adminScripts'));
-			} // END if(!empty($this->isSettingsPage()))
+			} // END if($this->isSettingsPage() === true)
 		} // END if(is_admin())
 	} // END public function initSettings()
 
@@ -143,13 +143,11 @@ class SettingsApi {
 	 * click the button
 	 */
 	public function registerCallback() {
-		$isSettingsPage = $this->isSettingsPage();
+		if($this->isSettingsPage() === true) {
+			$getCallback = \filter_input(\INPUT_GET, 'callback');
+			$getWpNonce = \filter_input(\INPUT_GET, '_wpnonce');
+			$getPage = \filter_input(\INPUT_GET, 'page');
 
-		$getCallback = \filter_input(\INPUT_GET, 'callback');
-		$getWpNonce = \filter_input(\INPUT_GET, '_wpnonce');
-		$getPage = \filter_input(\INPUT_GET, 'page');
-
-		if(!empty($isSettingsPage)) {
 			if(!empty($getCallback)) {
 				$nonce = \wp_verify_nonce($getWpNonce);
 
@@ -165,7 +163,7 @@ class SettingsApi {
 					} // END if(function_exists($getCallback))
 				} // END if(!empty($nonce))
 			} // END if(!empty($getCallback))
-		} // END if(!empty($isSettingsPage))
+		} // END if($this->isSettingsPage() === true)
 	} // END public function registerCallback()
 
 	/**
@@ -829,9 +827,7 @@ class SettingsApi {
 	 * Register scripts
 	 */
 	public function enqueueScripts() {
-		$isSettingsPage = $this->isSettingsPage();
-
-		if(!empty($isSettingsPage)) {
+		if($this->isSettingsPage() === true) {
 			\wp_enqueue_media();
 			\wp_enqueue_script('wp-color-picker');
 			\wp_enqueue_script('jquery-ui-datepicker');
@@ -839,16 +835,14 @@ class SettingsApi {
 				'settings-api',
 				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/js/settings-api.js' : \get_template_directory_uri() . '/admin/js/settings-api.min.js'
 			);
-		} // END if(!empty($isSettingsPage))
+		} // END if($this->isSettingsPage() === true)
 	} // END public function enqueueScripts()
 
 	/**
 	 * Register styles
 	 */
 	public function enqueueStyles() {
-		$isSettingsPage = $this->isSettingsPage();
-
-		if(!empty($isSettingsPage)) {
+		if($this->isSettingsPage() === true) {
 			\wp_enqueue_style('wp-color-picker');
 			\wp_enqueue_style('jquery-ui', \get_template_directory_uri() . '/admin/css/jquery-ui.min.css');
 			\wp_enqueue_style(
@@ -859,14 +853,14 @@ class SettingsApi {
 				'settings-api',
 				(\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/css/settings-api.css' : \get_template_directory_uri() . '/admin/css/settings-api.min.css'
 			);
-		} // END if(!empty($isSettingsPage))
+		} // END if($this->isSettingsPage() === true)
 	} // END public function enqueueStyles()
 
 	/**
 	 * Inline scripts and styles
 	 */
 	public function adminStyles() {
-		if(!empty($this->isSettingsPage())) {
+		if($this->isSettingsPage() === true) {
 			?>
 			<style type="text/css">
 			.image img {
@@ -889,11 +883,11 @@ class SettingsApi {
 			}
 			</style>
 			<?php
-		} // END if(!empty($this->isSettingsPage()))
+		} // END if($this->isSettingsPage() === true)
 	} // END public function adminStyes()
 
 	public function adminScripts() {
-		if(!empty($this->isSettingsPage())) {
+		if($this->isSettingsPage() === true) {
 			?>
 			<script type="text/javascript">
 			jQuery(document).ready(function($) {
@@ -919,7 +913,7 @@ class SettingsApi {
 			});
 			</script>
 			<?php
-		} // END if(!empty($this->isSettingsPage()))
+		} // END if($this->isSettingsPage() === true)
 	} // END public function adminScripts()
 } // END class SettingsApi
 
