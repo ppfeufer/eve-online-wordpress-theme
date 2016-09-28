@@ -20,81 +20,81 @@ namespace WordPress\Themes\EveOnline;
 /**
  * Settings API
  */
-require_once(\get_stylesheet_directory() . '/admin/SettingsApi.php');
+require_once(\get_template_directory() . '/admin/SettingsApi.php');
 
 /**
  * EVE API Class
  */
-require_once(\get_stylesheet_directory() . '/helper/EveApiHelper.php');
+require_once(\get_template_directory() . '/helper/EveApiHelper.php');
 
 /**
  * String Helper
  */
-require_once(\get_stylesheet_directory() . '/helper/StringHelper.php');
+require_once(\get_template_directory() . '/helper/StringHelper.php');
 
 /**
  * Metaslider Plugin
  */
-require_once(\get_stylesheet_directory() . '/plugins/Metaslider.php');
+require_once(\get_template_directory() . '/plugins/Metaslider.php');
 
 /**
  * Theme Shortcodes
  */
-require_once(\get_stylesheet_directory() . '/plugins/Shortcodes.php');
+require_once(\get_template_directory() . '/plugins/Shortcodes.php');
 
 /**
  * Bootstrap Image Gallery
  */
-require_once(\get_stylesheet_directory() . '/plugins/BootstrapImageGallery.php');
+require_once(\get_template_directory() . '/plugins/BootstrapImageGallery.php');
 
 /**
  * Bootstrap Video Gallery
  */
-require_once(\get_stylesheet_directory() . '/plugins/BootstrapVideoGallery.php');
+require_once(\get_template_directory() . '/plugins/BootstrapVideoGallery.php');
 
 /**
  * EVE Corp Page
  * Adds a little box to the page edit site to set a page as corp page
  */
-require_once(\get_stylesheet_directory() . '/plugins/Corppage.php');
+require_once(\get_template_directory() . '/plugins/Corppage.php');
 
 /**
  * Lazy Loading
  */
-//require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
+//require_once(\get_template_directory() . '/plugins/LazyLoadImages.php');
 
 /**
  * Whitelabel
  */
-require_once(\get_stylesheet_directory() . '/plugins/Whitelabel.php');
+require_once(\get_template_directory() . '/plugins/Whitelabel.php');
 
 /**
  * MO Cache
  */
-require_once(\get_stylesheet_directory() . '/plugins/MoCache.php');
+require_once(\get_template_directory() . '/plugins/MoCache.php');
 
 /**
  * Encode Emails Addresses
  */
-require_once(\get_stylesheet_directory() . '/plugins/EncodeEmailAddresses.php');
+require_once(\get_template_directory() . '/plugins/EncodeEmailAddresses.php');
 
 /**
  * Killboard
  */
-require_once(\get_stylesheet_directory() . '/plugins/helper/KillboardHelper.php');
-require_once(\get_stylesheet_directory() . '/plugins/widgets/KillboardWidget.php');
-require_once(\get_stylesheet_directory() . '/plugins/Killboard.php');
+require_once(\get_template_directory() . '/plugins/helper/KillboardHelper.php');
+require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
+require_once(\get_template_directory() . '/plugins/Killboard.php');
 
 /**
  * WP Security
  */
-require_once(\get_stylesheet_directory() . '/security/WordPressSecurity.php');
-require_once(\get_stylesheet_directory() . '/security/WordPressCoreUpdateCleaner.php');
+require_once(\get_template_directory() . '/security/WordPressSecurity.php');
+require_once(\get_template_directory() . '/security/WordPressCoreUpdateCleaner.php');
 
 /**
  * Theme Options
  */
-require_once(\get_stylesheet_directory() . '/admin/ThemeSettings.php');
+require_once(\get_template_directory() . '/admin/ThemeSettings.php');
 
 /**
  * Maximal content width
@@ -415,7 +415,7 @@ function eve_theme_setup() {
 	/**
 	 * Loading out textdomain
 	 */
-	\load_theme_textdomain('eve-online', \get_stylesheet_directory() . '/l10n');
+	\load_theme_textdomain('eve-online', \get_template_directory() . '/l10n');
 
 	\add_theme_support('automatic-feed-links');
 	\add_theme_support('post-thumbnails');
@@ -448,7 +448,7 @@ function eve_theme_setup() {
 	\add_image_size('post-loop-thumbnail', 705, 395, true);
 
 	// Register Custom Navigation Walker
-	require_once(\get_stylesheet_directory() .'/addons/BootstrapMenuWalker.php');
+	require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
 
 	/**
 	 * This theme styles the visual editor to resemble the theme style,
@@ -1303,7 +1303,7 @@ function eve_get_recommend_plugins() {
 }
 
 function eve_get_default_background_images($withThumbnail = false, $baseClass = null) {
-	$imagePath = \get_stylesheet_directory() . '/img/background/';
+	$imagePath = \get_template_directory() . '/img/background/';
 	$handle = \opendir($imagePath);
 
 	if($baseClass !== null) {
