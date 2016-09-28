@@ -61,7 +61,7 @@ require_once(\get_stylesheet_directory() . '/plugins/Corppage.php');
 /**
  * Lazy Loading
  */
-require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
+//require_once(\get_stylesheet_directory() . '/plugins/LazyLoadImages.php');
 
 /**
  * Whitelabel
