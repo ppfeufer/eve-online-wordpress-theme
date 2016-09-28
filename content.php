@@ -8,9 +8,13 @@ defined('ABSPATH') or die();
 		?>
 		<a href="<?php \the_permalink(); ?>" title="<?php \the_title_attribute('echo=0'); ?>">
 			<figure class="post-loop-thumbnail">
-			<?php
-			\the_post_thumbnail('post-loop-thumbnail');
-			?>
+				<?php
+				if(\function_exists('\fly_get_attachment_image')) {
+					echo \fly_get_attachment_image(\get_post_thumbnail_id(), 'post-loop-thumbnail');
+				} else {
+					\the_post_thumbnail('post-loop-thumbnail');
+				} // END if(\function_exists('\fly_get_attachment_image'))
+				?>
 			</figure>
 		</a>
 		<?php

@@ -115,13 +115,18 @@ class BootstrapImageGallery {
 
 
 		foreach($attachments as $id => $attachment) {
-			$attachment_image = \wp_get_attachment_image($id, 'full');
+			if(\function_exists('\fly_get_attachment_image')) {
+				$galleryImage = \fly_get_attachment_image($id, 'post-loop-thumbnail');
+			} else {
+				$galleryImage = \wp_get_attachment_image($id, 'post-loop-thumbnail');
+			}
+
+			$fullImage = \wp_get_attachment_image_src($id, 'full');
 			$attachment = \wp_prepare_attachment_for_js($id);
-	//		$attachment_link = wp_get_attachment_link($id, 'full', !(isset($attr['link']) AND 'file' == $attr['link']));
 
 			$output .= '<li>';
-			$output .= '<' . $itemtag . ' class="bootstrap-gallery-image">';
-			$output .= $attachment_image;
+			$output .= '<' . $itemtag . ' class="bootstrap-gallery-image" data-fullsizeImage="' . $fullImage['0'] . '">';
+			$output .= $galleryImage;
 
 			if(!empty($attachment['caption'])) {
 				$output .= '<' . $captiontag . '>';

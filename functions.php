@@ -33,6 +33,11 @@ require_once(\get_template_directory() . '/helper/EveApiHelper.php');
 require_once(\get_template_directory() . '/helper/StringHelper.php');
 
 /**
+ * Image Helper
+ */
+require_once(\get_template_directory() . '/helper/ImageHelper.php');
+
+/**
  * Metaslider Plugin
  */
 require_once(\get_template_directory() . '/plugins/Metaslider.php');
@@ -442,10 +447,18 @@ function eve_theme_setup() {
 	 * Add two additional image sizes.
 	 */
 	\set_post_thumbnail_size(1680, 500);
-	\add_image_size('bootstrap-small', 300, 200);
-	\add_image_size('bootstrap-medium', 360, 270);
-	\add_image_size('header-image', 1680, 500, true);
-	\add_image_size('post-loop-thumbnail', 705, 395, true);
+
+	/**
+	 * Thumbnails used for the theme
+	 * Compatibilty with Fly Dynamic Image Resizer plugin
+	 */
+	if(\function_exists('\fly_add_image_size')) {
+		\fly_add_image_size('header-image', 1680, 500, true);
+		\fly_add_image_size('post-loop-thumbnail', 705, 395, true);
+	} else {
+		\add_image_size('header-image', 1680, 500, true);
+		\add_image_size('post-loop-thumbnail', 705, 395, true);
+	} // END if(\function_exists('\fly_add_image_size'))
 
 	// Register Custom Navigation Walker
 	require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
@@ -1430,3 +1443,20 @@ function eve_move_comment_field_to_bottom($fields) {
 	return $fields;
 } // END function eve_move_comment_field_to_bottom($fields)
 \add_filter('comment_form_fields', '\\WordPress\Themes\EveOnline\eve_move_comment_field_to_bottom');
+
+/**
+ * Getting the "on the fly" image URLs for Meta Slider
+ *
+ * @global object $fly_images
+ * @param string $cropped_url
+ * @param string $orig_url
+ * @return string
+ */
+function eve_metaslider_fly_image_urls($cropped_url, $orig_url) {
+	$attachmentImage = \fly_get_attachment_image_src(Helper\ImageHelper::getAttachmentId($orig_url), 'header-image');
+
+	return str_replace('http://', '//', $attachmentImage['src']);
+} // END function eve_metaslider_fly_image_urls($cropped_url, $orig_url)
+if(\function_exists('\fly_get_attachment_image')) {
+	\add_filter('metaslider_resized_image_url', '\\WordPress\Themes\EveOnline\eve_metaslider_fly_image_urls', 10, 2);
+} // END if(\function_exists('\fly_get_attachment_image'))
