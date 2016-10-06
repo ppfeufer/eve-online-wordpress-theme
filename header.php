@@ -113,7 +113,7 @@
 											\wp_nav_menu(array(
 												'menu' => '',
 												'theme_location' => 'main-menu',
-												'depth' => 2,
+												'depth' => 3,
 												'container' => false,
 												'menu_class' => 'nav navbar-nav main-navigation',
 												'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
