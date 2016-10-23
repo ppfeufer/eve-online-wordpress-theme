@@ -158,6 +158,19 @@ function eve_get_options_default() {
  */
 if(!\function_exists('eve_enqueue_scripts')) {
 	function eve_enqueue_scripts() {
+
+		/**
+		 * Html5Shiv
+		 */
+		wp_enqueue_script( 'html5shiv', get_template_directory_uri() . '/js/html5.min.js' );
+		wp_script_add_data( 'html5shiv', 'conditional', 'lt IE 9' );
+
+		/**
+		 * Respond JS
+		 */
+		wp_enqueue_script( 'respondJS', get_template_directory_uri() . '/js/respond.min.js' );
+		wp_script_add_data( 'respondJS', 'conditional', 'lt IE 9' );
+
 		/*
 		 * Adds JavaScript to pages with the comment form to support
 		 * sites with threaded comments (when in use).
