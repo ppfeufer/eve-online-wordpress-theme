@@ -10,11 +10,11 @@ use WordPress\Themes\EveOnline;
 \defined('ABSPATH') or die();
 
 class Metaslider {
-	public function __construct($init = true) {
+	public function __construct($init = false) {
 		if($init === true) {
 			$this->registerMetaBox();
 		} // END if($init === true)
-	} // END public function __construct($init = true)
+	} // END public function __construct($init = false)
 
 	public function registerMetaBox() {
 		\add_action('add_meta_boxes', array($this, 'addMetaBox'));
@@ -198,4 +198,4 @@ class Metaslider {
 	} // END function eve_render_slider()
 } // END class Metaslider
 
-new Metaslider();
+new Metaslider(true);
