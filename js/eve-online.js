@@ -245,7 +245,7 @@ jQuery(function($) {
 	/**
 	 * scroll to anchor smoothly
 	 */
-	$('a').on('click', function(event) {
+	$("a[href*='#']").on('click', function(event) {
 		/**
 		 * Make sure it's not the comment reply cancel
 		 * link ('cancel-comment-reply-link') and this.hash has
