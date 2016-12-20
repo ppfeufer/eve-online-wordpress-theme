@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-23 12:30+0000\n"
 "PO-Revision-Date: 2016-08-23 12:37+0000\n"
-"Last-Translator: ppfeufer <p.pfeufer@thamm-it.de>\n"
+"Last-Translator: Rounon Dax <rounon.dax@yulaifederation.net>\n"
 "Language-Team: German\n"
 "Language: de-DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
@@ -261,16 +261,16 @@ msgstr "Neuere kommentare &rarr;"
 msgid "Comments are closed."
 msgstr "Kommentare sind geschlossen"
 
-#: content-aside.php:6 content-audio.php:6 content-chat.php:6 
-#: content-gallery.php:6 content-image.php:6 content-link.php:6 
-#: content-quote.php:6 content-single.php:6 content-status.php:6 
+#: content-aside.php:6 content-audio.php:6 content-chat.php:6
+#: content-gallery.php:6 content-image.php:6 content-link.php:6
+#: content-quote.php:6 content-single.php:6 content-status.php:6
 #: content-video.php:6 content.php:24
 msgid "Permalink to %s"
 msgstr "Permalink zu %s"
 
-#: content-aside.php:15 content-audio.php:15 content-chat.php:15 
-#: content-gallery.php:15 content-image.php:15 content-link.php:15 
-#: content-quote.php:15 content-single.php:15 content-status.php:15 
+#: content-aside.php:15 content-audio.php:15 content-chat.php:15
+#: content-gallery.php:15 content-image.php:15 content-link.php:15
+#: content-quote.php:15 content-single.php:15 content-status.php:15
 #: content-video.php:15 content.php:33
 msgid "Edit"
 msgstr "Bearbeiten"
