@@ -158,7 +158,7 @@ jQuery(function($) {
 	var $oEmbedVideos = $('iframe[src*="youtube"], iframe[src*="vimeo"], iframe[src*="videopress"]');
 	$oEmbedVideos.each(function() {
 		// adding the youtube video ID to the iframe
-		var youtubeVideoData = $(this).attr('src').match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+		var youtubeVideoData = $(this).attr('src').match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/);
 		if(youtubeVideoData !== null) {
 			youtubeVideoID = youtubeVideoData['1'];
 			$(this).attr('id', 'youtube-video-' + youtubeVideoID);
