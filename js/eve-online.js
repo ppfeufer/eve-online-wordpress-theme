@@ -153,10 +153,18 @@ jQuery(function($) {
 	} // END if(!isMobile())
 
 	/**
-	 * Fix for youtube and vimeo oEmbed being responsive
+	 * Fix for youtube, vimeo and videopress oEmbed being responsive
 	 */
 	var $oEmbedVideos = $('iframe[src*="youtube"], iframe[src*="vimeo"], iframe[src*="videopress"]');
 	$oEmbedVideos.each(function() {
+		// adding the youtube video ID to the iframe
+		var youtubeVideoData = $(this).attr('src').match(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+		if(youtubeVideoData !== null) {
+			youtubeVideoID = youtubeVideoData['1'];
+			$(this).attr('id', 'youtube-video-' + youtubeVideoID);
+		} // END if(youtubeVideoData != null)
+
+		// removing non needed attributes from iframe and wrap it in our div
 		$(this).removeAttr('height').removeAttr('width').wrap('<div class="embed-video-container"></div>');
 	});
 
