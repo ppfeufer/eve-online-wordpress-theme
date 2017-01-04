@@ -7,7 +7,7 @@ namespace WordPress\Themes\EveOnline\Plugins\Helper;
 
 use WordPress\Themes\EveOnline;
 
-class KillboardHelper {
+class EdkKillboardHelper {
 	private $plugin = null;
 	private $pluginSettings = null;
 	private $themeSettings = null;
@@ -81,7 +81,7 @@ class KillboardHelper {
 			/**
 			 * Overwrite Victim Image if its a Citadel
 			 */
-			if(\in_array($kill->shp_name, $this->getStructureNames())) {
+			if(\in_array($kill->shp_name, $this->$this->plugin->getStructureNames())) {
 				$kill->victimImage = $this->getStructureImage($kill->shp_id);
 			} else {
 				$kill->victimImage = $this->getVictimImage($kill->plt_name, $kill->shp_id);
@@ -123,45 +123,6 @@ class KillboardHelper {
 		return $victimImage;
 	} // END private function getCitadelImage($shipID, $size = 512)
 
-	private function getStructureNames() {
-		return array(
-			// Citadels
-			'Astrahus',
-			'Fortizar',
-			'Keepstar',
-
-			// POS Tower
-			'Amarr Control Tower',
-			'Amarr Control Tower Small',
-			'Amarr Control Tower Medium',
-			'Caldari Control Tower',
-			'Caldari Control Tower Small',
-			'Caldari Control Tower Medium',
-			'Gallente Control Tower',
-			'Gallente Control Tower Small',
-			'Gallente Control Tower Medium',
-			'Minmatar Control Tower',
-			'Minmatar Control Tower Small',
-			'Minmatar Control Tower Medium',
-
-			// POS Modules
-			'Domination Small AutoCannon Battery',
-			'Ion Field Projection Battery',
-			'Jump Bridge',
-			'Medium Artillery Battery',
-			'Medium AutoCannon Battery',
-			'Moon Harvesting Array',
-			'Phase Inversion Battery',
-			'Small Artillery Battery',
-			'Small AutoCannon Battery',
-			'Silo',
-			'Spatial Destabilization Battery',
-			'Stasis Webification Battery',
-			'Warp Disruption Battery',
-			'Warp Scrambling Battery',
-		);
-	} // END private function getStructureNames()
-
 	private function getKillboardLinkToKill($killID) {
 		return $this->killboardUri . '?a=kill_detail&kll_id=' . $killID;
 	} // END private function getKillboardLinkToKill($killID)
@@ -179,4 +140,4 @@ class KillboardHelper {
 
 		return $isk;
 	} // END private function sanitizeIskLoss($isk)
-} // END class KillboardHelper
+} // END class EdkKillboardHelper

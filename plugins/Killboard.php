@@ -27,6 +27,11 @@ class Killboard {
 	} // END public function __construct()
 
 	private function initPlugin() {
+		/**
+		 * Check if options have to be updated
+		 */
+		$this->updateKillboardOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\eve_get_current_db_version(), $this->getDefaultPluginOptions());
+
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->getDefaultPluginOptions());
 
@@ -42,7 +47,36 @@ class Killboard {
 
 		// common actions
 		$this->initWidget();
-	}
+	} // END private function initPlugin()
+
+	/**
+	 * Update the options array for our theme, if needed
+	 *
+	 * @param string $optionsName
+	 * @param string $dbVersionFieldName
+	 * @param string $newDbVersion
+	 * @param array $defaultOptions
+	 */
+	private function updateKillboardOptions($optionsName, $dbVersionFieldName, $newDbVersion, $defaultOptions) {
+		$currentDbVersion = \get_option($dbVersionFieldName);
+
+		// Check if the DB needs to be updated
+		if($currentDbVersion !== $newDbVersion) {
+			$currentOptions = \get_option($optionsName);
+
+			if(\is_array($currentOptions)) {
+				$newOptions = \array_merge($defaultOptions, $currentOptions);
+			} else {
+				$newOptions = $defaultOptions;
+			} // END if(\is_array($currentOptions))
+
+			// Update the options
+			\update_option($optionsName, $newOptions);
+
+			// Update the DB Version
+			\update_option($dbVersionFieldName, $newDbVersion);
+		} // END if($currentDbVersion !== $newDbVersion)
+	} // END function yf_update_options($dbVersionName, $optionsName, $newDbVersion, $defaultOptions)
 
 	public function initWidget() {
 		\add_action('widgets_init', \create_function('', 'return register_widget("WordPress\Themes\EveOnline\Plugins\Widgets\KillboardWidget");'));
@@ -66,9 +100,11 @@ class Killboard {
 		$defaultOptions = array(
 			// generel settings tab
 			'number_of_kills' => 5,
-//			'show_losses' => array(
-//				'yes' => 'yes'
-//			),
+			'killmail_source' => 'zkillboard',
+			'zkb_api_link' => '',
+			'show_losses' => array(
+				'yes' => 'yes'
+			),
 			'killboard_db_host' => 'localhost',
 			'killboard_db_name' => '',
 			'killboard_db_user' => '',
@@ -103,6 +139,11 @@ class Killboard {
 				'general-settings' => $this->getGeneralSettings(),
 
 				/**
+				 * general settings
+				 */
+				'zkillboard-settings' => $this->getZkillboardSettings(),
+
+				/**
 				 * database settings tab
 				 */
 				'database-settings' => $this->getDatabaseSettings()
@@ -122,7 +163,15 @@ class Killboard {
 			'tab_description' => \__('Killboard General Settings', 'eve-online'),
 			'fields' => $this->getGeneralTabFields()
 		);
-	} // END private function getGeneralSettings()s
+	} // END private function getGeneralSettings()
+
+	private function getZkillboardSettings() {
+		return array(
+			'tab_title' => \__('zKillboard Settings', 'eve-online'),
+			'tab_description' => \__('Killboard General Settings', 'eve-online'),
+			'fields' => $this->getZkillboardTabFields()
+		);
+	} // END private function getGeneralSettings()
 
 	private function getGeneralTabFields() {
 		return array(
@@ -132,21 +181,38 @@ class Killboard {
 				'description' => \__('Number of kills to show', 'eve-online'),
 				'default' => 5
 			),
-//			'show_losses' => array(
-//				'type' => 'checkbox',
-//				'title' => \__('Show Losses', 'eve-online'),
-//				'choices' => array(
-//					'yes' => \__('Show your losses as well?', 'eve-online')
-//				),
-//				'default' => 'yes',
-//				'description' => 'Only if you are tough enough :-P'
-//			),
+			'killmail_source' => array(
+				'type' => 'radio',
+				'title' => \__('Source', 'eve-online'),
+				'choices' => array(
+					'zkillboard' => \__('zKillboard API', 'eve-online'),
+					'local' => \__('Local EDK Killboard Database', 'eve-online')
+				),
+				'default' => 'zkillboard'
+			)
+		);
+	} // END private function getGeneralTabFields()
+
+	private function getZkillboardTabFields() {
+		return array(
+			'zkb_api_link' => array(
+				'type' => 'text',
+				'title' => \__('API Link', 'eve-online'),
+				'description' => \__('Example: https://zkillboard.com/api/combined/corporationID/12345567890/', 'eve-online')
+			),
+			'show_losses' => array(
+				'type' => 'checkbox',
+				'title' => \__('Source', 'eve-online'),
+				'choices' => array(
+					'yes' => \__('Show own losses as well?', 'eve-online')
+				)
+			)
 		);
 	} // END private function getGeneralTabFields()
 
 	private function getDatabaseSettings() {
 		return array(
-			'tab_title' => \__('Database Settings', 'eve-online'),
+			'tab_title' => \__('Local Killboard Settings', 'eve-online'),
 			'tab_description' => \__('Killboard Database Settings', 'eve-online'),
 			'fields' => $this->getDatabaseTabFields()
 		);
@@ -207,6 +273,55 @@ class Killboard {
 			)
 		);
 	} // END private function getDevelopmentTabFields()
+
+	/**
+	 * If the victim is not a pilot, we have to resort to this "hack"
+	 *
+	 * @return array
+	 */
+	public function getStructureNames() {
+		return array(
+			// Citadels
+			'Astrahus',
+			'Fortizar',
+			'Keepstar',
+
+			// Engineering Complexes
+			'Raitaru',
+			'Azbel',
+			'Sotiyo',
+
+			// POS Tower
+			'Amarr Control Tower',
+			'Amarr Control Tower Small',
+			'Amarr Control Tower Medium',
+			'Caldari Control Tower',
+			'Caldari Control Tower Small',
+			'Caldari Control Tower Medium',
+			'Gallente Control Tower',
+			'Gallente Control Tower Small',
+			'Gallente Control Tower Medium',
+			'Minmatar Control Tower',
+			'Minmatar Control Tower Small',
+			'Minmatar Control Tower Medium',
+
+			// POS Modules
+			'Domination Small AutoCannon Battery',
+			'Ion Field Projection Battery',
+			'Jump Bridge',
+			'Medium Artillery Battery',
+			'Medium AutoCannon Battery',
+			'Moon Harvesting Array',
+			'Phase Inversion Battery',
+			'Small Artillery Battery',
+			'Small AutoCannon Battery',
+			'Silo',
+			'Spatial Destabilization Battery',
+			'Stasis Webification Battery',
+			'Warp Disruption Battery',
+			'Warp Scrambling Battery',
+		);
+	} // END private function getStructureNames()
 } // END class Killboard
 
 new Killboard;

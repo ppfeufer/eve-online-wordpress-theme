@@ -38,7 +38,7 @@ class KillboardWidget extends \WP_Widget {
 
 	public function __construct() {
 		$this->plugin = new Plugins\Killboard(false);
-		$this->pluginHelper = new Plugins\Helper\KillboardHelper;
+		$this->pluginHelper = new Plugins\Helper\EdkKillboardHelper;
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
@@ -69,13 +69,13 @@ class KillboardWidget extends \WP_Widget {
 		$instance = \wp_parse_args((array) $instance, array(
 			'eve-killboard-widget-title' => '',
 			'eve-killboard-widget-number-of-kills' => $this->pluginSettings['number_of_kills'],
-//			'eve-killboard-widget-show-losses' => ($this->pluginSettings['show_losses']['yes']) ? true : false
+			'eve-killboard-widget-show-losses' => ($this->pluginSettings['show_losses']['yes']) ? true : false
 		));
 
-//		$showLosses = $instance['eve-killboard-widget-show-losses'] ? 'checked="checked"' : '';
+		$showLosses = $instance['eve-killboard-widget-show-losses'] ? 'checked="checked"' : '';
 
 		// Database Warning
-		if(!$this->kbDB) {
+		if($this->pluginSettings['killmail_source'] === 'local' && !$this->kbDB) {
 			echo '<p style="border-bottom: 1px solid #DFDFDF;"><strong>' . \__('Database Warning / Not Configured', 'eve-online') . '</strong></p>';
 			echo '<p>' . sprintf(\__('Please make sure you have your Killboard Database configured in your %1$s.', 'eve-online'), '<a href="' . admin_url('options-general.php?page=eve-online-theme-killboard-plugin-settings') . '">' . \__('Plugin Settings', 'eve-online') . '</a>') . '</p>';
 			echo '<p style="clear:both;"></p>';
@@ -91,9 +91,11 @@ class KillboardWidget extends \WP_Widget {
 			echo '<p style="clear:both;"></p>';
 
 			// Show losses
-//			echo '<p style="border-bottom: 1px solid #DFDFDF;"><strong>' . \__('Losses', 'eve-online') . '</strong></p>';
-//			echo '<p><label><input class="checkbox" type="checkbox" ' . $showLosses . ' id="' . $this->get_field_id('eve-killboard-widget-show-losses') . '" name="' . $this->get_field_name('eve-killboard-widget-show-losses') . '"> <span>' . \__('Show losses as well?', 'eve-online') . '</span></label></p>';
-//			echo '<p style="clear:both;"></p>';
+			if($this->pluginSettings['killmail_source'] === 'zkillboard') {
+				echo '<p style="border-bottom: 1px solid #DFDFDF;"><strong>' . \__('Losses', 'eve-online') . '</strong></p>';
+				echo '<p><label><input class="checkbox" type="checkbox" ' . $showLosses . ' id="' . $this->get_field_id('eve-killboard-widget-show-losses') . '" name="' . $this->get_field_name('eve-killboard-widget-show-losses') . '"> <span>' . \__('Show losses as well?', 'eve-online') . '</span></label></p>';
+				echo '<p style="clear:both;"></p>';
+			}
 		} // END if(!$this->kbDB)
 	} // END public function form($instance)
 
@@ -114,7 +116,7 @@ class KillboardWidget extends \WP_Widget {
 		$new_instance = \wp_parse_args((array) $new_instance, array(
 			'eve-killboard-widget-title' => '',
 			'eve-killboard-widget-number-of-kills' => $this->pluginSettings['number_of_kills'],
-//			'eve-killboard-widget-show-losses' => ($this->pluginSettings['show_losses']['yes']) ? true : false
+			'eve-killboard-widget-show-losses' => ($this->pluginSettings['show_losses']['yes']) ? true : false
 		));
 
 		/**

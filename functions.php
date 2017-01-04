@@ -86,7 +86,8 @@ require_once(\get_template_directory() . '/plugins/EncodeEmailAddresses.php');
 /**
  * Killboard
  */
-require_once(\get_template_directory() . '/plugins/helper/KillboardHelper.php');
+require_once(\get_template_directory() . '/plugins/helper/EdkKillboardHelper.php');
+require_once(\get_template_directory() . '/plugins/helper/ZkbKillboardHelper.php');
 require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
 require_once(\get_template_directory() . '/plugins/Killboard.php');
 
@@ -114,7 +115,7 @@ if(!isset($content_width)) {
  * @return string
  */
 function eve_get_current_db_version() {
-	return '20160829';
+	return '20170104';
 } // END function yf_get_current_db_version()
 
 function eve_get_options_default() {
