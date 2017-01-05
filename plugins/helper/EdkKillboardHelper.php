@@ -81,7 +81,7 @@ class EdkKillboardHelper {
 			/**
 			 * Overwrite Victim Image if its a Citadel
 			 */
-			if(\in_array($kill->shp_name, $this->$this->plugin->getStructureNames())) {
+			if(\in_array($kill->shp_name, $this->plugin->getStructureNames())) {
 				$kill->victimImage = $this->getStructureImage($kill->shp_id);
 			} else {
 				$kill->victimImage = $this->getVictimImage($kill->plt_name, $kill->shp_id);
