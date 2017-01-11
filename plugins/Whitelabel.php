@@ -16,6 +16,10 @@ class Whitelabel {
 	private $developerEmailAddress = null;
 	private $developerWebsite = null;
 
+	private $themeName = null;
+	private $themeGithubUri = null;
+	private $themeGithubIssueUri = null;
+
 	private $themeBackgroundUrl = null;
 	private $customLoginLogo = null;
 
@@ -34,6 +38,13 @@ class Whitelabel {
 		 * Translation Stuff
 		 */
 		$this->textdomain = 'eve-online';
+
+		/**
+		 * Setting Theme Informations
+		 */
+		$this->themeName = 'EVE Online';
+		$this->themeGithubUri = 'https://github.com/ppfeufer/eve-online-wordpress-theme';
+		$this->themeGithubIssueUri = 'https://github.com/ppfeufer/eve-online-wordpress-theme/issues';
 
 		/**
 		 * Setting Developer Information
@@ -108,6 +119,13 @@ class Whitelabel {
 	 */
 	public function themeInfo() {
 		echo '<ul>
+		<li>
+			<strong>' . __('Theme:', $this->textdomain) . '</strong> ' . $this->themeName .
+			sprintf(__(' (%1$s | %2$s)', $this->textdomain),
+				'<a href="' . $this->themeGithubUri . '">Github</a>',
+				'<a href="' . $this->themeGithubIssueUri . '">Issue Tracker</a>'
+			) . '
+		</li>
 		<li><strong>' . __('Customized by:', $this->textdomain) . '</strong> ' . $this->developerName . '</li>
 		<li><strong>' . __('Website:', $this->textdomain) . '</strong> <a href="' . $this->developerWebsite . '">' . $this->developerWebsite . '</a></li>
 		<li><strong>' . __('Contact:',  $this->textdomain) . '</strong> <a href="mailto:' . $this->developerEmailAddress . '">' . $this->developerEmailAddress . '</a></li>
