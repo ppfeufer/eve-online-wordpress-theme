@@ -22,7 +22,7 @@ git clone https://github.com/ppfeufer/eve-online-wordpress-theme.git eve-online
 ```
 or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme/archive/master.zip) and rename the folder to eve-online.
 
-Website using this Theme:
+Websites using this Theme:
 * [Yulai Federation](http://yulaifederation.net/)
 * [Terra Nanotech](http://terra-nanotech.de/)
 
