@@ -12,6 +12,10 @@ Recommended Plugins:
 * [Meta Slider](https://wordpress.org/plugins/ml-slider/)
 * [WP Retina 2x](https://wordpress.org/plugins/wp-retina-2x/)
 
+Build-In Plugin Support for:
+* [Meta Slider](https://wordpress.org/plugins/ml-slider/)
+* [Fly Dynamic Image Resizer](https://wordpress.org/plugins/fly-dynamic-image-resizer/)
+
 To install the theme use git to clone it to your wordpress installation
 ```bash
 git clone https://github.com/ppfeufer/eve-online-wordpress-theme.git eve-online
