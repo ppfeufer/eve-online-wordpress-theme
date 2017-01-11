@@ -11,7 +11,8 @@ use WordPress\Themes\EveOnline;
 
 class EveApiHelper {
 	private $sUserAgent = 'Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 EVE Online WordPress Theme Website API Fetcher https://github.com/ppfeufer/eve-online-wordpress-theme';
-	private $apiUrl = 'http://eve-api.terra-nanotech.de:8080/'; // we are using the TN-NT proxy here
+//	private $apiUrl = 'http://eve-api.terra-nanotech.de:8080/'; // we are using the TN-NT proxy here
+	private $apiUrl = 'https://api.eveonline.com/'; // since we are using WordPress' transient cache, there is no need to bother our own proxy for caching.
 	private $apiEndpoints = null;
 	private $imageserverUrl = 'https://image.eveonline.com/';
 	private $imageserverEndpoints = null;
@@ -334,9 +335,9 @@ class EveApiHelper {
 		/**
 		 * Let's see if we have to change the port for the TN-NT proxy
 		 */
-		if(\preg_match('/' . $host . '/', $this->apiUrl)) {
-			$port = '8080';
-		} // END if(preg_match('/' . $host . '/', $this->apiUrl))
+//		if(\preg_match('/' . $host . '/', $this->apiUrl)) {
+//			$port = '8080';
+//		} // END if(preg_match('/' . $host . '/', $this->apiUrl))
 
 		$errno = null;
 		$errstr = null;
