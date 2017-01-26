@@ -222,6 +222,6 @@ class ThemeSettings {
 /**
  * only if we are in backend
  */
-if(\is_admin()) {
-	new ThemeSettings;
-} // END if(\is_admin())
+//if(\is_admin()) {
+//	new ThemeSettings;
+//} // END if(\is_admin())

@@ -288,4 +288,4 @@ class BootstrapVideoGallery {
 } // END class BootstrapVideoGallery
 
 // Start the show ...
-new BootstrapVideoGallery();
+//new BootstrapVideoGallery;

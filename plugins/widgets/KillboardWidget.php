@@ -37,7 +37,7 @@ class KillboardWidget extends \WP_Widget {
 	private $eveApi = null;
 
 	public function __construct() {
-		$this->plugin = new Plugins\Killboard(false);
+		$this->plugin = new Plugins\Killboard;
 		$this->pluginHelper = new Plugins\Helper\EdkKillboardHelper;
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 

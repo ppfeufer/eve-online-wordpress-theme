@@ -20,7 +20,7 @@ class Killboard {
 	/**
 	 * constructor
 	 */
-	public function __construct($init = true) {
+	public function __construct($init = false) {
 		if($init === true) {
 			$this->initPlugin();
 		}
@@ -324,4 +324,4 @@ class Killboard {
 	} // END private function getStructureNames()
 } // END class Killboard
 
-new Killboard;
+//new Killboard;

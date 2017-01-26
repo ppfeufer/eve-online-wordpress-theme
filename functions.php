@@ -18,81 +18,30 @@ namespace WordPress\Themes\EveOnline;
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
- * Settings API
- */
-require_once(\get_template_directory() . '/admin/SettingsApi.php');
-
-/**
- * EVE API Class
+ * Loading Helper Classes
  */
 require_once(\get_template_directory() . '/helper/EveApiHelper.php');
-
-/**
- * String Helper
- */
 require_once(\get_template_directory() . '/helper/StringHelper.php');
-
-/**
- * Image Helper
- */
 require_once(\get_template_directory() . '/helper/ImageHelper.php');
 
 /**
- * Metaslider Plugin
+ * Loading Plugins
  */
 require_once(\get_template_directory() . '/plugins/Metaslider.php');
-
-/**
- * Theme Shortcodes
- */
 require_once(\get_template_directory() . '/plugins/Shortcodes.php');
-
-/**
- * Bootstrap Image Gallery
- */
 require_once(\get_template_directory() . '/plugins/BootstrapImageGallery.php');
-
-/**
- * Bootstrap Video Gallery
- */
 require_once(\get_template_directory() . '/plugins/BootstrapVideoGallery.php');
-
-/**
- * EVE Corp Page
- * Adds a little box to the page edit site to set a page as corp page
- */
 require_once(\get_template_directory() . '/plugins/Corppage.php');
-
-/**
- * Lazy Loading
- */
-//require_once(\get_template_directory() . '/plugins/LazyLoadImages.php');
-
-/**
- * Whitelabel
- */
 require_once(\get_template_directory() . '/plugins/Whitelabel.php');
-
-/**
- * MO Cache
- */
 require_once(\get_template_directory() . '/plugins/MoCache.php');
-
-/**
- * Encode Emails Addresses
- */
 require_once(\get_template_directory() . '/plugins/EncodeEmailAddresses.php');
-
-/**
- * Killboard
- */
 require_once(\get_template_directory() . '/plugins/helper/EdkKillboardHelper.php');
 require_once(\get_template_directory() . '/plugins/helper/ZkbKillboardHelper.php');
 require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
 require_once(\get_template_directory() . '/plugins/Killboard.php');
 
 /**
- * WP Security
+ * Loading Security Classes
  */
 require_once(\get_template_directory() . '/security/WordPressSecurity.php');
 require_once(\get_template_directory() . '/security/WordPressCoreUpdateCleaner.php');
@@ -100,7 +49,30 @@ require_once(\get_template_directory() . '/security/WordPressCoreUpdateCleaner.p
 /**
  * Theme Options
  */
+require_once(\get_template_directory() . '/admin/SettingsApi.php');
 require_once(\get_template_directory() . '/admin/ThemeSettings.php');
+
+/**
+ * Initiate needed general Classes
+ */
+new Security\WordPressSecurity;
+new Plugins\MoCache;
+new Plugins\Metaslider(true);
+new Plugins\Shortcodes;
+new Plugins\BootstrapImageGallery;
+new Plugins\BootstrapVideoGallery;
+new Plugins\Corppage;
+new Plugins\EncodeEmailAddresses;
+new Plugins\Whitelabel;
+new Plugins\Killboard(true);
+
+/**
+ * Initiate needed Backend Classes
+ */
+if(\is_admin()) {
+	new Admin\ThemeSettings;
+	new Security\WordPressCoreUpdateCleaner;
+} // END if(\is_admin())
 
 /**
  * Maximal content width

@@ -32,7 +32,8 @@ class EncodeEmailAddresses {
 		} // END if(\apply_filters('eve-encode-email-address_at-sign-check', true ) && \strpos($content, '@') === false)
 
 		// override encoding function with the 'eve-encode-email-address_metod' filter
-		$method = \apply_filters('eve-encode-email-address_metod', array($this, 'encodeString'));
+//		$method = \apply_filters('eve-encode-email-address_metod', array($this, 'encodeMailString'));
+		$method = \apply_filters('eve-encode-email-address_metod', array('WordPress\Themes\EveOnline\Helper\StringHelper', 'encodeMailString'));
 
 		// override regex pattern with the 'eve-encode-email-address_regexp' filter
 		$regexp = \apply_filters(
@@ -57,35 +58,12 @@ class EncodeEmailAddresses {
 			$regexp,
 			\create_function(
 				'$matches',
-				'return ' . __CLASS__ . '::' . $method[1] . '($matches[0]);'
+//				'return ' . __CLASS__ . '::' . $method[1] . '($matches[0]);'
+				'return ' . $method[0] . '::' . $method[1] . '($matches[0]);'
 			),
 			$content
 		);
 	} // END public function encodeMails($content)
-
-	public static function encodeString($string) {
-		$chars = \str_split($string);
-		$seed = \mt_rand(0, (int) \abs(\crc32($string) / \strlen($string)));
-
-		foreach($chars as $key => $char) {
-			$ord = \ord($char);
-
-			if($ord < 128) { // ignore non-ascii chars
-				$r = ($seed * (1 + $key)) % 100; // pseudo "random function"
-
-				if($r > 60 && $char != '@') {
-					// plain character (not encoded), if not @-sign
-					;
-				} elseif($r < 45) {
-					$chars[$key] = '&#x' . \dechex($ord) . ';'; // hexadecimal
-				} else {
-					$chars[$key] = '&#' . $ord . ';'; // decimal (ascii)
-				} // END if($r > 60 && $char != '@')
-			} // END if($ord < 128)
-		} // END foreach($chars as $key => $char)
-
-		return \implode('', $chars);
-	} // END public static function encodeString(&$string)
 } // END class Ti_Encode_Email_Addresses
 
-new EncodeEmailAddresses;
+//new EncodeEmailAddresses;

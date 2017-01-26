@@ -56,8 +56,14 @@ class Whitelabel {
 		$this->themeBackgroundUrl = $this->getBackgroundImage();
 		$this->customLoginLogo = $this->getLoginLogo();
 
+		/**
+		 * Getting theme settings
+		 */
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 
+		/**
+		 * Starting the helper classes
+		 */
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->initActions();
@@ -216,4 +222,4 @@ class Whitelabel {
 	} // END private function getLoginLogo()
 } // END class Whitelabel
 
-new Whitelabel;
+//new Whitelabel;

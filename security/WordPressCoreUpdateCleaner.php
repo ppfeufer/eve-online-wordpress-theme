@@ -97,7 +97,6 @@ class WordPressCoreUpdateCleaner {
 	} // END function updateCleaner($new_version)
 } // END class WordPressCoreUpdateCleaner
 
-
-if(\is_admin()) {
-	new WordPressCoreUpdateCleaner();
-} // END if(\is_admin())
+//if(\is_admin()) {
+//	new WordPressCoreUpdateCleaner;
+//} // END if(\is_admin())

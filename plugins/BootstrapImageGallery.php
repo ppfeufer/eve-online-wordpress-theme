@@ -252,4 +252,4 @@ class BootstrapImageGallery {
 	} // END public function getGalleryImages($postID)
 } // END class BootstrapImageGallery
 
-new BootstrapImageGallery();
+//new BootstrapImageGallery;

@@ -104,4 +104,4 @@ class WordPressSecurity {
 	} // END public function removeFeedLinks()
 } // END class Security
 
-new WordPressSecurity();
+//new WordPressSecurity;

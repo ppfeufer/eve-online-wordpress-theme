@@ -93,4 +93,4 @@ class Shortcodes {
 	}
 }
 
-new Shortcodes();
+//new Shortcodes;

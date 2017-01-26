@@ -157,10 +157,10 @@ class Corppage {
 		\update_post_meta($postID, 'eve_page_corp_eve_ID', \esc_html($corpID));
 
 		$isCorpPage = \filter_input(INPUT_POST, 'eve_page_is_corp_page') == "on";
-		\update_post_meta($postID, 'eve_page_is_corp_page', $isCorpPage);(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')));
+		\update_post_meta($postID, 'eve_page_is_corp_page', $isCorpPage);
 
 		\update_post_meta($postID, 'eve_page_corp_eve_ID', \esc_html($corpID));
 	} // END public function savePageSettings($postID)
 } // END class Corppage
 
-new Corppage();
+//new Corppage;

@@ -1,5 +1,7 @@
-/* Styles for Plugins
------------------------------------------------------------------------------ */
+/*!
+ * Styles for Plugins
+ * Used by EVE Online WordPress Theme
+ */
 
 /* WP-Pagenavi
 ----------------------------------------------------------------------------- */
@@ -610,14 +612,8 @@
 .modal-bootstrap-photo-gallery .modal-dialog {
 	position: initial;
 	width: auto;
-/*	top: 32px;
-	top: 2rem;
-	bottom: 10%;
-	left: 10%;
-	right: 10%;*/
 	margin: 0 auto;
 	margin-top: 2rem;
-	/*margin-bottom: 0;*/
 	display: inline-block;
 }
 

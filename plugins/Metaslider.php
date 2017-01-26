@@ -198,4 +198,4 @@ class Metaslider {
 	} // END function eve_render_slider()
 } // END class Metaslider
 
-new Metaslider(true);
+//new Metaslider(true);

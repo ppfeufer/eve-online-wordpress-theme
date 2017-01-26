@@ -7,8 +7,6 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
-
 class MoCache {
 	private $cacheGroup = 'eve-mo';
 	private $moCacheArray = null;
@@ -91,4 +89,4 @@ class MoCache {
 	} // END public function store()
 } // END class MoCache
 
-new MoCache;
+//new MoCache;

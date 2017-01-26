@@ -20,96 +20,109 @@ class EveApiHelper {
 	private $themeOptions = null;
 
 	/**
-	 * The Conctrutor
+	 * The Construtor
 	 */
-	public function __construct() {
+	public function __construct($apiType = 'xml') {
 		/**
-		 * Assigning API Endpoints
+		 * CCP has multiple API types, so we have to differ here
+		 *
+		 * Valid API type:
+		 *		xml
+		 *		esi
+		 *
+		 * Per default we still using the XML API, but that might change at some point
 		 */
-		$this->apiEndpoints = array(
-			'api.callList' => 'api/CallList.xml.aspx',
+		switch($apiType) {
+			case 'xml':
+				/**
+				 * Assigning API Endpoints
+				 */
+				$this->apiEndpoints = array(
+					'api.callList' => 'api/CallList.xml.aspx',
 
-			// Account API Endpoints
-			'account.status' => 'account/AccountStatus.xml.aspx', // needed access mask: 33554432
-			'account.info' => 'account/APIKeyInfo.xml.aspx',
-			'account.charcaterList' => 'account/Characters.xml.aspx',
+					// Account API Endpoints
+					'account.status' => 'account/AccountStatus.xml.aspx', // needed access mask: 33554432
+					'account.info' => 'account/APIKeyInfo.xml.aspx',
+					'account.charcaterList' => 'account/Characters.xml.aspx',
 
-			// Character API Endpoints
-			'character.accountBalance' => 'char/AccountBalance.xml.aspx',
-			'character.assetList' => 'char/AssetList.xml.aspx',
-			'character.calendarEventAttendees' => 'char/CalendarEventAttendees.xml.aspx',
-			'character.charcterSheet' => 'char/CharacterSheet.xml.aspx',
-			'character.contactList' => 'char/ContactList.xml.aspx',
-			'character.contactNotifications' => 'char/ContactNotifications.xml.aspx',
-			'character.contracts' => 'char/Contracts.xml.aspx',
-			'character.contractItems' => 'char/ContractItems.xml.aspx',
-			'character.contractBids' => 'char/ContractBids.xml.aspx',
-			'character.factionWarfareStats' => 'char/FacWarStats.xml.aspx',
-			'character.industryJobs' => 'char/IndustryJobs.xml.aspx',
-			'character.killLog' => 'char/Killlog.xml.aspx',
-			'character.locations' => 'char/Locations.xml.aspx',
-			'character.mailBodies' => 'char/MailBodies.xml.aspx',
-			'character.MailingLists' => 'char/MailingLists.xml.aspx',
-			'character.mailHeaders' => 'char/MailMessages.xml.aspx',
-			'character.marketOrders' => 'char/MarketOrders.xml.aspx',
-			'character.medals' => 'char/Medals.xml.aspx',
-			'character.notifications' => 'char/Notifications.xml.aspx',
-			'character.notificationTexts' => 'char/NotificationTexts.xml.aspx',
-			'character.research' => 'char/Research.xml.aspx',
-			'character.skillInTraining' => 'char/SkillInTraining.xml.aspx',
-			'character.skillQueue' => 'char/SkillQueue.xml.aspx',
-			'character.Standings' => 'char/Standings.xml.aspx',
-			'character.upcomingCalendarEvents' => 'char/UpcomingCalendarEvents.xml.aspx',
-			'character.walletJournal' => 'char/WalletJournal.xml.aspx',
-			'character.walletTransactions' => 'char/WalletTransactions.xml.aspx',
+					// Character API Endpoints
+					'character.accountBalance' => 'char/AccountBalance.xml.aspx',
+					'character.assetList' => 'char/AssetList.xml.aspx',
+					'character.calendarEventAttendees' => 'char/CalendarEventAttendees.xml.aspx',
+					'character.charcterSheet' => 'char/CharacterSheet.xml.aspx',
+					'character.contactList' => 'char/ContactList.xml.aspx',
+					'character.contactNotifications' => 'char/ContactNotifications.xml.aspx',
+					'character.contracts' => 'char/Contracts.xml.aspx',
+					'character.contractItems' => 'char/ContractItems.xml.aspx',
+					'character.contractBids' => 'char/ContractBids.xml.aspx',
+					'character.factionWarfareStats' => 'char/FacWarStats.xml.aspx',
+					'character.industryJobs' => 'char/IndustryJobs.xml.aspx',
+					'character.killLog' => 'char/Killlog.xml.aspx',
+					'character.locations' => 'char/Locations.xml.aspx',
+					'character.mailBodies' => 'char/MailBodies.xml.aspx',
+					'character.MailingLists' => 'char/MailingLists.xml.aspx',
+					'character.mailHeaders' => 'char/MailMessages.xml.aspx',
+					'character.marketOrders' => 'char/MarketOrders.xml.aspx',
+					'character.medals' => 'char/Medals.xml.aspx',
+					'character.notifications' => 'char/Notifications.xml.aspx',
+					'character.notificationTexts' => 'char/NotificationTexts.xml.aspx',
+					'character.research' => 'char/Research.xml.aspx',
+					'character.skillInTraining' => 'char/SkillInTraining.xml.aspx',
+					'character.skillQueue' => 'char/SkillQueue.xml.aspx',
+					'character.Standings' => 'char/Standings.xml.aspx',
+					'character.upcomingCalendarEvents' => 'char/UpcomingCalendarEvents.xml.aspx',
+					'character.walletJournal' => 'char/WalletJournal.xml.aspx',
+					'character.walletTransactions' => 'char/WalletTransactions.xml.aspx',
 
-			// Corporation API Endpoints
-			'corporation.accountBalance' => 'corp/AccountBalance.xml.aspx',
-			'corporation.assetList' => 'corp/AssetList.xml.aspx',
-			'corporation.contactList' => 'corp/ContactList.xml.aspx',
-			'corporation.contacinerLog' => 'corp/ContainerLog.xml.aspx',
-			'corporation.contracts' => 'corp/Contracts.xml.aspx',
-			'corporation.contractItems' => 'corp/ContractItems.xml.aspx',
-			'corporation.contractBids' => 'corp/ContractBids.xml.aspx ',
-			'corporation.corporationSheet' => 'corp/CorporationSheet.xml.aspx',
-			'corporation.factionWarStats' => 'corp/FacWarStats.xml.aspx',
-			'corporation.indutryJobs' => 'corp/IndustryJobs.xml.aspx',
-			'corporation.killLog' => 'corp/Killlog.xml.aspx',
-			'corporation.locations' => 'corp/Locations.xml.aspx',
-			'corporation.marketOrders' => 'corp/MarketOrders.xml.aspx',
-			'corporation.medals' => 'corp/Medals.xml.aspx',
-			'corporation.memberMedals' => 'corp/MemberMedals.xml.aspx',
-			'corporation.memberSecurity' => 'corp/MemberSecurity.xml.aspx',
-			'corporation.memberSecurityLog' => 'corp/MemberSecurityLog.xml.aspx',
-			'corporation.memberTracking' => 'corp/MemberTracking.xml.aspx',
-			'corporation.outpostList' => 'corp/OutpostList.xml.aspx',
-			'corporation.outpostServiceDetail' => 'corp/OutpostServiceDetail.xml.aspx',
-			'corporation.shareholders' => 'corp/Shareholders.xml.aspx',
-			'corporation.standings' => 'corp/Standings.xml.aspx',
-			'corporation.starbaseList' => 'corp/StarbaseList.xml.aspx',
-			'corporation.starbaseDetail' => 'corp/StarbaseDetail.xml.aspx',
-			'corporation.walletJournal' => 'corp/WalletJournal.xml.aspx',
-			'corporation.walletTransactions' => 'corp/WalletTransactions.xml.aspx',
+					// Corporation API Endpoints
+					'corporation.accountBalance' => 'corp/AccountBalance.xml.aspx',
+					'corporation.assetList' => 'corp/AssetList.xml.aspx',
+					'corporation.contactList' => 'corp/ContactList.xml.aspx',
+					'corporation.contacinerLog' => 'corp/ContainerLog.xml.aspx',
+					'corporation.contracts' => 'corp/Contracts.xml.aspx',
+					'corporation.contractItems' => 'corp/ContractItems.xml.aspx',
+					'corporation.contractBids' => 'corp/ContractBids.xml.aspx ',
+					'corporation.corporationSheet' => 'corp/CorporationSheet.xml.aspx',
+					'corporation.factionWarStats' => 'corp/FacWarStats.xml.aspx',
+					'corporation.indutryJobs' => 'corp/IndustryJobs.xml.aspx',
+					'corporation.killLog' => 'corp/Killlog.xml.aspx',
+					'corporation.locations' => 'corp/Locations.xml.aspx',
+					'corporation.marketOrders' => 'corp/MarketOrders.xml.aspx',
+					'corporation.medals' => 'corp/Medals.xml.aspx',
+					'corporation.memberMedals' => 'corp/MemberMedals.xml.aspx',
+					'corporation.memberSecurity' => 'corp/MemberSecurity.xml.aspx',
+					'corporation.memberSecurityLog' => 'corp/MemberSecurityLog.xml.aspx',
+					'corporation.memberTracking' => 'corp/MemberTracking.xml.aspx',
+					'corporation.outpostList' => 'corp/OutpostList.xml.aspx',
+					'corporation.outpostServiceDetail' => 'corp/OutpostServiceDetail.xml.aspx',
+					'corporation.shareholders' => 'corp/Shareholders.xml.aspx',
+					'corporation.standings' => 'corp/Standings.xml.aspx',
+					'corporation.starbaseList' => 'corp/StarbaseList.xml.aspx',
+					'corporation.starbaseDetail' => 'corp/StarbaseDetail.xml.aspx',
+					'corporation.walletJournal' => 'corp/WalletJournal.xml.aspx',
+					'corporation.walletTransactions' => 'corp/WalletTransactions.xml.aspx',
 
-			// EVE API Endpoints
-			'eve.allianceList' => 'eve/AllianceList.xml.aspx',
-			'eve.certificateTree' => 'eve/CertificateTree.xml.aspx',
-			'eve.characterAffiliation' => 'eve/CharacterAffiliation.xml.aspx',
-			'eve.characterID' => 'eve/CharacterID.xml.aspx',
-			'eve.characterInfo' => 'eve/CharacterInfo.xml.aspx',
-			'eve.characterName' => 'eve/CharacterName.xml.aspx',
-			'eve.conquerableStationList' => 'eve/ConquerableStationList.xml.aspx',
-			'eve.errorList' => 'eve/ErrorList.xml.aspx',
-			'eve.factionWarfareStats' => 'eve/FacWarStats.xml.aspx',
-			'eve.factionWarfareTopHunderd' => 'eve/FacWarTopStats.xml.aspx',
-			'eve.owner' => 'eve/OwnerID.xml.aspx',
-			'eve.refTypes' => 'eve/RefTypes.xml.aspx', // Returns a list of transaction types used in the Corporation - WalletJournal & Character - WalletJournal. ( http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/eve/eve_reftypes.html )
-			'eve.skillTree' => 'eve/SkillTree.xml.aspx',
-			'eve.typeName' => 'eve/TypeName.xml.aspx', // Returns the names associated with a sequence of typeIDs. ( http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/eve/eve_typename.html )
+					// EVE API Endpoints
+					'eve.allianceList' => 'eve/AllianceList.xml.aspx',
+					'eve.certificateTree' => 'eve/CertificateTree.xml.aspx',
+					'eve.characterAffiliation' => 'eve/CharacterAffiliation.xml.aspx',
+					'eve.characterID' => 'eve/CharacterID.xml.aspx',
+					'eve.characterInfo' => 'eve/CharacterInfo.xml.aspx',
+					'eve.characterName' => 'eve/CharacterName.xml.aspx',
+					'eve.conquerableStationList' => 'eve/ConquerableStationList.xml.aspx',
+					'eve.errorList' => 'eve/ErrorList.xml.aspx',
+					'eve.factionWarfareStats' => 'eve/FacWarStats.xml.aspx',
+					'eve.factionWarfareTopHunderd' => 'eve/FacWarTopStats.xml.aspx',
+					'eve.owner' => 'eve/OwnerID.xml.aspx',
+					'eve.refTypes' => 'eve/RefTypes.xml.aspx', // Returns a list of transaction types used in the Corporation - WalletJournal & Character - WalletJournal. ( http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/eve/eve_reftypes.html )
+					'eve.skillTree' => 'eve/SkillTree.xml.aspx',
+					'eve.typeName' => 'eve/TypeName.xml.aspx', // Returns the names associated with a sequence of typeIDs. ( http://eveonline-third-party-documentation.readthedocs.io/en/latest/xmlapi/eve/eve_typename.html )
 
-			// Server API Endpoints
-			'server.status' => 'server/ServerStatus.xml.aspx'
-		);
+					// Server API Endpoints
+					'server.status' => 'server/ServerStatus.xml.aspx'
+				);
+				break;
+		} // END switch($apiType)
 
 		/**
 		 * Assigning Imagesever Endpoints

@@ -16,7 +16,7 @@ class ZkbKillboardHelper {
 	public $db = null;
 
 	public function __construct() {
-		$this->plugin = new EveOnline\Plugins\Killboard(false);
+		$this->plugin = new EveOnline\Plugins\Killboard;
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
