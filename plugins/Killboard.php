@@ -30,9 +30,11 @@ class Killboard {
 		/**
 		 * Check if options have to be updated
 		 */
-		$this->updateKillboardOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\eve_get_current_db_version(), $this->getDefaultPluginOptions());
+//		$this->updateKillboardOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\eve_get_current_db_version(), $this->getDefaultPluginOptions());
+		$this->updateKillboardOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\Helper\ThemeHelper::getThemeDbVersion(), $this->getDefaultPluginOptions());
 
-		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->getDefaultPluginOptions());
 
 		// backend actions

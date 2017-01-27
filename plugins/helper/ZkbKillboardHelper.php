@@ -20,7 +20,8 @@ class ZkbKillboardHelper {
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
-		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 	} // END public function __construct()
 
 	public function getKillList($count) {

@@ -19,7 +19,8 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 	private $eveApi = null;
 
 	public function __construct() {
-		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 	}
 
@@ -91,7 +92,8 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
 			// let's check if a page actually has content ...
 			$hasContent = true;
-			if($item->post_parent !== 0 && EveOnline\eve_post_has_content($item->object_id) === false) {
+//			if($item->post_parent !== 0 && EveOnline\eve_post_has_content($item->object_id) === false) {
+			if($item->post_parent !== 0 && EveOnline\Helper\PostHelper::hasContent($item->object_id) === false) {
 				$hasContent = false;
 				$class_names .= ' no-post-content';
 			} // END if($item->post_parent !== 0 && EveOnline\eve_post_has_content($item->object_id) === false)

@@ -20,7 +20,8 @@ class ThemeSettings {
 	public function __construct() {
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 		$this->metaSlider = new EveOnline\Plugins\Metaslider(false);
-		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 		// trigger the settings API
 		$this->fireSettingsApi();
@@ -28,7 +29,8 @@ class ThemeSettings {
 
 	private function fireSettingsApi() {
 		$this->settingsFilter = 'register_eve_online_theme_settings';
-		$this->settingsApi = new SettingsApi($this->settingsFilter, EveOnline\eve_get_options_default());
+//		$this->settingsApi = new SettingsApi($this->settingsFilter, EveOnline\eve_get_options_default());
+		$this->settingsApi = new SettingsApi($this->settingsFilter, EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->settingsApi->init();
 
 		\add_filter($this->settingsFilter, array($this, 'renderSettingsPage'));
@@ -148,7 +150,7 @@ class ThemeSettings {
 			),
 			'background_image' => array(
 				'type' => 'radio',
-				'choices' => EveOnline\eve_get_default_background_images(true),
+				'choices' => EveOnline\Helper\ThemeHelper::getDefaultBackgroundImages(true),
 				'empty' => \__('Please Select', 'eve-online'),
 				'title' => \__('Background Image', 'eve-online'),
 				'description' => \__('Select one of the default Background images ...', 'eve-online'),
@@ -196,10 +198,12 @@ class ThemeSettings {
 		return array(
 			'eve_theme_options_sane' => array(
 				'type' => 'custom',
-				'content' => '<pre>' . \print_r(EveOnline\eve_get_options_default(), true) . '</pre>',
+//				'content' => '<pre>' . \print_r(EveOnline\eve_get_options_default(), true) . '</pre>',
+				'content' => '<pre>' . \print_r(EveOnline\Helper\ThemeHelper::getThemeDefaultOptions(), true) . '</pre>',
 				'title' => \__('Options Array<br>(sane from functions.php)', 'eve-online'),
 				'callback' => null,
-				'description' => \__('This are the sane options defined in functions.php via <code>\WordPress\Themes\EveOnline\eve_get_options_default()</code>', 'eve-online')
+//				'description' => \__('This are the sane options defined in functions.php via <code>\WordPress\Themes\EveOnline\eve_get_options_default()</code>', 'eve-online')
+				'description' => \__('This are the sane options defined in functions.php via <code>\WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions()</code>', 'eve-online')
 			),
 			'eve_theme_options_from_db' => array(
 				'type' => 'custom',
@@ -210,10 +214,12 @@ class ThemeSettings {
 			),
 			'eve_theme_options_merged' => array(
 				'type' => 'custom',
-				'content' => '<pre>' . \print_r(\get_option('eve_theme_options', EveOnline\eve_get_options_default()), true) . '</pre>',
+//				'content' => '<pre>' . \print_r(\get_option('eve_theme_options', EveOnline\eve_get_options_default()), true) . '</pre>',
+				'content' => '<pre>' . \print_r(\get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions()), true) . '</pre>',
 				'title' => \__('Options Array<br>(merged / used for Theme)', 'eve-online'),
 				'callback' => null,
-				'description' => \__('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \WordPress\Themes\EveOnline\eve_get_options_default())</code>', 'eve-online')
+//				'description' => \__('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \WordPress\Themes\EveOnline\eve_get_options_default())</code>', 'eve-online')
+				'description' => \__('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions())</code>', 'eve-online')
 			)
 		);
 	} // END private function getDevelopmentTabFields()

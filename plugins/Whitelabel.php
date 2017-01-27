@@ -59,7 +59,7 @@ class Whitelabel {
 		/**
 		 * Getting theme settings
 		 */
-		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 		/**
 		 * Starting the helper classes
@@ -88,7 +88,7 @@ class Whitelabel {
 	} // END public function initFilters()
 
 	private function getBackgroundImage() {
-		return EveOnline\eve_get_theme_background_image();
+		return EveOnline\Helper\ThemeHelper::getThemeBackgroundImage();
 	} // END private function getBackgroundImage()
 
 	/**
@@ -97,7 +97,6 @@ class Whitelabel {
 	 * @return Ambigous <string, mixed>
 	 */
 	public function loginLogoTitle() {
-//		return __('Yulai Federation - NRDS Provibloc Alliance', $this->textdomain);
 		return \get_bloginfo('name') . ' - ' . \get_bloginfo('description');
 	} // END public function loginLogoTitle()
 
@@ -107,15 +106,15 @@ class Whitelabel {
 	 * @return Ambigous <string, mixed, boolean>
 	 */
 	public function loginLogoUrl() {
-		return get_bloginfo('wpurl');
+		return \get_bloginfo('wpurl');
 	} // END public function loginLogoUrl()
 
 	/**
 	 * Developer Info in Admin Footer
 	 */
 	public function modifyAdminFooter() {
-		echo sprintf('<span id="footer-thankyou">%1$s</span> %2$s',
-			__('Customized by:', $this->textdomain),
+		echo \sprintf('<span id="footer-thankyou">%1$s</span> %2$s',
+			\__('Customized by:', $this->textdomain),
 			' <a href="' . $this->developerWebsite . '" target="_blank">' . $this->developerName . '</a>'
 		);
 	} // END public function modifyAdminFooter()
@@ -126,15 +125,15 @@ class Whitelabel {
 	public function themeInfo() {
 		echo '<ul>
 		<li>
-			<strong>' . __('Theme:', $this->textdomain) . '</strong> ' . $this->themeName .
-			sprintf(__(' (%1$s | %2$s)', $this->textdomain),
+			<strong>' . \__('Theme:', $this->textdomain) . '</strong> ' . $this->themeName .
+			\sprintf(\__(' (%1$s | %2$s)', $this->textdomain),
 				'<a href="' . $this->themeGithubUri . '">Github</a>',
 				'<a href="' . $this->themeGithubIssueUri . '">Issue Tracker</a>'
 			) . '
 		</li>
-		<li><strong>' . __('Customized by:', $this->textdomain) . '</strong> ' . $this->developerName . '</li>
-		<li><strong>' . __('Website:', $this->textdomain) . '</strong> <a href="' . $this->developerWebsite . '">' . $this->developerWebsite . '</a></li>
-		<li><strong>' . __('Contact:',  $this->textdomain) . '</strong> <a href="mailto:' . $this->developerEmailAddress . '">' . $this->developerEmailAddress . '</a></li>
+		<li><strong>' . \__('Customized by:', $this->textdomain) . '</strong> ' . $this->developerName . '</li>
+		<li><strong>' . \__('Website:', $this->textdomain) . '</strong> <a href="' . $this->developerWebsite . '">' . $this->developerWebsite . '</a></li>
+		<li><strong>' . \__('Contact:',  $this->textdomain) . '</strong> <a href="mailto:' . $this->developerEmailAddress . '">' . $this->developerEmailAddress . '</a></li>
 		</ul>';
 	} // END public function themeInfo()
 
@@ -221,5 +220,3 @@ class Whitelabel {
 		return $logo;
 	} // END private function getLoginLogo()
 } // END class Whitelabel
-
-//new Whitelabel;

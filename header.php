@@ -18,9 +18,10 @@
 				<div class="container">
 					<div class="row">
 						<!-- Logo -->
-						<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_headerColClasses(); ?> brand clearfix">
+						<div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getHeaderColClasses(); ?> brand clearfix">
 							<?php
-							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
+//							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
+							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 							if(!empty($options['name'])) {
 								$eveApi = new \WordPress\Themes\EveOnline\Helper\EveApiHelper;
@@ -64,7 +65,8 @@
 
 						<!-- Header Widget from Theme options -->
 						<?php
-						if(\WordPress\Themes\EveOnline\eve_has_sidebar('header-widget-area')) {
+//						if(\WordPress\Themes\EveOnline\eve_has_sidebar('header-widget-area')) {
+						if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('header-widget-area')) {
 							?>
 							<div class="col-md-3 col-sm-12">
 								<div class="row">
@@ -149,7 +151,8 @@
 
 		<?php
 		if((\is_front_page()) && (\is_paged() == false)) {
-			if(\WordPress\Themes\EveOnline\eve_has_sidebar('home-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-4')) {
+//			if(\WordPress\Themes\EveOnline\eve_has_sidebar('home-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-4')) {
+			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-4')) {
 				?>
 				<!--
 				// Marketing Stuff
@@ -167,7 +170,7 @@
 					</div>
 				</div><!--/.row -->
 				<?php
-			} // END if(\EveOnline\eve_has_sidebar('home-left') || \EveOnline\eve_has_sidebar('home-middle') || \EveOnline\eve_has_sidebar('home-right'))
+			} // END if(\EveOnline\Helper\ThemeHelper::hasSidebar('home-left') || \EveOnline\Helper\ThemeHelper::hasSidebar('home-middle') || \EveOnline\Helper\ThemeHelper::hasSidebar('home-right'))
 		} // END if((\is_front_page()) && (\is_paged() == false))
 		?>
 

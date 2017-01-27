@@ -41,7 +41,8 @@ class KillboardWidget extends \WP_Widget {
 		$this->pluginHelper = new Plugins\Helper\EdkKillboardHelper;
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
-		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
 		$this->kbDB = $this->pluginHelper->db;
 

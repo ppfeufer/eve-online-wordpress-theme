@@ -129,7 +129,7 @@ class BootstrapVideoGallery {
 		$videoGalleryHtml .= '</div>';
 
 		if(empty($classes)) {
-			$classes = EveOnline\eve_get_loopContentClasses();
+			$classes = EveOnline\Helper\PostHelper::geLoopContentClasses();
 		} // END if(empty($classes))
 
 		$videoGalleryHtml .= '<script type="text/javascript">

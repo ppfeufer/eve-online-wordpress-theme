@@ -8,15 +8,13 @@ defined('ABSPATH') or die();
 	<div class="row">
 		<div class="col-md-12">
 			<?php
-			if(\function_exists('\WordPress\Themes\EveOnline\eve_breadcrumbs')) {
-				\WordPress\Themes\EveOnline\eve_breadcrumbs();
-			} // END if(\function_exists('\WordPress\Themes\EveOnline\eve_breadcrumbs'))
+			\WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbs();
 			?>
 		</div><!--/.col -->
 	</div><!--/.row -->
 
 	<div class="row main-content">
-		<div class="<?php echo \WordPress\Themes\EveOnline\eve_get_mainContentColClasses(); ?>">
+		<div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?>">
 			<div class="content content-archive">
 				<header class="page-title">
 					<h1>
@@ -77,7 +75,7 @@ defined('ABSPATH') or die();
 						echo '<script type="text/javascript">
 								jQuery(document).ready(function() {
 									jQuery("ul.bootstrap-post-loop-gallery-' . $uniqueID . '").bootstrapGallery({
-										"classes" : "' . \WordPress\Themes\EveOnline\eve_get_loopContentClasses() . '",
+										"classes" : "' . \WordPress\Themes\EveOnline\Helper\PostHelper::geLoopContentClasses() . '",
 										"hasModal" : false
 									});
 								});
@@ -88,28 +86,29 @@ defined('ABSPATH') or die();
 				if(\function_exists('wp_pagenavi')) {
 					\wp_pagenavi();
 				} else {
-					\WordPress\Themes\EveOnline\eve_content_nav('nav-below');
+//					\WordPress\Themes\EveOnline\eve_content_nav('nav-below');
+					\WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
 				} // END if(\function_exists('wp_pagenavi'))
 				?>
 			</div> <!-- /.content -->
 		</div> <!-- /.col -->
 
 		<?php
-		if(\WordPress\Themes\EveOnline\eve_has_sidebar('sidebar-page')) {
+		if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
 			?>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
-				<?php \get_sidebar('page'); ?>
-			</div><!--/.col -->
 			<?php
-		} // END if(\WordPress\Themes\EveOnline\eve_has_sidebar('sidebar-page'))
+			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
+				\get_sidebar('page');
+			} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
 
-		if(\WordPress\Themes\EveOnline\eve_has_sidebar('sidebar-general')) {
+			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+				\get_sidebar('general');
+			} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
 			?>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
-				<?php \get_sidebar('general'); ?>
 			</div><!--/.col -->
 			<?php
-		} // END if(\WordPress\Themes\EveOnline\eve_has_sidebar('sidebar-general'))
+		} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
 		?>
 	</div> <!--/.row -->
 </div><!-- container -->

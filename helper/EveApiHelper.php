@@ -141,7 +141,8 @@ class EveApiHelper {
 			'32' => 'alliance'
 		);
 
-		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+//		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
+		$this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 	} // END public function __construct()
 
 	public function getImageServerUrl() {

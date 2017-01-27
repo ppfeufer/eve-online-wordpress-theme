@@ -1,7 +1,8 @@
 <?php
 defined('ABSPATH') or die();
 
-$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
+//$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
+$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 ?>
 		</main>
 		<footer>
@@ -10,9 +11,10 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_
 					<!--<div class="footer-divider"></div>-->
 					<div class="container">
 						<?php
-						if(\WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-4')) {
+//						if(\WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-4')) {
+						if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-4')) {
 							\get_sidebar('footer');
-						} // END if(\WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('footer-column-4'))
+						} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-4'))
 						?>
 					</div>
 				</div>

@@ -12,9 +12,7 @@ defined('ABSPATH') or die();
 	<div class="row">
 		<div class="col-md-12">
 			<?php
-			if(\function_exists('\WordPress\Themes\EveOnline\eve_breadcrumbs')) {
-				\WordPress\Themes\EveOnline\eve_breadcrumbs();
-			} // END if(\function_exists('\EveOnline\eve_breadcrumbs'))
+			\WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbs();
 			?>
 		</div><!--/.col -->
 	</div><!--/.row -->

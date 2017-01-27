@@ -10,8 +10,10 @@
 		<aside class="entry-details">
 			<p class="meta">
 				<?php
-				echo \WordPress\Themes\EveOnline\eve_posted_on();
-				\WordPress\Themes\EveOnline\eve_cats_tags();
+//				echo \WordPress\Themes\EveOnline\eve_posted_on();
+				echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
+//				\WordPress\Themes\EveOnline\eve_cats_tags();
+				\WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
 				\edit_post_link(__('Edit', 'eve-online'));
 				?>
 			</p>
