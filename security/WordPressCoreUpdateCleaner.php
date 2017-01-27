@@ -15,22 +15,11 @@ class WordPressCoreUpdateCleaner {
 	 * @since 1.0
 	 */
 	function __construct() {
-//		\add_action('admin_init', array($this, 'init'));
 		\add_action('_core_updated_successfully', array($this, 'updateCleaner'), 0, 1);
 		\add_action('core_upgrade_preamble', array($this, 'updateCleaner'));
 		\add_action('upgrader_pre_install', array($this, 'updateCleaner'));
 		\add_action('upgrader_post_install', array($this, 'updateCleaner'));
 	} // END function __construct()
-
-	/**
-	 * Sets up plugin translations.
-	 *
-	 * @since 1.0
-	 */
-	function init() {
-		// Load plugin translations
-//		load_plugin_textdomain('wp-core-update-cleaner', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-	} // END function init()
 
 	/**
 	 * Performs the update cleaning.
@@ -96,7 +85,3 @@ class WordPressCoreUpdateCleaner {
 		exit();
 	} // END function updateCleaner($new_version)
 } // END class WordPressCoreUpdateCleaner
-
-//if(\is_admin()) {
-//	new WordPressCoreUpdateCleaner;
-//} // END if(\is_admin())

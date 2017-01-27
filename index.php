@@ -31,7 +31,9 @@ defined('ABSPATH') or die();
 						if(\get_post_type() === 'post') {
 							echo '<li>';
 						}
+
 						\get_template_part('content', \get_post_format());
+
 						if(\get_post_type() === 'post') {
 							echo '</li>';
 						}
@@ -57,7 +59,6 @@ defined('ABSPATH') or die();
 				if(\function_exists('\wp_pagenavi')) {
 					\wp_pagenavi();
 				} else {
-//					\WordPress\Themes\EveOnline\eve_content_nav('nav-below');
 					\WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
 				} // END if(\function_exists('wp_pagenavi'))
 				?>
@@ -68,15 +69,15 @@ defined('ABSPATH') or die();
 		if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
 			?>
 			<div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
-			<?php
-			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
-				\get_sidebar('page');
-			} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+				<?php
+				if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
+					\get_sidebar('page');
+				} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
 
-			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-				\get_sidebar('general');
-			} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
-			?>
+				if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+					\get_sidebar('general');
+				} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+				?>
 			</div><!--/.col -->
 			<?php
 		} // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))

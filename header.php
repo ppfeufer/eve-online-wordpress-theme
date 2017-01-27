@@ -20,7 +20,6 @@
 						<!-- Logo -->
 						<div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getHeaderColClasses(); ?> brand clearfix">
 							<?php
-//							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\eve_get_options_default());
 							$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 							if(!empty($options['name'])) {
@@ -65,7 +64,6 @@
 
 						<!-- Header Widget from Theme options -->
 						<?php
-//						if(\WordPress\Themes\EveOnline\eve_has_sidebar('header-widget-area')) {
 						if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('header-widget-area')) {
 							?>
 							<div class="col-md-3 col-sm-12">
@@ -151,14 +149,10 @@
 
 		<?php
 		if((\is_front_page()) && (\is_paged() == false)) {
-//			if(\WordPress\Themes\EveOnline\eve_has_sidebar('home-column-1') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-2') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-3') || \WordPress\Themes\EveOnline\eve_has_sidebar('home-column-4')) {
 			if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('home-column-4')) {
 				?>
 				<!--
-				// Marketing Stuff
-				-->
-				<!--
-				// Home Widgets
+				// Marketing Stuff / Home Widgets
 				-->
 				<div class="home-widget-area">
 					<div class="home-widget-wrapper">

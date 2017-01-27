@@ -540,7 +540,7 @@ class SettingsApi {
 			if(!empty($this->args['size'])) {
 				$count = $this->args['size'];
 			} else {
-				$count = count($items);
+				$count = \count($items);
 				$count = (!empty($this->args['empty']) ) ? $count + 1 : $count;
 			} // END if(!empty($this->args['size']))
 
@@ -561,7 +561,6 @@ class SettingsApi {
 		$this->options = $options;
 
 		$screen = \get_current_screen();
-//		$callback_base = \admin_url() . $screen->parent_file;
 
 		$option_name = \sanitize_title($args['option_name']);
 		$out = '';
@@ -746,8 +745,6 @@ class SettingsApi {
 	 * Final output on the settings page
 	 */
 	public function renderOptions() {
-//		global $wp_settings_sections;
-
 		$page = \filter_input(\INPUT_GET, 'page');
 		$settings = $this->settingsArray[$page];
 		$message = \get_option('rsa-message');
@@ -807,8 +804,6 @@ class SettingsApi {
 
 						$i++;
 					} // END foreach($settings['tabs'] as $settings_id => $section)
-
-//					$complete_url = \wp_nonce_url(\admin_url('options-general.php?page=' . $page . '&callback=rsa_delete_settings'));
 
 					\submit_button();
 					?>
@@ -898,7 +893,6 @@ class SettingsApi {
 					foreach($page['tabs'] as $tab) {
 						foreach($tab['fields'] as $field_key => $field) {
 							if($field['type'] == 'datepicker') {
-//								$date_format = (!empty($field['format']) ) ? $field['format'] : 'yy-mm-dd';
 								$date_format = (!empty($field['format']) ) ? $field['format'] : \get_option('date_format');
 								?>
 								$('[data-id="<?php echo $field_key; ?>"]').datepicker({
@@ -916,9 +910,3 @@ class SettingsApi {
 		} // END if($this->isSettingsPage() === true)
 	} // END public function adminScripts()
 } // END class SettingsApi
-
-/**
- * We fire the API class from within the settings itself ...
- */
-//$settingsApi = new SettingsApi();
-//$settingsApi->init();

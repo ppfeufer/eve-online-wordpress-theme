@@ -162,5 +162,3 @@ class Corppage {
 		\update_post_meta($postID, 'eve_page_corp_eve_ID', \esc_html($corpID));
 	} // END public function savePageSettings($postID)
 } // END class Corppage
-
-//new Corppage;

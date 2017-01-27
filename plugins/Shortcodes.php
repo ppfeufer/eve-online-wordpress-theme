@@ -92,5 +92,3 @@ class Shortcodes {
 		return $content;
 	}
 }
-
-//new Shortcodes;

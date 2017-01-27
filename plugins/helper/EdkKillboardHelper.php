@@ -21,7 +21,6 @@ class EdkKillboardHelper {
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
-//		$this->themeSettings = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 		$this->db = $this->initiateKillboardDatabase();
@@ -53,8 +52,6 @@ class EdkKillboardHelper {
 	} // END public function getKillboardUri()
 
 	public function getKillList($count) {
-//		$entityData = $this->getEntityData();
-
 		$query = 'SELECT kll.kll_id,
 						kll.kll_isk_loss AS isk_loss,
 						kll.kll_ship_id AS shp_id,
@@ -91,22 +88,6 @@ class EdkKillboardHelper {
 
 		return $resultLastKills;
 	} // END public function getKillList($count)
-
-//	private function getEntityData() {
-//		if(empty($this->themeSettings['type']) || empty($this->themeSettings['name'])) {
-//			return false;
-//		} // END if(empty($this->themeSettings['type']) || empty($this->themeSettings['name']))
-//
-//		$dbTable = ($this->themeSettings['type'] === 'alliance') ? '' : '';
-//
-//		$result = $this->db->get_var('SELECT cfg_value FROM ' . $dbTable . ' WHERE cfg_key = \'' . $this->themeSettings['name'] . '\';');
-//
-//		if($result) {
-//			return $result;
-//		}
-//
-//		return false;
-//	} // END private function getEntityData()
 
 	private function getVictimImage($victimName, $shipID, $size = 512) {
 		if(\preg_match('/Control Tower/', $victimName)) {

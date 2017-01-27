@@ -286,6 +286,3 @@ class BootstrapVideoGallery {
 		return $videoPages;
 	} // END private function getVideoPagesFromChildren($children)
 } // END class BootstrapVideoGallery
-
-// Start the show ...
-//new BootstrapVideoGallery;

@@ -32,7 +32,6 @@ class EncodeEmailAddresses {
 		} // END if(\apply_filters('eve-encode-email-address_at-sign-check', true ) && \strpos($content, '@') === false)
 
 		// override encoding function with the 'eve-encode-email-address_metod' filter
-//		$method = \apply_filters('eve-encode-email-address_metod', array($this, 'encodeMailString'));
 		$method = \apply_filters('eve-encode-email-address_metod', array('WordPress\Themes\EveOnline\Helper\StringHelper', 'encodeMailString'));
 
 		// override regex pattern with the 'eve-encode-email-address_regexp' filter
@@ -58,12 +57,9 @@ class EncodeEmailAddresses {
 			$regexp,
 			\create_function(
 				'$matches',
-//				'return ' . __CLASS__ . '::' . $method[1] . '($matches[0]);'
 				'return ' . $method[0] . '::' . $method[1] . '($matches[0]);'
 			),
 			$content
 		);
 	} // END public function encodeMails($content)
 } // END class Ti_Encode_Email_Addresses
-
-//new EncodeEmailAddresses;

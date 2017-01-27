@@ -142,7 +142,6 @@ class Metaslider {
 			 * No slider set, check for our default slider
 			 */
 			if(empty($page_slider)) {
-//				$themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 				$themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 				if(!empty($themeOptions['default_slider'])) {
@@ -198,5 +197,3 @@ class Metaslider {
 		return false;
 	} // END function eve_render_slider()
 } // END class Metaslider
-
-//new Metaslider(true);

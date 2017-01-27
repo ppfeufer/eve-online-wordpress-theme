@@ -19,7 +19,6 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 
 		var send_attachment_bkp = wp.media.editor.send.attachment;
-//		var data_id = $(this).attr('id');
 		var data_id = $(this).data('field-id');
 
 		wp.media.editor.send.attachment = function(props, attachment) {
@@ -56,8 +55,6 @@ jQuery(document).ready(function($) {
 		$(current + ' .image img').css('display', 'none');
 		$(current + ' .remove').hide();
 		$(current + ' .upload').show();
-
-//		console.log(data_id);
 	});
 
 	// Add color picker to fields

@@ -19,10 +19,9 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 	private $eveApi = null;
 
 	public function __construct() {
-//		$this->themeOptions = \get_option('eve_theme_options', EveOnline\eve_get_options_default());
 		$this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
-	}
+	} // END public function __construct()
 
 	/**
 	 * @see Walker::start_lvl()
@@ -92,7 +91,6 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
 			// let's check if a page actually has content ...
 			$hasContent = true;
-//			if($item->post_parent !== 0 && EveOnline\eve_post_has_content($item->object_id) === false) {
 			if($item->post_parent !== 0 && EveOnline\Helper\PostHelper::hasContent($item->object_id) === false) {
 				$hasContent = false;
 				$class_names .= ' no-post-content';
@@ -112,7 +110,6 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
 			// If item has_children add atts to a.
 			if($args->has_children && $depth === 0) {
-//				$atts['href'] = '#';
 				$atts['href'] = !empty($item->url) ? $item->url : '';
 				$atts['data-toggle'] = 'dropdown';
 				$atts['class'] = 'dropdown-toggle';
@@ -232,7 +229,6 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 	 */
 	public static function fallback($args) {
 		if(\current_user_can('manage_options')) {
-
 			\extract($args);
 
 			$fb_output = null;

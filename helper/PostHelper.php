@@ -2,8 +2,6 @@
 
 namespace WordPress\Themes\EveOnline\Helper;
 
-//use WordPress\Themes\EveOnline;
-
 \defined('ABSPATH') or die();
 
 class PostHelper {

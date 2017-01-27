@@ -3,16 +3,12 @@
 <article id="post-<?php the_ID(); ?>" <?php \post_class('clearfix content-single'); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title">
-		  <!--<a href="<?php \the_permalink(); ?>" title="<?php \printf(\esc_attr__('Permalink to %s', 'eve-online'), \the_title_attribute('echo=0')); ?>" rel="bookmark">-->
 			<?php \the_title(); ?>
-		  <!--</a>-->
 		</h1>
 		<aside class="entry-details">
 			<p class="meta">
 				<?php
-//				echo \WordPress\Themes\EveOnline\eve_posted_on();
 				echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
-//				\WordPress\Themes\EveOnline\eve_cats_tags();
 				\WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
 				\edit_post_link(__('Edit', 'eve-online'));
 				?>

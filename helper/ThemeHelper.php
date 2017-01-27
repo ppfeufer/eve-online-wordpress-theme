@@ -127,30 +127,6 @@ class ThemeHelper {
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'in_footer' => true
 			),
-			/* Sonar for Lazy Loading */
-//			'Sonar for Lazy Loading' => array(
-//				'handle' => 'jquery-sonar',
-//				'source' => \get_template_directory_uri() . '/plugins/js/jquery.sonar.min.js',
-//				'source-development' => \get_template_directory_uri() . '/plugins/js/jquery.sonar.js',
-//				'deps' => array(
-//					'jquery',
-//					'bootstrap-js'
-//				),
-//				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-//				'in_footer' => true
-//			),
-			/* Lazy Loading */
-//			'Lazy Loading' => array(
-//				'handle' => 'lazy-load-js',
-//				'source' => \get_template_directory_uri() . '/plugins/js/jquery.lazy-load.min.js',
-//				'source-development' => \get_template_directory_uri() . '/plugins/js/jquery.lazy-load.js',
-//				'deps' => array(
-//					'jquery',
-//					'jquery-sonar'
-//				),
-//				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-//				'in_footer' => true
-//			),
 			/* The main JS */
 			'EVE Online' => array(
 				'handle' => 'eve-online-main-js',
@@ -192,34 +168,6 @@ class ThemeHelper {
 				'version' => '3.3.7',
 				'media' => 'all'
 			),
-//			'Bootstrap Theme' => array(
-//				'handle' => 'bootstrap-theme',
-//				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap-theme.min.css',
-//				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap-theme.css',
-//				'deps' => array(
-//					'bootstrap'
-//				),
-//				'version' => '3.3.6',
-//				'media' => 'all'
-//			),
-			/* Genericons (Taken from Twenty Thirteen Theme) */
-//			'Genericons' => array(
-//				'handle' => 'genericons',
-//				'source' => \get_template_directory_uri() . '/genericons/genericons.min.css',
-//				'source-development' => \get_template_directory_uri() . '/genericons/genericons.css',
-//				'deps' => array(),
-//				'version' => \sanitize_title(eve_get_theme_data('Name')) . '-' . eve_get_theme_data('Version'),
-//				'media' => 'all'
-//			),
-			/* Font Awesome */
-//			'Font Awesome' => array(
-//				'handle' => 'font-awesome',
-//				'source' => \get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css',
-//				'source-development' => \get_template_directory_uri() . '/font-awesome/css/font-awesome.css',
-//				'deps' => array(),
-//				'version' => '4.6.3',
-//				'media' => 'all'
-//			),
 			/* Google Font */
 			'Google Font' => array(
 				'handle' => 'google-font',

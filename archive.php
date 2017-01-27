@@ -27,6 +27,7 @@ defined('ABSPATH') or die();
 							\printf(\__('Yearly Archives: %s', 'eve-online'), '<span>' . \get_the_date(_x('Y', 'yearly archives date format', 'eve-online')) . '</span>');
 						} elseif(is_tag()) {
 							\printf(\__('Tag Archives: %s', 'eve-online'), '<span>' . \single_tag_title('', false) . '</span>');
+
 							// Show an optional tag description
 							$tag_description = \tag_description();
 							if($tag_description) {
@@ -62,7 +63,9 @@ defined('ABSPATH') or die();
 						if(\get_post_type() === 'post') {
 							echo '<li>';
 						}
+
 						\get_template_part('content', \get_post_format());
+
 						if(\get_post_type() === 'post') {
 							echo '</li>';
 						}
@@ -86,7 +89,6 @@ defined('ABSPATH') or die();
 				if(\function_exists('wp_pagenavi')) {
 					\wp_pagenavi();
 				} else {
-//					\WordPress\Themes\EveOnline\eve_content_nav('nav-below');
 					\WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
 				} // END if(\function_exists('wp_pagenavi'))
 				?>

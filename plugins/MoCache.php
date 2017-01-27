@@ -88,5 +88,3 @@ class MoCache {
 		return;
 	} // END public function store()
 } // END class MoCache
-
-//new MoCache;
