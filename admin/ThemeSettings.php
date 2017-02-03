@@ -66,6 +66,15 @@ class ThemeSettings {
 					'tab_title' => \__('Slider Settings', 'eve-online'),
 					'tab_description' => \__('Slider Settings', 'eve-online'),
 					'fields' => $this->getSliderTabFields()
+				),
+
+				/**
+				 * performance settings tab
+				 */
+				'performance-settings' => array(
+					'tab_title' => \__('Performance Settings', 'eve-online'),
+					'tab_description' => \__('Performance Settings', 'eve-online'),
+					'fields' => $this->getPerformanceTabFields()
 				)
 			)
 		);
@@ -188,6 +197,19 @@ class ThemeSettings {
 					'frontpage_only' => \__('Show only on front page.', 'eve-online')
 				),
 				'description' => \__('Show this slider only on front page in case no other slider is defined.', 'eve-online')
+			),
+		);
+	} // END private function getSliderTabFields()
+
+	private function getPerformanceTabFields() {
+		return array(
+			'minifyHtmlOutput' => array(
+				'type' => 'checkbox',
+				'title' => \__('HTML Output', 'eve-online'),
+				'choices' => array(
+					'yes' => \__('Minify HTML output?', 'eve-online')
+				),
+				'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
 			),
 		);
 	} // END private function getSliderTabFields()

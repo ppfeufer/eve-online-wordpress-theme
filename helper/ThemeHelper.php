@@ -11,7 +11,7 @@ class ThemeHelper {
 	 * @return string
 	 */
 	public static function getThemeDbVersion() {
-		return '20170104';
+		return '20170203';
 	} // END public static function getThemeDbVersion()
 
 	/**
@@ -46,6 +46,11 @@ class ThemeHelper {
 			'default_slider' => '',
 			'default_slider_on' => array(
 				'frontpage_only' => 'frontpage_only'
+			),
+
+			// performance tab
+			'minifyHtmlOutput' => array(
+				'yes' => ''
 			),
 
 			// footer settings tab
@@ -168,6 +173,17 @@ class ThemeHelper {
 				'version' => '3.3.7',
 				'media' => 'all'
 			),
+			/* Bootstrap Additional CSS */
+			'Bootstrap Additional CSS' => array(
+				'handle' => 'bootstrap-additional',
+				'source' => \get_template_directory_uri() . '/css/bootstrap-additional.min.css',
+				'source-development' => \get_template_directory_uri() . '/css/bootstrap-additional.css',
+				'deps' => array(
+					'bootstrap'
+				),
+				'version' => '3.3.7',
+				'media' => 'all'
+			),
 			/* Google Font */
 			'Google Font' => array(
 				'handle' => 'google-font',
@@ -188,11 +204,22 @@ class ThemeHelper {
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
 			),
+			/* Theme Responsive CSS */
+			'EVE Online Responsive Styles' => array(
+				'handle' => 'eve-online-responsive-styles',
+				'source' => \get_template_directory_uri() . '/css/responsive.min.css',
+				'source-development' => \get_template_directory_uri() . '/css/responsive.css',
+				'deps' => array(
+					'eve-online'
+				),
+				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+				'media' => 'all'
+			),
 			/* Adjustment to Plugins */
 			'EVE Online Plugin Styles' => array(
 				'handle' => 'eve-online-plugin-styles',
-				'source' => \get_template_directory_uri() . '/plugin-tweaks.min.css',
-				'source-development' => \get_template_directory_uri() . '/plugin-tweaks.css',
+				'source' => \get_template_directory_uri() . '/css/plugin-tweaks.min.css',
+				'source-development' => \get_template_directory_uri() . '/css/plugin-tweaks.css',
 				'deps' => array(
 					'eve-online'
 				),
