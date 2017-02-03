@@ -42,6 +42,7 @@ require_once(\get_template_directory() . '/plugins/helper/EdkKillboardHelper.php
 require_once(\get_template_directory() . '/plugins/helper/ZkbKillboardHelper.php');
 require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
 require_once(\get_template_directory() . '/plugins/Killboard.php');
+require_once(\get_template_directory() . '/plugins/HtmlMinify.php');
 
 /**
  * Loading Security Classes
