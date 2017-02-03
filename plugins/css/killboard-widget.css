@@ -1,15 +1,17 @@
-.eve-killboard-widget ul {
-	list-style-type: none;
-	padding-left: 0 !important;
-}
+@media all {
+	.eve-killboard-widget ul {
+		list-style-type: none;
+		padding-left: 0 !important;
+	}
 
-.eve-killboard-widget .killboard-entry {
-	margin-bottom: 16px;
-	margin-bottom: 1rem;
-}
+	.eve-killboard-widget .killboard-entry {
+		margin-bottom: 16px;
+		margin-bottom: 1rem;
+	}
 
-.eve-killboard-widget .killboard-entry:last-child {
-	margin-bottom: 0;
+	.eve-killboard-widget .killboard-entry:last-child {
+		margin-bottom: 0;
+	}
 }
 
 @media all and (min-width: 1200px) {
