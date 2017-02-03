@@ -30,7 +30,7 @@ class Killboard {
 		/**
 		 * Check if options have to be updated
 		 */
-		$this->updateKillboardOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\Helper\ThemeHelper::getThemeDbVersion(), $this->getDefaultPluginOptions());
+		EveOnline\Helper\ThemeHelper::updateOptions('eve_theme_killboard_plugin_options', 'eve_theme_killboard_plugin_db_version', EveOnline\Helper\ThemeHelper::getThemeDbVersion(), $this->getDefaultPluginOptions());
 
 		$this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->getDefaultPluginOptions());
@@ -48,35 +48,6 @@ class Killboard {
 		// common actions
 		$this->initWidget();
 	} // END private function initPlugin()
-
-	/**
-	 * Update the options array for our theme, if needed
-	 *
-	 * @param string $optionsName
-	 * @param string $dbVersionFieldName
-	 * @param string $newDbVersion
-	 * @param array $defaultOptions
-	 */
-	private function updateKillboardOptions($optionsName, $dbVersionFieldName, $newDbVersion, $defaultOptions) {
-		$currentDbVersion = \get_option($dbVersionFieldName);
-
-		// Check if the DB needs to be updated
-		if($currentDbVersion !== $newDbVersion) {
-			$currentOptions = \get_option($optionsName);
-
-			if(\is_array($currentOptions)) {
-				$newOptions = \array_merge($defaultOptions, $currentOptions);
-			} else {
-				$newOptions = $defaultOptions;
-			} // END if(\is_array($currentOptions))
-
-			// Update the options
-			\update_option($optionsName, $newOptions);
-
-			// Update the DB Version
-			\update_option($dbVersionFieldName, $newDbVersion);
-		} // END if($currentDbVersion !== $newDbVersion)
-	} // END function yf_update_options($dbVersionName, $optionsName, $newDbVersion, $defaultOptions)
 
 	public function initWidget() {
 		\add_action('widgets_init', \create_function('', 'return register_widget("WordPress\Themes\EveOnline\Plugins\Widgets\KillboardWidget");'));
@@ -279,7 +250,7 @@ class Killboard {
 	 *
 	 * @return array
 	 */
-	public function getStructureNames() {
+	public static function getStructureNames() {
 		return array(
 			// Citadels
 			'Astrahus',
