@@ -1,125 +1,14 @@
-/*!
- * Styles for Plugins
- * Used by EVE Online WordPress Theme
- */
-
-/* WP-Pagenavi
------------------------------------------------------------------------------ */
-.wp-pagenavi {
-	margin-bottom: 25px;
-	margin-bottom: 1.5625rem;
-	text-align: center;
-}
-
-/* fix for for siteorigin pagebuilder video widget
------------------------------------------------------------------------------ */
-.sow-video-wrapper {
-	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
-}
-
-.sow-video-wrapper > iframe {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	max-width: 100%;
-}
-
-/* fix for oEmbed videos
------------------------------------------------------------------------------ */
-.embed-video-container {
-	position: relative;
-	padding-bottom: 56.25%;
-	overflow: hidden;
-	max-width: 100%;
-	height: auto;
-	margin: 0 0 24px;
-	margin: 0 0 1.5rem;
-}
-
-.bootstrap-video-gallery .embed-video-container {
-	margin: 0;
-}
-
-.embed-video-container iframe,
-.embed-video-container object,
-.embed-video-container embed {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-
-/* flex-slider
------------------------------------------------------------------------------ */
-.meta-slider {
-	margin-bottom: 32px;
-	margin-bottom: 2rem;
-	margin-left: -16px;
-	margin-left: -1rem;
-	margin-right: -16px;
-	margin-right: -1rem;
-}
-
-.flex-direction-nav .flex-prev {
-	left: 0 !important;
-}
-.flex-direction-nav .flex-next {
-	right: 0 !important;
-}
-
-.metaslider .caption-wrap {
-	top: 0;
-	bottom: initial !important;
-	opacity: 0.5 !important;
-	color: rgb(200, 200, 200);
-}
-
-.metaslider .caption {
-	padding: 10px 10px !important;
-	padding: 0.625rem 0.625rem !important;
-}
-
-.flex-control-nav {
-	bottom: 10px !important;
-	bottom: 0.625rem !important;
-	z-index: 99 !important;
-}
-
-.flex-control-paging li a {
-	background: rgba(255, 255, 255, 0.5) !important;
-	box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3) !important;
-}
-
-.flex-control-paging li a.flex-active {
-	background: rgba(255, 255, 255, 0.9) !important;
-}
-
-.metaslider .flexslider {
-	margin: 0 !important;
-}
-
-/* shortcode [divider] (theme own shortcode)
------------------------------------------------------------------------------ */
-.divider {
-	margin-bottom: 25px;
-	margin-bottom: 1.5625rem;
-	padding-top: 25px;
-	padding-top: 1.5625rem;
-	clear: both;
-	display: block;
-	margin-bottom: 15px;
-	margin-bottom: 0.9375rem;
-	padding-top: 15px;
-	padding-top: 0.9375rem;
-	width: 100%;
-}
+/*
+    Created on : 03.02.2017, 09:20:21
+    Author     : p.pfeufer
+*/
 
 /* bootstrap col-xxs and col-xxxs support
 ----------------------------------------------------------------------------- */
+.visible-xl-block, .visible-xl-inline, .visible-xl-inline-block, .visible-xl {
+	display: none !important;
+}
+
 .col-xxs-1, .col-xxs-10, .col-xxs-11, .col-xxs-12, .col-xxs-2, .col-xxs-3,
 .col-xxs-4, .col-xxs-5, .col-xxs-6, .col-xxs-7, .col-xxs-8, .col-xxs-9,
 .col-xxxs-1, .col-xxxs-10, .col-xxxs-11, .col-xxxs-12, .col-xxxs-2, .col-xxxs-3,
@@ -551,115 +440,250 @@
 	}
 }
 
-/* bootstrap corplist
------------------------------------------------------------------------------ */
-.bootstrap-corporationlist {
-	list-style-type: none;
-	padding-left: 0;
-}
+@media (min-width: 1600px) {
+	.container {
+		width: 1570px;
+		width: 98.125rem;
+	}
 
-.bootstrap-corporationlist img {
-	margin: 0px auto;
-	display: block !important;
-}
+	.col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7,
+	.col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
+		float: left;
+	}
 
-/* bootstrap gallery
------------------------------------------------------------------------------ */
-.bootstrap-gallery {
-	list-style-type: none;
-	padding-left: 0;
-}
+	.col-xl-12 {
+		width: 100%;
+	}
 
-.bootstrap-gallery br {
-	display: none;
-}
+	.col-xl-11 {
+		width: 91.66666667%;
+	}
 
-.bootstrap-gallery li {
-	margin-bottom: 16px;
-	margin-bottom: 1rem;
-}
+	.col-xl-10 {
+		width: 83.33333333%;
+	}
 
-.bootstrap-gallery-modal .bootstrap-gallery-image {
-	cursor: pointer;
-}
+	.col-xl-9 {
+		width: 75%;
+	}
 
-.bootstrap-gallery figure {
-	position: relative;
-}
+	.col-xl-8 {
+		width: 66.66666667%;
+	}
 
-.bootstrap-gallery figcaption {
-	position: absolute;
-	bottom: 0px;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: rgb(200, 200, 200);
-	display: block;
-	width: 100%;
-	padding: 0.3rem;
-	text-align: left;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap
-}
+	.col-xl-7 {
+		width: 58.33333333%;
+	}
 
-.modal.container {
-	background: none;
-}
+	.col-xl-6 {
+		width: 50%;
+	}
 
-.modal-bootstrap-photo-gallery {
-	text-align: center;
-}
+	.col-xl-5 {
+		width: 41.66666667%;
+	}
 
-.modal-bootstrap-photo-gallery .modal-dialog {
-	position: initial;
-	width: auto;
-	margin: 0 auto;
-	margin-top: 2rem;
-	display: inline-block;
-}
+	.col-xl-4 {
+		width: 33.33333333%;
+	}
 
-.modal-bootstrap-photo-gallery .modal-close-icon {
-	cursor: pointer;
-	position: absolute;
-	right: -14px;
-	right: -0.875rem;
-	top: -11px;
-	top: -0.6875rem;
-	font-size: 30px;
-	font-size: 1.875rem;
-	color:#fff;
-	text-shadow: 1px 1px 18px rgb(0,0,0);
-	text-shadow: 0.0625rem 0.0625rem 1.125rem rgb(0,0,0);
-}
+	.col-xl-3 {
+		width: 25%;
+	}
 
-.modal-bootstrap-photo-gallery figure {
-	position: relative;
-}
+	.col-xl-2 {
+		width: 16.66666667%;
+	}
 
-.modal-bootstrap-photo-gallery figure img {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	max-height: calc(100vh - 150px);
-}
+	.col-xl-1 {
+		width: 8.33333333%;
+	}
 
-.modal-bootstrap-photo-gallery figcaption  {
-	position: absolute;
-	bottom: 0px;
-	background-color: rgba(255, 255, 255, 0.75);
-	display: block;
-	width: 100%;
-	padding: 16px;
-	padding: 1rem;
-	text-align: left;
-}
+	.col-xl-pull-12 {
+		right: 100%;
+	}
 
-.modal-bootstrap-photo-gallery .open-modal-image {
-	position: absolute;
-	right: 8px;
-	bottom: 8px;
-}
+	.col-xl-pull-11 {
+		right: 91.66666667%;
+	}
 
-.modal-bootstrap-photo-gallery .modal-navigation {
-	margin-top: 8px;
-	margin-top: 0.5rem;
+	.col-xl-pull-10 {
+		right: 83.33333333%;
+	}
+
+	.col-xl-pull-9 {
+		right: 75%;
+	}
+
+	.col-xl-pull-8 {
+		right: 66.66666667%;
+	}
+
+	.col-xl-pull-7 {
+		right: 58.33333333%;
+	}
+
+	.col-xl-pull-6 {
+		right: 50%;
+	}
+
+	.col-xl-pull-5 {
+		right: 41.66666667%;
+	}
+
+	.col-xl-pull-4 {
+		right: 33.33333333%;
+	}
+
+	.col-xl-pull-3 {
+		right: 25%;
+	}
+
+	.col-xl-pull-2 {
+		right: 16.66666667%;
+	}
+
+	.col-xl-pull-1 {
+		right: 8.33333333%;
+	}
+
+	.col-xl-pull-0 {
+		right: auto;
+	}
+
+	.col-xl-push-12 {
+		left: 100%;
+	}
+
+	.col-xl-push-11 {
+		left: 91.66666667%;
+	}
+
+	.col-xl-push-10 {
+		left: 83.33333333%;
+	}
+
+	.col-xl-push-9 {
+		left: 75%;
+	}
+
+	.col-xl-push-8 {
+		left: 66.66666667%;
+	}
+
+	.col-xl-push-7 {
+		left: 58.33333333%;
+	}
+
+	.col-xl-push-6 {
+		left: 50%;
+	}
+
+	.col-xl-push-5 {
+		left: 41.66666667%;
+	}
+
+	.col-xl-push-4 {
+		left: 33.33333333%;
+	}
+
+	.col-xl-push-3 {
+		left: 25%;
+	}
+
+	.col-xl-push-2 {
+		left: 16.66666667%;
+	}
+
+	.col-xl-push-1 {
+		left: 8.33333333%;
+	}
+
+	.col-xl-push-0 {
+		left: auto;
+	}
+
+	.col-xl-offset-12 {
+		margin-left: 100%;
+	}
+
+	.col-xl-offset-11 {
+		margin-left: 91.66666667%;
+	}
+
+	.col-xl-offset-10 {
+		margin-left: 83.33333333%;
+	}
+
+	.col-xl-offset-9 {
+		margin-left: 75%;
+	}
+
+	.col-xl-offset-8 {
+		margin-left: 66.66666667%;
+	}
+
+	.col-xl-offset-7 {
+		margin-left: 58.33333333%;
+	}
+
+	.col-xl-offset-6 {
+		margin-left: 50%;
+	}
+
+	.col-xl-offset-5 {
+		margin-left: 41.66666667%;
+	}
+
+	.col-xl-offset-4 {
+		margin-left: 33.33333333%;
+	}
+
+	.col-xl-offset-3 {
+		margin-left: 25%;
+	}
+
+	.col-xl-offset-2 {
+		margin-left: 16.66666667%;
+	}
+
+	.col-xl-offset-1 {
+		margin-left: 8.33333333%;
+	}
+
+	.col-xl-offset-0 {
+		margin-left: 0;
+	}
+
+	.visible-xl {
+		display: block !important;
+	}
+
+	table.visible-xl {
+		display: table;
+	}
+
+	tr.visible-xl {
+		display: table-row !important;
+	}
+
+	th.visible-xl, td.visible-xl {
+		display: table-cell !important;
+	}
+
+	.visible-xl-block {
+		display: block !important;
+	}
+
+	.visible-xl-inline {
+		display: inline !important;
+	}
+
+	.visible-xl-inline-block {
+		display: inline-block !important;
+	}
+
+	.hidden-xl {
+		display: none !important;
+	}
 }

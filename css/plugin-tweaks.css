@@ -1,0 +1,251 @@
+/*!
+ * Styles for Plugins
+ * Used by EVE Online WordPress Theme
+ */
+
+/* WP-Pagenavi
+----------------------------------------------------------------------------- */
+@media all {
+	.wp-pagenavi {
+		margin-bottom: 25px;
+		margin-bottom: 1.5625rem;
+		text-align: center;
+	}
+}
+
+/* fix for for siteorigin pagebuilder video widget
+----------------------------------------------------------------------------- */
+@media all {
+	.sow-video-wrapper {
+		position: relative;
+		padding-bottom: 56.25%;
+		height: 0;
+	}
+
+	.sow-video-wrapper > iframe {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		height: 100%;
+		max-width: 100%;
+	}
+}
+
+/* fix for oEmbed videos
+----------------------------------------------------------------------------- */
+@media all {
+	.embed-video-container {
+		position: relative;
+		padding-bottom: 56.25%;
+		overflow: hidden;
+		max-width: 100%;
+		height: auto;
+		margin: 0 0 24px;
+		margin: 0 0 1.5rem;
+	}
+
+	.bootstrap-video-gallery .embed-video-container {
+		margin: 0;
+	}
+
+	.embed-video-container iframe,
+	.embed-video-container object,
+	.embed-video-container embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+/* flex-slider
+----------------------------------------------------------------------------- */
+@media all {
+	.meta-slider {
+		margin-bottom: 32px;
+		margin-bottom: 2rem;
+		margin-left: -16px;
+		margin-left: -1rem;
+		margin-right: -16px;
+		margin-right: -1rem;
+	}
+
+	.flex-direction-nav .flex-prev {
+		left: 0 !important;
+	}
+	.flex-direction-nav .flex-next {
+		right: 0 !important;
+	}
+
+	.metaslider .caption-wrap {
+		top: 0;
+		bottom: initial !important;
+		opacity: 0.5 !important;
+		color: rgb(200, 200, 200);
+	}
+
+	.metaslider .caption {
+		padding: 10px 10px !important;
+		padding: 0.625rem 0.625rem !important;
+	}
+
+	.flex-control-nav {
+		bottom: 10px !important;
+		bottom: 0.625rem !important;
+		z-index: 99 !important;
+	}
+
+	.flex-control-paging li a {
+		background: rgba(255, 255, 255, 0.5) !important;
+		box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.3) !important;
+	}
+
+	.flex-control-paging li a.flex-active {
+		background: rgba(255, 255, 255, 0.9) !important;
+	}
+
+	.metaslider .flexslider {
+		margin: 0 !important;
+	}
+}
+
+/* shortcode [divider] (theme own shortcode)
+----------------------------------------------------------------------------- */
+@media all {
+	.divider {
+		margin-bottom: 25px;
+		margin-bottom: 1.5625rem;
+		padding-top: 25px;
+		padding-top: 1.5625rem;
+		clear: both;
+		display: block;
+		margin-bottom: 15px;
+		margin-bottom: 0.9375rem;
+		padding-top: 15px;
+		padding-top: 0.9375rem;
+		width: 100%;
+	}
+}
+
+/* bootstrap corplist theme plugin
+----------------------------------------------------------------------------- */
+@media all {
+	.bootstrap-corporationlist {
+		list-style-type: none;
+		padding-left: 0;
+	}
+
+	.bootstrap-corporationlist img {
+		margin: 0px auto;
+		display: block !important;
+	}
+}
+
+/* bootstrap gallery theme plugin
+----------------------------------------------------------------------------- */
+@media all {
+	.bootstrap-gallery {
+		list-style-type: none;
+		padding-left: 0;
+	}
+
+	.bootstrap-gallery br {
+		display: none;
+	}
+
+	.bootstrap-gallery li {
+		margin-bottom: 16px;
+		margin-bottom: 1rem;
+	}
+
+	.bootstrap-gallery-modal .bootstrap-gallery-image {
+		cursor: pointer;
+	}
+
+	.bootstrap-gallery figure {
+		position: relative;
+	}
+
+	.bootstrap-gallery figcaption {
+		position: absolute;
+		bottom: 0px;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: rgb(200, 200, 200);
+		display: block;
+		width: 100%;
+		padding: 5px;
+		padding: 0.3rem;
+		text-align: left;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap
+	}
+
+	.modal.container {
+		background: none;
+	}
+
+	.modal-bootstrap-photo-gallery {
+		text-align: center;
+	}
+
+	.modal-bootstrap-photo-gallery .modal-dialog {
+		position: initial;
+		width: auto;
+		margin: 0 auto;
+		margin-top: 32px;
+		margin-top: 2rem;
+		display: inline-block;
+	}
+
+	.modal-bootstrap-photo-gallery .modal-close-icon {
+		cursor: pointer;
+		position: absolute;
+		right: -14px;
+		right: -0.875rem;
+		top: -11px;
+		top: -0.6875rem;
+		font-size: 30px;
+		font-size: 1.875rem;
+		color:#fff;
+		text-shadow: 1px 1px 18px rgb(0,0,0);
+		text-shadow: 0.0625rem 0.0625rem 1.125rem rgb(0,0,0);
+	}
+
+	.modal-bootstrap-photo-gallery figure {
+		position: relative;
+	}
+
+	.modal-bootstrap-photo-gallery figure img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		max-height: calc(100vh - 150px);
+		max-height: calc(100vh - 9.375rem);
+	}
+
+	.modal-bootstrap-photo-gallery figcaption  {
+		position: absolute;
+		bottom: 0px;
+		background-color: rgba(255, 255, 255, 0.75);
+		display: block;
+		width: 100%;
+		padding: 16px;
+		padding: 1rem;
+		text-align: left;
+	}
+
+	.modal-bootstrap-photo-gallery .open-modal-image {
+		position: absolute;
+		right: 8px;
+		right: 0.5rem;
+		bottom: 8px;
+		bottom: 0.5rem;
+	}
+
+	.modal-bootstrap-photo-gallery .modal-navigation {
+		margin-top: 8px;
+		margin-top: 0.5rem;
+	}
+}
