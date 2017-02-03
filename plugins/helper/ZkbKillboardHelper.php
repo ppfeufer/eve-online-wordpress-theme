@@ -8,7 +8,7 @@ namespace WordPress\Themes\EveOnline\Plugins\Helper;
 use WordPress\Themes\EveOnline;
 
 class ZkbKillboardHelper {
-	private $plugin = null;
+//	private $plugin = null;
 	private $pluginSettings = null;
 	private $themeSettings = null;
 	private $eveApi = null;
@@ -16,7 +16,7 @@ class ZkbKillboardHelper {
 	public $db = null;
 
 	public function __construct() {
-		$this->plugin = new EveOnline\Plugins\Killboard;
+//		$this->plugin = new EveOnline\Plugins\Killboard;
 		$this->eveApi = new EveOnline\Helper\EveApiHelper;
 
 		$this->pluginSettings = \get_option('eve_theme_killboard_plugin_options', $this->plugin->getDefaultPluginOptions());
@@ -51,7 +51,8 @@ class ZkbKillboardHelper {
 			/**
 			 * Overwrite Victim Image if its a Citadel
 			 */
-			if(\in_array($kill->shp_name, $this->plugin->getStructureNames())) {
+//			if(\in_array($kill->shp_name, $this->plugin->getStructureNames())) {
+			if(\in_array($kill->shp_name, EveOnline\Plugins\Killboard::getStructureNames())) {
 				$kill->victimImage = $this->getStructureImage($kill->shp_id);
 			} else {
 				$kill->victimImage = $this->getVictimImage($kill->plt_name, $kill->shp_id);
