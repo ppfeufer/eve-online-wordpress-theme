@@ -71,11 +71,11 @@ class ThemeSettings {
 				/**
 				 * performance settings tab
 				 */
-				'performance-settings' => array(
-					'tab_title' => \__('Performance Settings', 'eve-online'),
-					'tab_description' => \__('Performance Settings', 'eve-online'),
-					'fields' => $this->getPerformanceTabFields()
-				)
+//				'performance-settings' => array(
+//					'tab_title' => \__('Performance Settings', 'eve-online'),
+//					'tab_description' => \__('Performance Settings', 'eve-online'),
+//					'fields' => $this->getPerformanceTabFields()
+//				)
 			)
 		);
 
