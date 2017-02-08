@@ -21,7 +21,7 @@ To install the theme use git to clone it to your wordpress installation
 ```bash
 git clone https://github.com/ppfeufer/eve-online-wordpress-theme.git eve-online
 ```
-or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme/archive/master.zip) and rename the folder to eve-online.
+or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme/archive/master.zip) or one of the [releases](https://github.com/ppfeufer/eve-online-wordpress-theme/releases) unzip the file and rename the folder to eve-online.
 
 ### Websites using this Theme:
 * [Yulai Federation](http://yulaifederation.net/)
