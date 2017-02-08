@@ -4,9 +4,10 @@
 ### Added
 - CHANGELOG.md file to keep track of changes from now on
 
-### Changed
+### Changed / Fixed
 - fixed a typo in themes version number, we had a 0 to much :-)
-- radio buttons in background settings are no longer ellipsoid
+- fixed the radio buttons in background settings so the are no longer ellipsoid
+- fixed an issue with the head menu disappearing in mobile view so you couldn't navigate any longer
 
 ### Removed
 - deactivated HTML Minify for now, since there seems to be an issue with inline JS comments that are starting with //

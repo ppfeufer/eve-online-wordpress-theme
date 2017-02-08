@@ -323,12 +323,8 @@
 		display: inline-block;
 	}
 
-	.header-menu  li {
-		display: inline;
-		padding-right: 10px;
-		padding-right: 0.625rem;
-		padding-left: 5px;
-		padding-left: 0.3125rem;
+	.secondary-mobile-menu {
+		margin-top: -7.5px;
 	}
 
 	.navbar-toggled-title {

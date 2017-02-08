@@ -84,13 +84,13 @@
 
 					<!-- Navigation Main -->
 					<?php
-					if(\has_nav_menu('main-menu')) {
+					if(\has_nav_menu('main-menu') || \has_nav_menu('header-menu')) {
 						?>
 						<!-- Menu -->
 						<div class="row">
 							<div class="col-md-12">
 								<div class="top-main-menu">
-									<nav class="navbar navbar-default" role="navigation">
+									<nav class="<?php if(!\has_nav_menu('main-menu')) { echo 'visible-xs ';} ?>navbar navbar-default" role="navigation">
 										<!-- Brand and toggle get grouped for better mobile display -->
 										<div class="navbar-header">
 											<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -105,15 +105,34 @@
 										<!-- Collect the nav links, forms, and other content for toggling -->
 										<div class="collapse navbar-collapse navbar-ex1-collapse">
 											<?php
-											\wp_nav_menu(array(
-												'menu' => '',
-												'theme_location' => 'main-menu',
-												'depth' => 3,
-												'container' => false,
-												'menu_class' => 'nav navbar-nav main-navigation',
-												'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
-												'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
-											));
+											if(\has_nav_menu('main-menu')) {
+												\wp_nav_menu(array(
+													'menu' => '',
+													'theme_location' => 'main-menu',
+													'depth' => 3,
+													'container' => false,
+													'menu_class' => 'nav navbar-nav main-navigation',
+													'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
+													'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
+												));
+											} // END if(\has_nav_menu('main-menu'))
+
+											if(\has_nav_menu('header-menu')) {
+												$additionalMenuClass = null;
+												if(\has_nav_menu('main-menu')) {
+													$additionalMenuClass = ' secondary-mobile-menu';
+												} // END if(\has_nav_menu('main-menu'))
+
+												\wp_nav_menu(array(
+													'menu' => '',
+													'theme_location' => 'header-menu',
+													'depth' => 1,
+													'container' => false,
+													'menu_class' => 'visible-xs header-menu nav navbar-nav' . $additionalMenuClass,
+													'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
+													'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
+												));
+											} // END if(has_nav_menu('header-menu'))
 											?>
 										</div><!-- /.navbar-collapse -->
 									</nav>
@@ -121,7 +140,7 @@
 							</div>
 						</div>
 						<?php
-					} // END if(has_nav_menu('main-menu'))
+					} // END if(\has_nav_menu('main-menu') || \has_nav_menu('header-menu'))
 
 					if(\is_single() && \get_post_type() === 'post' && \has_post_thumbnail()) {
 						?>

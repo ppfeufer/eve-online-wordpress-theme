@@ -49,6 +49,14 @@
 		float: right;
 	}
 
+	.header-menu  li {
+		display: inline;
+		padding-right: 10px;
+		padding-right: 0.625rem;
+		padding-left: 5px;
+		padding-left: 0.3125rem;
+	}
+
 	.footer-menu-wrapper {
 		float: right;
 	}
