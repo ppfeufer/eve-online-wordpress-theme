@@ -38,7 +38,7 @@ see [CHANGELOG.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/m
 - [x] ~~Clean up the CSS files~~
 - [x] ~~Make background image configurable~~
 - [ ] Make theme plugins configurable
-- [ ] Make content background colour configurable
+- [x] ~~Make content background colour configurable~~
 - [x] ~~Rework the theme settings completely~~
 - [ ] Generate color theme for Amarr
 - [ ] Generate color theme for Gallente
