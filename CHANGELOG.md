@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased] - 2017-02-08
+## [Unreleased]
 ### Added
 - CHANGELOG.md file to keep track of changes from now on
 
