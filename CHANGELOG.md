@@ -12,7 +12,7 @@
 ### Removed
 - deactivated HTML Minify for now, since there seems to be an issue with inline JS comments that are starting with //
 
-## [0.1-r20170127] - 2017-02-03
+## [v0.1-r20170203] - 2017-02-03
 ### Added
 - HTML minify class
 - "minify HTML" as option to the theme options page
@@ -24,5 +24,5 @@
 ### Changed
 - Major code cleanup
 
-[Unreleased]: https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170127...HEAD
-[0.1-r20170127]: https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170127...v0.1-r20170203
+[Unreleased]: https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...HEAD
+[v0.1-r20170203]: https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170127...v0.1-r20170203
