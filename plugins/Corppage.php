@@ -106,24 +106,24 @@ class Corppage {
 		$eve_page_corp_name = \get_post_meta($post->ID, 'eve_page_corp_name', true);
 		$eve_page_corp_eve_ID = \get_post_meta($post->ID, 'eve_page_corp_eve_ID', true);
 		?>
-		<label><strong><?php _e('Corp Page Settings', 'eve-online'); ?></strong></label>
+		<label><strong><?php \_e('Corp Page Settings', 'eve-online'); ?></strong></label>
 		<p class="checkbox-wrapper">
 			<input id="eve_page_is_corp_page" name="eve_page_is_corp_page" type="checkbox" <?php \checked($eve_page_is_corp_page); ?>>
-			<label for="eve_page_is_corp_page"><?php _e('Is Corp Page?', 'eve-online'); ?></label>
+			<label for="eve_page_is_corp_page"><?php \_e('Is Corp Page?', 'eve-online'); ?></label>
 		</p>
 		<p class="checkbox-wrapper">
-			<label for="eve_page_corp_name"><?php _e('Corporation Name:', 'eve-online'); ?></label><br>
+			<label for="eve_page_corp_name"><?php \_e('Corporation Name:', 'eve-online'); ?></label><br>
 			<input id="eve_page_corp_name" name="eve_page_corp_name" type="text" value="<?php echo $eve_page_corp_name; ?>">
 		</p>
 		<?php
 		if(!empty($eve_page_corp_eve_ID)) {
 			?>
 			<p class="checkbox-wrapper">
-				<label for="eve_page_corp_ID"><?php _e('Corporation ID', 'eve-online'); ?></label>
+				<label for="eve_page_corp_ID"><?php \_e('Corporation ID', 'eve-online'); ?></label>
 				<input id="eve_page_corp_ID" name="eve_page_corp_ID" type="text" value="<?php echo \esc_html($eve_page_corp_eve_ID); ?>" disabled>
 			</p>
 			<p class="checkbox-wrapper">
-				<label><strong><?php _e('Corporation Logo', 'eve-online'); ?></strong></label>
+				<label><strong><?php \_e('Corporation Logo', 'eve-online'); ?></strong></label>
 				<br>
 				<?php
 				$corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_256.png';
@@ -147,7 +147,7 @@ class Corppage {
 			return false;
 		} // END if(!\current_user_can('edit_post', $postID))
 
-		if(defined('DOING_AJAX')) {
+		if(\defined('DOING_AJAX')) {
 			return false;
 		} // END if(defined('DOING_AJAX'))
 
