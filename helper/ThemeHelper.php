@@ -99,6 +99,15 @@ class ThemeHelper {
 				'version' => '',
 				'in_footer' => false
 			),
+			/* Modernizr */
+//			'Modernizr' => array(
+//				'handle' => 'modernizr',
+//				'source' => \get_template_directory_uri() . '/js/modernizr.min.js',
+//				'source-development' => \get_template_directory_uri() . '/js/modernizr.js',
+//				'deps' => '',
+//				'version' => '',
+//				'in_footer' => true
+//			),
 			/* Bootstrap's JS */
 			'Bootstrap' => array(
 				'handle' => 'bootstrap-js',
