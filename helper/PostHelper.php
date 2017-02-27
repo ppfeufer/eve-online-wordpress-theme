@@ -89,6 +89,9 @@ class PostHelper {
 		} // END switch ($comment->comment_type)
 	} // END public static function getComments($comment, $args, $depth)
 
+	/**
+	 * Display template for post categories and tags
+	 */
 	public static function getPostCategoryAndTags() {
 		$options = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
@@ -161,5 +164,35 @@ class PostHelper {
 			return $contentColClass;
 		} // END if($echo === true)
 	} // END function public static function geLoopContentClasses($echo = false)
-} // END class PostHelper
 
+	public static function getContentColumnCount($echo = false) {
+		if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+			$columnCount = 3;
+		} else {
+			$columnCount = 4;
+		} // END if(ThemeHelper::hasSidebar('sidebar-page'))
+
+		if($echo === true) {
+			echo $columnCount;
+		} else {
+			return $columnCount;
+		} // END if($echo === true)
+	} // END public static function getContentColumnCount($echo = false)
+
+	public static function getExcerptById($postID, $excerptLength = 35) {
+		$the_post = \get_post($postID); //Gets post ID
+		$the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
+		$the_excerpt = \strip_tags(\strip_shortcodes($the_excerpt)); //Strips tags and images
+		$words = \explode(' ', $the_excerpt, $excerptLength + 1);
+
+		if(\count($words) > $excerptLength) {
+			\array_pop($words);
+			\array_push($words, '…');
+			$the_excerpt = \implode(' ', $words);
+		} // END if(\count($words) > $excerptLength)
+
+		$the_excerpt = '<p>' . $the_excerpt . '</p>';
+
+		return $the_excerpt;
+	} // END public static function getExcerptById($postID, $excerptLength = 35)
+} // END class PostHelper
