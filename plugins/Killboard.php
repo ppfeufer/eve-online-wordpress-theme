@@ -112,7 +112,7 @@ class Killboard {
 				/**
 				 * general settings
 				 */
-				'zkillboard-settings' => $this->getZkillboardSettings(),
+//				'zkillboard-settings' => $this->getZkillboardSettings(),
 
 				/**
 				 * database settings tab
