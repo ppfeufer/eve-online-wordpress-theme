@@ -35,12 +35,19 @@ class NavigationHelper {
 	 * @global int      $paged
 	 * @global WP_Query $wp_query
 	 *
-	 * @param string $label    Content for link text.
-	 * @param int    $max_page Optional. Max pages. Default 0.
+	 * @param string $label Content for link text.
+	 * @param int $max_page Optional. Max pages. Default 0.
+	 * @param boolean $echo Return or echo
+	 * @param object $wp_query default null, but if another query object should be used here, set it
+	 *
 	 * @return string|void HTML-formatted next posts page link.
 	 */
-	public static function getNextPostsLink($label = null, $max_page = 0, $echo = false) {
-		global $paged, $wp_query;
+	public static function getNextPostsLink($label = null, $max_page = 0, $echo = false, $wp_query = null) {
+		global $paged;
+
+		if($wp_query === null) {
+			global $wp_query;
+		}
 
 		if(!$max_page) {
 			$max_page = $wp_query->max_num_pages;
