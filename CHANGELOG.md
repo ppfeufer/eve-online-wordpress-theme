@@ -12,6 +12,7 @@
 - Fixed a typo in themes version number, we had a 0 to much :-)
 - Fixed the radio buttons in background settings so the are no longer ellipsoid
 - Fixed an issue with the head menu disappearing in mobile view so you couldn't navigate any longer
+- Structure names updated
 
 ### Removed
 - Deactivated HTML Minify for now, since there seems to be an issue with inline JS comments that are starting with //
