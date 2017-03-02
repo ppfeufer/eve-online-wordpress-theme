@@ -272,17 +272,32 @@ class Killboard {
 			'Minmatar Control Tower Medium',
 
 			// POS Modules
-			'Domination Small AutoCannon Battery',
 			'Ion Field Projection Battery',
 			'Jump Bridge',
-			'Medium Artillery Battery',
-			'Medium AutoCannon Battery',
 			'Moon Harvesting Array',
 			'Phase Inversion Battery',
+
+			// Artillery
 			'Small Artillery Battery',
+			'Medium Artillery Battery',
+			'Large Artillery Battery',
+
+			// AutoCannon
 			'Small AutoCannon Battery',
+			'Domination Small AutoCannon Battery',
+			'Medium AutoCannon Battery',
+			'Large AutoCannon Battery',
+
+			// Beam Laser
 			'Small Beam Laser Battery',
+			'Medium Beam Laser Battery',
+			'Large Beam Laser Battery',
+
+			// Pulse Laser
+			'Small Pulse Laser Battery',
 			'Medium Pulse Laser Battery',
+			'Large Pulse Laser Battery',
+
 			'Silo',
 			'Spatial Destabilization Battery',
 			'Stasis Webification Battery',
@@ -292,5 +307,5 @@ class Killboard {
 			// Orbital Modules
 			'Customs Office'
 		);
-	} // END private function getStructureNames()
+	} // END public static function getStructureNames()
 } // END class Killboard
