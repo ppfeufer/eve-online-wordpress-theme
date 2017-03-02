@@ -741,11 +741,11 @@ if(\function_exists('\fly_get_attachment_image')) {
  * @param array $args
  * @return string
  */
-function eve_enable_youtube_jsapi($html, $url, $args) {
+function eve_enable_youtube_jsapi($html) {
 	if(\strstr($html, 'youtube.com/embed/')) {
 		$html = \str_replace('?feature=oembed', '?feature=oembed&enablejsapi=1&origin=' . \get_bloginfo('url') . '&rel=0', $html);
 	} // END if(\strstr($html, 'youtube.com/embed/'))
 
 	return $html;
 } // END function eve_enable_youtube_jsapi($html, $url, $args)
-\add_filter('oembed_result', '\\WordPress\Themes\YulaiFederation\eve_enable_youtube_jsapi');
+\add_filter('oembed_result', '\\WordPress\Themes\EveOnline\eve_enable_youtube_jsapi');
