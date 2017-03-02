@@ -65,7 +65,8 @@ class BootstrapVideoGallery {
 			array(
 				'id' => '',
 				'videolist' => '',
-				'classes' => ''
+				'classes' => '',
+				'per_page' => 12
 			),
 			$attributes
 		);
@@ -73,6 +74,7 @@ class BootstrapVideoGallery {
 		$id = $args['id'];
 		$videoList = $args['videolist'];
 		$classes = $args['classes'];
+		$perPage = $args['per_page'];
 		$idList = null;
 
 		if(!empty($id)) {
@@ -87,8 +89,15 @@ class BootstrapVideoGallery {
 
 		if(empty($videoList)) {
 			// assume we have a list of childpages
-			$childPages = $this->getChildPages();
-			if($childPages) {
+			$pageID = \get_queried_object_id();
+			$videoPages = $this->getVideoPages($perPage);
+			$pageChildren = \get_page_children($pageID, $videoPages->posts);
+
+			if($pageChildren) {
+				$childPages = $this->getVideoPagesFromChildren($pageChildren);
+			} // END if($children)
+
+			if(!empty($childPages)) {
 				foreach($childPages as $child) {
 					$videoGalleryHtml .= '<li>';
 					$videoGalleryHtml .= $child->eve_page_video_oEmbed_code;
@@ -99,6 +108,8 @@ class BootstrapVideoGallery {
 					} // END if($child->post_content)
 
 					$videoGalleryHtml .= '</li>';
+
+					\wp_reset_query();
 				} // END foreach($childPages as $child)
 			} else {
 				$videoGalleryHtml = false;
@@ -140,6 +151,18 @@ class BootstrapVideoGallery {
 									});
 								});
 								</script>';
+
+		if(isset($videoPages) && $videoPages->max_num_pages > 1) {
+			$videoGalleryHtml .= '<nav id="nav-videogallery" class="navigation post-navigation clearfix" role="navigation">';
+			$videoGalleryHtml .= '<h3 class="assistive-text">' . \__('Video Navigation', 'eve-online') . '</h3>';
+			$videoGalleryHtml .= '<div class="nav-previous pull-left">';
+			$videoGalleryHtml .= EveOnline\Helper\NavigationHelper::getNextPostsLink(\__('<span class="meta-nav">&larr;</span> Older Videos', 'eve-online'), 0, false, $videoPages);
+			$videoGalleryHtml .= '</div>';
+			$videoGalleryHtml .= '<div class="nav-next pull-right">';
+			$videoGalleryHtml .= EveOnline\Helper\NavigationHelper::getPreviousPostsLink(\__('Newer Videos <span class="meta-nav">&rarr;</span>', 'eve-online'), false);
+			$videoGalleryHtml .= '</div>';
+			$videoGalleryHtml .= '</nav><!-- #nav-videogallery .navigation -->';
+		} // END if($videoPages->max_num_pages > 1)
 
 		return $videoGalleryHtml;
 	} // END public function shortcodeVideogallery($attributes)
@@ -239,28 +262,21 @@ class BootstrapVideoGallery {
 		\update_post_meta($postID, 'eve_page_video_only_list_in_parent_gallery', $onlyListForParent);
 	} // END function eve_corp_page_setting_save($postID)
 
-	private function getChildPages() {
-		$pageObject = \get_queried_object();
-		$pageID = \get_queried_object_id();
+	private function getVideoPages($postPerPage) {
+		global $paged;
 
-		// Set up the objects needed
-		$wpQuery = new \WP_Query();
-
-		// Filter through all pages and find Portfolio's children
-		$children = \get_page_children($pageID, $wpQuery->query(array(
-			'posts_per_page' => -1,
+		$queryArgs = array(
+			'posts_per_page' => $postPerPage,
 			'post_type' => 'page',
 			'meta_key' => 'eve_page_is_video_gallery_page',
 			'meta_value' => 1,
-		)));
+			'paged' => $paged
+		);
+		// Set up the objects needed
 
-		if($children) {
-			$videoGalleryChildren = $this->getVideoPagesFromChildren($children);
+		$videoPages = new \WP_Query($queryArgs);
 
-			return $videoGalleryChildren;
-		} // END if($children)
-
-		return false;
+		return $videoPages;
 	} // END private function getChildPages()
 
 	private function getVideoPagesFromChildren($children) {
