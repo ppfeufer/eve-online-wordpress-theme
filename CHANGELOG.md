@@ -6,6 +6,7 @@
 - CHANGELOG.md file to keep track of changes from now on
 - New shortcode "[credits]" for article credits
 - New shortcode "[latestblogposts]" (only use it at a static page, not in articles)
+- Pagination for video galleries
 
 ### Changed / Fixed
 - Fixed a typo in themes version number, we had a 0 to much :-)
