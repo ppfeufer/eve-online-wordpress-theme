@@ -166,8 +166,16 @@ class EveApiHelper {
 			return false;
 		} // END if($entitieID == 0)
 
+		$imageName = $entitieID . '_' . $size . '.png';
 		$ownerGroupID = $this->getEveGroupTypeFromName($name);
-		$imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups[$ownerGroupID]] . $entitieID . '_' . $size. '.png';
+
+		if(ImageHelper::checkCachedImage($this->entityGroups[$ownerGroupID], $imageName) === true) {
+			$imagePath = ImageHelper::getImageCacheUri() . $this->entityGroups[$ownerGroupID] . '/' . $imageName;
+		} else {
+			ImageHelper::cacheRemoteImageFile($this->entityGroups[$ownerGroupID], $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups[$ownerGroupID]] . $imageName);
+
+			$imagePath = ImageHelper::getImageCacheUri() . $this->entityGroups[$ownerGroupID] . '/' . $imageName;
+		} // END if(ImageHelper::checkCachedImage($this->entityGroups[$ownerGroupID], $imageName) === true)
 
 		if($imageOnly === true) {
 			return $imagePath;

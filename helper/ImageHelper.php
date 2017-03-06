@@ -43,4 +43,50 @@ class ImageHelper {
 
 		return $attachment_id;
 	} // END public static function getAttachmentId($url)
+
+	public static function getImageCacheDir() {
+		return \trailingslashit(ThemeHelper::getThemeCacheDir() . '/images');
+	} // END public static function getImageCacheDir()
+
+	public static function getImageCacheUri() {
+		return \trailingslashit(ThemeHelper::getThemeCacheUri() . '/images');
+	}
+
+	public static function checkCachedImage($cacheType = null, $imageName = null) {
+		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
+
+		if(\file_exists($cacheDir . $imageName)) {
+			// check if the file is older than 2 hrs
+			if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600) {
+				\unlink($cacheDir . $imageName);
+
+				$returnValue = false;
+			} else {
+				$returnValue = true;
+			} // END if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600)
+		} else {
+			$returnValue = false;
+		} // END if(\file_exists($cacheDir . $imageName))
+
+		return $returnValue;
+	} // END public static function checkCachedImage($cacheType = null, $imageName = null)
+
+	public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null) {
+		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
+		$explodedImageUrl = \explode('/', $remoteImageUrl);
+		$imageFilename = \end($explodedImageUrl);
+		$explodedImageFilename = \explode('.', $imageFilename);
+		$extension = \end($explodedImageFilename);
+
+		//make sure its an image
+		if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png') {
+			//get the remote image
+			$imageToFetch = \file_get_contents($remoteImageUrl);
+			$localImageFile = \fopen($cacheDir . $imageFilename, 'w+');
+
+			\chmod($cacheDir . $imageFilename,0755);
+			\fwrite($localImageFile, $imageToFetch);
+			\fclose($localImageFile);
+		} // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
+	} // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
 } // END class ImageHelper

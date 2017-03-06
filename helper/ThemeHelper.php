@@ -355,4 +355,16 @@ class ThemeHelper {
 
 		return $backgroundImage;
 	} // END public static function getThemeBackgroundImage()
+
+	public static function getThemeName() {
+		return 'EVE Online';
+	} // END public static function getThemeName()
+
+	public static function getThemeCacheDir() {
+		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/' . \sanitize_title(self::getThemeName());
+	} // END public static function getImagecacheDir()
+
+	public static function getThemeCacheUri() {
+		return \trailingslashit(\WP_CONTENT_URL) . 'cache/' . \sanitize_title(self::getThemeName());
+	} // END public static function getThemeCacheUri()
 } // END class ThemeHelper
