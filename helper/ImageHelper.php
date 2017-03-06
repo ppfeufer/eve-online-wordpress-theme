@@ -81,7 +81,9 @@ class ImageHelper {
 		//make sure its an image
 		if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png') {
 			//get the remote image
-			$imageToFetch = \file_get_contents($remoteImageUrl);
+			$get = \wp_remote_get($remoteImageUrl);
+//			$imageToFetch = \file_get_contents($remoteImageUrl);
+			$imageToFetch = \wp_remote_retrieve_body($get);
 			$localImageFile = \fopen($cacheDir . $imageFilename, 'w+');
 
 			\chmod($cacheDir . $imageFilename,0755);
