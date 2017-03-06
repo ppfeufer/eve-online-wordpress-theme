@@ -749,3 +749,19 @@ function eve_enable_youtube_jsapi($html) {
 	return $html;
 } // END function eve_enable_youtube_jsapi($html, $url, $args)
 \add_filter('oembed_result', '\\WordPress\Themes\EveOnline\eve_enable_youtube_jsapi');
+
+/**
+ * Removing the version string from any enqueued css and js source
+ *
+ * @param string $src the css or js source
+ * @return string
+ */
+function eve_remove_wp_ver_css_js($src) {
+	if(strpos($src, 'ver=')) {
+		$src = \remove_query_arg('ver', $src);
+	} // END if(strpos($src, 'ver='))
+
+	return $src;
+} // END function eve_remove_wp_ver_css_js($src)
+\add_filter('style_loader_src', '\\WordPress\Themes\EveOnline\eve_remove_wp_ver_css_js', 9999);
+\add_filter('script_loader_src', '\\WordPress\Themes\EveOnline\eve_remove_wp_ver_css_js', 9999);

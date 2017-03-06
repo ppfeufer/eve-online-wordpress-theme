@@ -7,6 +7,7 @@
 - New shortcode "[credits]" for article credits
 - New shortcode "[latestblogposts]" (only use it at a static page, not in articles)
 - Pagination for video galleries
+- Filter to remove the version string from enqueued CSS and JS
 
 ### Changed / Fixed
 - Fixed a typo in themes version number, we had a 0 to much :-)
