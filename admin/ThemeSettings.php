@@ -201,18 +201,18 @@ class ThemeSettings {
 		);
 	} // END private function getSliderTabFields()
 
-	private function getPerformanceTabFields() {
-		return array(
-			'minifyHtmlOutput' => array(
-				'type' => 'checkbox',
-				'title' => \__('HTML Output', 'eve-online'),
-				'choices' => array(
-					'yes' => \__('Minify HTML output?', 'eve-online')
-				),
-				'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
-			),
-		);
-	} // END private function getSliderTabFields()
+//	private function getPerformanceTabFields() {
+//		return array(
+//			'minifyHtmlOutput' => array(
+//				'type' => 'checkbox',
+//				'title' => \__('HTML Output', 'eve-online'),
+//				'choices' => array(
+//					'yes' => \__('Minify HTML output?', 'eve-online')
+//				),
+//				'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
+//			),
+//		);
+//	} // END private function getSliderTabFields()
 
 	private function getDevelopmentTabFields() {
 		return array(

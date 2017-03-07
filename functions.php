@@ -506,7 +506,7 @@ function eve_widgets_init() {
  * Replaces the excerpt "more" text by a link
  */
 function eve_excerpt_more($more) {
-	return ' ... <br/><a class="read-more" href="'. \get_permalink(\get_the_ID()) . '">'.__('Read More', 'eve-online').'</a>';
+	return ' ' . $more . '<br/><a class="read-more" href="'. \get_permalink(\get_the_ID()) . '">'.__('Read More', 'eve-online').'</a>';
 } // END function eve_excerpt_more($more)
 \add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
 
@@ -732,6 +732,8 @@ function eve_move_comment_field_to_bottom($fields) {
  * @return string
  */
 function eve_metaslider_fly_image_urls($cropped_url, $orig_url) {
+	unset($cropped_url); // we don't need it here
+
 	$attachmentImage = \fly_get_attachment_image_src(Helper\ImageHelper::getAttachmentId($orig_url), 'header-image');
 
 	return \str_replace('http://', '//', $attachmentImage['src']);

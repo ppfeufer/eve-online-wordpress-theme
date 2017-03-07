@@ -33,30 +33,44 @@ class Shortcodes {
 	} // END public function registerShortcodes()
 
 	public function shortcodeTwoColumnsOne($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-6">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeTwoColumnsOne($atts, $content = null)
 
 	public function shortcodeThreeColumnsOne($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-4">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeThreeColumnsOne($atts, $content = null)
 
 	public function shortcodeThreeColumnsTwo($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-8">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeThreeColumnsTwo($atts, $content = null)
 
 	public function shortcodeFourColumnsOne($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-3">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeFourColumnsOne($atts, $content = null)
 
 	public function shortcodeFourColumnsTwo($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-6">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeFourColumnsTwo($atts, $content = null)
 
 	public function shortcodeFourColumnsThree($atts, $content = null) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="col-md-9">' . $this->removeAutopInShortcode($content) . '</div>';
 	} // END public function shortcodeFourColumnsThree($atts, $content = null)
 
-	public function shortcodeDivider($atts, $content = null) {
+	public function shortcodeDivider($atts) {
+		$atts = null; // we don't need it here, but WP provides it anyways
+
 		return '<div class="divider"></div>';
 	} // END public function shortcodeDivider($atts, $content = null)
 

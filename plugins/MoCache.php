@@ -68,6 +68,8 @@ class MoCache {
 		$this->moCacheArray = \get_option('eve-online-theme-mo-cache');
 
 		foreach($this->miss as $domain => $key) {
+			$key = null; // We don't need it here
+
 			if(isset($l10n[$domain])) {
 				$mo = $l10n[$domain];
 				$cache = array(

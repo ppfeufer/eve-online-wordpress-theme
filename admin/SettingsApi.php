@@ -295,6 +295,8 @@ class SettingsApi {
 
 		if(!empty($terms)) {
 			foreach($terms as $key => $term) {
+				unset($key); // we don't need that variable here
+
 				$items[$term->term_id] = $term->name;
 			} // END foreach($terms as $key => $term)
 		} // END if(!empty($terms))
@@ -450,7 +452,8 @@ class SettingsApi {
 	 *
 	 * Return as string or array
 	 */
-	public function value($key = null) {
+//	public function value($key = null) {
+	public function value() {
 		$value = '';
 
 		if($this->valueType() == 'array') {
@@ -560,7 +563,7 @@ class SettingsApi {
 		$options = \get_option($args['option_name'], $this->optionsDefault);
 		$this->options = $options;
 
-		$screen = \get_current_screen();
+//		$screen = \get_current_screen();
 
 		$option_name = \sanitize_title($args['option_name']);
 		$out = '';

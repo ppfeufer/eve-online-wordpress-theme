@@ -23,6 +23,8 @@ class BootstrapImageGallery {
 	public function imageGallery($content, $attr) {
 		global $instance, $post;
 
+		unset($content); // we don't need it here
+
 		$instance++;
 
 		if(isset($attr['orderby'])) {

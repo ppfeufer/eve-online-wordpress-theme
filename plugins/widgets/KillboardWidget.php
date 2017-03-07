@@ -72,7 +72,7 @@ class KillboardWidget extends \WP_Widget {
 			'eve-killboard-widget-show-losses' => ($this->pluginSettings['show_losses']['yes']) ? true : false
 		));
 
-		$showLosses = $instance['eve-killboard-widget-show-losses'] ? 'checked="checked"' : '';
+//		$showLosses = $instance['eve-killboard-widget-show-losses'] ? 'checked="checked"' : '';
 
 		// Database Warning
 		if($this->pluginSettings['killmail_source'] === 'local' && !$this->kbDB) {

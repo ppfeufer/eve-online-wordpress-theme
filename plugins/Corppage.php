@@ -37,6 +37,7 @@ class Corppage {
 		/**
 		 * Not used at this moment
 		 */
+		unset($args);
 //		$type = $args['type'];
 
 		$corpPages = $this->getCorporationPages();

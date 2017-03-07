@@ -136,13 +136,13 @@ class Killboard {
 		);
 	} // END private function getGeneralSettings()
 
-	private function getZkillboardSettings() {
-		return array(
-			'tab_title' => \__('zKillboard Settings', 'eve-online'),
-			'tab_description' => \__('Killboard General Settings', 'eve-online'),
-			'fields' => $this->getZkillboardTabFields()
-		);
-	} // END private function getGeneralSettings()
+//	private function getZkillboardSettings() {
+//		return array(
+//			'tab_title' => \__('zKillboard Settings', 'eve-online'),
+//			'tab_description' => \__('Killboard General Settings', 'eve-online'),
+//			'fields' => $this->getZkillboardTabFields()
+//		);
+//	} // END private function getGeneralSettings()
 
 	private function getGeneralTabFields() {
 		return array(
