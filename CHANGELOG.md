@@ -2,12 +2,17 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...HEAD)
+- nothing so far
+
+## [v0.1-r20170307](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170307) - 2017-03-07
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...v0.1-r20170307)
 ### Added
 - CHANGELOG.md file to keep track of changes from now on
 - New shortcode "[credits]" for article credits
 - New shortcode "[latestblogposts]" (only use it at a static page, not in articles)
 - Pagination for video galleries
 - Filter to remove the version string from enqueued CSS and JS
+- Imagecache for images fetched from CCP's imageserver
 
 ### Changed / Fixed
 - Fixed a typo in themes version number, we had a 0 to much :-)
