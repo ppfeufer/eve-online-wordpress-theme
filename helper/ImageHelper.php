@@ -50,8 +50,15 @@ class ImageHelper {
 
 	public static function getImageCacheUri() {
 		return \trailingslashit(ThemeHelper::getThemeCacheUri() . '/images');
-	}
+	} // END public static function getImageCacheUri()
 
+	/**
+	 * Chek if a remote image has been cached locally
+	 *
+	 * @param string $cacheType The subdirectory in the image cache filesystem
+	 * @param string $imageName The image file name
+	 * @return boolean true or false
+	 */
 	public static function checkCachedImage($cacheType = null, $imageName = null) {
 		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
 
@@ -71,6 +78,12 @@ class ImageHelper {
 		return $returnValue;
 	} // END public static function checkCachedImage($cacheType = null, $imageName = null)
 
+	/**
+	 * Cachng a remote image locally
+	 *
+	 * @param string $cacheType The subdirectory in the image cache filesystem
+	 * @param string $remoteImageUrl The URL for the remote image
+	 */
 	public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null) {
 		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
 		$explodedImageUrl = \explode('/', $remoteImageUrl);
@@ -78,11 +91,10 @@ class ImageHelper {
 		$explodedImageFilename = \explode('.', $imageFilename);
 		$extension = \end($explodedImageFilename);
 
-		//make sure its an image
+		// make sure its an image
 		if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png') {
-			//get the remote image
+			// get the remote image
 			$get = \wp_remote_get($remoteImageUrl);
-//			$imageToFetch = \file_get_contents($remoteImageUrl);
 			$imageToFetch = \wp_remote_retrieve_body($get);
 			$localImageFile = \fopen($cacheDir . $imageFilename, 'w+');
 
@@ -91,4 +103,32 @@ class ImageHelper {
 			\fclose($localImageFile);
 		} // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
 	} // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
+
+	/**
+	 * Getting the cached URL for a remote image
+	 *
+	 * @param string $cacheType The subdirectory in the image cache filesystem
+	 * @param string $remoteImageUrl The URL for the remote image
+	 * @return string The cached Image URL
+	 */
+	public static function getLocalCacheImageUriForRemoteImage($cacheType = null, $remoteImageUrl = null) {
+		$explodedImageUrl = \explode('/', $remoteImageUrl);
+		$imageFilename = \end($explodedImageUrl);
+		$returnValue = self::getImageCacheUri() . $cacheType . '/' . $imageFilename;
+
+		// if we don't have the image cached already
+		if(self::checkCachedImage($cacheType, $imageFilename) === false) {
+			/**
+			 * Check if the content dir is writable and cache the image.
+			 * Otherwise set the remote image as return value.
+			 */
+			if(\is_dir(self::getImageCacheDir() . $cacheType) && \is_writable(self::getImageCacheDir() . $cacheType)) {
+				self::cacheRemoteImageFile($cacheType, $remoteImageUrl);
+			} else {
+				$returnValue = $remoteImageUrl;
+			} // END if(\is_writable(\WP_CONTENT_DIR))
+		} // END if(ImageHelper::checkCachedImage($cacheType, $imageName) === false)
+
+		return $returnValue;
+	} // END public static function getLocalCacheImageUri($cacheType = null, $remoteImageUrl = null)
 } // END class ImageHelper

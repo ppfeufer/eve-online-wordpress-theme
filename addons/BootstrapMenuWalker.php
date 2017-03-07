@@ -152,14 +152,8 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 			$eve_page_corp_eve_ID = \get_post_meta($item->object_id, 'eve_page_corp_eve_ID', true);
 			if($eve_page_corp_eve_ID) {
 				if(isset($this->themeOptions['show_corp_logos']['show'])) {
-					if(EveOnline\Helper\ImageHelper::checkCachedImage('corporation', $yf_page_corp_eve_ID . '_32.png') === true) {
-						$corpLogoPath = EveOnline\Helper\ImageHelper::getImageCacheUri() . 'corporation' . '/' . $yf_page_corp_eve_ID . '_32.png';
-					} else {
-						EveOnline\Helper\ImageHelper::cacheRemoteImageFile('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $yf_page_corp_eve_ID . '_32.png');
-
-						$corpLogoPath = EveOnline\Helper\ImageHelper::getImageCacheUri() . 'corporation' . '/' . $yf_page_corp_eve_ID . '_32.png';
-					}
 //					$corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_32.png';
+					$corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_32.png');
 
 					$item_output .= '<a' . $attributes . '><span class="corp-' . \sanitize_title($item->title) . ' ' . \esc_attr($item->attr_title) . ' corp-eveID-' . $eve_page_corp_eve_ID . '"><img src="' . $corpLogoPath . '" width="24" height="24" alt="' . $item->title . '"></span>&nbsp;';
 				} else {

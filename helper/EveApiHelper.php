@@ -169,13 +169,7 @@ class EveApiHelper {
 		$imageName = $entitieID . '_' . $size . '.png';
 		$ownerGroupID = $this->getEveGroupTypeFromName($name);
 
-		if(ImageHelper::checkCachedImage($this->entityGroups[$ownerGroupID], $imageName) === true) {
-			$imagePath = ImageHelper::getImageCacheUri() . $this->entityGroups[$ownerGroupID] . '/' . $imageName;
-		} else {
-			ImageHelper::cacheRemoteImageFile($this->entityGroups[$ownerGroupID], $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups[$ownerGroupID]] . $imageName);
-
-			$imagePath = ImageHelper::getImageCacheUri() . $this->entityGroups[$ownerGroupID] . '/' . $imageName;
-		} // END if(ImageHelper::checkCachedImage($this->entityGroups[$ownerGroupID], $imageName) === true)
+		$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($this->entityGroups[$ownerGroupID], $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups[$ownerGroupID]] . $imageName);
 
 		if($imageOnly === true) {
 			return $imagePath;
@@ -193,8 +187,8 @@ class EveApiHelper {
 			return false;
 		} // END if($entitieID == 0)
 
-		$ownerGroupID = $this->getEveGroupTypeFromName($name);
-		$imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups[$ownerGroupID]] . $entitieID . '_' . $size. '.jpg';
+		$imageName = $entitieID . '_' . $size. '.jpg';
+		$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage('character', $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName);
 
 		if($imageOnly === true) {
 			return $imagePath;
@@ -206,7 +200,7 @@ class EveApiHelper {
 	} // END public function getCharacterImageByName($name, $imageOnly = true, $size = 128)
 
 	public function getCharacterImageById($id, $imageOnly = true, $size = 128) {
-		$imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$this->entityGroups['3']] . $id . '_' . $size. '.jpg';
+		$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($this->entityGroups['3'], $this->imageserverUrl . $this->imageserverEndpoints['character'] . $id . '_' . $size. '.jpg');
 
 		if($imageOnly === true) {
 			return $imagePath;
@@ -241,7 +235,7 @@ class EveApiHelper {
 
 			if(!empty($xml->result->rowset)) {
 				foreach($xml->result->rowset->row as $row) {
-					if(\strtolower((string) $row->attributes()->ownerName) == strtolower($name)) {
+					if(\strtolower((string) $row->attributes()->ownerName) === \strtolower($name)) {
 						$ownerID = (string) $row->attributes()->ownerID;
 					} // END if((string) $row->attributes()->name == $corpName)s
 				} // END foreach($xml->result->rowset->row as $row)
@@ -270,7 +264,7 @@ class EveApiHelper {
 
 			if(!empty($xml->result->rowset)) {
 				foreach($xml->result->rowset->row as $row) {
-					if(\strtolower((string) $row->attributes()->ownerName) == \strtolower($name)) {
+					if(\strtolower((string) $row->attributes()->ownerName) === \strtolower($name)) {
 						$ownerGroupID = (string) $row->attributes()->ownerGroupID;
 					} // END if((string) $row->attributes()->name == $corpName)s
 				} // END foreach($xml->result->rowset->row as $row)

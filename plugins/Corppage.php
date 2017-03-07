@@ -155,7 +155,8 @@ class Corppage {
 				<label><strong><?php \_e('Corporation Logo', 'eve-online'); ?></strong></label>
 				<br>
 				<?php
-				$corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_256.png';
+//				$corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_256.png';
+				$corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_256.png');
 				?>
 				<img src="<?php echo $corpLogoPath; ?>" alt="<?php echo $eve_page_corp_name; ?>">
 			</p>

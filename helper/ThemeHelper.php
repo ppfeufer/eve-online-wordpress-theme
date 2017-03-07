@@ -356,15 +356,42 @@ class ThemeHelper {
 		return $backgroundImage;
 	} // END public static function getThemeBackgroundImage()
 
+	/**
+	 * Getting the theme's name
+	 *
+	 * @return string Theme Name
+	 */
 	public static function getThemeName() {
 		return 'EVE Online';
 	} // END public static function getThemeName()
 
+	/**
+	 * Getting the absolute path for the cache directory
+	 *
+	 * @return string absolute path for the cache directory
+	 */
 	public static function getThemeCacheDir() {
 		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/' . \sanitize_title(self::getThemeName());
 	} // END public static function getImagecacheDir()
 
+	/**
+	 * Getting the URI for the cache directory
+	 *
+	 * @return string URI for the cache directory
+	 */
 	public static function getThemeCacheUri() {
 		return \trailingslashit(\WP_CONTENT_URL) . 'cache/' . \sanitize_title(self::getThemeName());
 	} // END public static function getThemeCacheUri()
+
+	/**
+	 * creating our needed cache directories under:
+	 *		/wp-content/cache/«theme-name»/
+	 */
+	public static function createCacheDirectory($directory = '') {
+		if(\is_writable(\WP_CONTENT_DIR)) {
+			if(!\is_dir(\trailingslashit(self::getThemeCacheDir()) . $directory)) {
+				\mkdir(\trailingslashit(self::getThemeCacheDir()) . $directory, 0755, true);
+			} // END if(!\is_dir(self::getImagecacheDir()))
+		} // END if(\is_writable(\WP_CONTENT_DIR))
+	} // END public static function createCacheDirectories()
 } // END class ThemeHelper
