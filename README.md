@@ -1,7 +1,5 @@
 # EVE Online Theme for WordPress
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c8b761e59d9e4483a51bfce0c99d9d68)](https://www.codacy.com/app/ppfeufer/eve-online-wordpress-theme?utm_source=github.com&utm_medium=referral&utm_content=ppfeufer/eve-online-wordpress-theme&utm_campaign=badger)
-
 ## A beautifull WordPress theme inspired by the MMORPG EVE Online.
 
 ### Features:
@@ -48,3 +46,5 @@ see [CHANGELOG.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/m
 - [ ] Generate color theme for Gallente
 - [ ] Generate color theme for Caldari
 - [ ] Generate color theme for Minmatar
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c8b761e59d9e4483a51bfce0c99d9d68)](https://www.codacy.com/app/ppfeufer/eve-online-wordpress-theme?utm_source=github.com&utm_medium=referral&utm_content=ppfeufer/eve-online-wordpress-theme&utm_campaign=badger)
