@@ -259,6 +259,7 @@ function eve_theme_setup() {
 	Helper\ThemeHelper::createCacheDirectory('images/corporation');
 	Helper\ThemeHelper::createCacheDirectory('images/alliance');
 	Helper\ThemeHelper::createCacheDirectory('images/character');
+	Helper\ThemeHelper::createCacheDirectory('images/render');
 } // END function eve_theme_setup()
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
 

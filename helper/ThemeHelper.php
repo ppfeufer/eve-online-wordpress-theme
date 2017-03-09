@@ -371,7 +371,7 @@ class ThemeHelper {
 	 * @return string absolute path for the cache directory
 	 */
 	public static function getThemeCacheDir() {
-		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/' . \sanitize_title(self::getThemeName());
+		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/' . \sanitize_title(self::getThemeName());
 	} // END public static function getImagecacheDir()
 
 	/**
@@ -380,12 +380,12 @@ class ThemeHelper {
 	 * @return string URI for the cache directory
 	 */
 	public static function getThemeCacheUri() {
-		return \trailingslashit(\WP_CONTENT_URL) . 'cache/' . \sanitize_title(self::getThemeName());
+		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/' . \sanitize_title(self::getThemeName());
 	} // END public static function getThemeCacheUri()
 
 	/**
 	 * creating our needed cache directories under:
-	 *		/wp-content/cache/«theme-name»/
+	 *		/wp-content/cache/themes/«theme-name»/
 	 */
 	public static function createCacheDirectory($directory = '') {
 		if(\is_writable(\WP_CONTENT_DIR)) {

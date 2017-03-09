@@ -168,7 +168,8 @@ class KillboardWidget extends \WP_Widget {
 							. '	<div class="col-xs-6 col-sm-12 col-md-12 col-lg-5">'
 							. '		<figure>'
 							. '			<a href="' . $kill->killboardLink . '" rel="external">'
-							. '				<img src="' . $kill->victimImage . '" alt="' . $kill->plt_name . '">'
+//							. '				<img src="' . $kill->victimImage . '" alt="' . $kill->plt_name . '">'
+							.				$kill->victimImage
 							. '			</a>'
 							. '		</figure>'
 							. '	</div>'

@@ -92,16 +92,19 @@ class EdkKillboardHelper {
 
 	private function getVictimImage($victimName, $shipID, $size = 512) {
 		if(\preg_match('/Control Tower/', $victimName)) {
-			$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
+//			$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
+			$victimImage = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png');
 		} else {
-			$victimImage = $this->eveApi->getCharacterImageByName($victimName, true, $size);
+//			$victimImage = $this->eveApi->getCharacterImageByName($victimName, true, $size);
+			$victimImage = $this->eveApi->getCharacterImageByName($victimName, false, $size);
 		} // END if(preg_match('/Control Tower/', $kill->shp_name))
 
 		return $victimImage;
 	} // END private function getVictimImage($victimName, $shipID, $size = 512)
 
 	private function getStructureImage($shipID, $size = 512) {
-		$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
+//		$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
+		$victimImage = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png');
 
 		return $victimImage;
 	} // END private function getCitadelImage($shipID, $size = 512)
