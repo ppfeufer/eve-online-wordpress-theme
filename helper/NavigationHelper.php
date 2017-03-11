@@ -115,20 +115,32 @@ class NavigationHelper {
 		} // END if(!\is_single() && $paged > 1)
 	} // END public static function getPreviousPostsLink($label = null, $echo = false)
 
-	public static function getBreadcrumbs($addTexts = true) {
+	/**
+	 * Get the Breadcrumb Navigation
+	 *
+	 * @global type $post
+	 * @global object $wp_query
+	 * @global type $author
+	 * @param boolean $addTexts
+	 * @param boolean $echo
+	 * @return string
+	 */
+	public static function getBreadcrumbNavigation($addTexts = true, $echo = false) {
 		$home = __('Home', 'eve-online'); // text for the 'Home' link
 		$before = '<li class="active">'; // tag before the current crumb
 		$sep = '';
 		$after = '</li>'; // tag after the current crumb
 
+		$breadcrumb = '';
+
 		if(!\is_home() && !\is_front_page() || \is_paged()) {
-			echo '<ul class="breadcrumb">';
+			$breadcrumb .= '<ul class="breadcrumb">';
 
 			global $post;
 
 			$homeLink = \home_url();
 
-			echo '<li><a href="' . $homeLink . '">' . $home . '</a> ' . $sep . '</li> ';
+			$breadcrumb .= '<li><a href="' . $homeLink . '">' . $home . '</a> ' . $sep . '</li> ';
 
 			if(\is_category()) {
 				global $wp_query;
@@ -139,49 +151,49 @@ class NavigationHelper {
 				$parentCat = \get_category($thisCat->parent);
 
 				if($thisCat->parent != 0) {
-					echo '<li>' . \get_category_parents($parentCat, true, $sep . '</li><li>') . '</li>';
+					$breadcrumb .= '<li>' . \get_category_parents($parentCat, true, $sep . '</li><li>') . '</li>';
 				} // END if($thisCat->parent != 0)
 
 				$format = $before . ($addTexts ? (__('Archive by category ', 'eve-online') . '"%s"') : '%s') . $after;
 
-				echo \sprintf($format, \single_cat_title('', false));
+				$breadcrumb .= \sprintf($format, \single_cat_title('', false));
 			} elseif(\is_day()) {
-				echo '<li><a href="' . \get_year_link(\get_the_time('Y')) . '">' . \get_the_time('Y') . '</a></li> ';
-				echo '<li><a href="' . \get_month_link(\get_the_time('Y'), \get_the_time('m')) . '">' . \get_the_time('F') . '</a></li> ';
-				echo $before . \get_the_time('d') . $after;
+				$breadcrumb .= '<li><a href="' . \get_year_link(\get_the_time('Y')) . '">' . \get_the_time('Y') . '</a></li> ';
+				$breadcrumb .= '<li><a href="' . \get_month_link(\get_the_time('Y'), \get_the_time('m')) . '">' . \get_the_time('F') . '</a></li> ';
+				$breadcrumb .= $before . \get_the_time('d') . $after;
 			} elseif(\is_month()) {
-				echo '<li><a href="' . \get_year_link(\get_the_time('Y')) . '">' . \get_the_time('Y') . '</a></li> ';
-				echo $before . \get_the_time('F') . $after;
+				$breadcrumb .= '<li><a href="' . \get_year_link(\get_the_time('Y')) . '">' . \get_the_time('Y') . '</a></li> ';
+				$breadcrumb .= $before . \get_the_time('F') . $after;
 			} elseif(\is_year()) {
-				echo $before . \get_the_time('Y') . $after;
+				$breadcrumb .= $before . \get_the_time('Y') . $after;
 			} elseif(\is_single() && !\is_attachment()) {
 				if(\get_post_type() != 'post') {
 					$post_type = \get_post_type_object(\get_post_type());
 					$slug = $post_type->rewrite;
 
-					echo '<li><a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a></li> ';
-					echo $before . \get_the_title() . $after;
+					$breadcrumb .= '<li><a href="' . $homeLink . '/' . $slug['slug'] . '/">' . $post_type->labels->singular_name . '</a></li> ';
+					$breadcrumb .= $before . \get_the_title() . $after;
 				} else {
 					$cat = \get_the_category();
 					$cat = $cat[0];
 
-					echo '<li>' . \get_category_parents($cat, true, $sep) . '</li>';
-					echo $before . \get_the_title() . $after;
+					$breadcrumb .= '<li>' . \get_category_parents($cat, true, $sep) . '</li>';
+					$breadcrumb .= $before . \get_the_title() . $after;
 				} // END if(get_post_type() != 'post')
 			} elseif(!\is_single() && !\is_page() && \get_post_type() != 'post' && !\is_404()) {
 				$post_type = \get_post_type_object(\get_post_type());
 
-				echo $before . $post_type->labels->singular_name . $after;
+				$breadcrumb .= $before . $post_type->labels->singular_name . $after;
 			} elseif(\is_attachment()) {
 				$parent = \get_post($post->post_parent);
 				$cat = \get_the_category($parent->ID);
 				$cat = (isset($cat['0'])) ? $cat['0'] : '';
 
-				echo (isset($cat['0'])) ? \get_category_parents($cat, true, $sep) : '';
-				echo '<li><a href="' . \get_permalink($parent) . '">' . $parent->post_title . '</a></li> ';
-				echo $before . \get_the_title() . $after;
+				$breadcrumb .= (isset($cat['0'])) ? \get_category_parents($cat, true, $sep) : '';
+				$breadcrumb .= '<li><a href="' . \get_permalink($parent) . '">' . $parent->post_title . '</a></li> ';
+				$breadcrumb .= $before . \get_the_title() . $after;
 			} elseif(\is_page() && !$post->post_parent) {
-				echo $before . get_the_title() . $after;
+				$breadcrumb .= $before . get_the_title() . $after;
 			} elseif(\is_page() && $post->post_parent) {
 				$parent_id = $post->post_parent;
 				$breadcrumbs = array();
@@ -195,30 +207,36 @@ class NavigationHelper {
 				$breadcrumbs = \array_reverse($breadcrumbs);
 
 				foreach($breadcrumbs as $crumb) {
-					echo $crumb;
+					$breadcrumb .= $crumb;
 				} // END foreach($breadcrumbs as $crumb)
 
-				echo $before . \get_the_title() . $after;
+				$breadcrumb .= $before . \get_the_title() . $after;
 			} elseif(\is_search()) {
 				$format = $before . ($addTexts ? (\__('Search results for "', 'eve-online') . '"%s"') : '%s') . $after;
 
-				echo \sprintf($format, \get_search_query());
+				$breadcrumb .= \sprintf($format, \get_search_query());
 			} elseif(\is_tag()) {
 				$format = $before . ($addTexts ? (\__('Posts tagged "', 'eve-online') . '"%s"') : '%s') . $after;
 
-				echo \sprintf($format, \single_tag_title('', false));
+				$breadcrumb .= \sprintf($format, \single_tag_title('', false));
 			} elseif(\is_author()) {
 				global $author;
 
 				$userdata = \get_userdata($author);
 				$format = $before . ($addTexts ? (\__('Articles posted by ', 'eve-online') . '"%s"') : '%s') . $after;
 
-				echo \sprintf($format, $userdata->display_name);
+				$breadcrumb .= \sprintf($format, $userdata->display_name);
 			} elseif(\is_404()) {
-				echo $before . \__('Error 404', 'eve-online') . $after;
+				$breadcrumb .= $before . \__('Error 404', 'eve-online') . $after;
 			} // END if(is_category())
 
-			echo '</ul>';
+			$breadcrumb .= '</ul>';
 		} // END if(!is_home() && !is_front_page() || is_paged())
+
+		if($echo === true) {
+			echo $breadcrumb;
+		} else {
+			return $breadcrumb;
+		} // END if($echo === true)
 	} // END public static function getBreadcrumbs($addTexts = true)
 } // END class NavigationHelper
