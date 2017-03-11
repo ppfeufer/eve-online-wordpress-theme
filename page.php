@@ -9,13 +9,21 @@
 ?>
 
 	<div class="container main">
-		<div class="row">
-			<div class="col-md-12">
-				<?php
-				\WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbs();
-				?>
-			</div><!--/.col -->
-		</div><!--/.row -->
+		<?php
+		$breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
+		if(!empty($breadcrumbNavigation)) {
+			?>
+			<!--
+			// Breadcrumb Navigation
+			-->
+			<div class="row">
+				<div class="col-md-12 breadcrumb-wrapper">
+					<?php echo $breadcrumbNavigation; ?>
+				</div><!--/.col -->
+			</div><!--/.row -->
+			<?php
+		} // END if(!empty($breadcrumbNavigation))
+		?>
 
 		<?php
 		if(\have_posts()) {
@@ -23,8 +31,8 @@
 				\the_post();
 				?>
 				<div class="row main-content">
-					<div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?>">
-						<div class="content content-page">
+					<div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+						<div class="content content-inner content-page">
 							<header>
 								<?php
 								if(\is_front_page()) {

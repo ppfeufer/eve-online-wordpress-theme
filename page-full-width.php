@@ -9,13 +9,21 @@ defined('ABSPATH') or die();
 ?>
 
 <div class="container main">
-	<div class="row">
-		<div class="col-md-12">
-			<?php
-			\WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbs();
-			?>
-		</div><!--/.col -->
-	</div><!--/.row -->
+	<?php
+	$breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
+	if(!empty($breadcrumbNavigation)) {
+		?>
+		<!--
+		// Breadcrumb Navigation
+		-->
+		<div class="row">
+			<div class="col-md-12 breadcrumb-wrapper">
+				<?php echo $breadcrumbNavigation; ?>
+			</div><!--/.col -->
+		</div><!--/.row -->
+		<?php
+	} // END if(!empty($breadcrumbNavigation))
+	?>
 
 	<?php
 	if(\have_posts()) {
@@ -43,8 +51,8 @@ defined('ABSPATH') or die();
 			</div><!--/.row -->
 
 			<div class="row main-content">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
-					<div class="content main">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-12 content-wrapper">
+					<div class="content content-inner content-full-width content-page">
 						<article class="post clearfix" id="post-<?php \the_ID(); ?>">
 							<?php echo \the_content(); ?>
 						</article>
