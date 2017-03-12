@@ -18,6 +18,12 @@ namespace WordPress\Themes\EveOnline;
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
+ * Loading Theme Addon Classes
+ */
+require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
+require_once(\get_template_directory() .'/addons/Cron.php');
+
+/**
  * Loading Helper Classes
  */
 require_once(\get_template_directory() . '/helper/ThemeHelper.php');
@@ -60,6 +66,7 @@ require_once(\get_template_directory() . '/admin/ThemeSettings.php');
 /**
  * Initiate needed general Classes
  */
+new Addons\Cron(true);
 new Security\WordPressSecurity;
 new Plugins\MoCache;
 new Plugins\Metaslider(true);
@@ -239,9 +246,6 @@ function eve_theme_setup() {
 		\add_image_size('header-image', 1680, 500, true);
 		\add_image_size('post-loop-thumbnail', 705, 395, true);
 	} // END if(\function_exists('\fly_add_image_size'))
-
-	// Register Custom Navigation Walker
-	require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
 
 	/**
 	 * This theme styles the visual editor to resemble the theme style,
