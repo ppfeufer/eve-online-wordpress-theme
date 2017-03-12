@@ -32,6 +32,7 @@ require_once(\get_template_directory() . '/helper/PostHelper.php');
 require_once(\get_template_directory() . '/helper/EveApiHelper.php');
 require_once(\get_template_directory() . '/helper/StringHelper.php');
 require_once(\get_template_directory() . '/helper/ImageHelper.php');
+require_once(\get_template_directory() . '/helper/FilesystemHelper.php');
 
 /**
  * Loading Plugins
