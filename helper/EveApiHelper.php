@@ -315,7 +315,7 @@ class EveApiHelper {
 		\curl_setopt($cUrlChannel, \CURLOPT_URL, $url);
 
 		if(\ini_get('open_basedir') === '' && \ini_get('safe_mode' === 'Off')) {
-			curl_setopt ($cUrlChannel, CURLOPT_FOLLOWLOCATION, 1);
+			\curl_setopt ($cUrlChannel, \CURLOPT_FOLLOWLOCATION, 1);
 		} // END if(ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off'))
 
 		\curl_setopt($cUrlChannel, \CURLOPT_SSL_VERIFYPEER, false);
