@@ -103,8 +103,7 @@ class EdkKillboardHelper {
 	} // END private function getVictimImage($victimName, $shipID, $size = 512)
 
 	private function getStructureImage($shipID, $size = 512) {
-//		$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
-		$victimImage = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png');
+		$victimImage = '<img src="' . EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png') . '" class="eve-character-image eve-online-id-' . $shipID . '">';
 
 		return $victimImage;
 	} // END private function getCitadelImage($shipID, $size = 512)
