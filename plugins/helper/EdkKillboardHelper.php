@@ -79,7 +79,6 @@ class EdkKillboardHelper {
 			/**
 			 * Overwrite Victim Image if its a Citadel
 			 */
-//			if(\in_array($kill->shp_name, $this->plugin->getStructureNames())) {
 			if(\in_array($kill->shp_name, EveOnline\Plugins\Killboard::getStructureNames())) {
 				$kill->victimImage = $this->getStructureImage($kill->shp_id);
 			} else {
@@ -92,10 +91,8 @@ class EdkKillboardHelper {
 
 	private function getVictimImage($victimName, $shipID, $size = 512) {
 		if(\preg_match('/Control Tower/', $victimName)) {
-//			$victimImage = "http://image.eveonline.com/Render/" . $shipID . "_" . $size . ".png";
-			$victimImage = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png');
+			$victimImage = '<img src="' . EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('render', 'http://image.eveonline.com/Render/' . $shipID . '_' . $size . '.png') . '" class="eve-character-image eve-online-id-' . $shipID . '">';
 		} else {
-//			$victimImage = $this->eveApi->getCharacterImageByName($victimName, true, $size);
 			$victimImage = $this->eveApi->getCharacterImageByName($victimName, false, $size);
 		} // END if(preg_match('/Control Tower/', $kill->shp_name))
 
