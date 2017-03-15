@@ -257,6 +257,19 @@ class Killboard {
 			'Fortizar',
 			'Keepstar',
 
+			// Engeniering Complexes
+			'Raitaru',
+			'Azbel',
+			'Sotiyo',
+
+			// Warp Bubbles
+			'Mobile Small Warp Disruptor I',
+			'Mobile Small Warp Disruptor II',
+			'Mobile Medium Warp Disruptor I',
+			'Mobile Medium Warp Disruptor II',
+			'Mobile Large Warp Disruptor I',
+			'Mobile Large Warp Disruptor II',
+
 			// POS Tower
 			'Amarr Control Tower',
 			'Amarr Control Tower Small',
