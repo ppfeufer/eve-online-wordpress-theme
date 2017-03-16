@@ -7,6 +7,9 @@
 - Cron to clear image cache once every day to not litter thousands of images there
 - Warp Bubbles and Engeniering Complexes added to the killboard Plugin
 
+### Changed / Fixed
+- Added some missing clearfixes to the content areas
+
 ## [v0.1-r20170307](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170307) - 2017-03-07
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...v0.1-r20170307)
 ### Added
