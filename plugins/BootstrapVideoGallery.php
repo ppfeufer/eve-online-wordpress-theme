@@ -84,7 +84,7 @@ class BootstrapVideoGallery {
 		// loop through the pages and build the gallery code ....
 		$uniqueID = \uniqid();
 		$videoGalleryHtml = null;
-		$videoGalleryHtml .= '<div class="gallery-row">';
+		$videoGalleryHtml .= '<div class="gallery-row row">';
 		$videoGalleryHtml .= '<ul class="bootstrap-gallery bootstrap-video-gallery bootstrap-video-gallery-' . $uniqueID . ' clearfix">';
 
 		if(empty($videoList)) {
