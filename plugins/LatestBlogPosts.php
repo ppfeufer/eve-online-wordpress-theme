@@ -23,7 +23,9 @@ class LatestBlogPosts {
 		$args = \shortcode_atts(
 			array(
 				'number' => EveOnline\Helper\PostHelper::getContentColumnCount(),
-				'classes' => EveOnline\Helper\PostHelper::geLoopContentClasses()
+				'classes' => EveOnline\Helper\PostHelper::geLoopContentClasses(),
+				'headline_type' => 'h2',
+				'headline_text' => ''
 			),
 			$attributes
 		);
@@ -45,6 +47,11 @@ class LatestBlogPosts {
 
 		if($latestPosts->have_posts() && is_page()) {
 			\ob_start();
+
+			if(!empty($args['headline_text'])) {
+				echo '<' . $args['headline_type'] . ' class="latest-blogposts-headline">' . $args['headline_text'] . '</' . $args['headline_type'] . '>';
+				echo '<div class="latest-blogposts-headline-decoration"><div class="latest-blogposts-headline-decoration-inside"></div></div>';
+			} // END if(!empty($args['headline_text']))
 
 			$blogPage = \get_option('page_for_posts');
 			$uniqueID = \uniqid();

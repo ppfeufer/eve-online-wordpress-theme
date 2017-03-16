@@ -265,3 +265,31 @@
 		margin-top: 0.5rem;
 	}
 }
+
+/* Latest Blogposts
+----------------------------------------------------------------------------- */
+@media all {
+	.latest-blogposts-headline {
+		text-align: center;
+		line-height: 1.4rem;
+	}
+
+	.latest-blogposts-headline-decoration {
+		line-height: 0em;
+		text-align: center;
+		margin-top: 20px;
+		margin-top: 1.25rem;
+		margin-bottom: 30px;
+		margin-bottom: 1.875rem;
+	}
+
+	.latest-blogposts-headline-decoration-inside {
+		height: 1px;
+		height: 0.0625rem;
+		display: inline-block;
+		border-top: 1px solid rgb(238,238,238);
+		border-top: 0.0625rem solid rgb(238,238,238);
+		width: 100%;
+		max-width: 80%;
+	}
+}
