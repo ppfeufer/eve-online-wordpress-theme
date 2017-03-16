@@ -31,7 +31,7 @@ defined('ABSPATH') or die();
 					if(\get_post_type() === 'post') {
 						$uniqueID = \uniqid();
 
-						echo '<div class="gallery-row">';
+						echo '<div class="gallery-row row">';
 						echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
 					} // END if(\get_post_type() === 'post')
 
