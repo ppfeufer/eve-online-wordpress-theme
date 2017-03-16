@@ -6,6 +6,7 @@
 - Cron class
 - Cron to clear image cache once every day to not litter thousands of images there
 - Warp Bubbles and Engeniering Complexes added to the killboard Plugin
+- Added "position" to columns hortcode, accepts "first" and "last" as parameter
 
 ### Changed / Fixed
 - Added some missing clearfixes to the content areas
