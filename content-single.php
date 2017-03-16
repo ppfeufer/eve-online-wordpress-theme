@@ -16,8 +16,8 @@
 		</aside><!--end .entry-details -->
 	</header><!--end .entry-header -->
 
-	<section class="post-content">
-		<div class="entry-content">
+	<section class="post-content clearfix">
+		<div class="entry-content clearfix">
 			<?php
 			echo \the_content();
 

@@ -38,17 +38,17 @@ defined('ABSPATH') or die();
 		</aside><!--end .entry-details -->
 	</header><!--end .entry-header -->
 
-	<section class="post-content">
+	<section class="post-content clearfix">
 		<?php
 		if(\is_search()) { // Only display excerpts without thumbnails for search.
 			?>
-			<div class="entry-summary">
+			<div class="entry-summary clearfix">
 				<?php \the_excerpt(); ?>
 			</div><!-- end .entry-summary -->
 			<?php
 		} else {
 			?>
-			<div class="entry-content">
+			<div class="entry-content clearfix">
 				<?php
 				echo \wpautop(\do_shortcode(WordPress\Themes\EveOnline\Helper\StringHelper::cutString(\get_the_content(), '140')));
 				\printf('<a href="%1$s"><span class="read-more">' . \__('Read more', 'eve-online') . '</span></a>', \get_the_permalink());
