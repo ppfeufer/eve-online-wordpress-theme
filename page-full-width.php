@@ -16,7 +16,8 @@ defined('ABSPATH') or die();
 		<!--
 		// Breadcrumb Navigation
 		-->
-		<div class="row">
+		<!--<div class="row">-->
+		<div class="clearfix">
 			<div class="col-md-12 breadcrumb-wrapper">
 				<?php echo $breadcrumbNavigation; ?>
 			</div><!--/.col -->
@@ -30,7 +31,8 @@ defined('ABSPATH') or die();
 		while(\have_posts()) {
 			\the_post();
 			?>
-			<div class="row main-top">
+			<!--<div class="row main-top">-->
+			<div class="main-top clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-12">
 					<header>
 						<h1>
@@ -50,7 +52,8 @@ defined('ABSPATH') or die();
 				</div><!--/.col -->
 			</div><!--/.row -->
 
-			<div class="row main-content">
+			<!--<div class="row main-content">-->
+			<div class="main-content clearfix">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-12 content-wrapper">
 					<div class="content content-inner content-full-width content-page">
 						<article class="post clearfix" id="post-<?php \the_ID(); ?>">
