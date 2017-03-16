@@ -58,7 +58,7 @@ class Corppage {
 	 */
 	private function getCorporationPagesLoop($corpPages) {
 		$uniqueID = \uniqid();
-		$corplistHTML .= '<div class="gallery-row">';
+		$corplistHTML .= '<div class="gallery-row row">';
 		$corplistHTML .= '<ul class="bootstrap-gallery bootstrap-corporationlist bootstrap-corporationlist-' . $uniqueID . ' clearfix">';
 
 		foreach($corpPages as $page) {
