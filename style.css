@@ -191,9 +191,9 @@
 		padding: 6px 10px 6px 0;
 	}
 
-	.entry-content *, .content * {
+/*	.entry-content *, .content * {
 		max-width: 100%;
-	}
+	}*/
 
 	.entry-content dd, .content dd, .comment-content dd {
 		line-height: 1.714285714;
