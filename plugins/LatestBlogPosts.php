@@ -49,7 +49,7 @@ class LatestBlogPosts {
 			$blogPage = \get_option('page_for_posts');
 			$uniqueID = \uniqid();
 
-			echo '<div class="gallery-row">';
+			echo '<div class="gallery-row row">';
 			echo '<ul class="bootstrap-gallery bootstrap-latest-post-loop bootstrap-latest-post-loop-' . $uniqueID . ' clearfix">';
 
 			while($latestPosts->have_posts()) {
