@@ -96,11 +96,9 @@ class ImageHelper {
 			// get the remote image
 			$get = \wp_remote_get($remoteImageUrl);
 			$imageToFetch = \wp_remote_retrieve_body($get);
-			$localImageFile = \fopen($cacheDir . $imageFilename, 'w+');
 
-			\chmod($cacheDir . $imageFilename,0755);
-			\fwrite($localImageFile, $imageToFetch);
-			\fclose($localImageFile);
+			$wpFileSystem = new \WP_Filesystem_Direct(null);
+			$wpFileSystem->put_contents($cacheDir . $imageFilename, $imageToFetch, 0755);
 		} // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
 	} // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
 
