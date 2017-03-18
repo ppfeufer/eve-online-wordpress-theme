@@ -65,6 +65,12 @@ require_once(\get_template_directory() . '/admin/SettingsApi.php');
 require_once(\get_template_directory() . '/admin/ThemeSettings.php');
 
 /**
+ * WP Filesystem API
+ */
+require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
+require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
+
+/**
  * Initiate needed general Classes
  */
 new Addons\Cron(true);
