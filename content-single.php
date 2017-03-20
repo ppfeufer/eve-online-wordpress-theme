@@ -47,19 +47,22 @@
 	if(\get_the_author_meta('description')) {
 		?>
 		<hr/>
-		<div class="author-info">
-			<?php echo \get_avatar(\get_the_author_meta('user_email'), 100); ?>
+		<div class="author-info clearfix">
 			<div class="author-details">
 				<h3>
 					<?php
-					print(__('Posted by ', 'eve-online'));
-					\the_author_link();
+					echo \__('Written by ', 'eve-online');
+					echo \get_the_author();
 					?>
 				</h3>
+				<?php
+				$eveApi = new WordPress\Themes\EveOnline\Helper\EveApiHelper;
+				echo $eveApi->getCharacterImageByName(\get_the_author(), false);
+				?>
 			</div><!-- end .author-details -->
-			<p class="author-description">
-				<?php \the_author_meta('description'); ?>
-			</p>
+			<div class="author-description">
+				<?php echo \wpautop(\get_the_author_meta('description')); ?>
+			</div>
 		</div><!-- end .author-info -->
 		<?php
 	} // END if(get_the_author_meta('description'))
