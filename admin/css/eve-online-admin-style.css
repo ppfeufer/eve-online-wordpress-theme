@@ -1,20 +1,48 @@
 /* fix for oEmbed videos
 ----------------------------------------------------------------------------- */
-.embed-video-container {
-	position: relative;
-	padding-bottom: 56.25%;
-	height: 0;
-	overflow: hidden;
-	max-width: 100%;
-	height: auto;
+@media all {
+	.embed-video-container {
+		position: relative;
+		padding-bottom: 56.25%;
+		height: 0;
+		overflow: hidden;
+		max-width: 100%;
+		height: auto;
+	}
+
+	.embed-video-container iframe,
+	.embed-video-container object,
+	.embed-video-container embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.mce-tinymce .mce-menubar {
+		background-color: rgb(255, 255, 255);
+		border: none;
+	}
 }
 
-.embed-video-container iframe,
-.embed-video-container object,
-.embed-video-container embed {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+/* EVE Avatare in backend
+----------------------------------------------------------------------------- */
+@media all {
+	/* Userlist
+	------------------------------------------------------------------------- */
+	table.users td.username img.eve-character-image {
+		width: 32px;
+		height: 32px;
+	}
+
+	/* Header Admin Bar
+	------------------------------------------------------------------------- */
+	#wp-admin-bar-user-info .eve-character-image {
+		position: absolute;
+		left: -72px;
+		top: 4px;
+		width: 64px;
+		height: 64px;
+	}
 }
