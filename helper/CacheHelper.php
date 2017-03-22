@@ -23,10 +23,20 @@ class CacheHelper {
 		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/' . \sanitize_title(ThemeHelper::getThemeName());
 	} // END public static function getThemeCacheUri()
 
+	/**
+	 * Getting the URI for the cache directory
+	 *
+	 * @return string URI for the cache directory
+	 */
 	public static function getImageCacheDir() {
 		return \trailingslashit(self::getThemeCacheDir() . '/images');
 	} // END public static function getImageCacheDir()
 
+	/**
+	 * Getting the local image cache URI
+	 *
+	 * @return string Local image cache URI
+	 */
 	public static function getImageCacheUri() {
 		return \trailingslashit(self::getThemeCacheUri() . '/images');
 	} // END public static function getImageCacheUri()
@@ -46,7 +56,7 @@ class CacheHelper {
 	} // END public static function createCacheDirectories()
 
 	/**
-	 * Chek if a remote image has been cached locally
+	 * Check if a remote image has been cached locally
 	 *
 	 * @param string $cacheType The subdirectory in the image cache filesystem
 	 * @param string $imageName The image file name
@@ -56,8 +66,13 @@ class CacheHelper {
 		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
 
 		if(\file_exists($cacheDir . $imageName)) {
-			// check if the file is older than 2 hrs
-			if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600) {
+			/**
+			 * Check if the file is older than 24 hrs
+			 * If so, time to renew it
+			 *
+			 * This is just in case our cronjob doesn't run for whetever reason
+			 */
+			if(\time() - \filemtime($cacheDir . $imageName) > 24 * 3600) {
 				\unlink($cacheDir . $imageName);
 
 				$returnValue = false;
