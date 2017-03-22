@@ -265,12 +265,12 @@ function eve_theme_setup() {
 	));
 
 	// Setting up the cahe directories
-	Helper\ThemeHelper::createCacheDirectory();
-	Helper\ThemeHelper::createCacheDirectory('images');
-	Helper\ThemeHelper::createCacheDirectory('images/corporation');
-	Helper\ThemeHelper::createCacheDirectory('images/alliance');
-	Helper\ThemeHelper::createCacheDirectory('images/character');
-	Helper\ThemeHelper::createCacheDirectory('images/render');
+	Helper\CacheHelper::createCacheDirectory();
+	Helper\CacheHelper::createCacheDirectory('images');
+	Helper\CacheHelper::createCacheDirectory('images/corporation');
+	Helper\CacheHelper::createCacheDirectory('images/alliance');
+	Helper\CacheHelper::createCacheDirectory('images/character');
+	Helper\CacheHelper::createCacheDirectory('images/render');
 } // END function eve_theme_setup()
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
 

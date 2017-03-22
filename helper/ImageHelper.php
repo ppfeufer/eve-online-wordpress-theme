@@ -44,64 +44,6 @@ class ImageHelper {
 		return $attachment_id;
 	} // END public static function getAttachmentId($url)
 
-	public static function getImageCacheDir() {
-		return \trailingslashit(ThemeHelper::getThemeCacheDir() . '/images');
-	} // END public static function getImageCacheDir()
-
-	public static function getImageCacheUri() {
-		return \trailingslashit(ThemeHelper::getThemeCacheUri() . '/images');
-	} // END public static function getImageCacheUri()
-
-	/**
-	 * Chek if a remote image has been cached locally
-	 *
-	 * @param string $cacheType The subdirectory in the image cache filesystem
-	 * @param string $imageName The image file name
-	 * @return boolean true or false
-	 */
-	public static function checkCachedImage($cacheType = null, $imageName = null) {
-		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
-
-		if(\file_exists($cacheDir . $imageName)) {
-			// check if the file is older than 2 hrs
-			if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600) {
-				\unlink($cacheDir . $imageName);
-
-				$returnValue = false;
-			} else {
-				$returnValue = true;
-			} // END if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600)
-		} else {
-			$returnValue = false;
-		} // END if(\file_exists($cacheDir . $imageName))
-
-		return $returnValue;
-	} // END public static function checkCachedImage($cacheType = null, $imageName = null)
-
-	/**
-	 * Cachng a remote image locally
-	 *
-	 * @param string $cacheType The subdirectory in the image cache filesystem
-	 * @param string $remoteImageUrl The URL for the remote image
-	 */
-	public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null) {
-		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
-		$explodedImageUrl = \explode('/', $remoteImageUrl);
-		$imageFilename = \end($explodedImageUrl);
-		$explodedImageFilename = \explode('.', $imageFilename);
-		$extension = \end($explodedImageFilename);
-
-		// make sure its an image
-		if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png') {
-			// get the remote image
-			$get = \wp_remote_get($remoteImageUrl);
-			$imageToFetch = \wp_remote_retrieve_body($get);
-
-			$wpFileSystem = new \WP_Filesystem_Direct(null);
-			$wpFileSystem->put_contents($cacheDir . $imageFilename, $imageToFetch, 0755);
-		} // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
-	} // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
-
 	/**
 	 * Getting the cached URL for a remote image
 	 *
@@ -112,20 +54,20 @@ class ImageHelper {
 	public static function getLocalCacheImageUriForRemoteImage($cacheType = null, $remoteImageUrl = null) {
 		$explodedImageUrl = \explode('/', $remoteImageUrl);
 		$imageFilename = \end($explodedImageUrl);
-		$returnValue = self::getImageCacheUri() . $cacheType . '/' . $imageFilename;
+		$returnValue = CacheHelper::getImageCacheUri() . $cacheType . '/' . $imageFilename;
 
 		// if we don't have the image cached already
-		if(self::checkCachedImage($cacheType, $imageFilename) === false) {
+		if(CacheHelper::checkCachedImage($cacheType, $imageFilename) === false) {
 			/**
 			 * Check if the content dir is writable and cache the image.
 			 * Otherwise set the remote image as return value.
 			 */
-			if(\is_dir(self::getImageCacheDir() . $cacheType) && \is_writable(self::getImageCacheDir() . $cacheType)) {
-				self::cacheRemoteImageFile($cacheType, $remoteImageUrl);
+			if(\is_dir(CacheHelper::getImageCacheDir() . $cacheType) && \is_writable(CacheHelper::getImageCacheDir() . $cacheType)) {
+				CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl);
 			} else {
 				$returnValue = $remoteImageUrl;
 			} // END if(\is_writable(\WP_CONTENT_DIR))
-		} // END if(ImageHelper::checkCachedImage($cacheType, $imageName) === false)
+		} // END if(CacheHelper::checkCachedImage($cacheType, $imageName) === false)
 
 		return $returnValue;
 	} // END public static function getLocalCacheImageUri($cacheType = null, $remoteImageUrl = null)

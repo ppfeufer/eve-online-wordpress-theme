@@ -43,7 +43,7 @@ class Cron {
 	} // END public function scheduleTwicedailyCron()
 
 	public function cronCleanupImageCacheDirectories() {
-		$imageCacheDirectory = EveOnline\Helper\ImageHelper::getImageCacheDir();
+		$imageCacheDirectory = EveOnline\Helper\CacheHelper::getImageCacheDir();
 
 		EveOnline\Helper\FilesystemHelper::deleteDirectoryRecursive($imageCacheDirectory, false);
 	} // END public function cronCleanupCacheDirectories()

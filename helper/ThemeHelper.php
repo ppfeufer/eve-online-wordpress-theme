@@ -364,36 +364,4 @@ class ThemeHelper {
 	public static function getThemeName() {
 		return 'EVE Online';
 	} // END public static function getThemeName()
-
-	/**
-	 * Getting the absolute path for the cache directory
-	 *
-	 * @return string absolute path for the cache directory
-	 */
-	public static function getThemeCacheDir() {
-		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/' . \sanitize_title(self::getThemeName());
-	} // END public static function getImagecacheDir()
-
-	/**
-	 * Getting the URI for the cache directory
-	 *
-	 * @return string URI for the cache directory
-	 */
-	public static function getThemeCacheUri() {
-		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/' . \sanitize_title(self::getThemeName());
-	} // END public static function getThemeCacheUri()
-
-	/**
-	 * creating our needed cache directories under:
-	 *		/wp-content/cache/themes/«theme-name»/
-	 */
-	public static function createCacheDirectory($directory = '') {
-		$wpFileSystem =  new \WP_Filesystem_Direct(null);
-
-		if($wpFileSystem->is_writable($wpFileSystem->wp_content_dir())) {
-			if(!$wpFileSystem->is_dir(\trailingslashit(self::getThemeCacheDir()) . $directory)) {
-				$wpFileSystem->mkdir(\trailingslashit(self::getThemeCacheDir()) . $directory, 0755);
-			} // END if(!$wpFileSystem->is_dir(\trailingslashit(self::getThemeCacheDir()) . $directory))
-		} // END if($wpFileSystem->is_writable($wpFileSystem->wp_content_dir()))
-	} // END public static function createCacheDirectories()
 } // END class ThemeHelper
