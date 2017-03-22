@@ -26,7 +26,7 @@
 	}
 }
 
-/* EVE Avatare in backend
+/* EVE avatars in backend
 ----------------------------------------------------------------------------- */
 @media all {
 	/* Userlist
@@ -60,5 +60,24 @@
 	.column-author img, .column-username img, .column-comment .comment-author img {
 		height: 32px;
 		width: 32px;
+	}
+
+	/* Post Revisions
+	------------------------------------------------------------------------- */
+	.post-revisions li img, #revisions-meta-restored img {
+		height: 32px;
+		width: 32px;
+	}
+
+	/* Edit Flow internal comments
+	------------------------------------------------------------------------- */
+	#ef-comments img.eve-character-image {
+		border: 1px solid #CCCCCC;
+		float: left;
+		margin-left: 2px;
+		margin-right: 15px;
+		margin-top: 0;
+		height: 50px;
+		width: 50px;
 	}
 }
