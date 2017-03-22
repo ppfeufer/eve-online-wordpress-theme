@@ -45,4 +45,20 @@
 		width: 64px;
 		height: 64px;
 	}
+
+	/* Activity Widget
+	------------------------------------------------------------------------- */
+	#activity-widget #the-comment-list .eve-character-image {
+		position: absolute;
+		top: 12px;
+		height: 50px;
+		width: 50px;
+	}
+
+	/* Comment List
+	------------------------------------------------------------------------- */
+	.column-author img, .column-username img, .column-comment .comment-author img {
+		height: 32px;
+		width: 32px;
+	}
 }
