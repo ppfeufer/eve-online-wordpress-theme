@@ -10,6 +10,7 @@ if(\post_password_required()) {
 	<?php
 	if(\have_comments()) {
 		?>
+		<h3><?php \printf(\__('Comments for »%1$s«', 'eve-online'), get_the_title()); ?></h3>
 		<ul class="media-list">
 			<?php
 			\wp_list_comments(array(

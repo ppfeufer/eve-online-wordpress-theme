@@ -32,10 +32,8 @@ class EveOnlineAvatar {
 				if(!empty($id_or_email->user_id)) {
 					$id = (int) $id_or_email->user_id;
 					$user = \get_userdata($id);
-				} elseif(!empty($id_or_email->post_author)) {
-					$user = \get_user_by('id', (int) $id_or_email->post_author);
 				} elseif(!empty($id_or_email->comment_author_email)) {
-					$returnValue = $content; // Commenters not logged in don't need filtering
+					return $content; // Commenters not logged in don't need filtering
 				}
 			} else {
 				$user = \get_user_by('email', $id_or_email);

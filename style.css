@@ -220,6 +220,15 @@
 		line-height: 1.714285714;
 	}
 
+	.comment-avatar img {
+		width: 64px;
+		height: 64px;
+	}
+
+	.comments-area .media-list .children {
+		list-style: none;
+	}
+
 	img {
 		max-width: 100%;
 		height: auto;
