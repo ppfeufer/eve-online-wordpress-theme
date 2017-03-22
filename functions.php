@@ -51,6 +51,7 @@ require_once(\get_template_directory() . '/plugins/helper/ZkbKillboardHelper.php
 require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
 require_once(\get_template_directory() . '/plugins/Killboard.php');
 require_once(\get_template_directory() . '/plugins/LatestBlogPosts.php');
+require_once(\get_template_directory() . '/plugins/EveOnlineAvatar.php');
 //require_once(\get_template_directory() . '/plugins/HtmlMinify.php');
 
 /**
@@ -86,6 +87,7 @@ new Plugins\EncodeEmailAddresses;
 new Plugins\Whitelabel;
 new Plugins\Killboard(true);
 new Plugins\LatestBlogPosts;
+new Plugins\EveOnlineAvatar;
 
 /**
  * Initiate needed Backend Classes
@@ -265,7 +267,7 @@ function eve_theme_setup() {
 		eve_fonts_url()
 	));
 
-	// Setting up the cahe directories
+	// Setting up the image cache directories
 	Helper\CacheHelper::createCacheDirectory();
 	Helper\CacheHelper::createCacheDirectory('images');
 	Helper\CacheHelper::createCacheDirectory('images/corporation');

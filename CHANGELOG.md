@@ -3,10 +3,11 @@
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...HEAD)
 ### Added
+- CacheHelper class
 - Cron class
 - Cron to clear image cache once every day to not litter thousands of images there
 - Warp Bubbles and Engeniering Complexes added to the killboard Plugin
-- Added "position" to columns hortcode, accepts "first" and "last" as parameter
+- Added "position" to columns shortcode, accepts "first" and "last" as parameter
 
 ### Changed / Fixed
 - Added some missing clearfixes to the content areas

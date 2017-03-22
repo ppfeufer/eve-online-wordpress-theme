@@ -180,7 +180,7 @@ class EveApiHelper {
 		return $html;
 	} // END public function getEntityLogoByName($name, $imageOnly = true, $size = 128)
 
-	public function getCharacterImageByName($name, $imageOnly = true, $size = 128) {
+	public function getCharacterImageByName($name, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null) {
 		$entitieID = $this->getEveIdFromName($name);
 
 		if($entitieID == 0) {
@@ -193,6 +193,14 @@ class EveApiHelper {
 		if($imageOnly === true) {
 			return $imagePath;
 		} // END if($imageOnly === true)
+
+		if($newWidth !== null) {
+			$newWidth = ' width="' . $newWidth . '"';
+		}
+
+		if($newHeight !== null) {
+			$newHeight = ' height="' . $newHeight . '"';
+		}
 
 		$html = '<img src="' . $imagePath . '" class="eve-character-image eve-character-id-' . $entitieID . '" alt="' . $name . '">';
 
