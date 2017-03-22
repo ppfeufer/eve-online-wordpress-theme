@@ -26,7 +26,6 @@ or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme
 ### Websites using this Theme (in alphabetical order):
 * [No Will To Live](http://www.nowilltolive.com/)
 * [Order of Order](http://www.orden.space/)
-* [Sarcos Federation](http://sarcosfederation.elementfx.com/wp/)
 * [Terra Nanotech](http://terra-nanotech.de/)
 * [The 1st Regiment](http://the1stregiment.tk/)
 * [Yulai Federation](http://yulaifederation.net/)
