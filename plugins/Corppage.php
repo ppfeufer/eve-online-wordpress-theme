@@ -91,15 +91,7 @@ class Corppage {
 	private function getCorporationPageLoopItem($page) {
 		$corpID = \get_post_meta($page->ID, 'eve_page_corp_eve_ID', true);
 
-		if(EveOnline\Helper\CacheHelper::checkCachedImage('corporation', $corpID . '_256.png') === true) {
-			$corpLogo = EveOnline\Helper\CacheHelper::getImageCacheUri() . 'corporation' . '/' . $corpID . '_256.png';
-		} else {
-			EveOnline\Helper\CacheHelper::cacheRemoteImageFile('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
-
-			$corpLogo = EveOnline\Helper\CacheHelper::getImageCacheUri() . 'corporation' . '/' . $corpID . '_256.png';
-		}
-
-//		$corpLogo = $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png';
+		$corpLogo = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
 
 		$corplistHTML .= '<li>';
 		$corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
