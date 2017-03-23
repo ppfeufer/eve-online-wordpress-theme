@@ -81,42 +81,6 @@ class LatestBlogPosts {
 							"classes" : "' . $classes . '",
 							"hasModal" : false
 						});
-
-						/*
-						function latestArticleSameHeight() {
-							console.log(\'Changing!\');
-							var $li = jQuery(\'li.latest-post-article\');
-							var $article = jQuery(\'li.latest-post-article article\');
-							var $articleHeader = jQuery(\'li.latest-post-article article header\');
-							var $articleSection = jQuery(\'li.latest-post-article article section .entry-content\');
-
-							var maxHeightLi = $li.map(function() {
-								return jQuery(this).height();
-							}).get();
-
-							var maxHeightArticle = $article.map(function() {
-								return jQuery(this).height();
-							}).get();
-
-							var maxHeightArticleHeader = $articleHeader.map(function() {
-								return jQuery(this).height();
-							}).get();
-
-							var maxHeightArticleSection = $articleSection.map(function() {
-								return jQuery(this).height();
-							}).get();
-
-							$li.height(Math.max.apply(this, maxHeightLi));
-							$article.height(Math.max.apply(this, maxHeightArticle));
-							$articleHeader.height(Math.max.apply(this, maxHeightArticleHeader));
-							$articleSection.height(Math.max.apply(this, maxHeightArticleSection));
-						}
-
-						latestArticleSameHeight();
-						jQuery(window).resize(function() {
-							latestArticleSameHeight();
-						});
-						*/
 					});
 					</script>';
 
