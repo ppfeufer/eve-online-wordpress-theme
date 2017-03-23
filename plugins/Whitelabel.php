@@ -33,7 +33,7 @@ class Whitelabel {
 	 * Maybe edit the .htaccess file aswell
 	 * 		RewriteRule ^login$ http://www.website.de/wp-login.php [NC,L]
 	 */
-	function __construct() {
+	public function __construct() {
 		/**
 		 * Translation Stuff
 		 */
@@ -146,12 +146,11 @@ class Whitelabel {
 	 */
 	public function customLoginLogoStyle() {
 		$type = (!empty($this->themeSettings['type'])) ? $this->themeSettings['type'] : null;
-		$loginLogo = $this->getLoginLogo();
 		$hasCustomLoginLogo = (!empty($this->themeSettings['custom_login_logo'])) ? true : false;
 
 		$size = 320;
 
-		if($loginLogo === null) {
+		if($this->getLoginLogo() === null) {
 			$size = 1;
 		} // END if($loginLogo === null)
 
@@ -159,7 +158,17 @@ class Whitelabel {
 				$size = ($type === 'alliance') ? 128 : 256;
 		} // END if($type !== null && $hasCustomLoginLogo === false)
 
-		echo '<style type="text/css">
+		echo $this->getStyleSheet($size);
+	} // END public function customLoginLogoStyle()
+
+	/**
+	 * Getting the Login Page CSS
+	 *
+	 * @param int $logoSize
+	 * @return string The Login Page CSS
+	 */
+	private function getStyleSheet($logoSize = 320) {
+		return '<style type="text/css">
 		body {
 			background-image: url("' . $this->themeBackgroundUrl . '");
 			background-position: center center;
@@ -168,12 +177,12 @@ class Whitelabel {
 			background-attachment: fixed;
 		}
 		h1 a {
-			background-image:url(' . $loginLogo . ') !important;
+			background-image:url(' . $this->getLoginLogo() . ') !important;
 			background-size: cover !important;
-			height: ' . $size . 'px !important;
-			width: ' . $size . 'px !important;
-			height: ' . 1 / 16 * $size . 'rem !important;
-			width: ' . 1 / 16 * $size . 'rem !important;
+			height: ' . $logoSize . 'px !important;
+			width: ' . $logoSize . 'px !important;
+			height: ' . 1 / 16 * $logoSize . 'rem !important;
+			width: ' . 1 / 16 * $logoSize . 'rem !important;
 			margin-bottom: 0 !important;
 			padding-bottom: 0 !important;
 		}
@@ -196,13 +205,18 @@ class Whitelabel {
 			right: 0;
 		}
 		</style>';
-	} // END public function customLoginLogoStyle()
+	}
 
+	/**
+	 * Getting the Login Screen Logo
+	 *
+	 * @return type
+	 */
 	private function getLoginLogo() {
 		$logo = null;
 
 		/**
-		 * Check if we have a custom login logo or now and use
+		 * Check if we have a custom login logo or not and use
 		 * what ever we might have as logo here.
 		 */
 		if(!empty($this->themeSettings['custom_login_logo'])) {
