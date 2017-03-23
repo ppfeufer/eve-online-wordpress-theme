@@ -160,7 +160,7 @@ jQuery(function($) {
 		// adding the youtube video ID to the iframe
 		var youtubeVideoData = $(this).attr('src').match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/);
 		if(youtubeVideoData !== null) {
-			youtubeVideoID = youtubeVideoData['1'];
+			var youtubeVideoID = youtubeVideoData['1'];
 			$(this).attr('id', 'youtube-video-' + youtubeVideoID);
 		} // END if(youtubeVideoData != null)
 
@@ -252,6 +252,8 @@ jQuery(function($) {
 
 	/**
 	 * scroll to anchor smoothly
+	 *
+	 * @param {type} event
 	 */
 	$("a[href*='#']").on('click', function(event) {
 		/**
