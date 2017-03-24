@@ -18,6 +18,15 @@ namespace WordPress\Themes\EveOnline;
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
+ * EVE Online only works in WordPress 4.7 or later.
+ */
+if(\version_compare($GLOBALS['wp_version'], '4.7-alpha', '<')) {
+	require_one(\get_template_directory() . '/inc/back-compat.php');
+
+	return false;
+} // END if(\version_compare($GLOBALS['wp_version'], '4.7-alpha', '<'))
+
+/**
  * Loading Theme Addon Classes
  */
 require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
