@@ -85,7 +85,8 @@ class ThemeHelper {
 			'Html5Shiv' => array(
 				'handle' => 'html5shiv',
 				'condition' => 'lt IE 9',
-				'source' => \get_template_directory_uri() . '/js/html5.min.js',
+//				'source' => \get_template_directory_uri() . '/js/html5.min.js',
+				'source' => \get_theme_file_uri('/js/html5.min.js'),
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false
@@ -94,7 +95,8 @@ class ThemeHelper {
 			'Respond JS' => array(
 				'handle' => 'respondJS',
 				'condition' => 'lt IE 9',
-				'source' => \get_template_directory_uri() . '/js/respond.min.js',
+//				'source' => \get_template_directory_uri() . '/js/respond.min.js',
+				'source' => \get_theme_file_uri('/js/respond.min.js'),
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false
@@ -111,8 +113,10 @@ class ThemeHelper {
 			/* Bootstrap's JS */
 			'Bootstrap' => array(
 				'handle' => 'bootstrap-js',
-				'source' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js',
-				'source-development' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.js',
+//				'source' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js',
+				'source' => \get_theme_file_uri('/bootstrap/js/bootstrap.min.js'),
+//				'source-development' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.js',
+				'source-development' => \get_theme_file_uri('/bootstrap/js/bootstrap.js'),
 				'deps' => array(
 					'jquery'
 				),
@@ -122,8 +126,10 @@ class ThemeHelper {
 			/* Bootstrap Toolkit */
 			'Bootstrap Toolkit' => array(
 				'handle' => 'bootstrap-toolkit',
-				'source' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js',
-				'source-development' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js',
+//				'source' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js',
+				'source' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js'),
+//				'source-development' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js',
+				'source-development' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js'),
 				'deps' => array(
 					'bootstrap-js'
 				),
@@ -133,8 +139,10 @@ class ThemeHelper {
 			/* Bootstrap Gallery */
 			'Bootstrap Gallery' => array(
 				'handle' => 'bootstrap-gallery-js',
-				'source' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.min.js',
-				'source-development' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.js',
+//				'source' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.min.js',
+				'source' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.min.js'),
+//				'source-development' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.js',
+				'source-development' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.js'),
 				'deps' => array(
 					'jquery'
 				),
@@ -144,8 +152,10 @@ class ThemeHelper {
 			/* The main JS */
 			'EVE Online' => array(
 				'handle' => 'eve-online-main-js',
-				'source' => \get_template_directory_uri() . '/js/eve-online.min.js',
-				'source-development' => \get_template_directory_uri() . '/js/eve-online.js',
+//				'source' => \get_template_directory_uri() . '/js/eve-online.min.js',
+				'source' => \get_theme_file_uri('/js/eve-online.min.js'),
+//				'source-development' => \get_template_directory_uri() . '/js/eve-online.js',
+				'source-development' => \get_theme_file_uri('/js/eve-online.js'),
 				'deps' => array(
 					'jquery'
 				),
@@ -167,8 +177,10 @@ class ThemeHelper {
 			/* Normalize CSS */
 			'Normalize CSS' => array(
 				'handle' => 'normalize',
-				'source' => \get_template_directory_uri() . '/css/normalize.min.css',
-				'source-development' => \get_template_directory_uri() . '/css/normalize.css',
+//				'source' => \get_template_directory_uri() . '/css/normalize.min.css',
+				'source' => \get_theme_file_uri('/css/normalize.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/css/normalize.css',
+				'source-development' => \get_theme_file_uri('/css/normalize.css'),
 				'deps' => array(),
 				'version' => '3.0.3',
 				'media' => 'all'
@@ -186,8 +198,10 @@ class ThemeHelper {
 			/* Bootstrap */
 			'Bootstrap' => array(
 				'handle' => 'bootstrap',
-				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css',
-				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.css',
+//				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css',
+				'source' => \get_theme_file_uri('/bootstrap/css/bootstrap.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.css',
+				'source-development' => \get_theme_file_uri('/bootstrap/css/bootstrap.css'),
 				'deps' => array(
 					'normalize'
 				),
@@ -197,8 +211,10 @@ class ThemeHelper {
 			/* Bootstrap Additional CSS */
 			'Bootstrap Additional CSS' => array(
 				'handle' => 'bootstrap-additional',
-				'source' => \get_template_directory_uri() . '/css/bootstrap-additional.min.css',
-				'source-development' => \get_template_directory_uri() . '/css/bootstrap-additional.css',
+//				'source' => \get_template_directory_uri() . '/css/bootstrap-additional.min.css',
+				'source' => \get_theme_file_uri('/css/bootstrap-additional.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/css/bootstrap-additional.css',
+				'source-development' => \get_theme_file_uri('/css/bootstrap-additional.css'),
 				'deps' => array(
 					'bootstrap'
 				),
@@ -208,8 +224,10 @@ class ThemeHelper {
 			/* Theme Main CSS */
 			'EVE Online Theme Styles' => array(
 				'handle' => 'eve-online',
-				'source' => \get_template_directory_uri() . '/style.min.css',
-				'source-development' => \get_template_directory_uri() . '/style.css',
+//				'source' => \get_template_directory_uri() . '/style.min.css',
+				'source' => \get_theme_file_uri('/style.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/style.css',
+				'source-development' => \get_theme_file_uri('/style.css'),
 				'deps' => array(
 					'normalize',
 					'google-font',
@@ -221,8 +239,10 @@ class ThemeHelper {
 			/* Theme Responsive CSS */
 			'EVE Online Responsive Styles' => array(
 				'handle' => 'eve-online-responsive-styles',
-				'source' => \get_template_directory_uri() . '/css/responsive.min.css',
-				'source-development' => \get_template_directory_uri() . '/css/responsive.css',
+//				'source' => \get_template_directory_uri() . '/css/responsive.min.css',
+				'source' => \get_theme_file_uri('/css/responsive.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/css/responsive.css',
+				'source-development' => \get_theme_file_uri('/css/responsive.css'),
 				'deps' => array(
 					'eve-online'
 				),
@@ -232,8 +252,10 @@ class ThemeHelper {
 			/* Adjustment to Plugins */
 			'EVE Online Plugin Styles' => array(
 				'handle' => 'eve-online-plugin-styles',
-				'source' => \get_template_directory_uri() . '/css/plugin-tweaks.min.css',
-				'source-development' => \get_template_directory_uri() . '/css/plugin-tweaks.css',
+//				'source' => \get_template_directory_uri() . '/css/plugin-tweaks.min.css',
+				'source' => \get_theme_file_uri('/css/plugin-tweaks.min.css'),
+//				'source-development' => \get_template_directory_uri() . '/css/plugin-tweaks.css',
+				'source-development' => \get_theme_file_uri('/css/plugin-tweaks.css'),
 				'deps' => array(
 					'eve-online'
 				),

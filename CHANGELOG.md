@@ -3,7 +3,7 @@
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...HEAD)
 ### Added
-- Minimum required WordPress Version: 4.7.0
+- **Minimum required WordPress Version: 4.7.0**
 - CacheHelper class
 - Cron class
 - Cron to clear image cache once every day to not litter thousands of images there
@@ -13,6 +13,7 @@
 ### Changed / Fixed
 - Missing clearfixes in the content areas
 - Styled the author info for articles
+- Fixed the CSS enqueue logic, so that Child Theming is possible without any weird hacks
 
 ## [v0.1-r20170307](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170307) - 2017-03-07
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...v0.1-r20170307)
