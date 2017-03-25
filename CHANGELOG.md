@@ -2,6 +2,9 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...HEAD)
+
+## [v0.1-r20170325](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170325) - 2017-03-25
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170307...v0.1-r20170325)
 ### Added
 - **Minimum required WordPress Version: 4.7.0**
 - CacheHelper class
