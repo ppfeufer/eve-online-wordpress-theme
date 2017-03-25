@@ -173,12 +173,24 @@ class ThemeHelper {
 				'version' => '3.0.3',
 				'media' => 'all'
 			),
+			/* Google Font */
+			'Google Font' => array(
+				'handle' => 'google-font',
+				'source' => '//fonts.googleapis.com/css?family=Amethysta',
+				'deps' => array(
+					'normalize'
+				),
+				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+				'media' => 'all'
+			),
 			/* Bootstrap */
 			'Bootstrap' => array(
 				'handle' => 'bootstrap',
 				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css',
 				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.css',
-				'deps' => array(),
+				'deps' => array(
+					'normalize'
+				),
 				'version' => '3.3.7',
 				'media' => 'all'
 			),
@@ -193,20 +205,13 @@ class ThemeHelper {
 				'version' => '3.3.7',
 				'media' => 'all'
 			),
-			/* Google Font */
-			'Google Font' => array(
-				'handle' => 'google-font',
-				'source' => '//fonts.googleapis.com/css?family=Amethysta',
-				'deps' => array(),
-				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-				'media' => 'all'
-			),
 			/* Theme Main CSS */
 			'EVE Online Theme Styles' => array(
 				'handle' => 'eve-online',
 				'source' => \get_template_directory_uri() . '/style.min.css',
 				'source-development' => \get_template_directory_uri() . '/style.css',
 				'deps' => array(
+					'normalize',
 					'google-font',
 					'bootstrap'
 				),
