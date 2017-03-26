@@ -124,7 +124,7 @@ class ThemeSettings {
 				'choices' => array(
 					'show' => \__('Show corp logos in menu for corp pages.', 'eve-online')
 				),
-				'description' => \__('Only available if you are running an alliance website, so you can have the corp logos in your "Our Corporations" menu.', 'eve-online')
+				'description' => \__('Only available if you are running an alliance website, so you can have the corp logos in your "Our Corporations" menu. (Default: on)', 'eve-online')
 			),
 			'navigation_even_cells' => array(
 				'type' => 'checkbox',
@@ -132,7 +132,7 @@ class ThemeSettings {
 				'choices' => array(
 					'yes' => \__('Even navigation cells in main navigation', 'eve-online')
 				),
-				'description' => \__('Transforms the main navigation into even cells instead of a random width.', 'eve-online')
+				'description' => \__('Transforms the main navigation into even cells instead of a random width. (Default: off)', 'eve-online')
 			),
 			'show_post_meta' => array(
 				'type' => 'checkbox',
@@ -140,7 +140,23 @@ class ThemeSettings {
 				'choices' => array(
 					'yes' => \__('Show post meta (categories and all that stuff) in article loop and article view.', 'eve-online')
 				),
-				'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view.', 'eve-online')
+				'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view. (Default: off)', 'eve-online')
+			),
+			'cache' => array(
+				'type' => 'checkbox',
+				'title' => \__('Cache', 'eve-online'),
+				'choices' => array(
+					'remote-image-cache' => \__('Use imagecache for images fetched from CCP\'s image server', 'eve-online')
+				),
+				'description' => \__('If checked the images from CCP\'s image server will be cached locally. (Default: on)', 'eve-online')
+			),
+			'cron' => array(
+				'type' => 'checkbox',
+				'title' => \__('Cron Jobs', 'eve-online'),
+				'choices' => array(
+					'cronCleanupImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
+				),
+				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)', 'eve-online')
 			),
 		);
 	} // END private function getGeneralTabFields()
@@ -153,14 +169,14 @@ class ThemeSettings {
 				'choices' => array(
 					'yes' => \__('Yes, I want to use background images on this website.', 'eve-online')
 				),
-				'description' => \__('If this option is checked, the website will use your selected (down below) background image instead of a simple colored background.', 'eve-online')
+				'description' => \__('If this option is checked, the website will use your selected (down below) background image instead of a simple colored background. (Default: on)', 'eve-online')
 			),
 			'background_image' => array(
 				'type' => 'radio',
 				'choices' => EveOnline\Helper\ThemeHelper::getDefaultBackgroundImages(true),
 				'empty' => \__('Please Select', 'eve-online'),
 				'title' => \__('Background Image', 'eve-online'),
-				'description' => \__('Select one of the default Background images ...', 'eve-online'),
+				'description' => \__('Select one of the default Background images ... (Default: Amarr)', 'eve-online'),
 				'align' => 'horizontal'
 			),
 			'background_image_upload' => array(
@@ -196,7 +212,7 @@ class ThemeSettings {
 				'choices' => array(
 					'frontpage_only' => \__('Show only on front page.', 'eve-online')
 				),
-				'description' => \__('Show this slider only on front page in case no other slider is defined.', 'eve-online')
+				'description' => \__('Show this slider only on front page in case no other slider is defined. (Default: on)', 'eve-online')
 			),
 		);
 	} // END private function getSliderTabFields()
