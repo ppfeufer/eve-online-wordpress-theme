@@ -43,7 +43,7 @@ function eve_switch_theme() {
  * @global string $wp_version WordPress version.
  */
 function eve_upgrade_notice() {
-	$message = \sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), $GLOBALS['wp_version']);
+	$message = \sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version'));
 
 	\printf('<div class="error"><p>%s</p></div>', $message);
 } // END function eve_upgrade_notice()
@@ -56,7 +56,7 @@ function eve_upgrade_notice() {
  * @global string $wp_version WordPress version.
  */
 function eve_customize() {
-	\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), $GLOBALS['wp_version']), '', array(
+	\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')), '', array(
 		'back_link' => true,
 	));
 } // END function eve_customize()
@@ -73,7 +73,7 @@ function eve_preview() {
 	$preview = \filter_input('get', 'preview');
 
 	if(!empty($preview)) {
-		\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), $GLOBALS['wp_version']));
+		\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')));
 	} // END if(!empty($preview))
 } // END function eve_preview()
 \add_action('template_redirect', '\\WordPress\Themes\EveOnline\Addons\eve_preview');
