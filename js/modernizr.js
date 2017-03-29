@@ -2935,7 +2935,7 @@
 			var image = new Image();
 
 			image.onload = image.onerror = function() {
-				addTest('jpegxr', image.width == 1, {aliases: ['jpeg-xr']});
+				addTest('jpegxr', image.width === 1, {aliases: ['jpeg-xr']});
 			};
 
 			image.src = 'data:image/vnd.ms-photo;base64,SUm8AQgAAAAFAAG8AQAQAAAASgAAAIC8BAABAAAAAQAAAIG8BAABAAAAAQAAAMC8BAABAAAAWgAAAMG8BAABAAAAHwAAAAAAAAAkw91vA07+S7GFPXd2jckNV01QSE9UTwAZAYBxAAAAABP/gAAEb/8AAQAAAQAAAA==';
@@ -3983,7 +3983,7 @@
 					shape.style.behavior = 'url(#default#VML)';
 				}
 
-				supports = shape ? typeof shape.adj == 'object' : true;
+				supports = shape ? typeof shape.adj === 'object' : true;
 			}
 
 			return supports;
@@ -4643,7 +4643,7 @@
 		 !*/
 		Modernizr.addTest('createelementattrs', function() {
 			try {
-				return createElement('<input name="test" />').getAttribute('name') == 'test';
+				return createElement('<input name="test" />').getAttribute('name') === 'test';
 			} catch(e) {
 				return false;
 			}
@@ -5353,7 +5353,7 @@
 
 			div.innerHTML = '<svg/>';
 
-			return (typeof SVGRect !== 'undefined' && div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
+			return (typeof SVGRect !== 'undefined' && div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
 		});
 
 		/**
