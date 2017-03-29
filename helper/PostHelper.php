@@ -159,16 +159,16 @@ class PostHelper {
 		} // END if($echo === true)
 	} // END public static function getMainContentColClasses($echo = false)
 
-	public static function geLoopContentClasses($echo = false) {
+	public static function getLoopContentClasses($echo = false) {
 		if(\is_page()) {
 			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
-				$contentColClass = 'col-lg-4 col-md-6 col-sm-12 col-xs-12';
+				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
 			} else {
 				$contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
 			} // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
 		} else {
 			if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
-				$contentColClass = 'col-lg-4 col-md-6 col-sm-12 col-xs-12';
+				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
 			} else {
 				$contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
 			} // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
@@ -180,6 +180,28 @@ class PostHelper {
 			return $contentColClass;
 		} // END if($echo === true)
 	} // END function public static function geLoopContentClasses($echo = false)
+
+	public static function getArticleNavigationPanelClasses($echo = false) {
+		if(\is_page()) {
+			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
+			} else {
+				$contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
+			} // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
+		} else {
+			if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
+			} else {
+				$contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
+			} // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
+		} // END if(\is_page())
+
+		if($echo === true) {
+			echo $contentColClass;
+		} else {
+			return $contentColClass;
+		} // END if($echo === true)
+	} // END function public static function getArticleNavigationPanelClasses($echo = false)
 
 	public static function getContentColumnCount($echo = false) {
 		if(\is_page()) {

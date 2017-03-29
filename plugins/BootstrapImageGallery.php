@@ -144,7 +144,7 @@ class BootstrapImageGallery {
 		$output .= '<script type="text/javascript">
 			jQuery(document).ready(function() {
 				jQuery("ul.bootstrap-' . $selector . '").bootstrapGallery({
-					"classes" : "' . EveOnline\Helper\PostHelper::geLoopContentClasses() . '",
+					"classes" : "' . EveOnline\Helper\PostHelper::getLoopContentClasses() . '",
 					"hasModal" : true
 				});
 			});

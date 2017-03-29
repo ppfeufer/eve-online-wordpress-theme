@@ -10,7 +10,7 @@
 				<?php
 				echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
 				\WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
-				\edit_post_link(__('Edit', 'eve-online'));
+				\edit_post_link(\__('Edit', 'eve-online'));
 				?>
 			</p>
 		</aside><!--end .entry-details -->
@@ -64,6 +64,8 @@
 		<?php
 	} // END if(\get_the_author_meta('description'))
 	?>
+	<hr/>
+	<?php \WordPress\Themes\EveOnline\Helper\NavigationHelper::getArticleNavigation(true); ?>
 	<hr/>
 	<?php \comments_template(); ?>
 </article><!-- /.post-->

@@ -23,7 +23,7 @@ class LatestBlogPosts {
 		$args = \shortcode_atts(
 			array(
 				'number' => EveOnline\Helper\PostHelper::getContentColumnCount(),
-				'classes' => EveOnline\Helper\PostHelper::geLoopContentClasses(),
+				'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
 				'headline_type' => 'h2',
 				'headline_text' => ''
 			),

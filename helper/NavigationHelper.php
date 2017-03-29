@@ -19,10 +19,10 @@ class NavigationHelper {
 			<nav id="<?php echo $nav_id; ?>" class="navigation post-navigation clearfix" role="navigation">
 				<h3 class="assistive-text"><?php \_e('Post navigation', 'eve-online'); ?></h3>
 				<div class="nav-previous pull-left">
-					<?php self::getNextPostsLink(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
+			<?php self::getNextPostsLink(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
 				</div>
 				<div class="nav-next pull-right">
-					<?php self::getPreviousPostsLink(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
+			<?php self::getPreviousPostsLink(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
 				</div>
 			</nav><!-- #<?php echo $nav_id; ?> .navigation -->
 			<?php
@@ -60,7 +60,7 @@ class NavigationHelper {
 		$nextpage = \intval($paged) + 1;
 
 		if(null === $label) {
-			$label = __('&laquo; Previous Page');
+			$label = \__('&laquo; Previous Page', 'eve-online');
 		} // END if(null === $label)
 
 		if(!\is_single() && ($nextpage <= $max_page)) {
@@ -74,9 +74,9 @@ class NavigationHelper {
 			$attr = \apply_filters('previous_posts_link_attributes', '');
 
 			if($echo === true) {
-				echo '<a class="btn btn-default" href="' . \next_posts( $max_page, false ) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
+				echo '<a class="btn btn-default" href="' . \next_posts($max_page, false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
 			} else {
-				return '<a class="btn btn-default" href="' . \next_posts( $max_page, false ) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
+				return '<a class="btn btn-default" href="' . \next_posts($max_page, false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
 			}
 		} // END if(!\is_single() && ($nextpage <= $max_page))
 	} // END public static function getNextPostsLink($label = null, $max_page = 0, $echo = false)
@@ -94,7 +94,7 @@ class NavigationHelper {
 		global $paged;
 
 		if(null === $label) {
-			$label = __('Next Page &raquo;');
+			$label = \__('Next Page &raquo;', 'eve-online');
 		} // END if(null === $label)
 
 		if(!\is_single() && $paged > 1) {
@@ -108,9 +108,9 @@ class NavigationHelper {
 			$attr = \apply_filters('next_posts_link_attributes', '');
 
 			if($echo === true) {
-				echo '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>". \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) .'</a>';
+				echo '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
 			} else {
-				return '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>". \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) .'</a>';
+				return '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
 			}
 		} // END if(!\is_single() && $paged > 1)
 	} // END public static function getPreviousPostsLink($label = null, $echo = false)
@@ -126,7 +126,7 @@ class NavigationHelper {
 	 * @return string
 	 */
 	public static function getBreadcrumbNavigation($addTexts = true, $echo = false) {
-		$home = __('Home', 'eve-online'); // text for the 'Home' link
+		$home = \__('Home', 'eve-online'); // text for the 'Home' link
 		$before = '<li class="active">'; // tag before the current crumb
 		$sep = '';
 		$after = '</li>'; // tag after the current crumb
@@ -154,7 +154,7 @@ class NavigationHelper {
 					$breadcrumb .= '<li>' . \get_category_parents($parentCat, true, $sep . '</li><li>') . '</li>';
 				} // END if($thisCat->parent != 0)
 
-				$format = $before . ($addTexts ? (__('Archive by category ', 'eve-online') . '"%s"') : '%s') . $after;
+				$format = $before . ($addTexts ? (\__('Archive by category ', 'eve-online') . '"%s"') : '%s') . $after;
 
 				$breadcrumb .= \sprintf($format, \single_cat_title('', false));
 			} elseif(\is_day()) {
@@ -239,4 +239,86 @@ class NavigationHelper {
 			return $breadcrumb;
 		} // END if($echo === true)
 	} // END public static function getBreadcrumbs($addTexts = true)
+
+	/**
+	 * Articlenavigation.
+	 * Displaying the next/previous links in single article.
+	 *
+	 * @since 0.1-r20170329
+	 *
+	 * @package WordPress
+	 * @subpackage EVE Online Theme
+	 */
+	public static function getArticleNavigation($echo = false) {
+		$htmlOutput = null;
+		$previousPostObject = \get_previous_post();
+		$nextPostObject = \get_next_post();
+
+		$htmlOutput .= '<nav class="article-navigation clearfix">';
+		$htmlOutput .= '<h3 class="assistive-text">' . \__('Post Navigation', 'eve-online') . '</h3>';
+
+		$htmlOutput .= '<div class="row">';
+		if($previousPostObject) {
+			$htmlOutput .= '<div class="nav-previous ' . \WordPress\Themes\EveOnline\Helper\PostHelper::getArticleNavigationPanelClasses() . ' pull-left clearfix">';
+			$htmlOutput .= '<div class="nav-previous-link">' . \get_previous_post_link('%link', \__('<span class="meta-nav">&larr;</span> Previous', 'eve-online')) . '</div>';
+
+			if(\has_post_thumbnail($previousPostObject->ID)) {
+				$htmlOutput .= '<div class="nav-previous-thumbnail">';
+				$htmlOutput .= '<a href="' . \get_the_permalink($previousPostObject->ID) . '" title="' . $previousPostObject->post_title . '">';
+				$htmlOutput .= '<figure class="post-loop-thumbnail">';
+
+				if(\function_exists('\fly_get_attachment_image')) {
+					$htmlOutput .= \fly_get_attachment_image(\get_post_thumbnail_id($previousPostObject->ID), 'post-loop-thumbnail');
+				} else {
+					$htmlOutput .= \get_the_post_thumbnail($previousPostObject->ID, 'post-loop-thumbnail');
+				} // END if(\function_exists('\fly_get_attachment_image'))
+
+//				$htmlOutput .= '<figcaption>' . $previousPostObject->post_title . '</figcaption>';
+				$htmlOutput .= '</figure>';
+				$htmlOutput .= '</a>';
+				$htmlOutput .= '</div>';
+			} else {
+				// Article Image Plaveholder. We don't have it yet ....
+//				$htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($previousPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . $previousPostObject->post_title . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
+			} // END if(\has_post_thumbnail($obj_PreviousPost->ID))
+
+			$htmlOutput .= '<div><em>' . $previousPostObject->post_title . '</em></div>';
+			$htmlOutput .= '</div>';
+		} // END if($obj_PreviousPost)
+
+		if($nextPostObject) {
+			$htmlOutput .= '<div class="nav-next ' . \WordPress\Themes\EveOnline\Helper\PostHelper::getArticleNavigationPanelClasses() . ' pull-right text-align-right clearfix">';
+			$htmlOutput .= '<div class="nav-next-link">' . \get_next_post_link('%link', \__('Next <span class="meta-nav">&rarr;</span>', 'eve-online')) . '</div>';
+
+			if(\has_post_thumbnail($nextPostObject->ID)) {
+				$htmlOutput .= '<div class="nav-next-thumbnail">';
+				$htmlOutput .= '<a href="' . \get_the_permalink($nextPostObject->ID) . '" title="' . $nextPostObject->post_title . '">';
+				$htmlOutput .= '<figure class="post-loop-thumbnail">';
+
+				if(\function_exists('\fly_get_attachment_image')) {
+					$htmlOutput .= \fly_get_attachment_image(\get_post_thumbnail_id($nextPostObject->ID), 'post-loop-thumbnail');
+				} else {
+					$htmlOutput .= \get_the_post_thumbnail($nextPostObject->ID, 'post-loop-thumbnail');
+				} // END if(\function_exists('\fly_get_attachment_image'))
+
+//				$htmlOutput .= '<figcaption>' . $nextPostObject->post_title . '</figcaption>';
+				$htmlOutput .= '</figure>';
+				$htmlOutput .= '</a>';
+				$htmlOutput .= '</div>';
+			} else {
+				// Article Image Plaveholder. We don't have it yet ....
+//				$htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($nextPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . $nextPostObject->post_title . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
+			} // END if(has_post_thumbnail($obj_NextPost->ID))
+
+			$htmlOutput .= '<div><em>' . $nextPostObject->post_title . '</em></div>';
+			$htmlOutput .= '</div>';
+			$htmlOutput .= '</nav>';
+		} // END if($obj_NextPost)
+
+		if($echo === true) {
+			echo $htmlOutput;
+		} else {
+			return $htmlOutput;
+		} // END if($echo === true)
+	} // END function getArticleNavigation()
 } // END class NavigationHelper
