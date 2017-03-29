@@ -77,8 +77,9 @@ if(typeof jQuery === 'undefined') {
 			bindType: $.support.transition.end,
 			delegateType: $.support.transition.end,
 			handle: function(e) {
-				if($(e.target).is(this))
+				if($(e.target).is(this)) {
 					return e.handleObj.handler.apply(this, arguments);
+				}
 			}
 		};
 	});
@@ -368,10 +369,10 @@ if(typeof jQuery === 'undefined') {
 		switch(e.which) {
 			case 37:
 				this.prev();
-				break
+				break;
 			case 39:
 				this.next();
-				break
+				break;
 			default:
 				return;
 		}
@@ -1098,8 +1099,9 @@ if(typeof jQuery === 'undefined') {
 
 		this.$dialog.on('mousedown.dismiss.bs.modal', function() {
 			that.$element.one('mouseup.dismiss.bs.modal', function(e) {
-				if($(e.target).is(that.$element))
+				if($(e.target).is(that.$element)) {
 					that.ignoreBackdropClick = true;
+				}
 			});
 		});
 
