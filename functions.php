@@ -61,7 +61,7 @@ require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php')
 require_once(\get_template_directory() . '/plugins/Killboard.php');
 require_once(\get_template_directory() . '/plugins/LatestBlogPosts.php');
 require_once(\get_template_directory() . '/plugins/EveOnlineAvatar.php');
-//require_once(\get_template_directory() . '/plugins/HtmlMinify.php');
+require_once(\get_template_directory() . '/plugins/HtmlMinify.php');
 
 /**
  * Loading Security Classes

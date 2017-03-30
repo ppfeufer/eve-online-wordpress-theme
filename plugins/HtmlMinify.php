@@ -35,7 +35,7 @@ class HtmlMinify {
 
 	protected function minifyHTML($html) {
 		$pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
-		\preg_match_all($pattern, $html, $matches, \PREG_SET_ORDER );
+		\preg_match_all($pattern, \preg_replace('/\/\/ (.*)\n/', ' ', $html), $matches, \PREG_SET_ORDER );
 
 		$overriding = false;
 		$raw_tag = false;
@@ -126,6 +126,6 @@ function eve_html_compression_start() {
 
 $themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
-if(isset($themeOptions['minifyhtmloutput']['yes'])) {
+if(isset($themeOptions['minify_html_output']['yes'])) {
 	\add_action('get_header', '\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_start');
-} // END if(!empty($themeOptions['minifyHtmlOutput']['yes']))
+} // END if(!empty($themeOptions['minify_html_output']['yes']))

@@ -71,11 +71,11 @@ class ThemeSettings {
 				/**
 				 * performance settings tab
 				 */
-//				'performance-settings' => array(
-//					'tab_title' => \__('Performance Settings', 'eve-online'),
-//					'tab_description' => \__('Performance Settings', 'eve-online'),
-//					'fields' => $this->getPerformanceTabFields()
-//				)
+				'performance-settings' => array(
+					'tab_title' => \__('Performance Settings', 'eve-online'),
+					'tab_description' => \__('Performance Settings', 'eve-online'),
+					'fields' => $this->getPerformanceTabFields()
+				)
 			)
 		);
 
@@ -142,22 +142,6 @@ class ThemeSettings {
 				),
 				'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view. (Default: off)', 'eve-online')
 			),
-			'cache' => array(
-				'type' => 'checkbox',
-				'title' => \__('Cache', 'eve-online'),
-				'choices' => array(
-					'remote-image-cache' => \__('Use imagecache for images fetched from CCP\'s image server', 'eve-online')
-				),
-				'description' => \__('If checked the images from CCP\'s image server will be cached locally. (Default: on)', 'eve-online')
-			),
-			'cron' => array(
-				'type' => 'checkbox',
-				'title' => \__('Cron Jobs', 'eve-online'),
-				'choices' => array(
-					'cronCleanupImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
-				),
-				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)', 'eve-online')
-			),
 		);
 	} // END private function getGeneralTabFields()
 
@@ -217,18 +201,34 @@ class ThemeSettings {
 		);
 	} // END private function getSliderTabFields()
 
-//	private function getPerformanceTabFields() {
-//		return array(
-//			'minifyHtmlOutput' => array(
-//				'type' => 'checkbox',
-//				'title' => \__('HTML Output', 'eve-online'),
-//				'choices' => array(
-//					'yes' => \__('Minify HTML output?', 'eve-online')
-//				),
-//				'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
-//			),
-//		);
-//	} // END private function getSliderTabFields()
+	private function getPerformanceTabFields() {
+		return array(
+			'minify_html_output' => array(
+				'type' => 'checkbox',
+				'title' => \__('HTML Output', 'eve-online'),
+				'choices' => array(
+					'yes' => \__('Minify HTML output?', 'eve-online')
+				),
+				'description' => \__('This feature is EXPERIMENTAL!<br>By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
+			),
+			'cache' => array(
+				'type' => 'checkbox',
+				'title' => \__('Cache', 'eve-online'),
+				'choices' => array(
+					'remote-image-cache' => \__('Use imagecache for images fetched from CCP\'s image server', 'eve-online')
+				),
+				'description' => \__('If checked the images from CCP\'s image server will be cached locally. (Default: on)', 'eve-online')
+			),
+			'cron' => array(
+				'type' => 'checkbox',
+				'title' => \__('Cron Jobs', 'eve-online'),
+				'choices' => array(
+					'cronCleanupImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
+				),
+				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)', 'eve-online')
+			),
+		);
+	} // END private function getSliderTabFields()
 
 	private function getDevelopmentTabFields() {
 		return array(
