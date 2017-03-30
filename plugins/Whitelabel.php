@@ -35,11 +35,6 @@ class Whitelabel {
 	 */
 	public function __construct() {
 		/**
-		 * Translation Stuff
-		 */
-		$this->textdomain = 'eve-online';
-
-		/**
 		 * Setting Theme Informations
 		 */
 		$this->themeName = 'EVE Online';
@@ -114,7 +109,7 @@ class Whitelabel {
 	 */
 	public function modifyAdminFooter() {
 		echo \sprintf('<span id="footer-thankyou">%1$s</span> %2$s',
-			\__('Customized by:', $this->textdomain),
+			\__('Customized by:', 'eve-online'),
 			' <a href="' . $this->developerWebsite . '" target="_blank">' . $this->developerName . '</a>'
 		);
 	} // END public function modifyAdminFooter()
@@ -125,20 +120,20 @@ class Whitelabel {
 	public function themeInfo() {
 		echo '<ul>
 		<li>
-			<strong>' . \__('Theme:', $this->textdomain) . '</strong> ' . $this->themeName .
-			\sprintf(\__(' (%1$s | %2$s)', $this->textdomain),
+			<strong>' . \__('Theme:', 'eve-online') . '</strong> ' . $this->themeName .
+			\sprintf(\__(' (%1$s | %2$s)', 'eve-online'),
 				'<a href="' . $this->themeGithubUri . '">Github</a>',
 				'<a href="' . $this->themeGithubIssueUri . '">Issue Tracker</a>'
 			) . '
 		</li>
-		<li><strong>' . \__('Customized by:', $this->textdomain) . '</strong> ' . $this->developerName . '</li>
-		<li><strong>' . \__('Website:', $this->textdomain) . '</strong> <a href="' . $this->developerWebsite . '">' . $this->developerWebsite . '</a></li>
-		<li><strong>' . \__('Contact:',  $this->textdomain) . '</strong> <a href="mailto:' . $this->developerEmailAddress . '">' . $this->developerEmailAddress . '</a></li>
+		<li><strong>' . \__('Customized by:', 'eve-online') . '</strong> ' . $this->developerName . '</li>
+		<li><strong>' . \__('Website:', 'eve-online') . '</strong> <a href="' . $this->developerWebsite . '">' . $this->developerWebsite . '</a></li>
+		<li><strong>' . \__('Contact:',  'eve-online') . '</strong> <a href="mailto:' . $this->developerEmailAddress . '">' . $this->developerEmailAddress . '</a></li>
 		</ul>';
 	} // END public function themeInfo()
 
 	public function addDashboardWidget() {
-		\wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', $this->textdomain), array($this, 'themeInfo'));
+		\wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', 'eve-online'), array($this, 'themeInfo'));
 	} // END public function addDashboardWidget()
 
 	/**

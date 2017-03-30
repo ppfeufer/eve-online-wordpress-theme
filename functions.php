@@ -219,6 +219,7 @@ function eve_theme_setup() {
 
 	\add_theme_support('automatic-feed-links');
 	\add_theme_support('post-thumbnails');
+	\add_theme_support('title-tag');
 	\add_theme_support('post-formats', array(
 		'aside',
 		'image',
@@ -285,6 +286,13 @@ function eve_theme_setup() {
 	Helper\CacheHelper::createCacheDirectory('images/render');
 } // END function eve_theme_setup()
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
+
+function eve_title_separator($separator) {
+	$separator = '»';
+
+	return $separator;
+}
+\add_filter('document_title_separator', '\\WordPress\Themes\EveOnline\eve_title_separator');
 
 /**
  * Remove integrated gallery styles in the content area of standard gallery shortcode.
@@ -608,7 +616,7 @@ function eve_wp_title($title, $sep) {
  */
 function eve_link_pages($args = array()) {
 	$arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, array(
-		'before' => '<p>' . __('Pages:'),
+		'before' => '<p>' . __('Pages:', 'eve-online'),
 		'after' => '</p>',
 		'before_link' => '',
 		'after_link' => '',
@@ -713,13 +721,13 @@ function eve_comment_form_fields($fields) {
 
 	$fields =  array(
 		'author' => '<div class="row"><div class="form-group comment-form-author col-md-4">'
-					. '	<input class="form-control" id="author" name="author" type="text" value="' . \esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' placeholder="' . \__('Name') . ($req ? ' *' : '') . '" />'
+					. '	<input class="form-control" id="author" name="author" type="text" value="' . \esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' placeholder="' . \__('Name', 'eve-online') . ($req ? ' *' : '') . '" />'
 					. '</div>',
 		'email' => '<div class="form-group comment-form-email col-md-4">'
-					. '	<input class="form-control" id="email" name="email" ' . ($html5 ? 'type="email"' : 'type="text"') . ' value="' . \esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' placeholder="' . \__('Email') . ($req ? ' *' : '') . '" />'
+					. '	<input class="form-control" id="email" name="email" ' . ($html5 ? 'type="email"' : 'type="text"') . ' value="' . \esc_attr($commenter['comment_author_email']) . '" size="30"' . $aria_req . ' placeholder="' . \__('Email', 'eve-online') . ($req ? ' *' : '') . '" />'
 					. '</div>',
 		'url' => '<div class="form-group comment-form-url col-md-4">'
-					. '	<input class="form-control" id="url" name="url" ' . ($html5 ? 'type="url"' : 'type="text"') . ' value="' . \esc_attr($commenter['comment_author_url']) . '" size="30" placeholder="' . \__('Website') . '" />'
+					. '	<input class="form-control" id="url" name="url" ' . ($html5 ? 'type="url"' : 'type="text"') . ' value="' . \esc_attr($commenter['comment_author_url']) . '" size="30" placeholder="' . \__('Website', 'eve-online') . '" />'
 					. '</div></div>'
 	);
 
@@ -729,7 +737,7 @@ function eve_comment_form_fields($fields) {
 
 function eve_comment_form($args) {
 	$args['comment_field'] = '<div class="row"><div class="form-group comment-form-comment col-lg-12">'
-							. '	<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun') . '"></textarea>'
+							. '	<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun', 'eve-online') . '"></textarea>'
 							. '</div></div>';
 	$args['class_submit'] = 'btn btn-default';
 

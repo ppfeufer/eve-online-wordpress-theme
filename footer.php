@@ -32,7 +32,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 									?>
 									<ul class="credit">
 										<li>
-											&copy; <?php echo date('Y'); ?> <a href="<?php \bloginfo('url'); ?>"><?php \bloginfo(); ?></a>
+											&copy; <?php echo date('Y'); ?> <a href="<?php echo \esc_url(\home_url()); ?>"><?php \bloginfo(); ?></a>
 										</li>
 										<li>
 											(<?php

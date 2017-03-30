@@ -75,8 +75,8 @@ class WordPressCoreUpdateCleaner {
 		\load_default_textdomain();
 
 		// See do_core_upgrade()
-		\show_message(\__('WordPress updated successfully') . '.');
-		\show_message('<span>' . \sprintf(\__('Welcome to WordPress %1$s. <a href="%2$s">Learn more</a>.'), $new_version, \esc_url(\self_admin_url('about.php?updated'))) . '</span>');
+		\show_message(\__('WordPress updated successfully', 'eve-online') . '.');
+		\show_message('<span>' . \sprintf(\__('Welcome to WordPress %1$s. <a href="%2$s">Learn more</a>.', 'eve-online'), $new_version, \esc_url(\self_admin_url('about.php?updated'))) . '</span>');
 		echo '</div>';
 
 		// Include admin-footer.php and exit

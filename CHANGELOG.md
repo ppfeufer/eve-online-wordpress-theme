@@ -6,6 +6,9 @@
 - Cron and Image Cache via Theme Options
 - Article Navigation for default posts
 
+### Changed / Fixed
+- Fixed missing text domains
+
 ## [v0.1-r20170325](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170325) - 2017-03-25
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170307...v0.1-r20170325)
 ### Added
