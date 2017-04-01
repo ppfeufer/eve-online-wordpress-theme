@@ -126,6 +126,6 @@ function eve_html_compression_start() {
 
 $themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
-if(isset($themeOptions['minify_html_output']['yes']) && (!\preg_match('/development/', \APPLICATION_ENV))) {
+if(!empty($themeOptions['minify_html_output']['yes']) && (!\preg_match('/development/', \APPLICATION_ENV))) {
 	\add_action('get_header', '\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_start');
 } // END if(!empty($themeOptions['minify_html_output']['yes']))

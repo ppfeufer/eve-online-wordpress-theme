@@ -8,7 +8,7 @@ class PostHelper {
 	public static function getPostMetaInformation() {
 		$options = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
-		if(!empty($options['show_post_meta']['yes'])) {
+		if(!empty($options['post_meta']['show'])) {
 			\printf(\__('Posted on <time class="entry-date" datetime="%3$s">%4$s</time><span class="byline"> <span class="sep"> by </span> <span class="author vcard">%7$s</span></span>', 'eve-online'),
 				\esc_url(\get_permalink()),
 				\esc_attr(\get_the_time()),
@@ -20,7 +20,7 @@ class PostHelper {
 				)),
 				\esc_html(get_the_author())
 			);
-		} // END if(!empty($options['show_post_meta']['yes']))
+		} // END if(!empty($options['post_meta']['show']))
 	} // END public static function getPostMetaInformation()
 
 	public static function getComments($comment, $args, $depth) {

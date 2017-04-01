@@ -217,55 +217,11 @@ function eve_theme_setup() {
 	 */
 	\load_theme_textdomain('eve-online', \get_template_directory() . '/l10n');
 
-	\add_theme_support('automatic-feed-links');
-	\add_theme_support('post-thumbnails');
-	\add_theme_support('title-tag');
-	\add_theme_support('post-formats', array(
-		'aside',
-		'image',
-		'gallery',
-		'link',
-		'quote',
-		'status',
-		'video',
-		'audio',
-		'chat'
-	));
+	eve_add_theme_support();
 
-	/**
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	\add_theme_support('html5', array(
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	));
+	eve_register_nav_menus();
 
-	\register_nav_menus(array(
-		'main-menu' => __('Main Menu', 'eve-online'),
-		'footer-menu' => __('Footer Menu', 'eve-online'),
-		'header-menu' => __('Header Menu', 'eve-online'),
-	));
-
-	/**
-	 * Define post thumbnail size.
-	 * Add two additional image sizes.
-	 */
-	\set_post_thumbnail_size(1680, 500);
-
-	/**
-	 * Thumbnails used for the theme
-	 * Compatibilty with Fly Dynamic Image Resizer plugin
-	 */
-	if(\function_exists('\fly_add_image_size')) {
-		\fly_add_image_size('header-image', 1680, 500, true);
-		\fly_add_image_size('post-loop-thumbnail', 705, 395, true);
-	} else {
-		\add_image_size('header-image', 1680, 500, true);
-		\add_image_size('post-loop-thumbnail', 705, 395, true);
-	} // END if(\function_exists('\fly_add_image_size'))
+	eve_add_thumbnail_sizes();
 
 	/**
 	 * This theme styles the visual editor to resemble the theme style,
@@ -286,6 +242,67 @@ function eve_theme_setup() {
 	Helper\CacheHelper::createCacheDirectory('images/render');
 } // END function eve_theme_setup()
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
+
+/**
+ * Adding the theme supprt stuff
+ */
+function eve_add_theme_support() {
+	\add_theme_support('automatic-feed-links');
+	\add_theme_support('post-thumbnails');
+	\add_theme_support('title-tag');
+	\add_theme_support('post-formats', array(
+		'aside',
+		'image',
+		'gallery',
+		'link',
+		'quote',
+		'status',
+		'video',
+		'audio',
+		'chat'
+	));
+
+	\add_theme_support('html5', array(
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	));
+} // END function eve_add_theme_support()
+
+/**
+ * registering nav menus
+ */
+function eve_register_nav_menus() {
+	\register_nav_menus(array(
+		'main-menu' => __('Main Menu', 'eve-online'),
+		'footer-menu' => __('Footer Menu', 'eve-online'),
+		'header-menu' => __('Header Menu', 'eve-online'),
+	));
+} // END function eve_register_nav_menus()
+
+/**
+ * adding the thumbnail sizes
+ */
+function eve_add_thumbnail_sizes() {
+	/**
+	 * Define post thumbnail size.
+	 * Add two additional image sizes.
+	 */
+	\set_post_thumbnail_size(1680, 500);
+
+	/**
+	 * Thumbnails used for the theme
+	 * Compatibilty with Fly Dynamic Image Resizer plugin
+	 */
+	if(\function_exists('\fly_add_image_size')) {
+		\fly_add_image_size('header-image', 1680, 500, true);
+		\fly_add_image_size('post-loop-thumbnail', 705, 395, true);
+	} else {
+		\add_image_size('header-image', 1680, 500, true);
+		\add_image_size('post-loop-thumbnail', 705, 395, true);
+	} // END if(\function_exists('\fly_add_image_size'))
+} // END function eve_add_thumbnail_sizes()
 
 function eve_title_separator($separator) {
 	$separator = '»';

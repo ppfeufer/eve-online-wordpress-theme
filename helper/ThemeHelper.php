@@ -11,7 +11,7 @@ class ThemeHelper {
 	 * @return string
 	 */
 	public static function getThemeDbVersion() {
-		return '20170330';
+		return '20170401';
 	} // END public static function getThemeDbVersion()
 
 	/**
@@ -24,14 +24,14 @@ class ThemeHelper {
 			// generel settings tab
 			'type' => '',
 			'name' => '',
-			'show_corp_logos' => array(
+			'corp_logos_in_menu' => array(
 				'show' => 'show'
 			),
-			'navigation_even_cells' => array(
-				'yes' => ''
+			'navigation' => array(
+				'even_cells' => ''
 			),
-			'show_post_meta' => array(
-				'yes' => ''
+			'post_meta' => array(
+				'show' => ''
 			),
 			'cache' => array(
 				'remote-image-cache' => 'remote-image-cache'
@@ -86,12 +86,13 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeJavaScripts() {
+		$themeSettings = \get_option('eve_theme_options', self::getThemeDefaultOptions());
+
 		$enqueue_script = array(
 			/* Html5Shiv */
 			'Html5Shiv' => array(
 				'handle' => 'html5shiv',
 				'condition' => 'lt IE 9',
-//				'source' => \get_template_directory_uri() . '/js/html5.min.js',
 				'source' => \get_theme_file_uri('/js/html5.min.js'),
 				'deps' => '',
 				'version' => '',
@@ -101,7 +102,6 @@ class ThemeHelper {
 			'Respond JS' => array(
 				'handle' => 'respondJS',
 				'condition' => 'lt IE 9',
-//				'source' => \get_template_directory_uri() . '/js/respond.min.js',
 				'source' => \get_theme_file_uri('/js/respond.min.js'),
 				'deps' => '',
 				'version' => '',
@@ -119,9 +119,7 @@ class ThemeHelper {
 			/* Bootstrap's JS */
 			'Bootstrap' => array(
 				'handle' => 'bootstrap-js',
-//				'source' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js',
 				'source' => \get_theme_file_uri('/bootstrap/js/bootstrap.min.js'),
-//				'source-development' => \get_template_directory_uri() . '/bootstrap/js/bootstrap.js',
 				'source-development' => \get_theme_file_uri('/bootstrap/js/bootstrap.js'),
 				'deps' => array(
 					'jquery'
@@ -132,9 +130,7 @@ class ThemeHelper {
 			/* Bootstrap Toolkit */
 			'Bootstrap Toolkit' => array(
 				'handle' => 'bootstrap-toolkit',
-//				'source' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js',
 				'source' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js'),
-//				'source-development' => \get_template_directory_uri() . '/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js',
 				'source-development' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js'),
 				'deps' => array(
 					'bootstrap-js'
@@ -145,9 +141,7 @@ class ThemeHelper {
 			/* Bootstrap Gallery */
 			'Bootstrap Gallery' => array(
 				'handle' => 'bootstrap-gallery-js',
-//				'source' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.min.js',
 				'source' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.min.js'),
-//				'source-development' => \get_template_directory_uri() . '/plugins/js/jquery.bootstrap-gallery.js',
 				'source-development' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.js'),
 				'deps' => array(
 					'jquery'
@@ -158,9 +152,7 @@ class ThemeHelper {
 			/* The main JS */
 			'EVE Online' => array(
 				'handle' => 'eve-online-main-js',
-//				'source' => \get_template_directory_uri() . '/js/eve-online.min.js',
 				'source' => \get_theme_file_uri('/js/eve-online.min.js'),
-//				'source-development' => \get_template_directory_uri() . '/js/eve-online.js',
 				'source-development' => \get_theme_file_uri('/js/eve-online.js'),
 				'deps' => array(
 					'jquery'

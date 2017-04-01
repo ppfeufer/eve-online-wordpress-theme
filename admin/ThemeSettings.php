@@ -118,7 +118,7 @@ class ThemeSettings {
 					(!empty($this->themeOptions['name'])) ? '</p></td></tr><tr><th>' . \__('Your Logo', 'eve-online') . '</th><td>' . $this->eveApi->getEntityLogoByName($this->themeOptions['name'], false) : ''
 				)
 			),
-			'show_corp_logos' => array(
+			'corp_logos_in_menu' => array(
 				'type' => 'checkbox',
 				'title' => \__('Corp Logos', 'eve-online'),
 				'choices' => array(
@@ -126,19 +126,20 @@ class ThemeSettings {
 				),
 				'description' => \__('Only available if you are running an alliance website, so you can have the corp logos in your "Our Corporations" menu. (Default: on)', 'eve-online')
 			),
-			'navigation_even_cells' => array(
+			'navigation' => array(
 				'type' => 'checkbox',
 				'title' => \__('Navigation', 'eve-online'),
 				'choices' => array(
-					'yes' => \__('Even navigation cells in main navigation', 'eve-online')
+					'sticky' => \__('Sticky Navigation', 'eve-online'),
+					'even_cells' => \__('Even navigation cells in main navigation', 'eve-online'),
 				),
 				'description' => \__('Transforms the main navigation into even cells instead of a random width. (Default: off)', 'eve-online')
 			),
-			'show_post_meta' => array(
+			'post_meta' => array(
 				'type' => 'checkbox',
 				'title' => \__('Post Meta', 'eve-online'),
 				'choices' => array(
-					'yes' => \__('Show post meta (categories and all that stuff) in article loop and article view.', 'eve-online')
+					'show' => \__('Show post meta (categories and all that stuff) in article loop and article view.', 'eve-online')
 				),
 				'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view. (Default: off)', 'eve-online')
 			),
