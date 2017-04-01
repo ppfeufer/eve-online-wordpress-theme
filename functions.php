@@ -716,7 +716,7 @@ function eve_get_theme_custom_style() {
 	} // END if(!empty($themeSettings['background_color']))
 
 	// main navigation
-	if(isset($themeSettings['navigation_even_cells']['yes']) && $themeSettings['navigation_even_cells']['yes'] === 'yes') {
+	if(!empty($themeSettings['navigation']['even_cells'])) {
 		$themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
 		$themeCustomStyle .= '	ul.main-navigation {display:table; width:100%;}' . "\n";
 		$themeCustomStyle .= '	ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";

@@ -130,7 +130,7 @@ class ThemeSettings {
 				'type' => 'checkbox',
 				'title' => \__('Navigation', 'eve-online'),
 				'choices' => array(
-					'sticky' => \__('Sticky Navigation', 'eve-online'),
+//					'sticky' => \__('Sticky Navigation', 'eve-online'),
 					'even_cells' => \__('Even navigation cells in main navigation', 'eve-online'),
 				),
 				'description' => \__('Transforms the main navigation into even cells instead of a random width. (Default: off)', 'eve-online')
