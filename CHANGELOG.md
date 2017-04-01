@@ -23,6 +23,7 @@
 - Missing clearfixes in the content areas
 - Styled the author info for articles
 - Fixed the CSS enqueue logic, so that Child Theming is possible without any weird hacks
+- Sanitized and normalized some theme settings
 
 ## [v0.1-r20170307](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170307) - 2017-03-07
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170203...v0.1-r20170307)
