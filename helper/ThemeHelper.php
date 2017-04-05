@@ -86,8 +86,6 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeJavaScripts() {
-		$themeSettings = \get_option('eve_theme_options', self::getThemeDefaultOptions());
-
 		$enqueue_script = array(
 			/* Html5Shiv */
 			'Html5Shiv' => array(
