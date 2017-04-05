@@ -91,7 +91,8 @@ class ThemeHelper {
 			'Html5Shiv' => array(
 				'handle' => 'html5shiv',
 				'condition' => 'lt IE 9',
-				'source' => \get_theme_file_uri('/js/html5.min.js'),
+				'source' => \get_theme_file_uri('/js/html5shiv.min.js'),
+				'source-development' => \get_theme_file_uri('/js/html5shiv.js'),
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false
@@ -101,6 +102,7 @@ class ThemeHelper {
 				'handle' => 'respondJS',
 				'condition' => 'lt IE 9',
 				'source' => \get_theme_file_uri('/js/respond.min.js'),
+				'source-development' => \get_theme_file_uri('/js/respond.js'),
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false

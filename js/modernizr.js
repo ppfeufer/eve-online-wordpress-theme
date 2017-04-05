@@ -2524,8 +2524,6 @@
 			}(typeof window !== "undefined" ? window : this, document));
 		}
 
-		;
-
 		/**
 		 * If the browsers follow the spec, then they would expose vendor-specific style as:
 		 *   elem.style.WebkitBorderRadius
@@ -5841,7 +5839,7 @@
 				injectElementWithStyles('@media ' + mq + ' { #modernizr { position: absolute; } }', function(node) {
 					bool = (window.getComputedStyle ?
 						window.getComputedStyle(node, null) :
-						node.currentStyle).position == 'absolute';
+						node.currentStyle).position === 'absolute';
 				});
 
 				return bool;
@@ -6338,7 +6336,7 @@
 			.slice(1)
 			.join('#') + 'scrollbar{width:0px}',
 			function(node) {
-				Modernizr.addTest('cssscrollbar', node.scrollWidth == 40);
+				Modernizr.addTest('cssscrollbar', node.scrollWidth === 40);
 			}
 		);
 
@@ -8701,7 +8699,7 @@
 					test = testAllProps('column' + props[i]);
 
 					// break-before, break-after & break-inside are not "column"-prefixed in spec
-					if(name === 'breakbefore' || name === 'breakafter' || name == 'breakinside') {
+					if(name === 'breakbefore' || name === 'breakafter' || name === 'breakinside') {
 						test = test || testAllProps(props[i]);
 					}
 

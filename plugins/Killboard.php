@@ -164,22 +164,22 @@ class Killboard {
 		);
 	} // END private function getGeneralTabFields()
 
-	private function getZkillboardTabFields() {
-		return array(
-			'zkb_api_link' => array(
-				'type' => 'text',
-				'title' => \__('API Link', 'eve-online'),
-				'description' => \__('Example: https://zkillboard.com/api/combined/corporationID/12345567890/', 'eve-online')
-			),
-			'show_losses' => array(
-				'type' => 'checkbox',
-				'title' => \__('Source', 'eve-online'),
-				'choices' => array(
-					'yes' => \__('Show own losses as well?', 'eve-online')
-				)
-			)
-		);
-	} // END private function getGeneralTabFields()
+//	private function getZkillboardTabFields() {
+//		return array(
+//			'zkb_api_link' => array(
+//				'type' => 'text',
+//				'title' => \__('API Link', 'eve-online'),
+//				'description' => \__('Example: https://zkillboard.com/api/combined/corporationID/12345567890/', 'eve-online')
+//			),
+//			'show_losses' => array(
+//				'type' => 'checkbox',
+//				'title' => \__('Source', 'eve-online'),
+//				'choices' => array(
+//					'yes' => \__('Show own losses as well?', 'eve-online')
+//				)
+//			)
+//		);
+//	} // END private function getGeneralTabFields()
 
 	private function getDatabaseSettings() {
 		return array(

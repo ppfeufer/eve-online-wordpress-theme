@@ -10,8 +10,6 @@ use WordPress\Themes\EveOnline;
 \defined('ABSPATH') or die();
 
 class Whitelabel {
-	private $textdomain = null;
-
 	private $developerName = null;
 	private $developerEmailAddress = null;
 	private $developerWebsite = null;
