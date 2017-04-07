@@ -35,7 +35,7 @@ class HtmlMinify {
 
 	protected function minifyHTML($html) {
 		$pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
-		\preg_match_all($pattern, \preg_replace('/\/\/ (.*)\n/', ' ', $html), $matches, \PREG_SET_ORDER );
+		\preg_match_all($pattern, $html, $matches, \PREG_SET_ORDER);
 
 		$overriding = false;
 		$raw_tag = false;
@@ -60,7 +60,13 @@ class HtmlMinify {
 				} else if($this->remove_comments) {
 					if(!$overriding && $raw_tag != 'textarea') {
 						// Remove any HTML comments, except MSIE conditional comments
-						$content = \preg_replace( '/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $content );
+						$content = \preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $content);
+
+						// Remove any JS single line comments starting with //
+						$content = \preg_replace('/\/\/ (.*)\n/', ' ', $content);
+
+						// Remove any JS single or multiline comments like /* comment */
+						$content = \preg_replace('/\/\*(.*)\*\//', ' ', $content);
 					}
 				}
 			} else {
@@ -126,6 +132,6 @@ function eve_html_compression_start() {
 
 $themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
-if(!empty($themeOptions['minify_html_output']['yes']) && (!\preg_match('/development/', \APPLICATION_ENV))) {
+if(!empty($themeOptions['minify_html_output']['yes'])) {
 	\add_action('get_header', '\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_start');
 } // END if(!empty($themeOptions['minify_html_output']['yes']))
