@@ -264,6 +264,12 @@
 		margin-top: 8px;
 		margin-top: 0.5rem;
 	}
+
+	main .bootstrap-gallery-image:hover img {
+		-webkit-box-shadow: 0 0 5px #000;
+		-moz-box-shadow: 0 0 5px #000;
+		box-shadow: 0 0 5px #000;
+	}
 }
 
 /* Latest Blogposts

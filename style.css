@@ -183,6 +183,12 @@
 		width: 100%;
 	}
 
+	main a:hover img {
+		-webkit-box-shadow: 0 0 5px #000;
+		-moz-box-shadow: 0 0 5px #000;
+		box-shadow: 0 0 5px #000;
+	}
+
 	.entry-content table, .content table, .comment-content table {
 		border-bottom: 1px solid #ededed;
 		color: #757575;
@@ -573,7 +579,7 @@
 		max-width: 44.0625rem;
 		max-height: 395px;
 		max-height: 24.6875rem;
-		overflow: hidden;
+		/*overflow: hidden;*/
 	}
 
 	.read-more {
