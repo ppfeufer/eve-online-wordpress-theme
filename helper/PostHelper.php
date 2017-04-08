@@ -41,9 +41,21 @@ class PostHelper {
 				global $post;
 				?>
 				<li class="comment media" id="comment-<?php \comment_ID(); ?>">
-					<a href="<?php echo $comment->comment_author_url; ?>" class="pull-left comment-avatar">
-						<?php echo \get_avatar($comment, 64); ?>
-					</a>
+					<?php
+					if(!empty($comment->comment_author_url)) {
+						?>
+						<a href="<?php echo $comment->comment_author_url; ?>" class="pull-left comment-avatar">
+							<?php echo \get_avatar($comment, 64); ?>
+						</a>
+						<?php
+					} else {
+						?>
+						<span class="pull-left comment-avatar">
+							<?php echo \get_avatar($comment, 64); ?>
+						</span>
+						<?php
+					}
+					?>
 					<div class="media-body">
 						<h4 class="media-heading comment-author vcard">
 							<?php
