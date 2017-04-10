@@ -43,6 +43,7 @@ require_once(\get_template_directory() . '/helper/StringHelper.php');
 require_once(\get_template_directory() . '/helper/ImageHelper.php');
 require_once(\get_template_directory() . '/helper/FilesystemHelper.php');
 require_once(\get_template_directory() . '/helper/CacheHelper.php');
+require_once(\get_template_directory() . '/helper/CommentHelper.php');
 
 /**
  * Loading Plugins
