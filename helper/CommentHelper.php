@@ -8,7 +8,7 @@ class CommentHelper {
 		switch($comment->comment_type) {
 			case 'pingback':
 			case 'trackback':
-				self::getTrackbackTemplate();
+				echo self::getTrackbackTemplate();
 				break;
 			default :
 				// Proceed with normal comments.
