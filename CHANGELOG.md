@@ -5,6 +5,8 @@
 ### Added
 - Cron and Image Cache via Theme Options
 - Article Navigation for default posts
+- New Shortcodes: [contengrid] and [gridelement]
+- First try on fome sort of documentation (See documentation folder)
 
 ### Changed / Fixed
 - Fixed missing text domains

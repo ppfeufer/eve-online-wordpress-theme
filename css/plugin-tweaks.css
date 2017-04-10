@@ -275,6 +275,15 @@
 /* Latest Blogposts
 ----------------------------------------------------------------------------- */
 @media all {
+	.bootstrap-content-grid {
+		list-style-type: none;
+		padding-left: 0;
+	}
+}
+
+/* Latest Blogposts
+----------------------------------------------------------------------------- */
+@media all {
 	.latest-blogposts-headline {
 		text-align: center;
 		line-height: 1.4rem;
