@@ -7,6 +7,7 @@
 - Article Navigation for default posts
 - New Shortcodes: [contengrid] and [gridelement]
 - First try on fome sort of documentation (See documentation folder)
+- New widget: Childpages Submenu
 
 ### Changed / Fixed
 - Fixed missing text domains

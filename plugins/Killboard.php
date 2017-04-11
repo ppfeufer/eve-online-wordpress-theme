@@ -42,7 +42,7 @@ class Killboard {
 
 		// frontend actions
 		if(!\is_admin()) {
-			$this->addStyle();
+//			$this->addStyle();
 		} // END if(!\is_admin())
 
 		// common actions
@@ -53,19 +53,19 @@ class Killboard {
 		\add_action('widgets_init', \create_function('', 'return register_widget("WordPress\Themes\EveOnline\Plugins\Widgets\KillboardWidget");'));
 	} // END public function initWidget()
 
-	public function addStyle() {
-		if(!\is_admin()) {
-			\add_action('wp_enqueue_scripts', array($this, 'enqueueStyle'));
-		} // END if(!\is_admin())
-	} // END public function addStyle()
+//	public function addStyle() {
+//		if(!\is_admin()) {
+//			\add_action('wp_enqueue_scripts', array($this, 'enqueueStyle'));
+//		} // END if(!\is_admin())
+//	} // END public function addStyle()
 
-	public function enqueueStyle() {
-		if(\preg_match('/development/', \APPLICATION_ENV)) {
-			\wp_enqueue_style('eve-killboard', \get_theme_file_uri('/plugins/css/killboard-widget.css'));
-		} else {
-			\wp_enqueue_style('eve-killboard', \get_theme_file_uri('/plugins/css/killboard-widget.min.css'));
-		} // END if(\preg_match('/development/', \APPLICATION_ENV))
-	} // END public function enqueueStyle()
+//	public function enqueueStyle() {
+//		if(\preg_match('/development/', \APPLICATION_ENV)) {
+//			\wp_enqueue_style('eve-killboard', \get_theme_file_uri('/plugins/css/killboard-widget.css'));
+//		} else {
+//			\wp_enqueue_style('eve-killboard', \get_theme_file_uri('/plugins/css/killboard-widget.min.css'));
+//		} // END if(\preg_match('/development/', \APPLICATION_ENV))
+//	} // END public function enqueueStyle()
 
 	public function getDefaultPluginOptions() {
 		$defaultOptions = array(

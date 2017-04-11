@@ -47,12 +47,12 @@ class KillboardWidget extends \WP_Widget {
 
 		$widget_options = array(
 			'classname' => 'eve-killboard-widget',
-			'description' => __('Displaying the latest kills and losses in your sidebar.', 'eve-online')
+			'description' => \__('Displaying the latest kills and losses in your sidebar.', 'eve-online')
 		);
 
 		$control_options = array();
 
-		parent::__construct('eve_killboard_widget', __('EVE Killboard Widget', 'eve-online'), $widget_options, $control_options);
+		parent::__construct('eve_killboard_widget', \__('EVE Killboard Widget', 'eve-online'), $widget_options, $control_options);
 	} // END public function __construct($id_base, $name, $widget_options = array(), $control_options = array())
 
 	/**
