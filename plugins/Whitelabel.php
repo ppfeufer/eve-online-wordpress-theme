@@ -44,7 +44,7 @@ class Whitelabel {
 		 */
 		$this->developerName = 'YF [TN-NT] Rounon Dax';
 		$this->developerEmailAddress = 'rounon.dax@yulaifederation.net';
-		$this->developerWebsite = 'http://yulaifederation.net';
+		$this->developerWebsite = 'https://yulaifederation.net';
 
 		$this->themeBackgroundUrl = $this->getBackgroundImage();
 		$this->customLoginLogo = $this->getLoginLogo();
