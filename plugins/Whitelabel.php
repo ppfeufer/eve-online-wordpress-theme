@@ -43,7 +43,7 @@ class Whitelabel {
 		 * Setting Developer Information
 		 */
 		$this->developerName = 'YF [TN-NT] Rounon Dax';
-		$this->developerEmailAddress = 'rounon.dax@yulai-federation.net';
+		$this->developerEmailAddress = 'rounon.dax@yulaifederation.net';
 		$this->developerWebsite = 'http://yulaifederation.net';
 
 		$this->themeBackgroundUrl = $this->getBackgroundImage();
