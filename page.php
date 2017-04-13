@@ -61,6 +61,15 @@
 									echo $oEmbed;
 								} // END if($isVideoGalleryPage)
 
+								/**
+								 * Let's see if we are by any chance in a Corp Page
+								 */
+								$isCorpPage = \get_post_meta($post->ID, 'eve_page_is_corp_page', true);
+								$showCorpLogo = \get_post_meta($post->ID, 'eve_page_show_corp_logo', true);
+								if($isCorpPage && $showCorpLogo) {
+									echo \WordPress\Themes\EveOnline\Plugins\Corppage::getCorprationLogo(\get_the_ID());
+								} // END if($isCorpPage && $showCorpLogo)
+
 								echo the_content();
 								?>
 							</article>

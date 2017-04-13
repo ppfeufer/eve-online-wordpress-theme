@@ -126,6 +126,29 @@
 	}
 }
 
+/* corp pages
+----------------------------------------------------------------------------- */
+@media all {
+	.eve-corp-page-corp-logo {
+		text-align: center;
+		margin-bottom: 16px;
+		margin-bottom: 1rem;
+	}
+
+	.eve-corp-page-corp-logo figcaption {
+		text-align: center;
+	}
+}
+
+@media all and (min-width: 560px) {
+	.eve-corp-page-corp-logo {
+		float: left;
+		text-align: left;
+		margin-right: 16px;
+		margin-right: 1rem;
+	}
+}
+
 /* shortcode [divider] (theme own shortcode)
 ----------------------------------------------------------------------------- */
 @media all {

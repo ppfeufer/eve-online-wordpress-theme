@@ -5,6 +5,7 @@
 ### Added
 - Cron and Image Cache via Theme Options
 - Article Navigation for default posts
+- Option to show the corporation logo on a corp page left from your text
 - New Shortcodes: [contengrid] and [gridelement]
 - First try on fome sort of documentation (See documentation folder)
 - New widget: Childpages Submenu
