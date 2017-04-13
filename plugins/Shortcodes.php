@@ -205,15 +205,16 @@ class Shortcodes {
 	public function shortcodeDivider($atts) {
 		$atts = null; // we don't need it here, but WP provides it anyways
 
-		return '<div class="divider"></div>';
+		return '<div class="divider clearfix"></div>';
 	} // END public function shortcodeDivider($atts, $content = null)
 
 	public function shortcodeButton($atts, $content = null) {
 		$args = \shortcode_atts(
 			array(
-				'id' => '',
-				'videolist' => '',
-				'classes' => ''
+				'link' => '',
+				'type' => 'default',
+				'target' => '',
+				'size' => ''
 			),
 			$atts
 		);
