@@ -72,7 +72,7 @@ class PostHelper {
 	} // END public static function getHeaderColClasses($echo = false)
 
 	public static function getMainContentColClasses($echo = false) {
-		if(\is_page()) {
+		if(\is_page() || \is_home()) {
 			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
 				$contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
 			} else {
@@ -94,7 +94,7 @@ class PostHelper {
 	} // END public static function getMainContentColClasses($echo = false)
 
 	public static function getLoopContentClasses($echo = false) {
-		if(\is_page()) {
+		if(\is_page() || \is_home()) {
 			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
 				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
 			} else {
@@ -116,7 +116,7 @@ class PostHelper {
 	} // END function public static function geLoopContentClasses($echo = false)
 
 	public static function getArticleNavigationPanelClasses($echo = false) {
-		if(\is_page()) {
+		if(\is_page() || \is_home()) {
 			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
 				$contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
 			} else {
@@ -138,7 +138,7 @@ class PostHelper {
 	} // END function public static function getArticleNavigationPanelClasses($echo = false)
 
 	public static function getContentColumnCount($echo = false) {
-		if(\is_page()) {
+		if(\is_page() || \is_home()) {
 			if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
 				$columnCount = 3;
 			} else {
