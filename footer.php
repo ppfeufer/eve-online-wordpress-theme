@@ -26,13 +26,13 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 									<?php
 									if(!empty($options['footertext'])) {
 										echo '<p>';
-										echo stripslashes($options['footertext']);
+										echo \stripslashes($options['footertext']);
 										echo '</p>';
 									} // END if(!empty($options['footertext']))
 									?>
 									<ul class="credit">
 										<li>
-											&copy; <?php echo date('Y'); ?> <a href="<?php echo \esc_url(\home_url()); ?>"><?php \bloginfo(); ?></a>
+											&copy; <?php echo \date('Y'); ?> <a href="<?php echo \esc_url(\home_url()); ?>"><?php \bloginfo(); ?></a>
 										</li>
 										<li>
 											<?php
