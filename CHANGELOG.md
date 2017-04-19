@@ -1,9 +1,12 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170325...HEAD)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170419...HEAD)
+
+## [v0.1-r20170419](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170419) - 2017-04-19
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170325...v0.1-r20170419)
 ### Added
-- Cron and Image Cache via Theme Options
+- Cron and Image Cache via Theme Options (Design -> Options -> Performance Settings)
 - Article Navigation for default posts
 - Option to show the corporation logo on a corp page left from your text
 - New Shortcodes: [contengrid] and [gridelement]
@@ -11,8 +14,9 @@
 - New widget: Childpages Submenu
 
 ### Changed / Fixed
-- Fixed missing text domains
-- Sidebar on blog index
+- Fixed missing text domains for translations (If you guys have translation files for this theme, let me know)
+- Fixed sidebar on blog index
+- Changed theme credits in footer from statis text to an action that can be used (eve_online_theme_credits)
 
 ## [v0.1-r20170325](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170325) - 2017-03-25
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170307...v0.1-r20170325)

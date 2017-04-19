@@ -35,12 +35,9 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 											&copy; <?php echo date('Y'); ?> <a href="<?php echo \esc_url(\home_url()); ?>"><?php \bloginfo(); ?></a>
 										</li>
 										<li>
-											(<?php
-											\printf(\__('%1$s design and programming by %2$s', 'eve-online'),
-												'<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>',
-												'<a href="https://gate.eveonline.com/Profile/Rounon%20Dax" rel="nofollow">Rounon Dax</a>'
-											);
-											?>)
+											<?php
+											\do_action('eve_online_theme_credits');
+											?>
 										</li>
 									</ul><!-- end .credit -->
 								</div>
