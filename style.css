@@ -461,7 +461,7 @@
 		cursor: pointer;
 		background-color: rgba(0,0,0,0.05);
 		border-bottom: 1px solid rgb(153,153,153);
-		display: block !important;
+		display: block;
 		height: 40px;
 		width: 40px;
 		border: none;
@@ -488,6 +488,10 @@
 		border: 2px solid currentColor;
 		border-width: 0 2px 2px 0;
 		transition: all 0.2s;
+	}
+
+	.header-menu span.caret, .footer-menu span.caret {
+		display: none;
 	}
 
 	.mobile-nav .dropdown-submenu a::after {
