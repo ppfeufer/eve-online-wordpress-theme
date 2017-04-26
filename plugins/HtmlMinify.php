@@ -36,9 +36,12 @@ class HtmlMinify {
 	protected function minifyHTML($html) {
 		// Tese have to be removed right away ....
 		if($this->remove_comments) {
+			// Remove any HTML comments, except MSIE conditional comments
+			$html = \preg_replace('/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s', '', $html);
+
 			// Remove any JS single line comments starting with //
 			$html = \preg_replace('/\/\/ (.*)\n/', ' ', $html);
-		}
+		} // END if($this->remove_comments)
 
 		$pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
 		\preg_match_all($pattern, $html, $matches, \PREG_SET_ORDER);
