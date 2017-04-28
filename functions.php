@@ -29,54 +29,54 @@ if(\version_compare($GLOBALS['wp_version'], '4.7-alpha', '<')) {
 /**
  * Loading Theme Addon Classes
  */
-require_once(\get_template_directory() .'/addons/BootstrapMenuWalker.php');
-require_once(\get_template_directory() .'/addons/Cron.php');
+require_once(\get_theme_file_path('/addons/BootstrapMenuWalker.php'));
+require_once(\get_theme_file_path('/addons/Cron.php'));
 
 /**
  * Loading Helper Classes
  */
-require_once(\get_template_directory() . '/helper/ThemeHelper.php');
-require_once(\get_template_directory() . '/helper/NavigationHelper.php');
-require_once(\get_template_directory() . '/helper/PostHelper.php');
-require_once(\get_template_directory() . '/helper/EveApiHelper.php');
-require_once(\get_template_directory() . '/helper/StringHelper.php');
-require_once(\get_template_directory() . '/helper/ImageHelper.php');
-require_once(\get_template_directory() . '/helper/FilesystemHelper.php');
-require_once(\get_template_directory() . '/helper/CacheHelper.php');
-require_once(\get_template_directory() . '/helper/CommentHelper.php');
+require_once(\get_theme_file_path('/helper/ThemeHelper.php'));
+require_once(\get_theme_file_path('/helper/NavigationHelper.php'));
+require_once(\get_theme_file_path('/helper/PostHelper.php'));
+require_once(\get_theme_file_path('/helper/EveApiHelper.php'));
+require_once(\get_theme_file_path('/helper/StringHelper.php'));
+require_once(\get_theme_file_path('/helper/ImageHelper.php'));
+require_once(\get_theme_file_path('/helper/FilesystemHelper.php'));
+require_once(\get_theme_file_path('/helper/CacheHelper.php'));
+require_once(\get_theme_file_path('/helper/CommentHelper.php'));
 
 /**
  * Loading Plugins
  */
-require_once(\get_template_directory() . '/plugins/Metaslider.php');
-require_once(\get_template_directory() . '/plugins/Shortcodes.php');
-require_once(\get_template_directory() . '/plugins/BootstrapImageGallery.php');
-require_once(\get_template_directory() . '/plugins/BootstrapVideoGallery.php');
-require_once(\get_template_directory() . '/plugins/BootstrapContentGrid.php');
-require_once(\get_template_directory() . '/plugins/Corppage.php');
-require_once(\get_template_directory() . '/plugins/Whitelabel.php');
-require_once(\get_template_directory() . '/plugins/MoCache.php');
-require_once(\get_template_directory() . '/plugins/EncodeEmailAddresses.php');
-require_once(\get_template_directory() . '/plugins/helper/EdkKillboardHelper.php');
-require_once(\get_template_directory() . '/plugins/helper/ZkbKillboardHelper.php');
-require_once(\get_template_directory() . '/plugins/widgets/KillboardWidget.php');
-require_once(\get_template_directory() . '/plugins/Killboard.php');
-require_once(\get_template_directory() . '/plugins/ChildpageMenu.php');
-require_once(\get_template_directory() . '/plugins/LatestBlogPosts.php');
-require_once(\get_template_directory() . '/plugins/EveOnlineAvatar.php');
-require_once(\get_template_directory() . '/plugins/HtmlMinify.php');
+require_once(\get_theme_file_path('/plugins/Metaslider.php'));
+require_once(\get_theme_file_path('/plugins/Shortcodes.php'));
+require_once(\get_theme_file_path('/plugins/BootstrapImageGallery.php'));
+require_once(\get_theme_file_path('/plugins/BootstrapVideoGallery.php'));
+require_once(\get_theme_file_path('/plugins/BootstrapContentGrid.php'));
+require_once(\get_theme_file_path('/plugins/Corppage.php'));
+require_once(\get_theme_file_path('/plugins/Whitelabel.php'));
+require_once(\get_theme_file_path('/plugins/MoCache.php'));
+require_once(\get_theme_file_path('/plugins/EncodeEmailAddresses.php'));
+require_once(\get_theme_file_path('/plugins/helper/EdkKillboardHelper.php'));
+require_once(\get_theme_file_path('/plugins/helper/ZkbKillboardHelper.php'));
+require_once(\get_theme_file_path('/plugins/widgets/KillboardWidget.php'));
+require_once(\get_theme_file_path('/plugins/Killboard.php'));
+require_once(\get_theme_file_path('/plugins/ChildpageMenu.php'));
+require_once(\get_theme_file_path('/plugins/LatestBlogPosts.php'));
+require_once(\get_theme_file_path('/plugins/EveOnlineAvatar.php'));
+require_once(\get_theme_file_path('/plugins/HtmlMinify.php'));
 
 /**
  * Loading Security Classes
  */
-require_once(\get_template_directory() . '/security/WordPressSecurity.php');
-require_once(\get_template_directory() . '/security/WordPressCoreUpdateCleaner.php');
+require_once(\get_theme_file_path('/security/WordPressSecurity.php'));
+require_once(\get_theme_file_path('/security/WordPressCoreUpdateCleaner.php'));
 
 /**
  * Theme Options
  */
-require_once(\get_template_directory() . '/admin/SettingsApi.php');
-require_once(\get_template_directory() . '/admin/ThemeSettings.php');
+require_once(\get_theme_file_path('/admin/SettingsApi.php'));
+require_once(\get_theme_file_path('/admin/ThemeSettings.php'));
 
 /**
  * WP Filesystem API
@@ -121,7 +121,7 @@ if(!isset($content_width)) {
 /**
  * Enqueue JavaScripts
  */
-if(!\function_exists('eve_enqueue_scripts')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 	function eve_enqueue_scripts() {
 		/**
 		 * Adds JavaScript to pages with the comment form to support
@@ -155,12 +155,12 @@ if(!\function_exists('eve_enqueue_scripts')) {
 	} // END function eve_enqueue_styles()
 
 	\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
-} // END if(!\function_exists('eve_enqueue_scripts'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts'))
 
 /**
  * Enqueue Styles
  */
-if(!\function_exists('eve_enqueue_styles')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles')) {
 	function eve_enqueue_styles() {
 		$enqueue_style = Helper\ThemeHelper::getThemeStyleSheets();
 
@@ -182,9 +182,9 @@ if(!\function_exists('eve_enqueue_styles')) {
 	} // END function eve_enqueue_styles()
 
 	\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_styles');
-} // END if(!\function_exists('eve_enqueue_styles'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles'))
 
-if(!\function_exists('eve_enqueue_admin_styles')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_admin_styles')) {
 	function eve_enqueue_admin_styles() {
 		$enqueue_style = Helper\ThemeHelper::getThemeAdminStyleSheets();
 
@@ -206,7 +206,7 @@ if(!\function_exists('eve_enqueue_admin_styles')) {
 	} // END function eve_enqueue_admin_styles()
 
 	\add_action('admin_init', '\\WordPress\Themes\EveOnline\eve_enqueue_admin_styles');
-} // END if(!function_exists('\eve_enqueue_styles'))
+} // END if(!function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles'))
 
 /**
  * Theme Setup
@@ -332,7 +332,7 @@ function eve_title_separator($separator) {
  *
  * @return string Font stylesheet or empty string if disabled.
  */
-if(!\function_exists('eve_fonts_url')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_fonts_url')) {
 	function eve_fonts_url() {
 		$fonts_url = '';
 
@@ -370,42 +370,42 @@ if(!\function_exists('eve_fonts_url')) {
 
 		return $fonts_url;
 	} // END function eve_fonts_url()
-} // END if(!\function_exists('eve_fonts_url'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_fonts_url'))
 
 /**
  * Adding the clearfix CSS class to every paragraph in .entry-content
  */
-if(!\function_exists('eve_paragraph_clearfix')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_paragraph_clearfix')) {
 	function eve_paragraph_clearfix($content) {
 		return \preg_replace('/<p([^>]+)?>/', '<p$1 class="clearfix">', $content);
 	} // END function eve_paragraph_clearfix($content)
 
 //	\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_paragraph_clearfix');
-} // END if(!\function_exists('eve_paragraph_clearfix'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_paragraph_clearfix'))
 
 /**
  * Picking up teh first paragraph from the_content
  */
-if(!\function_exists('eve_first_paragraph')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_first_paragraph')) {
 	function eve_first_paragraph($content) {
 		return \preg_replace('/<p([^>]+)?>/', '<p$1 class="intro">', $content, 1);
 	} // END function eve_first_paragraph($content)
 
 //	\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_first_paragraph');
-} // END if(!\function_exists('eve_first_paragraph'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_first_paragraph'))
 
 /**
  * Adding a CSS class to the excerpt
  * @param string $excerpt
  * @return string
  */
-if(!\function_exists('eve_add_class_to_excerpt')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_add_class_to_excerpt')) {
 	function eve_add_class_to_excerpt($excerpt) {
 		return \str_replace('<p', '<p class="excerpt"', $excerpt);
 	} // END function eve_add_class_to_excerpt($excerpt)
 
 	\add_filter('the_excerpt', '\\WordPress\Themes\EveOnline\eve_add_class_to_excerpt');
-} // END if(!\function_exists('eve_add_class_to_excerpt'))
+} // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_add_class_to_excerpt'))
 
 /**
  * Define theme's widget areas.

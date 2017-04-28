@@ -7,6 +7,7 @@
 - Fixed carets in head and foot navigation, they don't belong there.
 - Fixed removal of comments in output compression.
 - Moved the slider and headerimages from articles and pages into their own container "stage" for better accessability via CSS.
+- Child Theming made easier
 
 ## [v0.1-r20170419](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170419) - 2017-04-19
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170325...v0.1-r20170419)
