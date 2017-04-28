@@ -426,7 +426,7 @@ function eve_widgets_init() {
 	\register_sidebar(
 		array(
 			'name' => \__('Post Sidebar', 'eve-online'),
-			'description' => \__('This sidebar will always be displayed if teh current is a post / blog article.', 'eve-online'),
+			'description' => \__('This sidebar will always be displayed if the current is a post / blog article.', 'eve-online'),
 			'id' => 'sidebar-post',
 			'before_widget' => '<aside><div id="%1$s" class="widget %2$s">',
 			'after_widget' => "</div></aside>",

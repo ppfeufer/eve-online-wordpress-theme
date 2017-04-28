@@ -212,11 +212,11 @@ class NavigationHelper {
 
 				$breadcrumb .= $before . \get_the_title() . $after;
 			} elseif(\is_search()) {
-				$format = $before . ($addTexts ? (\__('Search results for "', 'eve-online') . '"%s"') : '%s') . $after;
+				$format = $before . ($addTexts ? (\__('Search results for ', 'eve-online') . '"%s"') : '%s') . $after;
 
 				$breadcrumb .= \sprintf($format, \get_search_query());
 			} elseif(\is_tag()) {
-				$format = $before . ($addTexts ? (\__('Posts tagged "', 'eve-online') . '"%s"') : '%s') . $after;
+				$format = $before . ($addTexts ? (\__('Posts tagged ', 'eve-online') . '"%s"') : '%s') . $after;
 
 				$breadcrumb .= \sprintf($format, \single_tag_title('', false));
 			} elseif(\is_author()) {
