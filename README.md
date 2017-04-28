@@ -7,6 +7,9 @@
 * Fully responsive (adapts itself to mobile device displays)
 * Clean look and feel
 
+### Example
+![](documentation/images/theme.jpg)
+
 ### Recommended Plugins:
 * [Force Regenerate Thumbnails](https://wordpress.org/plugins/force-regenerate-thumbnails/)
 * [Meta Slider](https://wordpress.org/plugins/ml-slider/)
