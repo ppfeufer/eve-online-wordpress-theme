@@ -110,7 +110,7 @@ Your credits go here.
 
 ### Corp List
 
-The [corplist] shortcode is interesting for alliance websites. This shortcode will get all published pages that are marked as being corp-pages (in the little corp pages box when editing  page) and list them.
+The [corplist] shortcode is interesting for alliance websites. This shortcode will get all published pages that are marked as being corp-pages (in the little corp pages box when editing page) and list them.
 
 Example:
 [Our Corporations](https://yulaifederation.net/our-corporations/)

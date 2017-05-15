@@ -38,6 +38,9 @@ Your corporation/alliance is also using this theme and you guys like it? Let me 
 ### Changelog
 see [CHANGELOG.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/master/CHANGELOG.md)
 
+### Documentation
+see [DOCUMENTATION.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/master/documentation/DOCUMENTATION.md)
+
 ### Todo List:
 - [x] ~~Clean up the CSS files~~
 - [x] ~~Make background image configurable~~
