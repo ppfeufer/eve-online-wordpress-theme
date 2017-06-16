@@ -89,7 +89,7 @@ class Cron {
 	 * Schedule daily cron jobs
 	 */
 	public function scheduleDailyCron() {
-		if(!\wp_next_scheduled('cleanupThemeImageCache') && !empty($this->themeOptions['cron']['cronCleanupImageCache'])) {
+		if(!\wp_next_scheduled('cleanupThemeImageCache') && !empty($this->themeOptions['cron']['cleanupThemeImageCache'])) {
 			\wp_schedule_event(\time(), 'daily', 'cleanupThemeImageCache');
 		} // END if(!\wp_next_scheduled('cleanupThemeImageCache'))
 	} //END public function scheduleDailyCron()
@@ -105,7 +105,7 @@ class Cron {
 	 * Cron Job: cronCleanupImageCache
 	 * Schedule: Daily
 	 */
-	public function cronCleanupImageCache() {
+	public function cronCleanupThemeImageCache() {
 		$imageCacheDirectory = EveOnline\Helper\CacheHelper::getImageCacheDir();
 
 		EveOnline\Helper\FilesystemHelper::deleteDirectoryRecursive($imageCacheDirectory, false);

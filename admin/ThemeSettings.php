@@ -224,7 +224,7 @@ class ThemeSettings {
 				'type' => 'checkbox',
 				'title' => \__('Cron Jobs', 'eve-online'),
 				'choices' => array(
-					'cronCleanupImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
+					'cleanupThemeImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
 				),
 				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)', 'eve-online')
 			),

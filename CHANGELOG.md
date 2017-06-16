@@ -6,6 +6,7 @@
 ### Changed / Fixed
 - Fixed carets in head and foot navigation, they don't belong there.
 - Fixed removal of comments in output compression.
+- Fixed cron job call for cleaning up the image cache. (Please deactivate the cron job in your theme's performance settings before updating to this version, in order to make sure the old and briken cron is removed properly)
 - Moved the slider and headerimages from articles and pages into their own container "stage" for better accessability via CSS.
 - Child Theming made easier
 - Documentation updated
