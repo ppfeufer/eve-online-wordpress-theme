@@ -1,3 +1,5 @@
+/* global wp */
+
 jQuery(document).ready(function($) {
 	/**
 	 * Check all upload sections for uploaded files
@@ -18,7 +20,7 @@ jQuery(document).ready(function($) {
 	$('.upload, .image img, .url code').click(function(e) {
 		e.preventDefault();
 
-		var send_attachment_bkp = wp.media.editor.send.attachment;
+		var sendAttachmentBkp = wp.media.editor.send.attachment;
 		var dataID = $(this).data('field-id');
 
 		wp.media.editor.send.attachment = function(props, attachment) {
@@ -34,7 +36,7 @@ jQuery(document).ready(function($) {
 			$(current + ' .remove').show();
 			$(current + ' .upload').hide();
 
-			wp.media.editor.send.attachment = send_attachment_bkp;
+			wp.media.editor.send.attachment = sendAttachmentBkp;
 		};
 
 		wp.media.editor.open();
