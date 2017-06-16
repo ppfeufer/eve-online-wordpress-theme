@@ -32,7 +32,11 @@ class Cron {
 	 */
 	public function getTemeCronEvents() {
 		return array(
-			'Cleanup Image Cache' => 'cleanupThemeImageCache'
+			// Daily Image Cache Cleanup
+			'Cleanup Image Cache' => array(
+				'hook' => 'cleanupThemeImageCache',
+				'recurrence' => 'daily'
+			)
 		);
 	} // END public function getTemeCronEvents()
 
@@ -45,18 +49,16 @@ class Cron {
 			/**
 			 * Only add the cron if the theme settings say so or else remove them
 			 */
-			if(!empty($this->themeOptions['cron'][$cronEvent])) {
-				\add_action($cronEvent, array($this, 'cron' . \ucfirst($cronEvent)));
+			if(!empty($this->themeOptions['cron'][$cronEvent['hook']])) {
+				\add_action($cronEvent['hook'], array($this, 'cron' . \ucfirst($cronEvent['hook'])));
 			} else {
-				$this->removeCron($cronEvent);
-			} // END if(!empty($this->themeOptions['cron'][$cronEvent]))
+				$this->removeCron($cronEvent['hook']);
+			} // END if(!empty($this->themeOptions['cron'][$cronEvent['hook']]))
 		} // END foreach($this->cronEvents as $cronEvent)
 
 		\add_action('switch_theme', array($this, 'removeAllCrons'), 10 , 2);
 
-		$this->scheduleHourlyCron();
-		$this->scheduleDailyCron();
-		$this->scheduleTwicedailyCron();
+		$this->scheduleCronEvents();
 	} // END public function init()
 
 	/**
@@ -65,44 +67,32 @@ class Cron {
 	public function removeAllCrons() {
 		foreach($this->cronEvents as $cronEvent) {
 			// removing $cronEvent
-			\wp_clear_scheduled_hook($cronEvent);
-		} // END foreach($this->cronEvents as $cronEvent => $cronHook)
+			$this->removeCron($cronEvent['hook']);
+		} // END foreach($this->cronEvents as $cronEvent)
 	} // END public function removeAllCrons()
 
 	/**
 	 * Remove a single cron job
 	 *
-	 * @param string $cron Hook of the cron to remove
+	 * @param string $cronEvent Hook of the cron to remove
 	 */
-	public function removeCron($cron = null) {
-		\wp_clear_scheduled_hook($cron);
+	public function removeCron($cronEvent = null) {
+		\wp_clear_scheduled_hook($cronEvent);
 	} // END public function removeCron($cron = null)
 
 	/**
-	 * Schedule hourly cron jobs
+	 * schedule the cron jobs
 	 */
-	public function scheduleHourlyCron() {
-		;
-	} // END public function scheduleHourlyCron()
-
-	/**
-	 * Schedule daily cron jobs
-	 */
-	public function scheduleDailyCron() {
-		if(!\wp_next_scheduled('cleanupThemeImageCache') && !empty($this->themeOptions['cron']['cleanupThemeImageCache'])) {
-			\wp_schedule_event(\time(), 'daily', 'cleanupThemeImageCache');
-		} // END if(!\wp_next_scheduled('cleanupThemeImageCache'))
+	public function scheduleCronEvents() {
+		foreach($this->cronEvents as $cronEvent) {
+			if(!\wp_next_scheduled($cronEvent['hook']) && !empty($this->themeOptions['cron'][$cronEvent['hook']])) {
+				\wp_schedule_event(\time(), $cronEvent['recurrence'], $cronEvent['hook']);
+			} // END if(!\wp_next_scheduled($cronEvent['hook']) && !empty($this->themeOptions['cron'][$cronEvent['hook']]))
+		} // END foreach($this->cronEvents as $cronEvent)
 	} //END public function scheduleDailyCron()
 
 	/**
-	 * Schedule twice daily cron jobs
-	 */
-	public function scheduleTwicedailyCron() {
-		;
-	} // END public function scheduleTwicedailyCron()
-
-	/**
-	 * Cron Job: cronCleanupImageCache
+	 * Cron Job: cleanupThemeImageCache
 	 * Schedule: Daily
 	 */
 	public function cronCleanupThemeImageCache() {
