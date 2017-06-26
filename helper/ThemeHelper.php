@@ -129,7 +129,7 @@ class ThemeHelper {
 			),
 			/* Bootstrap Toolkit */
 			'Bootstrap Toolkit' => array(
-				'handle' => 'bootstrap-toolkit',
+				'handle' => 'bootstrap-toolkit-js',
 				'source' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js'),
 				'source-development' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js'),
 				'deps' => array(
