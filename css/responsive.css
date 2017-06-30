@@ -57,6 +57,11 @@
 		padding-left: 0.3125rem;
 	}
 
+	.sidebar-wrapper {
+		border-left: 1px solid transparent;
+		border-color: rgb(220,220,220);
+	}
+
 	.footer-menu-wrapper {
 		float: right;
 	}
