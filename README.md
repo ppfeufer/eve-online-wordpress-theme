@@ -36,10 +36,10 @@ or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme
 Your corporation/alliance is also using this theme and you guys like it? Let me know :-)
 
 ### Changelog
-see [CHANGELOG.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/master/CHANGELOG.md)
+see [CHANGELOG.md](CHANGELOG.md)
 
 ### Documentation
-see [DOCUMENTATION.md](https://github.com/ppfeufer/eve-online-wordpress-theme/blob/master/documentation/DOCUMENTATION.md)
+see [DOCUMENTATION.md](documentation/DOCUMENTATION.md)
 
 ### Todo List:
 - [x] ~~Clean up the CSS files~~

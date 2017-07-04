@@ -153,9 +153,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 			}
 		} // END foreach($enqueue_script as $script)
 	} // END function eve_enqueue_styles()
-
-	\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts'))
+\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
 
 /**
  * Enqueue Styles
@@ -180,9 +179,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles')) {
 			}
 		} // END foreach($enqueue_style as $style)
 	} // END function eve_enqueue_styles()
-
-	\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_styles');
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles'))
+\add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_styles');
 
 if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_admin_styles')) {
 	function eve_enqueue_admin_styles() {
@@ -204,9 +202,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_admin_styles')) {
 			} // END if(\preg_match('/development/', \APPLICATION_ENV))
 		} // END foreach($enqueue_style as $style)
 	} // END function eve_enqueue_admin_styles()
-
-	\add_action('admin_init', '\\WordPress\Themes\EveOnline\eve_enqueue_admin_styles');
 } // END if(!function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles'))
+\add_action('admin_init', '\\WordPress\Themes\EveOnline\eve_enqueue_admin_styles');
 
 /**
  * Theme Setup
@@ -309,10 +306,12 @@ function eve_add_thumbnail_sizes() {
 	} // END if(\function_exists('\fly_add_image_size'))
 } // END function eve_add_thumbnail_sizes()
 
-function eve_title_separator($separator) {
-	$separator = '»';
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_title_separator')) {
+	function eve_title_separator($separator) {
+		$separator = '»';
 
-	return $separator;
+		return $separator;
+	}
 }
 \add_filter('document_title_separator', '\\WordPress\Themes\EveOnline\eve_title_separator');
 
@@ -379,9 +378,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_paragraph_clearfix')) {
 	function eve_paragraph_clearfix($content) {
 		return \preg_replace('/<p([^>]+)?>/', '<p$1 class="clearfix">', $content);
 	} // END function eve_paragraph_clearfix($content)
-
-//	\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_paragraph_clearfix');
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_paragraph_clearfix'))
+//\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_paragraph_clearfix');
 
 /**
  * Picking up teh first paragraph from the_content
@@ -390,9 +388,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_first_paragraph')) {
 	function eve_first_paragraph($content) {
 		return \preg_replace('/<p([^>]+)?>/', '<p$1 class="intro">', $content, 1);
 	} // END function eve_first_paragraph($content)
-
-//	\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_first_paragraph');
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_first_paragraph'))
+//\add_filter('the_content', '\\WordPress\Themes\EveOnline\eve_first_paragraph');
 
 /**
  * Adding a CSS class to the excerpt
@@ -403,9 +400,8 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_add_class_to_excerpt')) {
 	function eve_add_class_to_excerpt($excerpt) {
 		return \str_replace('<p', '<p class="excerpt"', $excerpt);
 	} // END function eve_add_class_to_excerpt($excerpt)
-
-	\add_filter('the_excerpt', '\\WordPress\Themes\EveOnline\eve_add_class_to_excerpt');
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_add_class_to_excerpt'))
+\add_filter('the_excerpt', '\\WordPress\Themes\EveOnline\eve_add_class_to_excerpt');
 
 /**
  * Define theme's widget areas.
@@ -561,9 +557,11 @@ function eve_widgets_init() {
 /**
  * Replaces the excerpt "more" text by a link
  */
-function eve_excerpt_more($more) {
-	return ' ' . $more . '<br/><a class="read-more" href="'. \get_permalink(\get_the_ID()) . '">'.__('Read More', 'eve-online').'</a>';
-} // END function eve_excerpt_more($more)
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_excerpt_more')) {
+	function eve_excerpt_more($more) {
+		return ' ' . $more . '<br/><a class="read-more" href="'. \get_permalink(\get_the_ID()) . '">'.__('Read More', 'eve-online').'</a>';
+	} // END function eve_excerpt_more($more)
+}
 \add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
 
 /**
@@ -579,13 +577,15 @@ function eve_remove_more_link_scroll($link) {
 /**
  * Adds custom classes to the array of body classes.
  */
-function eve_body_classes($classes) {
-	if(!\is_multi_author()) {
-		$classes[] = 'single-author';
-	} // END if(!is_multi_author())
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_body_classes')) {
+	function eve_body_classes($classes) {
+		if(!\is_multi_author()) {
+			$classes[] = 'single-author';
+		} // END if(!is_multi_author())
 
-	return $classes;
-} // END function eve_body_classes($classes)
+		return $classes;
+	} // END function eve_body_classes($classes)
+}
 \add_filter('body_class', '\\WordPress\Themes\EveOnline\eve_body_classes');
 
 /**
