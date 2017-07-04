@@ -67,30 +67,9 @@ namespace WordPress\Themes\EveOnline;
  *
  * @uses ChildTheme\Helper\ThemeHelper::getThemeStyleSheets getting the stylesheets that need to be enqueued
  */
-function eve_enqueue_styles() {
-	$enqueue_style = ChildTheme\Helper\ThemeHelper::getThemeStyleSheets();
-
-	/**
-	 * Loop through the CSS array and load the styles
-	 */
-	foreach($enqueue_style as $style) {
-		if(\APPLICATION_ENV === 'development') {
-			// for external styles we might not have a development source
-			if(!isset($style['source-development'])) {
-				$style['source-development'] = $style['source'];
-			} // END if(!isset($style['source-development']))
-
-			\wp_enqueue_style($style['handle'], $style['source-development'], $style['deps'], $style['version'], $style['media']);
-		} else {
-			\wp_enqueue_style($style['handle'], $style['source'], $style['deps'], $style['version'], $style['media']);
-		} // END if(\preg_match('/development/', \APPLICATION_ENV))
-
-		// conditional styles
-		if(!empty($style['condition'])) {
-			\wp_style_add_data($style['handle'], $style['condition']['conditionKey'], $style['condition']['conditionValue']);
-		} // END if(!empty($script['condition']))
-	} // END foreach($enqueue_style as $style)
-} // END function eve_enqueue_styles()
+function eve_get_stylesheets() {
+	return ChildTheme\Helper\ThemeHelper::getThemeStyleSheets();
+}
 ```
 Also, you need to overwrite the ThemeHelper class a bit. Create a "ThemeHelper.php" under /helper directory in your child theme directory and add the following content:
 ```php

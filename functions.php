@@ -131,7 +131,7 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 			\wp_enqueue_script('comment-reply');
 		} // END if(\is_singular() && \comments_open() && \get_option('thread_comments'))
 
-		$enqueue_script = Helper\ThemeHelper::getThemeJavaScripts();
+		$enqueue_script = eve_get_javascripts();
 
 		/**
 		 * Loop through the JS array and load the scripts
@@ -156,12 +156,18 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts'))
 \add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
 
+if(!function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
+	function eve_get_javascripts() {
+		return Helper\ThemeHelper::getThemeJavaScripts();
+	}
+}
+
 /**
  * Enqueue Styles
  */
 if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles')) {
 	function eve_enqueue_styles() {
-		$enqueue_style = Helper\ThemeHelper::getThemeStyleSheets();
+		$enqueue_style = eve_get_stylesheets();
 
 		/**
 		 * Loop through the CSS array and load the styles
@@ -181,6 +187,12 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles')) {
 	} // END function eve_enqueue_styles()
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_styles'))
 \add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_styles');
+
+if(!function_exists('\WordPress\Themes\EveOnline\eve_get_stylesheets')) {
+	function eve_get_stylesheets() {
+		return Helper\ThemeHelper::getThemeStyleSheets();
+	}
+}
 
 if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_admin_styles')) {
 	function eve_enqueue_admin_styles() {
