@@ -69,7 +69,6 @@ require_once(\get_theme_file_path('/plugins/HtmlMinify.php'));
 /**
  * Loading Security Classes
  */
-require_once(\get_theme_file_path('/security/WordPressSecurity.php'));
 require_once(\get_theme_file_path('/security/WordPressCoreUpdateCleaner.php'));
 
 /**
@@ -88,7 +87,6 @@ require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
  * Initiate needed general Classes
  */
 new Addons\Cron(true);
-new Security\WordPressSecurity;
 new Plugins\MoCache;
 new Plugins\Metaslider(true);
 new Plugins\Shortcodes;

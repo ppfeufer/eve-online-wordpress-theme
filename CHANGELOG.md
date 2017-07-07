@@ -7,6 +7,7 @@
 
 ### Changed / Fixed
 - Changed some functions in functions.php to be able to be overwritten in a child theme.
+- Removed themes's own security class from being automatically loaded and executed. Use a [plugin](https://github.com/ppfeufer/pp-wp-basic-security) for that, it's better that way and also protects you when you are no longer using this theme.
 
 ## [v0.1-r20170630](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170630) - 2017-06-30
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170419...v0.1-r20170630)
