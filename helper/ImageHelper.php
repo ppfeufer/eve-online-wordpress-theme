@@ -59,7 +59,6 @@ class ImageHelper {
 		if(!empty($themeOptions['cache']['remote-image-cache'])) {
 			$explodedImageUrl = \explode('/', $remoteImageUrl);
 			$imageFilename = \end($explodedImageUrl);
-			$returnValue = CacheHelper::getImageCacheUri() . $cacheType . '/' . $imageFilename;
 
 			// if we don't have the image cached already
 			if(CacheHelper::checkCachedImage($cacheType, $imageFilename) === false) {
@@ -68,9 +67,9 @@ class ImageHelper {
 				 * Otherwise set the remote image as return value.
 				 */
 				if(\is_dir(CacheHelper::getImageCacheDir() . $cacheType) && \is_writable(CacheHelper::getImageCacheDir() . $cacheType)) {
-					CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl);
-				} else {
-					$returnValue = $remoteImageUrl;
+					if(CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl) === true) {
+						$returnValue = CacheHelper::getImageCacheUri() . $cacheType . '/' . $imageFilename;
+					} // END if(CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl) === true)
 				} // END if(\is_dir(CacheHelper::getImageCacheDir() . $cacheType) && \is_writable(CacheHelper::getImageCacheDir() . $cacheType))
 			} // END if(CacheHelper::checkCachedImage($cacheType, $imageName) === false)
 		} // END if(!empty($themeOptions['cache']['remote-image-cache']))
