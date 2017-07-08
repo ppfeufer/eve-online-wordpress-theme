@@ -147,7 +147,7 @@
 			<div class="stage">
 				<div class="container">
 					<?php
-					if(\is_single() && \get_post_type() === 'post' && \has_post_thumbnail()) {
+					if(\is_single() && \has_post_thumbnail()) {
 						?>
 						<figure class="post-header-image">
 							<?php
@@ -159,12 +159,26 @@
 							?>
 						</figure>
 						<?php
-					} // END if(!\is_home() && \get_post_type() === 'post' && \has_post_thumbnail())
-
-					/**
-					 * Render our Slider, if we have one
-					 */
-					\do_action('eve_render_header_slider');
+					} elseif(\is_category() || \is_tax()) {
+						if(\function_exists('\z_taxonomy_image')) {
+							?>
+							<figure class="post-header-image">
+								<?php
+								if(\function_exists('\fly_get_attachment_image')) {
+									echo \fly_get_attachment_image(\z_get_attachment_id_by_url(\z_taxonomy_image_url()), 'header-image');
+								} else {
+									\z_taxonomy_image(null, 'header-image');
+								} // END if(\function_exists('\fly_get_attachment_image'))
+								?>
+							</figure>
+							<?php
+						} // END if(\function_exists('\z_taxonomy_image'))
+					} else {
+						/**
+						 * Render our Slider, if we have one
+						 */
+						\do_action('eve_render_header_slider');
+					} // END if(\is_single() && \has_post_thumbnail())
 					?>
 				</div>
 			</div>

@@ -4,6 +4,8 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...HEAD)
 ### Added
 - Short "how to" on using Child Themes with this theme
+- Plugin support for [Categories Images](https://wordpress.org/plugins/categories-images/)
+- Plugin support for [EVE Online Fitting Manager for WordPress](https://github.com/ppfeufer/eve-online-fitting-manager)
 
 ### Changed / Fixed
 - Changed some functions in functions.php to be able to be overwritten in a child theme.

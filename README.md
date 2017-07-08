@@ -18,6 +18,8 @@
 ### Build-In Plugin Support for:
 * [Meta Slider](https://wordpress.org/plugins/ml-slider/)
 * [Fly Dynamic Image Resizer](https://wordpress.org/plugins/fly-dynamic-image-resizer/)
+* [Categories Images](https://wordpress.org/plugins/categories-images/)
+* [EVE Online Fitting Manager for WordPress](https://github.com/ppfeufer/eve-online-fitting-manager)
 
 ### Installation
 To install the theme use git to clone it to your wordpress installation
