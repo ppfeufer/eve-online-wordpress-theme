@@ -31,9 +31,10 @@ or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme
 ### Websites using this Theme (in alphabetical order):
 * [No Will To Live](http://www.nowilltolive.com/)
 * [Order of Order](http://www.orden.space/)
-* [Terra Nanotech](http://terra-nanotech.de/)
+* [Terra Nanotech](https://terra-nanotech.de/)
 * [The 1st Regiment](http://the1stregiment.tk/)
-* [Yulai Federation](http://yulaifederation.net/)
+* [Yulai Federation](https://yulaifederation.net/)
+* [Astroco](http://astroco.net/)
 
 Your corporation/alliance is also using this theme and you guys like it? Let me know :-)
 
