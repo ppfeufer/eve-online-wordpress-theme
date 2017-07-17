@@ -183,7 +183,7 @@ class EveApiHelper {
 	public function getCharacterImageByName($name, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null) {
 		$entitieID = $this->getEveIdFromName($name);
 
-		if($entitieID == 0) {
+		if($entitieID == 0 || $entitieID === false) {
 			return false;
 		} // END if($entitieID == 0)
 
@@ -231,6 +231,10 @@ class EveApiHelper {
 		if($data === false) {
 			$endpoint = 'eve.owner';
 			$data = $this->curl($this->apiUrl . $this->apiEndpoints[$endpoint], array('names' => $name));
+
+			if($data === false) {
+				return false;
+			}
 
 			/**
 			 * setting the transient caches

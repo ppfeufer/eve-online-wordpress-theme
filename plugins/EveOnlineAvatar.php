@@ -14,7 +14,7 @@ class EveOnlineAvatar {
 	} // END public function __construct()
 
 	public function init() {
-		\add_filter('get_avatar', array($this, 'eveCharacterAvatar'), 1, 5);
+		\add_filter('get_avatar', array($this, 'eveCharacterAvatar'), 10, 5);
 		\add_filter('bp_core_fetch_avatar', array($this, 'fetchEveCharacterAvatar'), 1, 2);
 		\add_filter('bp_core_fetch_avatar_url', array($this, 'fetchEveCharacterAvatar'), 1, 2);
 		\add_filter('user_profile_picture_description', \create_function('$desc', 'return "' . \__('If you set your nickname to your pilot\'s name, you EVE avatar will be used here.', 'eve-online') . '";'));
@@ -24,7 +24,7 @@ class EveOnlineAvatar {
 		$returnValue = $content;
 
 		if(\preg_match("/gravatar.com\/avatar/", $content)) {
-			//get user login
+			// get user login
 			if(\is_numeric($id_or_email)) {
 				$id = (int) $id_or_email;
 				$user = \get_userdata($id);
@@ -33,11 +33,21 @@ class EveOnlineAvatar {
 					$id = (int) $id_or_email->user_id;
 					$user = \get_userdata($id);
 				} elseif(!empty($id_or_email->comment_author_email)) {
-					return $content; // Commenters not logged in don't need filtering
-				}
+					// Let's see if we can find an EVE Online Avatar
+					if(!empty($id_or_email->comment_author)) {
+						$eveImage = $this->eveApi->getCharacterImageByName($id_or_email->comment_author, false);
+
+						if($eveImage !== false) {
+							return $eveImage;
+						} // END if($eveImage !== false)
+					} // END if(!empty($id_or_email->comment_author))
+
+					// Nope, no EVE Online Avatar available
+					return $content;
+				} // END if(!empty($id_or_email->user_id))
 			} else {
 				$user = \get_user_by('email', $id_or_email);
-			}
+			} // END if(\is_numeric($id_or_email))
 
 			$eveImage = $this->eveApi->getCharacterImageByName($user->nickname, false);
 
