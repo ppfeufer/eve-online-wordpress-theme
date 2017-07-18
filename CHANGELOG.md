@@ -14,6 +14,7 @@
 - Fixed EVE Avatars in comments
 - Removed the ```[button]``` shortcode, use the [Bootstrap 3 Shortcodes for WordPress](https://github.com/ppfeufer/bootstrap-3-shortcodes-for-wordpress) plugin instead, which better implements the bootstrap shortcodes.
 - Fixed the scroll issue when using bootstrap carousels
+- Fixed the scroll issue when using bootstrap accordions
 
 ## [v0.1-r20170630](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170630) - 2017-06-30
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170419...v0.1-r20170630)
