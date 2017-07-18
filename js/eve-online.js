@@ -256,8 +256,14 @@ jQuery(function($) {
 	 * @param {type} event
 	 */
 	$("a[href*='#']").on('click', function(event) {
-		// don't get triggered by the bootstrap slider or any other slider wthat uses the same data attributes
-		if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next') {
+		/**
+		 * don't get triggered by:
+		 * the bootstrap slider or any other slider that uses the same data attributes
+		 *		data-slide = next/prev
+		 * bootstrap accordion and other bootstrap elements that only toggle
+		 *		data-toggle = collapse
+		 */
+		if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next' || $(this).data('toggle') === 'collapse') {
 			return;
 		}
 
