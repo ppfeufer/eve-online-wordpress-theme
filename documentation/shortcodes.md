@@ -75,24 +75,6 @@ If no position is added to the first and the last column, it can lead to some un
 
 The [divider] simply is drawing a devider with a very fine line. Nothing fancy at all.
 
-### Button
-
-The [button] shortcode generates a link-button styled with bootstrap.
-
-Accepted options are:
-- type => default, primary, success, info, warning, danger, link (default when not given: default)
-- size => lg, sm, xs
-- link => Your link
-- target => _blank, _new (default when not givenN opens the link in the same page)
-
-Examples Button Type:
-
-![](images/buttons-type.png)
-
-Examples Button Size:
-
-![](images/buttons-size.png)
-
 ### Credits
 
 The [credits] shortcode can be used right below your article to give some credits to who ever contributed to the articel, or made the pictures and so on. You know, the courtesy struff.
