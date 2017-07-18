@@ -256,6 +256,11 @@ jQuery(function($) {
 	 * @param {type} event
 	 */
 	$("a[href*='#']").on('click', function(event) {
+		// don't get triggered by the bootstrap slider or any other slider wthat uses the same data attributes
+		if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next') {
+			return;
+		}
+
 		/**
 		 * Make sure it's not the comment reply cancel
 		 * link ('cancel-comment-reply-link') and this.hash has

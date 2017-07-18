@@ -12,6 +12,8 @@
 - Removed themes's own security class from being automatically loaded and executed. Use a [plugin](https://github.com/ppfeufer/pp-wp-basic-security) for that, it's better that way and also protects you when you are no longer using this theme.
 - Imagecache fixed, in case the image can't be downloaded, it will be taken from CCP's image server
 - Fixed EVE Avatars in comments
+- Removed the ```[button]``` shortcode, use the [Bootstrap 3 Shortcodes for WordPress](https://github.com/ppfeufer/bootstrap-3-shortcodes-for-wordpress) plugin instead, which better implements the bootstrap shortcodes.
+- Fixed the scroll issue when using bootstrap carousels
 
 ## [v0.1-r20170630](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170630) - 2017-06-30
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170419...v0.1-r20170630)
