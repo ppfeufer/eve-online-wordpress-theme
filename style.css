@@ -471,13 +471,6 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		-webkit-transform: translate(-50%, -50%);
-		-moz-transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		transform: translate(-50%, -50%);
-	}
-
-	.mobile-nav .caret i {
 		display: block;
 		width: 0.625rem;
 		height: 0.625rem;
@@ -488,6 +481,13 @@
 		border: 2px solid currentColor;
 		border-width: 0 2px 2px 0;
 		transition: all 0.2s;
+	}
+
+	.mobile-nav .open .caret i {
+		-webkit-transform: translate(-50%, -50%) rotate(225deg);
+		-moz-transform: translate(-50%, -50%) rotate(225deg);
+		-ms-transform: translate(-50%, -50%) rotate(225deg);
+		transform: translate(-50%, -50%) rotate(225deg);
 	}
 
 	.header-menu span.caret, .footer-menu span.caret {

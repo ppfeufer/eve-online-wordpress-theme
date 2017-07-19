@@ -1,7 +1,11 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...HEAD)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...HEAD)
+- In development
+
+## [v0.1-r20170719](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170719) - 2017-07-19
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...v0.1-r20170719)
 ### Added
 - Short "how to" on using Child Themes with this theme
 - Plugin support for [Categories Images](https://wordpress.org/plugins/categories-images/)
@@ -15,6 +19,7 @@
 - Removed the ```[button]``` shortcode, use the [Bootstrap 3 Shortcodes for WordPress](https://github.com/ppfeufer/bootstrap-3-shortcodes-for-wordpress) plugin instead, which better implements the bootstrap shortcodes.
 - Fixed the scroll issue when using bootstrap carousels
 - Fixed the scroll issue when using bootstrap accordions
+- Visualized an open menu in mobile nav also with the caret
 
 ## [v0.1-r20170630](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170630) - 2017-06-30
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170419...v0.1-r20170630)
