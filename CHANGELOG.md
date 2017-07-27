@@ -2,7 +2,8 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...HEAD)
-- In development
+### Fixed
+- No longer jumping to bootstrap tabs
 
 ## [v0.1-r20170719](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170719) - 2017-07-19
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...v0.1-r20170719)
