@@ -263,7 +263,7 @@ jQuery(function($) {
 		 * bootstrap accordion and other bootstrap elements that only toggle
 		 *		data-toggle = collapse
 		 */
-		if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next' || $(this).data('toggle') === 'collapse') {
+		if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next' || $(this).data('toggle') === 'collapse' || $(this).data('toggle') === 'tab') {
 			return;
 		}
 
