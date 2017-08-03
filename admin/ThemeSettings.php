@@ -220,6 +220,17 @@ class ThemeSettings {
 				),
 				'description' => \__('If checked the images from CCP\'s image server will be cached locally. (Default: on)', 'eve-online')
 			),
+			'remote_image_cache_time' => array(
+				'type' => 'select',
+//				'title' => \__('Cache', 'eve-online'),
+				'choices' => array(
+					'21600' => \__('6 hours', 'eve-online'),
+					'43200' => \__('12 hours', 'eve-online'),
+					'64800' => \__('18 hours', 'eve-online'),
+					'86400' => \__('24 hours', 'eve-online')
+				),
+				'description' => \__('Remote image caching time in hours (Default: 24hrs)', 'eve-online')
+			),
 			'cron' => array(
 				'type' => 'checkbox',
 				'title' => \__('Cron Jobs', 'eve-online'),

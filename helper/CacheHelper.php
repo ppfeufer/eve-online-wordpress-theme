@@ -60,9 +60,10 @@ class CacheHelper {
 	 *
 	 * @param string $cacheType The subdirectory in the image cache filesystem
 	 * @param string $imageName The image file name
+	 * @param int $cachetime
 	 * @return boolean true or false
 	 */
-	public static function checkCachedImage($cacheType = null, $imageName = null) {
+	public static function checkCachedImage($cacheType, $imageName = null, $cachetime = 86400) {
 		$cacheDir = \trailingslashit(self::getImageCacheDir() . $cacheType);
 
 		if(\file_exists($cacheDir . $imageName)) {
@@ -72,7 +73,7 @@ class CacheHelper {
 			 *
 			 * This is just in case our cronjob doesn't run for whetever reason
 			 */
-			if(\time() - \filemtime($cacheDir . $imageName) > 24 * 3600) {
+			if(\time() - \filemtime($cacheDir . $imageName) > $cachetime) {
 				\unlink($cacheDir . $imageName);
 
 				$returnValue = false;

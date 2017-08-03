@@ -2,6 +2,9 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...HEAD)
+### Added
+- Cache time for remote images that are downloaded to be cached is now configurable
+
 ### Fixed
 - No longer jumping to bootstrap tabs
 - Killboard victim images were to big, grabbing smaller images now

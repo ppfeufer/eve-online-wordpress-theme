@@ -11,7 +11,7 @@ class ThemeHelper {
 	 * @return string
 	 */
 	public static function getThemeDbVersion() {
-		return '20170616';
+		return '20170803';
 	} // END public static function getThemeDbVersion()
 
 	/**
@@ -36,6 +36,7 @@ class ThemeHelper {
 			'cache' => array(
 				'remote-image-cache' => 'remote-image-cache'
 			),
+			'remote_image_cache_time' => '86400',
 			'cron' => array(
 				'cleanupThemeImageCache' => ''
 			),

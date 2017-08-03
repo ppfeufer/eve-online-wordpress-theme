@@ -51,7 +51,7 @@ class ImageHelper {
 	 * @param string $remoteImageUrl The URL for the remote image
 	 * @return string The cached Image URL
 	 */
-	public static function getLocalCacheImageUriForRemoteImage($cacheType = null, $remoteImageUrl = null) {
+	public static function getLocalCacheImageUriForRemoteImage($cacheType, $remoteImageUrl = null) {
 		$themeOptions = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 		$returnValue = $remoteImageUrl;
 
@@ -62,7 +62,7 @@ class ImageHelper {
 			$cachedImage = CacheHelper::getImageCacheUri() . $cacheType . '/' . $imageFilename;
 
 			// if we don't have the image cached already
-			if(CacheHelper::checkCachedImage($cacheType, $imageFilename) === false) {
+			if(CacheHelper::checkCachedImage($cacheType, $imageFilename, $themeOptions['remote_image_cache_time']) === false) {
 				/**
 				 * Check if the content dir is writable and cache the image.
 				 * Otherwise set the remote image as return value.
