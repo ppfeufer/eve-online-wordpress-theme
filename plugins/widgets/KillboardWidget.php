@@ -165,7 +165,7 @@ class KillboardWidget extends \WP_Widget {
 				$stringInvolved = ($kill->involved - 1 === 0) ? '' : ' (+' . ( $kill->involved - 1 ) . ')';
 
 				$widgetHtml .= '<div class="row killboard-entry">'
-							. '	<div class="col-xs-6 col-sm-12 col-md-12 col-lg-5">'
+							. '	<div class="col-xs-4 col-sm-12 col-md-12 col-lg-5">'
 							. '		<figure>'
 							. '			<a href="' . $kill->killboardLink . '" rel="external">'
 //							. '				<img src="' . $kill->victimImage . '" alt="' . $kill->plt_name . '">'
@@ -173,7 +173,7 @@ class KillboardWidget extends \WP_Widget {
 							. '			</a>'
 							. '		</figure>'
 							. '	</div>'
-							. '	<div class="col-xs-6 col-sm-12 col-md-12 col-lg-7">'
+							. '	<div class="col-xs-8 col-sm-12 col-md-12 col-lg-7">'
 							. '		<ul>'
 							. '			<li>Pilot: ' . $kill->plt_name . '</li>'
 							. '			<li>Ship: ' . $kill->shp_name . '</li>'
