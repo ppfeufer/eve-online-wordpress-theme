@@ -8,6 +8,7 @@
 ### Fixed
 - No longer jumping to bootstrap tabs
 - Killboard victim images were to big, grabbing smaller images now
+- Hover state of subpage menu
 
 ## [v0.1-r20170719](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170719) - 2017-07-19
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...v0.1-r20170719)

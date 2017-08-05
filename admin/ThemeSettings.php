@@ -210,7 +210,7 @@ class ThemeSettings {
 				'choices' => array(
 					'yes' => \__('Minify HTML output?', 'eve-online')
 				),
-				'description' => \__('This feature is EXPERIMENTAL!<br>By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!', 'eve-online')
+				'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!<br><small><strong>This feature is EXPERIMENTAL!</strong></small>', 'eve-online')
 			),
 			'cache' => array(
 				'type' => 'checkbox',
@@ -237,7 +237,7 @@ class ThemeSettings {
 				'choices' => array(
 					'cleanupThemeImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
 				),
-				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)', 'eve-online')
+				'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)<br><small><strong>Do not use this option if you are using any sort of caching plugin in your WordPress, it might break the path to the cached images.</strong></small>', 'eve-online')
 			),
 		);
 	} // END private function getSliderTabFields()
