@@ -309,10 +309,10 @@ function eve_add_thumbnail_sizes() {
 	 */
 	if(\function_exists('\fly_add_image_size')) {
 		\fly_add_image_size('header-image', 1680, 500, true);
-		\fly_add_image_size('post-loop-thumbnail', 705, 395, true);
+		\fly_add_image_size('post-loop-thumbnail', 768, 432, true);
 	} else {
 		\add_image_size('header-image', 1680, 500, true);
-		\add_image_size('post-loop-thumbnail', 705, 395, true);
+		\add_image_size('post-loop-thumbnail', 768, 432, true);
 	} // END if(\function_exists('\fly_add_image_size'))
 } // END function eve_add_thumbnail_sizes()
 

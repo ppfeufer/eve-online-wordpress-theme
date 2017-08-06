@@ -5,6 +5,9 @@
 ### Added
 - Cache time for remote images that are downloaded to be cached is now configurable
 
+### Changed
+- Thumbnails to a more reasonable size
+
 ### Fixed
 - No longer jumping to bootstrap tabs
 - Killboard victim images were to big, grabbing smaller images now
