@@ -61,7 +61,7 @@ class CommentHelper {
 		$returnValue = null;
 
 		if(!empty($comment->comment_author_url)) {
-			$returnValue = '<a href="<?php echo $comment->comment_author_url; ?>" class="pull-left comment-avatar">' . \get_avatar($comment, 64) . '</a>';
+			$returnValue = '<a href="' . $comment->comment_author_url . '" class="pull-left comment-avatar">' . \get_avatar($comment, 64) . '</a>';
 		} else {
 			$returnValue = '<span class="pull-left comment-avatar">' . \get_avatar($comment, 64) . '</span>';
 		} // END if(!empty($comment->comment_author_url))
