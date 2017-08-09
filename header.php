@@ -161,17 +161,21 @@
 						<?php
 					} elseif(\is_category() || \is_tax()) {
 						if(\function_exists('\z_taxonomy_image')) {
-							?>
-							<figure class="post-header-image">
-								<?php
-								if(\function_exists('\fly_get_attachment_image')) {
-									echo \fly_get_attachment_image(\z_get_attachment_id_by_url(\z_taxonomy_image_url()), 'header-image');
-								} else {
-									\z_taxonomy_image(null, 'header-image');
-								} // END if(\function_exists('\fly_get_attachment_image'))
+							$headerImage = '';
+
+							if(\function_exists('\fly_get_attachment_image')) {
+								$headerImage = \fly_get_attachment_image(\z_get_attachment_id_by_url(\z_taxonomy_image_url()), 'header-image');
+							} else {
+								$headerImage = \z_taxonomy_image(null, 'header-image', null, false);
+							} // END if(\function_exists('\fly_get_attachment_image'))
+
+							if($headerImage !== '') {
 								?>
-							</figure>
-							<?php
+								<figure class="post-header-image foobar">
+									<?php echo $headerImage; ?>
+								</figure>
+								<?php
+							} // END if($headerImage !== '')
 						} // END if(\function_exists('\z_taxonomy_image'))
 					} else {
 						/**
