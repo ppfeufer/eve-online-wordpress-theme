@@ -7,6 +7,7 @@
 
 ### Changed
 - Thumbnails to a more reasonable size
+- Deactivated EncodeEmailAddresses class for the time being, due to an issue with the Retina Plugin
 
 ### Fixed
 - No longer jumping to bootstrap tabs

@@ -94,7 +94,7 @@ new Plugins\BootstrapImageGallery;
 new Plugins\BootstrapVideoGallery;
 new Plugins\BootstrapContentGrid;
 new Plugins\Corppage;
-new Plugins\EncodeEmailAddresses;
+//new Plugins\EncodeEmailAddresses;
 new Plugins\Whitelabel;
 new Plugins\Killboard(true);
 new Plugins\ChildpageMenu;
