@@ -1,7 +1,11 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...HEAD)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170812...HEAD)
+- in development
+
+## [v0.1-r20170812](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170812) - 2017-08-12
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...v0.1-r20170812)
 ### Added
 - Cache time for remote images that are downloaded to be cached is now configurable
 
@@ -11,9 +15,11 @@
 
 ### Fixed
 - No longer jumping to bootstrap tabs
-- Killboard victim images were to big, grabbing smaller images now
 - Hover state of subpage menu
 - Category header image fixed
+
+### Removed
+- Killboard widget, use the [EVE Online Killboard Widget](https://github.com/ppfeufer/eve-online-killboard-widget) Plugin instead
 
 ## [v0.1-r20170719](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170719) - 2017-07-19
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170630...v0.1-r20170719)
