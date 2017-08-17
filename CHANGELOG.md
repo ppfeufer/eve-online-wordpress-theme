@@ -2,7 +2,8 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170812...HEAD)
-- in development
+### Changed
+- Switched to short array syntax in codebase
 
 ## [v0.1-r20170812](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170812) - 2017-08-12
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...v0.1-r20170812)

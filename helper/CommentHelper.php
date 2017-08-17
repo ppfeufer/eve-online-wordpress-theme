@@ -122,10 +122,10 @@ class CommentHelper {
 	 * @return string
 	 */
 	public static function getCommentReply($args, $depth) {
-		return \get_comment_reply_link(\array_merge($args, array(
+		return \get_comment_reply_link(\array_merge($args, [
 			'reply_text' => __('Reply <span>&darr;</span>', 'eve-online'),
 			'depth' => $depth,
 			'max_depth' => $args['max_depth']
-		)));
+		]));
 	} // END public static function getCommentReply($args, $depth)
 } // END class CommentHelper

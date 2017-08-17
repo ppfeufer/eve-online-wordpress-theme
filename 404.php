@@ -57,13 +57,13 @@ defined('ABSPATH') or die();
 
 				<ul>
 					<?php
-					\wp_list_categories(array(
+					\wp_list_categories([
 						'orderby' => 'count',
 						'order' => 'DESC',
 						'show_count' => 1,
 						'title_li' => '',
 						'number' => 100
-					));
+					]);
 					?>
 				</ul>
 			</div> <!-- /.content -->

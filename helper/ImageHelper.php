@@ -11,18 +11,18 @@ class ImageHelper {
 
 		if(\strpos($url, $dir['baseurl'] . '/') !== false) { // Is URL in uploads directory?
 			$file = \basename($url);
-			$query_args = array(
+			$query_args = [
 				'post_type' => 'attachment',
 				'post_status' => 'inherit',
 				'fields' => 'ids',
-				'meta_query' => array(
-					array(
+				'meta_query' => [
+					[
 						'value' => $file,
 						'compare' => 'LIKE',
 						'key' => '_wp_attachment_metadata',
-					),
-				)
-			);
+					],
+				]
+			];
 
 			$query = new \WP_Query($query_args);
 

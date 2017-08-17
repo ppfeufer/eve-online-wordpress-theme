@@ -234,11 +234,11 @@ function eve_theme_setup() {
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
 	 */
-	\add_editor_style(array(
+	\add_editor_style([
 		'css/editor-style.css',
 		'genericons/genericons.css',
 		eve_fonts_url()
-	));
+	]);
 
 	// Setting up the image cache directories
 	Helper\CacheHelper::createCacheDirectory();
@@ -257,7 +257,7 @@ function eve_add_theme_support() {
 	\add_theme_support('automatic-feed-links');
 	\add_theme_support('post-thumbnails');
 	\add_theme_support('title-tag');
-	\add_theme_support('post-formats', array(
+	\add_theme_support('post-formats', [
 		'aside',
 		'image',
 		'gallery',
@@ -267,25 +267,25 @@ function eve_add_theme_support() {
 		'video',
 		'audio',
 		'chat'
-	));
+	]);
 
-	\add_theme_support('html5', array(
+	\add_theme_support('html5', [
 		'comment-form',
 		'comment-list',
 		'gallery',
 		'caption',
-	));
+	]);
 } // END function eve_add_theme_support()
 
 /**
  * registering nav menus
  */
 function eve_register_nav_menus() {
-	\register_nav_menus(array(
+	\register_nav_menus([
 		'main-menu' => __('Main Menu', 'eve-online'),
 		'footer-menu' => __('Footer Menu', 'eve-online'),
 		'header-menu' => __('Header Menu', 'eve-online'),
-	));
+	]);
 } // END function eve_register_nav_menus()
 
 /**
@@ -355,7 +355,7 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_fonts_url')) {
 		$bitter = \_x('on', 'Bitter font: on or off', 'eve-online');
 
 		if('off' !== $source_sans_pro || 'off' !== $bitter) {
-			$font_families = array();
+			$font_families = [];
 
 			if('off' !== $source_sans_pro) {
 				$font_families[] = 'Source Sans Pro:300,400,700,300italic,400italic,700italic';
@@ -363,10 +363,10 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_fonts_url')) {
 				if('off' !== $bitter) {
 					$font_families[] = 'Bitter:400,700';
 
-					$query_args = array(
+					$query_args = [
 						'family' => \urlencode(\implode( '|', $font_families)),
 						'subset' => \urlencode('latin,latin-ext'),
-					);
+					];
 					$fonts_url = \add_query_arg($query_args, 'https://fonts.googleapis.com/css');
 				} // END if('off' !== $bitter)
 			} // END if('off' !== $source_sans_pro)
@@ -413,7 +413,7 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_add_class_to_excerpt')) {
  */
 function eve_widgets_init() {
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Page Sidebar', 'eve-online'),
 			'description' => \__('This sidebar will be displayed if the current is a page or your blog index.', 'eve-online'),
 			'id' => 'sidebar-page',
@@ -421,11 +421,11 @@ function eve_widgets_init() {
 			'after_widget' => "</div></aside>",
 			'before_title' => '<h4 class="widget-title">',
 			'after_title' => '</h4>',
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Post Sidebar', 'eve-online'),
 			'description' => \__('This sidebar will always be displayed if the current is a post / blog article.', 'eve-online'),
 			'id' => 'sidebar-post',
@@ -433,11 +433,11 @@ function eve_widgets_init() {
 			'after_widget' => "</div></aside>",
 			'before_title' => '<h4 class="widget-title">',
 			'after_title' => '</h4>',
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('General Sidebar', 'eve-online'),
 			'id' => 'sidebar-general',
 			'description' => \__('General sidebar that is always right from the topic, below the side specific sidebars', 'eve-online'),
@@ -445,11 +445,11 @@ function eve_widgets_init() {
 			'after_widget' => "</div></aside>",
 			'before_title' => '<h4 class="widget-title">',
 			'after_title' => '</h4>',
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Home Column 1', 'eve-online'),
 			'id' => 'home-column-1',
 			'description' => \__('Home Column 1', 'eve-online'),
@@ -457,11 +457,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div>',
 			'before_title' => '<h2>',
 			'after_title' => '</h2>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Home Column 2', 'eve-online'),
 			'id' => 'home-column-2',
 			'description' => \__('Home Column 2', 'eve-online'),
@@ -469,11 +469,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div>',
 			'before_title' => '<h2>',
 			'after_title' => '</h2>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Home Column 3', 'eve-online'),
 			'id' => 'home-column-3',
 			'description' => \__('Home Column 3', 'eve-online'),
@@ -481,11 +481,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div>',
 			'before_title' => '<h2>',
 			'after_title' => '</h2>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Home Column 4', 'eve-online'),
 			'id' => 'home-column-4',
 			'description' => \__('Home Column 4', 'eve-online'),
@@ -493,11 +493,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div>',
 			'before_title' => '<h2>',
 			'after_title' => '</h2>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Footer Column 1', 'eve-online'),
 			'id' => 'footer-column-1',
 			'description' => \__('Footer Column 1', 'eve-online'),
@@ -505,11 +505,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div></aside>',
 			'before_title' => '<h4>',
 			'after_title' => '</h4>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Footer Column 2', 'eve-online'),
 			'id' => 'footer-column-2',
 			'description' => \__('Footer Column 2', 'eve-online'),
@@ -517,11 +517,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div></aside>',
 			'before_title' => '<h4>',
 			'after_title' => '</h4>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Footer Column 3', 'eve-online'),
 			'id' => 'footer-column-3',
 			'description' => \__('Footer Column 3', 'eve-online'),
@@ -529,11 +529,11 @@ function eve_widgets_init() {
 			'after_widget' => '</div></aside>',
 			'before_title' => '<h4>',
 			'after_title' => '</h4>'
-		)
+		]
 	);
 
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Footer Column 4', 'eve-online'),
 			'id' => 'footer-column-4',
 			'description' => \__('Footer Column 4', 'eve-online'),
@@ -541,12 +541,12 @@ function eve_widgets_init() {
 			'after_widget' => '</div></aside>',
 			'before_title' => '<h4>',
 			'after_title' => '</h4>'
-		)
+		]
 	);
 
 	// header widget sidebar
 	\register_sidebar(
-		array(
+		[
 			'name' => \__('Header Widget Area', 'eve-online'),
 			'id' => 'header-widget-area',
 			'description' => \__('Header Widget Area', 'eve-online'),
@@ -554,7 +554,7 @@ function eve_widgets_init() {
 			'after_widget' => '</div></aside>',
 			'before_title' => '<h4>',
 			'after_title' => '</h4>'
-		)
+		]
 	);
 } // END function eve_widgets_init()
 \add_action('init', '\\WordPress\Themes\EveOnline\eve_widgets_init');
@@ -643,8 +643,8 @@ function eve_wp_title($title, $sep) {
  * @return void
  * Modification of wp_link_pages() with an extra element to highlight the current page.
  */
-function eve_link_pages($args = array()) {
-	$arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, array(
+function eve_link_pages($args = []) {
+	$arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, [
 		'before' => '<p>' . __('Pages:', 'eve-online'),
 		'after' => '</p>',
 		'before_link' => '',
@@ -655,7 +655,7 @@ function eve_link_pages($args = array()) {
 		'link_after' => '',
 		'pagelink' => '%',
 		'echo' => 1
-	)));
+	]));
 
 	global $page, $numpages, $multipage, $more;
 
@@ -748,7 +748,7 @@ function eve_comment_form_fields($fields) {
 	$aria_req = ($req ? " aria-required='true' required" : '');
 	$html5 = \current_theme_supports('html5', 'comment-form') ? 1 : 0;
 
-	$fields =  array(
+	$fields =  [
 		'author' => '<div class="row"><div class="form-group comment-form-author col-md-4">'
 					. '	<input class="form-control" id="author" name="author" type="text" value="' . \esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' placeholder="' . \__('Name', 'eve-online') . ($req ? ' *' : '') . '" />'
 					. '</div>',
@@ -758,7 +758,7 @@ function eve_comment_form_fields($fields) {
 		'url' => '<div class="form-group comment-form-url col-md-4">'
 					. '	<input class="form-control" id="url" name="url" ' . ($html5 ? 'type="url"' : 'type="text"') . ' value="' . \esc_attr($commenter['comment_author_url']) . '" size="30" placeholder="' . \__('Website', 'eve-online') . '" />'
 					. '</div></div>'
-	);
+	];
 
 	return $fields;
 } // END function eve_comment_form_fields($fields)

@@ -13,9 +13,9 @@ if(\post_password_required()) {
 		<h3><?php \printf(\__('Comments for »%1$s«', 'eve-online'), get_the_title()); ?></h3>
 		<ul class="media-list">
 			<?php
-			\wp_list_comments(array(
+			\wp_list_comments([
 				'callback' => '\WordPress\Themes\EveOnline\Helper\CommentHelper::getComments'
-			));
+			]);
 			?>
 		</ul>
 

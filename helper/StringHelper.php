@@ -32,7 +32,7 @@ class StringHelper {
 	 * @param array $noStrip
 	 * @return string
 	 */
-	public static function camelCase($string, $ucFirst = false, $noStrip = array()) {
+	public static function camelCase($string, $ucFirst = false, $noStrip = []) {
 		// First we make sure all is lower case
 		$string = \strtolower($string);
 

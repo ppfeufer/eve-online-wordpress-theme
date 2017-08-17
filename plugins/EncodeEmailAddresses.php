@@ -15,8 +15,8 @@ class EncodeEmailAddresses {
 		 * Register filters to encode plain email addresses in posts, pages, excerpts,
 		 * comments and text widgets.
 		 */
-		foreach(array('the_content', 'the_excerpt', 'widget_text', 'comment_text', 'comment_excerpt') as $filter) {
-			add_filter($filter, array($this, 'encodeMails'), $this->filterPriority);
+		foreach(['the_content', 'the_excerpt', 'widget_text', 'comment_text', 'comment_excerpt'] as $filter) {
+			\add_filter($filter, [$this, 'encodeMails'], $this->filterPriority);
 		} // END foreach(array('the_content', 'the_excerpt', 'widget_text', 'comment_text', 'comment_excerpt') as $filter)
 	} // END public function __construct()
 
@@ -27,12 +27,12 @@ class EncodeEmailAddresses {
 		} // END if(!\is_string($content))
 
 		// abort if `eve-encode-email-address_at-sign-check` is true and `$content` doesn't contain a @-sign
-		if(\apply_filters('eve-encode-email-address_at-sign-check', true ) && \strpos($content, '@') === false) {
+		if(\apply_filters('eve-encode-email-address_at-sign-check', true) && \strpos($content, '@') === false) {
 			return $content;
 		} // END if(\apply_filters('eve-encode-email-address_at-sign-check', true ) && \strpos($content, '@') === false)
 
 		// override encoding function with the 'eve-encode-email-address_metod' filter
-		$method = \apply_filters('eve-encode-email-address_metod', array('WordPress\Themes\EveOnline\Helper\StringHelper', 'encodeMailString'));
+		$method = \apply_filters('eve-encode-email-address_metod', ['WordPress\Themes\EveOnline\Helper\StringHelper', 'encodeMailString']);
 
 		// override regex pattern with the 'eve-encode-email-address_regexp' filter
 		$regexp = \apply_filters(

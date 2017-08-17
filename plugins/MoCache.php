@@ -12,11 +12,11 @@ class MoCache {
 	private $moCacheArray = null;
 	private $cacheExpire = 21600;
 
-	private $hit = array();
-	private $miss = array();
+	private $hit = [];
+	private $miss = [];
 
 	public function __construct() {
-		\add_filter('override_load_textdomain', array($this, 'load'), 10, 3);
+		\add_filter('override_load_textdomain', [$this, 'load'], 10, 3);
 	} // END public function __construct()
 
 	/**
@@ -49,7 +49,7 @@ class MoCache {
 
 			return true;
 		} else {
-			\add_action('shutdown', array($this, 'store'));
+			\add_action('shutdown', [$this, 'store']);
 
 			$this->miss[$domain] = $key;
 
@@ -72,10 +72,10 @@ class MoCache {
 
 			if(isset($l10n[$domain])) {
 				$mo = $l10n[$domain];
-				$cache = array(
+				$cache = [
 					'entries' => $mo->entries,
 					'headers' => $mo->headers
-				);
+				];
 			} else {
 				continue;
 			} // END if(isset($l10n[$domain]))
