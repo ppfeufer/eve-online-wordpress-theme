@@ -67,17 +67,17 @@ class Whitelabel {
 		/**
 		 * Actions
 		 */
-		\add_action('login_head', array($this, 'customLoginLogoStyle'));
-		\add_action('wp_dashboard_setup', array($this, 'addDashboardWidget'));
+		\add_action('login_head', [$this, 'customLoginLogoStyle']);
+		\add_action('wp_dashboard_setup', [$this, 'addDashboardWidget']);
 	} // END public function initActions()
 
 	public function initFilters() {
 		/**
 		 * Filters
 		 */
-		\add_filter('admin_footer_text', array($this, 'modifyAdminFooter'));
-		\add_filter('login_headerurl', array($this, 'loginLogoUrl'));
-		\add_filter('login_headertitle', array($this, 'loginLogoTitle'));
+		\add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
+		\add_filter('login_headerurl', [$this, 'loginLogoUrl']);
+		\add_filter('login_headertitle', [$this, 'loginLogoTitle']);
 	} // END public function initFilters()
 
 	private function getBackgroundImage() {
@@ -131,7 +131,7 @@ class Whitelabel {
 	} // END public function themeInfo()
 
 	public function addDashboardWidget() {
-		\wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', 'eve-online'), array($this, 'themeInfo'));
+		\wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', 'eve-online'), [$this, 'themeInfo']);
 	} // END public function addDashboardWidget()
 
 	/**

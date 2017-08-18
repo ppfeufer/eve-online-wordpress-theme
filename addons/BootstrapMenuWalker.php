@@ -30,7 +30,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param int $depth Depth of page. Used for padding.
 	 */
-	public function start_lvl(&$output, $depth = 0, $args = array()) {
+	public function start_lvl(&$output, $depth = 0, $args = []) {
 		$indent = \str_repeat("\t", $depth);
 		$output .= "\n" . $indent . '<ul role="menu" class="dropdown-menu clearfix">' . "\n";
 	} // END public function start_lvl(&$output, $depth = 0, $args = array())
@@ -45,7 +45,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 	 * @param int $current_page Menu item ID.
 	 * @param object $args
 	 */
-	public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+	public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0) {
 		$indent = ($depth) ? \str_repeat("\t", $depth) : '';
 
 		/**
@@ -66,7 +66,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 			$output .= $indent . '<li role="presentation" class="disabled"><a href="#">' . \esc_attr($item->title) . '</a>';
 		} else {
 			$class_names = $value = '';
-			$classes = empty($item->classes) ? array() : (array) $item->classes;
+			$classes = empty($item->classes) ? [] : (array) $item->classes;
 			$classes[] = 'menu-item-' . $item->ID;
 			$classes[] = 'post-item-' . $item->object_id;
 			$class_names = \join(' ', \apply_filters('nav_menu_css_class', \array_filter($classes), $item, $args));
@@ -103,7 +103,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
 			$output .= $indent . '<li' . $id . $value . $class_names . '>';
 
-			$atts = array();
+			$atts = [];
 			$atts['title'] = !empty($item->title) ? $item->title : '';
 			$atts['target'] = !empty($item->target) ? $item->target : '';
 			$atts['rel'] = !empty($item->xfn) ? $item->xfn : '';

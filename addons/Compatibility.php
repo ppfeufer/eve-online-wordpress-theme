@@ -56,9 +56,9 @@ function eve_upgrade_notice() {
  * @global string $wp_version WordPress version.
  */
 function eve_customize() {
-	\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')), '', array(
+	\wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')), '', [
 		'back_link' => true,
-	));
+	]);
 } // END function eve_customize()
 \add_action('load-customize.php', '\\WordPress\Themes\EveOnline\Addons\eve_customize');
 

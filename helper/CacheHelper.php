@@ -11,7 +11,7 @@ class CacheHelper {
 	 * @return string absolute path for the cache directory
 	 */
 	public static function getThemeCacheDir() {
-		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/' . \sanitize_title(ThemeHelper::getThemeName());
+		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/eve-online/';
 	} // END public static function getThemeCacheDir()
 
 	/**
@@ -20,7 +20,7 @@ class CacheHelper {
 	 * @return string URI for the cache directory
 	 */
 	public static function getThemeCacheUri() {
-		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/' . \sanitize_title(ThemeHelper::getThemeName());
+		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/eve-online/';
 	} // END public static function getThemeCacheUri()
 
 	/**
@@ -47,12 +47,17 @@ class CacheHelper {
 	 */
 	public static function createCacheDirectory($directory = '') {
 		$wpFileSystem =  new \WP_Filesystem_Direct(null);
+		$dirToCreate = \trailingslashit(self::getThemeCacheDir() . $directory);
 
-		if($wpFileSystem->is_writable($wpFileSystem->wp_content_dir())) {
-			if(!$wpFileSystem->is_dir(\trailingslashit(self::getThemeCacheDir()) . $directory)) {
-				$wpFileSystem->mkdir(\trailingslashit(self::getThemeCacheDir()) . $directory, 0755);
-			} // END if(!$wpFileSystem->is_dir(\trailingslashit(self::getThemeCacheDir()) . $directory))
-		} // END if($wpFileSystem->is_writable($wpFileSystem->wp_content_dir()))
+		\wp_mkdir_p($dirToCreate);
+
+		if(!$wpFileSystem->is_file($dirToCreate . '/index.php')) {
+			$wpFileSystem->put_contents(
+				$dirToCreate . '/index.php',
+				'',
+				0644
+			);
+		} // END if(!$wpFileSystem->is_file(\trailingslashit($this->getPluginCacheDir()) . $directory . '/index.php'))
 	} // END public static function createCacheDirectories()
 
 	/**

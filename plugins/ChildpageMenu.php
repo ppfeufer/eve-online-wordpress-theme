@@ -32,24 +32,4 @@ class ChildpageMenu {
 	public function initWidget() {
 		\add_action('widgets_init', \create_function('', 'return register_widget("WordPress\Themes\EveOnline\Plugins\Widgets\ChildpageMenuWidget");'));
 	} // END public function initWidget()
-
-	/**
-	 * adding the css
-	 */
-//	public function addStyle() {
-//		if(!\is_admin()) {
-//			\add_action('wp_enqueue_scripts', array($this, 'enqueueStyle'));
-//		} // END if(!\is_admin())
-//	} // END public function addStyle()
-
-	/**
-	 * enqueue the style
-	 */
-//	public function enqueueStyle() {
-//		if(\preg_match('/development/', \APPLICATION_ENV)) {
-//			\wp_enqueue_style('chilpages-menu-widget', \get_theme_file_uri('/plugins/css/childpages-menu-widget.css'));
-//		} else {
-//			\wp_enqueue_style('chilpages-menu-widget', \get_theme_file_uri('/plugins/css/childpages-menu-widget.min.css'));
-//		} // END if(\preg_match('/development/', \APPLICATION_ENV))
-//	} // END public function enqueueStyle()
 } // END class ChildpageMenu

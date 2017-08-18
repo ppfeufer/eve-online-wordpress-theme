@@ -16,24 +16,21 @@ class LatestBlogPosts {
 	} // END public function __construct()
 
 	public function registerShortcodes() {
-		\add_shortcode('latestblogposts', array($this, 'shortcodeLatestBlogPosts'));
+		\add_shortcode('latestblogposts', [$this, 'shortcodeLatestBlogPosts']);
 	} // END public function registerShortcodes()
 
 	public function shortcodeLatestBlogPosts($attributes) {
-		$args = \shortcode_atts(
-			array(
-				'number' => EveOnline\Helper\PostHelper::getContentColumnCount(),
-				'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
-				'headline_type' => 'h2',
-				'headline_text' => ''
-			),
-			$attributes
-		);
+		$args = \shortcode_atts([
+			'number' => EveOnline\Helper\PostHelper::getContentColumnCount(),
+			'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
+			'headline_type' => 'h2',
+			'headline_text' => ''
+		], $attributes);
 
 		$number = $args['number'];
 		$classes = $args['classes'];
 
-		$queryArgs = array(
+		$queryArgs = [
 			'posts_per_page' => $number,
 			'post_type' => 'post',
 			'post_status' => 'publish',
@@ -41,7 +38,7 @@ class LatestBlogPosts {
 			'order' => 'DESC',
 			'suppress_filters' => true,
 			'ignore_sticky_posts' => true
-		);
+		];
 		/* @var $latestPosts object */
 		$latestPosts = new \WP_Query($queryArgs);
 

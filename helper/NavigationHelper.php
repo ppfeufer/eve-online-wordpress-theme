@@ -19,10 +19,10 @@ class NavigationHelper {
 			<nav id="<?php echo $nav_id; ?>" class="navigation post-navigation clearfix" role="navigation">
 				<h3 class="assistive-text"><?php \_e('Post navigation', 'eve-online'); ?></h3>
 				<div class="nav-previous pull-left">
-			<?php self::getNextPostsLink(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
+					<?php self::getNextPostsLink(\__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
 				</div>
 				<div class="nav-next pull-right">
-			<?php self::getPreviousPostsLink(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
+					<?php self::getPreviousPostsLink(\__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
 				</div>
 			</nav><!-- #<?php echo $nav_id; ?> .navigation -->
 			<?php
@@ -196,7 +196,7 @@ class NavigationHelper {
 				$breadcrumb .= $before . get_the_title() . $after;
 			} elseif(\is_page() && $post->post_parent) {
 				$parent_id = $post->post_parent;
-				$breadcrumbs = array();
+				$breadcrumbs = [];
 
 				while($parent_id) {
 					$page = \get_page($parent_id);

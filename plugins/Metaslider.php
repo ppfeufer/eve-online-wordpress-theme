@@ -17,9 +17,9 @@ class Metaslider {
 	} // END public function __construct($init = false)
 
 	public function registerMetaBox() {
-		\add_action('add_meta_boxes', array($this, 'addMetaBox'));
-		\add_action('save_post', array($this, 'saveMetaBox'));
-		\add_action('eve_render_header_slider', array($this, 'renderSlider'));
+		\add_action('add_meta_boxes', [$this, 'addMetaBox']);
+		\add_action('save_post', [$this, 'saveMetaBox']);
+		\add_action('eve_render_header_slider', [$this, 'renderSlider']);
 	} // END public function registerMetaBox()
 
 	/**
@@ -27,7 +27,7 @@ class Metaslider {
 	 */
 	public function addMetaBox() {
 		if($this->metasliderPluginExists()) {
-			\add_meta_box('eve-metaslider-page-slider', \__('Page Meta Slider', 'eve-online'), array($this, 'renderMetaBox'), 'page', 'side');
+			\add_meta_box('eve-metaslider-page-slider', \__('Page Meta Slider', 'eve-online'), [$this, 'renderMetaBox'], 'page', 'side');
 
 			return true;
 		} // END if($this->metasliderPluginExists())
@@ -105,13 +105,13 @@ class Metaslider {
 	 * @return string
 	 */
 	function metasliderGetOptions() {
-		$options = array('' => __('None', 'eve-online'));
+		$options = ['' => __('None', 'eve-online')];
 
 		if($this->metasliderPluginExists()) {
-			$sliders = \get_posts(array(
+			$sliders = \get_posts([
 				'post_type' => 'ml-slider',
 				'numberposts' => 200,
-			));
+			]);
 
 			foreach($sliders as $slider) {
 				$options[\sanitize_title('metaSlider_ID_' . $slider->ID)] = \__('Slider: ', 'eve-online') . $slider->post_title;

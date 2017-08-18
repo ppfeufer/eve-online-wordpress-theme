@@ -22,7 +22,7 @@
 			echo \the_content();
 
 			if(\function_exists('\WordPress\Themes\EveOnline\eve_link_pages')) {
-				\WordPress\Themes\EveOnline\eve_link_pages(array(
+				\WordPress\Themes\EveOnline\eve_link_pages([
 					'before' => '<ul class="pagination">',
 					'after' => '</ul>',
 					'before_link' => '<li>',
@@ -31,12 +31,12 @@
 					'current_after' => '</li>',
 					'previouspagelink' => '&laquo;',
 					'nextpagelink' => '&raquo;'
-				));
+				]);
 			} else {
-				\wp_link_pages( array(
+				\wp_link_pages( [
 					'before' => '<div class="page-links">' . __('Pages:', 'eve-online'),
 					'after'  => '</div>',
-				));
+				]);
 			} // END if(\function_exists('\EveOnline\eve_link_pages'))
 			?>
 		</div>

@@ -20,49 +20,49 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeDefaultOptions() {
-		$defaultOptions = array(
+		$defaultOptions = [
 			// generel settings tab
 			'type' => '',
 			'name' => '',
-			'corp_logos_in_menu' => array(
+			'corp_logos_in_menu' => [
 				'show' => 'show'
-			),
-			'navigation' => array(
+			],
+			'navigation' => [
 				'even_cells' => ''
-			),
-			'post_meta' => array(
+			],
+			'post_meta' => [
 				'show' => ''
-			),
-			'cache' => array(
+			],
+			'cache' => [
 				'remote-image-cache' => 'remote-image-cache'
-			),
+			],
 			'remote_image_cache_time' => '86400',
-			'cron' => array(
+			'cron' => [
 				'cleanupThemeImageCache' => ''
-			),
+			],
 
 			// background settings tab
-			'use_background_image' => array(
+			'use_background_image' => [
 				'yes' => 'yes'
-			),
+			],
 			'background_image' => 'amarr.jpg',
 			'background_image_upload' => '',
 			'background_color' => '',
 
 			// slider settings tab
 			'default_slider' => '',
-			'default_slider_on' => array(
+			'default_slider_on' => [
 				'frontpage_only' => 'frontpage_only'
-			),
+			],
 
 			// performance tab
-			'minify_html_output' => array(
+			'minify_html_output' => [
 				'yes' => ''
-			),
+			],
 
 			// footer settings tab
 			'footertext' => '',
-		);
+		];
 
 		return \apply_filters('eve_theme_options', $defaultOptions);
 	} // END public static function getThemeDefaultOptions()
@@ -87,9 +87,9 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeJavaScripts() {
-		$enqueue_script = array(
+		$enqueue_script = [
 			/* Html5Shiv */
-			'Html5Shiv' => array(
+			'Html5Shiv' => [
 				'handle' => 'html5shiv',
 				'condition' => 'lt IE 9',
 				'source' => \get_theme_file_uri('/js/html5shiv.min.js'),
@@ -97,9 +97,9 @@ class ThemeHelper {
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false
-			),
+			],
 			/* Respond JS */
-			'Respond JS' => array(
+			'Respond JS' => [
 				'handle' => 'respondJS',
 				'condition' => 'lt IE 9',
 				'source' => \get_theme_file_uri('/js/respond.min.js'),
@@ -107,7 +107,7 @@ class ThemeHelper {
 				'deps' => '',
 				'version' => '',
 				'in_footer' => false
-			),
+			],
 			/* Modernizr */
 //			'Modernizr' => array(
 //				'handle' => 'modernizr',
@@ -118,50 +118,50 @@ class ThemeHelper {
 //				'in_footer' => true
 //			),
 			/* Bootstrap's JS */
-			'Bootstrap' => array(
+			'Bootstrap' => [
 				'handle' => 'bootstrap-js',
 				'source' => \get_theme_file_uri('/bootstrap/js/bootstrap.min.js'),
 				'source-development' => \get_theme_file_uri('/bootstrap/js/bootstrap.js'),
-				'deps' => array(
+				'deps' => [
 					'jquery'
-				),
+				],
 				'version' => '3.3.7',
 				'in_footer' => true
-			),
+			],
 			/* Bootstrap Toolkit */
-			'Bootstrap Toolkit' => array(
+			'Bootstrap Toolkit' => [
 				'handle' => 'bootstrap-toolkit-js',
 				'source' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js'),
 				'source-development' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js'),
-				'deps' => array(
+				'deps' => [
 					'bootstrap-js'
-				),
+				],
 				'version' => '2.6.3',
 				'in_footer' => true
-			),
+			],
 			/* Bootstrap Gallery */
-			'Bootstrap Gallery' => array(
+			'Bootstrap Gallery' => [
 				'handle' => 'bootstrap-gallery-js',
 				'source' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.min.js'),
 				'source-development' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.js'),
-				'deps' => array(
+				'deps' => [
 					'jquery'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'in_footer' => true
-			),
+			],
 			/* The main JS */
-			'EVE Online' => array(
+			'EVE Online' => [
 				'handle' => 'eve-online-main-js',
 				'source' => \get_theme_file_uri('/js/eve-online.min.js'),
 				'source-development' => \get_theme_file_uri('/js/eve-online.js'),
-				'deps' => array(
+				'deps' => [
 					'jquery'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'in_footer' => true
-			)
-		);
+			]
+		];
 
 		return $enqueue_script;
 	} // END public static function getThemeJavaScripts()
@@ -172,96 +172,96 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeStyleSheets() {
-		$enqueue_style = array(
+		$enqueue_style = [
 			/* Normalize CSS */
-			'Normalize CSS' => array(
+			'Normalize CSS' => [
 				'handle' => 'normalize',
 //				'source' => \get_template_directory_uri() . '/css/normalize.min.css',
 				'source' => \get_theme_file_uri('/css/normalize.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/css/normalize.css',
 				'source-development' => \get_theme_file_uri('/css/normalize.css'),
-				'deps' => array(),
+				'deps' => [],
 				'version' => '3.0.3',
 				'media' => 'all'
-			),
+			],
 			/* Google Font */
-			'Google Font' => array(
+			'Google Font' => [
 				'handle' => 'google-font',
 				'source' => '//fonts.googleapis.com/css?family=Amethysta',
-				'deps' => array(
+				'deps' => [
 					'normalize'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
-			),
+			],
 			/* Bootstrap */
-			'Bootstrap' => array(
+			'Bootstrap' => [
 				'handle' => 'bootstrap',
 //				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css',
 				'source' => \get_theme_file_uri('/bootstrap/css/bootstrap.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.css',
 				'source-development' => \get_theme_file_uri('/bootstrap/css/bootstrap.css'),
-				'deps' => array(
+				'deps' => [
 					'normalize'
-				),
+				],
 				'version' => '3.3.7',
 				'media' => 'all'
-			),
+			],
 			/* Bootstrap Additional CSS */
-			'Bootstrap Additional CSS' => array(
+			'Bootstrap Additional CSS' => [
 				'handle' => 'bootstrap-additional',
 //				'source' => \get_template_directory_uri() . '/css/bootstrap-additional.min.css',
 				'source' => \get_theme_file_uri('/css/bootstrap-additional.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/css/bootstrap-additional.css',
 				'source-development' => \get_theme_file_uri('/css/bootstrap-additional.css'),
-				'deps' => array(
+				'deps' => [
 					'bootstrap'
-				),
+				],
 				'version' => '3.3.7',
 				'media' => 'all'
-			),
+			],
 			/* Theme Main CSS */
-			'EVE Online Theme Styles' => array(
+			'EVE Online Theme Styles' => [
 				'handle' => 'eve-online',
 //				'source' => \get_template_directory_uri() . '/style.min.css',
 				'source' => \get_theme_file_uri('/style.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/style.css',
 				'source-development' => \get_theme_file_uri('/style.css'),
-				'deps' => array(
+				'deps' => [
 					'normalize',
 					'google-font',
 					'bootstrap'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
-			),
+			],
 			/* Theme Responsive CSS */
-			'EVE Online Responsive Styles' => array(
+			'EVE Online Responsive Styles' => [
 				'handle' => 'eve-online-responsive-styles',
 //				'source' => \get_template_directory_uri() . '/css/responsive.min.css',
 				'source' => \get_theme_file_uri('/css/responsive.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/css/responsive.css',
 				'source-development' => \get_theme_file_uri('/css/responsive.css'),
-				'deps' => array(
+				'deps' => [
 					'eve-online'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
-			),
+			],
 			/* Adjustment to Plugins */
-			'EVE Online Plugin Styles' => array(
+			'EVE Online Plugin Styles' => [
 				'handle' => 'eve-online-plugin-styles',
 //				'source' => \get_template_directory_uri() . '/css/plugin-tweaks.min.css',
 				'source' => \get_theme_file_uri('/css/plugin-tweaks.min.css'),
 //				'source-development' => \get_template_directory_uri() . '/css/plugin-tweaks.css',
 				'source-development' => \get_theme_file_uri('/css/plugin-tweaks.css'),
-				'deps' => array(
+				'deps' => [
 					'eve-online'
-				),
+				],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
-			),
-		);
+			],
+		];
 
 		return $enqueue_style;
 	} // END public static function getThemeStyleSheets()
@@ -272,17 +272,17 @@ class ThemeHelper {
 	 * @return array
 	 */
 	public static function getThemeAdminStyleSheets() {
-		$enqueue_style = array(
+		$enqueue_style = [
 			/* Adjustment to Plugins */
-			'EVE Online Admin Styles' => array(
+			'EVE Online Admin Styles' => [
 				'handle' => 'eve-online-admin-styles',
 				'source' => \get_template_directory_uri() . '/admin/css/eve-online-admin-style.min.css',
 				'source-development' => \get_template_directory_uri() . '/admin/css/eve-online-admin-style.css',
-				'deps' => array(),
+				'deps' => [],
 				'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
 				'media' => 'all'
-			),
-		);
+			],
+		];
 
 		return $enqueue_style;
 	} // END public static function getThemeAdminStyleSheets()

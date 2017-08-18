@@ -12,17 +12,14 @@ class BootstrapContentGrid {
 	} // END public function __construct()
 
 	public function registerShortcode() {
-		\add_shortcode('contentgrid', array($this, 'shortcodeContentGrid'));
-		\add_shortcode('gridelement', array($this, 'shortcodeContentGridElement'));
+		\add_shortcode('contentgrid', [$this, 'shortcodeContentGrid']);
+		\add_shortcode('gridelement', [$this, 'shortcodeContentGridElement']);
 	} // END public function registerShortcode()
 
 	public function shortcodeContentGrid($atts, $content = null) {
-		$args = \shortcode_atts(
-			array(
-				'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
-			),
-			$atts
-		);
+		$args = \shortcode_atts([
+			'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
+		],$atts);
 
 		$uniqueID = \uniqid();
 		$gridHtml = null;

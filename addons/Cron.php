@@ -9,7 +9,7 @@ use WordPress\Themes\EveOnline;
 class Cron {
 	private $themeOptions = null;
 
-	public $cronEvents = array();
+	public $cronEvents = [];
 
 	/**
 	 * Constructor
@@ -31,13 +31,13 @@ class Cron {
 	 * @return array Themes Cron Events with their respective hooks
 	 */
 	public function getTemeCronEvents() {
-		return array(
+		return [
 			// Daily Image Cache Cleanup
-			'Cleanup Image Cache' => array(
+			'Cleanup Image Cache' => [
 				'hook' => 'cleanupThemeImageCache',
 				'recurrence' => 'daily'
-			)
-		);
+			]
+		];
 	} // END public function getTemeCronEvents()
 
 	/**
@@ -50,13 +50,13 @@ class Cron {
 			 * Only add the cron if the theme settings say so or else remove them
 			 */
 			if(!empty($this->themeOptions['cron'][$cronEvent['hook']])) {
-				\add_action($cronEvent['hook'], array($this, 'cron' . \ucfirst($cronEvent['hook'])));
+				\add_action($cronEvent['hook'], [$this, 'cron' . \ucfirst($cronEvent['hook'])]);
 			} else {
 				$this->removeCron($cronEvent['hook']);
 			} // END if(!empty($this->themeOptions['cron'][$cronEvent['hook']]))
 		} // END foreach($this->cronEvents as $cronEvent)
 
-		\add_action('switch_theme', array($this, 'removeAllCrons'), 10 , 2);
+		\add_action('switch_theme', [$this, 'removeAllCrons'], 10 , 2);
 
 		$this->scheduleCronEvents();
 	} // END public function init()

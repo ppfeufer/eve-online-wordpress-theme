@@ -54,22 +54,19 @@ class BootstrapVideoGallery {
 	} // END public function __construct()
 
 	public function registerShortcode() {
-		\add_shortcode('videogallery', array(
+		\add_shortcode('videogallery', [
 			$this,
 			'shortcodeVideogallery'
-		));
+		]);
 	} // END public function registerShortcode()
 
 	public function shortcodeVideogallery($attributes) {
-		$args = \shortcode_atts(
-			array(
-				'id' => '',
-				'videolist' => '',
-				'classes' => '',
-				'per_page' => 12
-			),
-			$attributes
-		);
+		$args = \shortcode_atts([
+			'id' => '',
+			'videolist' => '',
+			'classes' => '',
+			'per_page' => 12
+		], $attributes);
 
 		$id = $args['id'];
 		$videoList = $args['videolist'];
@@ -78,7 +75,7 @@ class BootstrapVideoGallery {
 		$idList = null;
 
 		if(!empty($id)) {
-			$idList = (\preg_match('/,( )/', $id)) ? \explode(',', $id) : array($id);
+			$idList = (\preg_match('/,( )/', $id)) ? \explode(',', $id) : [$id];
 		} // END if(!empty($id))
 
 		// loop through the pages and build the gallery code ....
@@ -168,19 +165,19 @@ class BootstrapVideoGallery {
 	} // END public function shortcodeVideogallery($attributes)
 
 	public function registerMetabox() {
-		\add_action('add_meta_boxes', array(
+		\add_action('add_meta_boxes', [
 			$this,
 			'metaboxVideopage'
-		));
+		]);
 
-		\add_action('save_post', array(
+		\add_action('save_post', [
 			$this,
 			'saveMetaboxData'
-		));
+		]);
 	} // END function public function registerMetabox()
 
 	public function metaboxVideopage() {
-		\add_meta_box('eve-video-page-box', \__('Video Gallery Page?', 'eve-online'), array($this, 'renderVideopageMetabox'), 'page', 'side');
+		\add_meta_box('eve-video-page-box', \__('Video Gallery Page?', 'eve-online'), [$this, 'renderVideopageMetabox'], 'page', 'side');
 	} // END public function metaboxVideopage()
 
 	public function renderVideopageMetabox($post) {
@@ -265,13 +262,13 @@ class BootstrapVideoGallery {
 	private function getVideoPages($postPerPage) {
 		global $paged;
 
-		$queryArgs = array(
+		$queryArgs = [
 			'posts_per_page' => $postPerPage,
 			'post_type' => 'page',
 			'meta_key' => 'eve_page_is_video_gallery_page',
 			'meta_value' => 1,
 			'paged' => $paged
-		);
+		];
 		// Set up the objects needed
 
 		$videoPages = new \WP_Query($queryArgs);

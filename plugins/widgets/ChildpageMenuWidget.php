@@ -14,12 +14,12 @@ class ChildpageMenuWidget extends \WP_Widget {
 		$this->widgetName = \__('Childpage Menu Widget', 'eve-online');
 
 
-		$widget_options = array(
+		$widget_options = [
 			'classname' => 'eve-childpage-menu-widget',
 			'description' => \__('Displaying the childpages as a menu in your sidebar.', 'eve-online')
-		);
+		];
 
-		$control_options = array();
+		$control_options = [];
 
 		parent::__construct($this->idBase, $this->widgetName, $widget_options, $control_options);
 	} // END public function __construct()
@@ -61,11 +61,11 @@ class ChildpageMenuWidget extends \WP_Widget {
 			$parent = $post->ID;
 		} // END if($post->post_parent)
 
-		$returnValue = \wp_list_pages(array(
+		$returnValue = \wp_list_pages([
 			'title_li' => '',
 			'child_of' => $parent,
 			'echo' => false
-		));
+		]);
 
 		return $returnValue;
 	} // END private function getWidgetData()

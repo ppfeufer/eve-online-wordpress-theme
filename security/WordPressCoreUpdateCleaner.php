@@ -15,10 +15,10 @@ class WordPressCoreUpdateCleaner {
 	 * @since 1.0
 	 */
 	function __construct() {
-		\add_action('_core_updated_successfully', array($this, 'updateCleaner'), 0, 1);
-		\add_action('core_upgrade_preamble', array($this, 'updateCleaner'));
-		\add_action('upgrader_pre_install', array($this, 'updateCleaner'));
-		\add_action('upgrader_post_install', array($this, 'updateCleaner'));
+		\add_action('_core_updated_successfully', [$this, 'updateCleaner'], 0, 1);
+		\add_action('core_upgrade_preamble', [$this, 'updateCleaner']);
+		\add_action('upgrader_pre_install', [$this, 'updateCleaner']);
+		\add_action('upgrader_post_install', [$this, 'updateCleaner']);
 	} // END function __construct()
 
 	/**
@@ -46,7 +46,7 @@ class WordPressCoreUpdateCleaner {
 		} // END if('do-core-upgrade' !== $action && 'do-core-reinstall' !== $action)
 
 		// Remove license, readme files
-		$remove_files = array(
+		$remove_files = [
 			'license.txt',
 			'licens.html',
 			'licenza.html',
@@ -61,7 +61,7 @@ class WordPressCoreUpdateCleaner {
 			'readme.html',
 			'readme-ja.html',
 			'wp-config-sample.php'
-		);
+		];
 
 		foreach($remove_files as $file) {
 			if(\file_exists(\ABSPATH . $file)) {

@@ -14,9 +14,9 @@ class EveOnlineAvatar {
 	} // END public function __construct()
 
 	public function init() {
-		\add_filter('get_avatar', array($this, 'eveCharacterAvatar'), 10, 5);
-		\add_filter('bp_core_fetch_avatar', array($this, 'fetchEveCharacterAvatar'), 1, 2);
-		\add_filter('bp_core_fetch_avatar_url', array($this, 'fetchEveCharacterAvatar'), 1, 2);
+		\add_filter('get_avatar', [$this, 'eveCharacterAvatar'], 10, 5);
+		\add_filter('bp_core_fetch_avatar', [$this, 'fetchEveCharacterAvatar'], 1, 2);
+		\add_filter('bp_core_fetch_avatar_url', [$this, 'fetchEveCharacterAvatar'], 1, 2);
 		\add_filter('user_profile_picture_description', \create_function('$desc', 'return "' . \__('If you set your nickname to your pilot\'s name, you EVE avatar will be used here.', 'eve-online') . '";'));
 	} // END public function init()
 

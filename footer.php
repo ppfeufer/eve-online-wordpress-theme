@@ -45,7 +45,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 								<div class="footer-menu-wrapper">
 									<?php
 									if(\has_nav_menu('footer-menu')) {
-										\wp_nav_menu(array(
+										\wp_nav_menu([
 											'menu' => '',
 											'theme_location' => 'footer-menu',
 											'depth' => 1,
@@ -53,7 +53,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 											'menu_class' => 'footer-menu',
 											'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
 											'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
-										));
+										]);
 									} // END if(has_nav_menu('footer-menu'))
 									?>
 								</div>
