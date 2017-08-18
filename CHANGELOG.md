@@ -4,6 +4,7 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170812...HEAD)
 ### Changed
 - Switched to short array syntax in codebase
+- More reliable way to create the cache directories
 
 ## [v0.1-r20170812](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170812) - 2017-08-12
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170719...v0.1-r20170812)
