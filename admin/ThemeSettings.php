@@ -100,7 +100,6 @@ class ThemeSettings {
 	} // END public function renderSettingsPage()
 
 	private function getGeneralTabFields() {
-		echo '<pre>' . print_r($this->themeOptions, true) . '</pre>';
 		return [
 			'type' => [
 				'type' => 'select',
