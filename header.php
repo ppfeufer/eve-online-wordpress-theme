@@ -28,7 +28,7 @@
 								if($siteLogo !== false) {
 									?>
 									<div class="site-logo float-left">
-										<a href="<?php \bloginfo('url'); ?>"><img src="<?php echo $siteLogo; ?>" class="img-responsive" alt="<?php echo \get_bloginfo('name'); ?>"></a>
+										<a href="<?php echo \esc_url(\home_url()); ?>"><img src="<?php echo $siteLogo; ?>" class="img-responsive" alt="<?php echo \get_bloginfo('name'); ?>"></a>
 									</div>
 									<?php
 								} // END if($siteLogo !== false)
