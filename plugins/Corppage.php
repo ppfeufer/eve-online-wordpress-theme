@@ -13,7 +13,7 @@ class Corppage {
 	private $eveApi = null;
 
 	public function __construct() {
-		$this->eveApi = new EveOnline\Helper\EveApiHelper;
+		$this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
 
 		$this->registerMetaBoxes();
 		$this->registerShortcodes();
@@ -185,7 +185,7 @@ class Corppage {
 			return false;
 		} // END if(defined('DOING_AJAX'))
 
-		$isCorpPage = \filter_input(INPUT_POST, 'eve_page_is_corp_page') === 'on';
+		$isCorpPage = \filter_input(\INPUT_POST, 'eve_page_is_corp_page') === 'on';
 		$showCorpLogo = '';
 		$corpName = '';
 		$corpID = '';
@@ -194,9 +194,9 @@ class Corppage {
 		 * only if we really have a corp page ....
 		 */
 		if(!empty($isCorpPage)) {
-			$showCorpLogo = \filter_input(INPUT_POST, 'eve_page_show_corp_logo') === 'on';
+			$showCorpLogo = \filter_input(\INPUT_POST, 'eve_page_show_corp_logo') === 'on';
 			$corpName = \filter_input(\INPUT_POST, 'eve_page_corp_name');
-			$corpID = $this->eveApi->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')));
+			$corpID = $this->eveApi->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')), 'corporation');
 		} // END if(!empty($isCorpPage))
 
 		\update_post_meta($postID, 'eve_page_corp_name', $corpName);
@@ -206,16 +206,14 @@ class Corppage {
 	} // END public function savePageSettings($postID)
 
 	public static function getCorprationLogo($corpPageID) {
-		$eveApi = new EveOnline\Helper\EveApiHelper;
-
 		$corpName = \get_post_meta($corpPageID, 'eve_page_corp_name', true);
 		$corpID = \get_post_meta($corpPageID, 'eve_page_corp_eve_ID', true);
 
-		$imagePath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+		$imagePath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', EveOnline\Helper\EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png');
 
 		if($imagePath !== false) {
-			$html = '<div class="eve-corp-page-corp-logo eve-image eve-corporation-logo-container"><figure><img src="' . $imagePath . '" class="eve-corporation-logo" alt="' . esc_html($corpName) . '" width="256">';
-			$html .= '<figcaption>' . esc_html($corpName) . '</figcaption>';
+			$html = '<div class="eve-corp-page-corp-logo eve-image eve-corporation-logo-container"><figure><img src="' . $imagePath . '" class="eve-corporation-logo" alt="' . \esc_html($corpName) . '" width="256">';
+			$html .= '<figcaption>' . \esc_html($corpName) . '</figcaption>';
 			$html .= '</figure></div>';
 
 			return $html;

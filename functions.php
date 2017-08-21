@@ -38,7 +38,8 @@ require_once(\get_theme_file_path('/addons/Cron.php'));
 require_once(\get_theme_file_path('/helper/ThemeHelper.php'));
 require_once(\get_theme_file_path('/helper/NavigationHelper.php'));
 require_once(\get_theme_file_path('/helper/PostHelper.php'));
-require_once(\get_theme_file_path('/helper/EveApiHelper.php'));
+require_once(\get_theme_file_path('/helper/EsiHelper.php'));
+require_once(\get_theme_file_path('/helper/RemoteHelper.php'));
 require_once(\get_theme_file_path('/helper/StringHelper.php'));
 require_once(\get_theme_file_path('/helper/ImageHelper.php'));
 require_once(\get_theme_file_path('/helper/FilesystemHelper.php'));
@@ -813,7 +814,7 @@ if(\function_exists('\fly_get_attachment_image')) {
  */
 function eve_enable_youtube_jsapi($html) {
 	if(\strstr($html, 'youtube.com/embed/')) {
-		$html = \str_replace('?feature=oembed', '?feature=oembed&enablejsapi=1&origin=' . \get_bloginfo('url') . '&rel=0', $html);
+		$html = \str_replace('?feature=oembed', '?feature=oembed&enablejsapi=1&origin=' . \esc_url(\home_url()) . '&rel=0', $html);
 	} // END if(\strstr($html, 'youtube.com/embed/'))
 
 	return $html;

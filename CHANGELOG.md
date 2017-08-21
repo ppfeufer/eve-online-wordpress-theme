@@ -1,8 +1,13 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170818...HEAD)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170821...HEAD)
 - in development
+
+## [v0.1-r20170821](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170821) - 2017-08-21
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170818...v0.1-r20170821)
+### Changed
+- API calls to ESI, no more XML API ...
 
 ## [v0.1-r20170818](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170818) - 2017-08-18
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170812...v0.1-r20170818)

@@ -18,7 +18,7 @@ class ThemeSettings {
 	private $settingsFilter = null;
 
 	public function __construct() {
-		$this->eveApi = new EveOnline\Helper\EveApiHelper;
+		$this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
 		$this->metaSlider = new EveOnline\Plugins\Metaslider(false);
 		$this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
@@ -115,7 +115,7 @@ class ThemeSettings {
 				'type' => 'text',
 				'title' => \__('Entity Name', 'eve-online'),
 				'description' => \sprintf(\__('The Name of your Corp/Alliance %1$s', 'eve-online'),
-					(!empty($this->themeOptions['name'])) ? '</p></td></tr><tr><th>' . \__('Your Logo', 'eve-online') . '</th><td>' . $this->eveApi->getEntityLogoByName($this->themeOptions['name'], false) : ''
+					(!empty($this->themeOptions['name'])) ? '</p></td></tr><tr><th>' . \__('Your Logo', 'eve-online') . '</th><td>' . $this->eveApi->getEntityLogoByName($this->themeOptions['name'], $this->themeOptions['type'], false) : ''
 				)
 			],
 			'corp_logos_in_menu' => [
