@@ -29,7 +29,7 @@ class CacheHelper {
 	 * @return string URI for the cache directory
 	 */
 	public static function getImageCacheDir() {
-		return \trailingslashit(self::getThemeCacheDir() . '/images');
+		return \trailingslashit(self::getThemeCacheDir() . 'images');
 	} // END public static function getImageCacheDir()
 
 	/**
@@ -38,7 +38,7 @@ class CacheHelper {
 	 * @return string Local image cache URI
 	 */
 	public static function getImageCacheUri() {
-		return \trailingslashit(self::getThemeCacheUri() . '/images');
+		return \trailingslashit(self::getThemeCacheUri() . 'images');
 	} // END public static function getImageCacheUri()
 
 	/**
@@ -116,4 +116,27 @@ class CacheHelper {
 			return $wpFileSystem->put_contents($cacheDir . $imageFilename, $imageToFetch, 0755);
 		} // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
 	} // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
+
+	/**
+	 * Getting transient cache information / data
+	 *
+	 * @param string $transientName
+	 * @return mixed
+	 */
+	public static function getTransientCache($transientName) {
+		$data = \get_transient($transientName);
+
+		return $data;
+	} // END public function checkApiCache($transientName)
+
+	/**
+	 * Setting the transient cahe
+	 *
+	 * @param string $transientName cache name
+	 * @param mixed $data the data that is needed to be cached
+	 * @param type $time cache time in hours (default: 2)
+	 */
+	public static function setTransientCache($transientName, $data, $time = 2) {
+		\set_transient($transientName, $data, $time * \HOUR_IN_SECONDS);
+	} // END public function setApiCache($transientName, $data)
 } // END class CacheHelper
