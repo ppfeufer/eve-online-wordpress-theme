@@ -8,7 +8,7 @@ class EveOnlineAvatar {
 	private $eveApi = null;
 
 	public function __construct() {
-		$this->eveApi = new EveOnline\Helper\EveApiHelper;
+		$this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
 
 		$this->init();
 	} // END public function __construct()

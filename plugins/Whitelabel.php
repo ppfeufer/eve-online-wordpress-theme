@@ -57,7 +57,7 @@ class Whitelabel {
 		/**
 		 * Starting the helper classes
 		 */
-		$this->eveApi = new EveOnline\Helper\EveApiHelper;
+		$this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
 
 		$this->initActions();
 		$this->initFilters();
@@ -220,7 +220,7 @@ class Whitelabel {
 			if($type !== null && $name !== null) {
 				$size = ($type === 'alliance') ? 128 : 256;
 				// getting the logo
-				$logo = $this->eveApi->getEntityLogoByName($name, true, $size);
+				$logo = $this->eveApi->getEntityLogoByName($name, $type, true, $size);
 			} // END if($type !== null && $name !== null)
 		} // END if(!empty($this->themeSettings['custom_login_logo']))
 
