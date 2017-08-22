@@ -49,7 +49,9 @@ class EveOnlineAvatar {
 				$user = \get_user_by('email', $id_or_email);
 			} // END if(\is_numeric($id_or_email))
 
-			$eveImage = $this->eveApi->getCharacterImageByName($user->nickname, false);
+			if(!empty($user->nickname)) {
+				$eveImage = $this->eveApi->getCharacterImageByName($user->nickname, false);
+			} // END if(!empty($user->nickname))
 
 			if(!empty($eveImage)) {
 				$returnValue = $eveImage;
