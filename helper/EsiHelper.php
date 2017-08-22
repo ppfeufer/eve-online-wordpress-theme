@@ -66,7 +66,7 @@ class EsiHelper {
 	 */
 	protected function __clone() {
 		;
-	}
+	} // END protected function __clone()
 
 	/**
 	 * constructor
@@ -101,7 +101,7 @@ class EsiHelper {
 			'item' => 'Type/',
 			'inventory' => 'InventoryType/' // Ships and all the other stuff
 		];
-	}
+	} // END protected function __construct()
 
 	public function getImageServerUrl() {
 		return $this->imageserverUrl;
@@ -119,33 +119,54 @@ class EsiHelper {
 	 * @return type
 	 */
 	public function getEveIdFromName($name, $type) {
+		$returnData = null;
+
 		$data = $this->getEsiData($this->esiEndpoints['search'] . '?search=' . \urlencode(\wp_specialchars_decode($name, \ENT_QUOTES)) . '&strict=true&categories=' . $type);
 
-		return $data->{$type}['0'];
+		if(isset($data->{$type}['0'])) {
+			$returnData = $data->{$type}['0'];
+		} // END if(isset($data->{$type}['0']))
+
+		return $returnData;
 	} // END public function getEveIdFromName($name, $type)
 
+	/**
+	 * Get a pilots avatar by his name
+	 *
+	 * @param string $characterName
+	 * @param boolean $imageOnly
+	 * @param int $size
+	 * @param string $newWidth
+	 * @param string $newHeight
+	 * @return string
+	 */
 	public function getCharacterImageByName($characterName, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null) {
+		$returnData = null;
+
 		$characterID = $this->getEveIdFromName($characterName, 'character');
 
-		$imageName = $characterID . '_' . $size. '.jpg';
-		$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage('character', $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName);
+		// If we actually have a characterID
+		if(!\is_null($characterID)) {
+			$imageName = $characterID . '_' . $size. '.jpg';
+			$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage('character', $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName);
 
-		if($imageOnly === true) {
-			return $imagePath;
-		} // END if($imageOnly === true)
+			if($imageOnly === true) {
+				return $imagePath;
+			} // END if($imageOnly === true)
 
-		if($newWidth !== null) {
-			$newWidth = ' width="' . $newWidth . '"';
-		}
+			if(!\is_null($newWidth)) {
+				$newWidth = ' width="' . $newWidth . '"';
+			} // END if(!\is_null($newWidth))
 
-		if($newHeight !== null) {
-			$newHeight = ' height="' . $newHeight . '"';
-		}
+			if(!\is_null($newHeight)) {
+				$newHeight = ' height="' . $newHeight . '"';
+			} // END if(!\is_null($newHeight))
 
-		$html = '<img src="' . $imagePath . '" class="eve-character-image eve-character-id-' . $characterID . '" alt="' . $characterName . '">';
+			$returnData = '<img src="' . $imagePath . '" class="eve-character-image eve-character-id-' . $characterID . '" alt="' . $characterName . '">';
+		} // END if(!\is_null($characterID))
 
-		return $html;
-	}
+		return $returnData;
+	} // END public function getCharacterImageByName($characterName, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null)
 
 	/**
 	 * Get a corp or alliance logo by it's entity name
@@ -157,19 +178,22 @@ class EsiHelper {
 	 * @return string
 	 */
 	public function getEntityLogoByName($entityName, $entityType, $imageOnly = true, $size = 128) {
+		$returnData = null;
+
 		$eveID = $this->getEveIdFromName($entityName, $entityType);
 
-		$imageName = $eveID . '_' . $size . '.png';
+		if(!\is_null($eveID)) {
+			$imageName = $eveID . '_' . $size . '.png';
+			$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($entityType, $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName);
 
-		$imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($entityType, $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName);
+			if($imageOnly === true) {
+				return $imagePath;
+			} // END if($imageOnly === true)
 
-		if($imageOnly === true) {
-			return $imagePath;
-		} // END if($imageOnly === true)
+			$returnData = '<img src="' . $imagePath . '" class="eve-' . $entityType . '-logo">';
+		} // END if(!\is_null($eveID))
 
-		$html = '<img src="' . $imagePath . '" class="eve-' . $entityType . '-logo">';
-
-		return $html;
+		return $returnData;
 	} // END public function getEntityLogoByName($entityName, $entityType, $imageOnly = true, $size = 128)
 
 	/**
@@ -180,6 +204,7 @@ class EsiHelper {
 	 */
 	private function getEsiData($route) {
 		$returnValue = null;
+
 		$transientName = \sanitize_title('eve-online-theme-data_' . $route);
 		$data = CacheHelper::getTransientCache($transientName);
 
