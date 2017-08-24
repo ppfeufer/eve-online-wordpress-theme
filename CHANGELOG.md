@@ -2,7 +2,8 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170822...HEAD)
-- in development
+### Changed
+- Moved cache directory to a more common place
 
 ## [v0.1-r20170822](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170822) - 2017-08-22
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170821-2...v0.1-r20170822)

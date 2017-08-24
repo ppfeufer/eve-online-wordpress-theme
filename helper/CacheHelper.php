@@ -11,7 +11,8 @@ class CacheHelper {
 	 * @return string absolute path for the cache directory
 	 */
 	public static function getThemeCacheDir() {
-		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/eve-online/';
+//		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/themes/eve-online/';
+		return \trailingslashit(\WP_CONTENT_DIR) . 'cache/eve-online/';
 	} // END public static function getThemeCacheDir()
 
 	/**
@@ -20,7 +21,8 @@ class CacheHelper {
 	 * @return string URI for the cache directory
 	 */
 	public static function getThemeCacheUri() {
-		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/eve-online/';
+//		return \trailingslashit(\WP_CONTENT_URL) . 'cache/themes/eve-online/';
+		return \trailingslashit(\WP_CONTENT_URL) . 'cache/eve-online/';
 	} // END public static function getThemeCacheUri()
 
 	/**

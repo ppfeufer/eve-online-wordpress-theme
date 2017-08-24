@@ -188,16 +188,6 @@ class Whitelabel {
 		.login input[type="text"], .login input[type="password"] {
 			background-color: rgba(251,251,251,0.5);
 		}
-		#login {
-			padding: 0;
-			display: table;
-			margin: auto;
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-		}
 		</style>';
 	}
 
