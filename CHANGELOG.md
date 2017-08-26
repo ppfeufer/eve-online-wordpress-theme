@@ -1,9 +1,15 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170822...HEAD)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170826...HEAD)
+- in development
+
+## [v0.1-r20170826](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170826) - 2017-08-26
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170822...v0.1-r20170826)
 ### Changed
 - Moved cache directory to a more common place
+- Set different transient cache times for different API calls
+- Renamed transient cache to build a common cache for my plugins that uses the same API calls
 
 ## [v0.1-r20170822](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170822) - 2017-08-22
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170821-2...v0.1-r20170822)

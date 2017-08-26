@@ -121,7 +121,7 @@ class EsiHelper {
 	public function getEveIdFromName($name, $type) {
 		$returnData = null;
 
-		$data = $this->getEsiData($this->esiEndpoints['search'] . '?search=' . \urlencode(\wp_specialchars_decode($name, \ENT_QUOTES)) . '&strict=true&categories=' . $type);
+		$data = $this->getEsiData($this->esiEndpoints['search'] . '?search=' . \urlencode(\wp_specialchars_decode($name, \ENT_QUOTES)) . '&strict=true&categories=' . $type, 3600);
 
 		if(isset($data->{$type}['0'])) {
 			$returnData = $data->{$type}['0'];
@@ -200,12 +200,13 @@ class EsiHelper {
 	 * Getting data from the ESI
 	 *
 	 * @param string $route
+	 * @param int $cacheTime Caching time in hours (Default: 120)
 	 * @return object
 	 */
-	private function getEsiData($route) {
+	private function getEsiData($route, $cacheTime = 120) {
 		$returnValue = null;
 
-		$transientName = \sanitize_title('eve-online-theme-data_' . $route);
+		$transientName = \sanitize_title('eve-esi-data_' . $route);
 		$data = CacheHelper::getTransientCache($transientName);
 
 		if($data === false) {
@@ -214,7 +215,7 @@ class EsiHelper {
 			/**
 			 * setting the transient caches
 			 */
-			CacheHelper::setTransientCache($transientName, $data, 2);
+			CacheHelper::setTransientCache($transientName, $data, $cacheTime);
 		} // END if($data === false)
 
 		if(!empty($data)) {
