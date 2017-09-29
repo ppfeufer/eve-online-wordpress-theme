@@ -2,8 +2,11 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170826...HEAD)
+### Changed
+- Removed link to EVE Gate from author credits since CCP shut down EVE Gate
+
 ### Fixed
-- Implemented a check if teh cache might be empty, so redo it
+- Implemented a check if the cache might be empty, so redo it
 - getEveIdFromName method checks now if it got the right ID to the name ...
 
 ## [v0.1-r20170826](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170826) - 2017-08-26
