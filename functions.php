@@ -843,7 +843,7 @@ function eve_remove_wp_ver_css_js($src) {
 function eve_theme_credits() {
 	echo \sprintf(\__('(%1$s design and programming by %2$s)', 'eve-online'),
 		'<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>',
-		'<a href="https://gate.eveonline.com/Profile/Rounon%20Dax" rel="nofollow">Rounon Dax</a>'
+		'Rounon Dax'
 	);
 } // END function eve_theme_credits()
 \add_action('eve_online_theme_credits', '\\WordPress\Themes\EveOnline\eve_theme_credits');
