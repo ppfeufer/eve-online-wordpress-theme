@@ -2,7 +2,8 @@
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170929...development)
-- in development
+### Added
+- New background for the "Moon Mining Changes" expansion (Don't know how it's officially called)
 
 ## [v0.1-r20170929](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170929) - 2017-09-29
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170826...v0.1-r20170929)
