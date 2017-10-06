@@ -34,7 +34,6 @@ or [download the archive](https://github.com/ppfeufer/eve-online-wordpress-theme
 * [Terra Nanotech](https://terra-nanotech.de/)
 * [The 1st Regiment](http://the1stregiment.tk/)
 * [Yulai Federation](https://yulaifederation.net/)
-* [Astroco](http://astroco.net/)
 
 Your corporation/alliance is also using this theme and you guys like it? Let me know :-)
 
