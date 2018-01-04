@@ -1,9 +1,16 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170929...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180104...development)
+- in development
+
+## [v0.1-r20180104](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180104) - 2018-01-04
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170929...v0.1-r20180104)
 ### Added
-- New background for the "Moon Mining Changes" expansion (Don't know how it's officially called)
+- New background for the "Moon Mining Changes" expansion
+
+### Fixed
+- Field name for corporation_name and alliance_name in ESI endpoints. Thanks CCP for changing them again :-(
 
 ## [v0.1-r20170929](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20170929) - 2017-09-29
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170826...v0.1-r20170929)
