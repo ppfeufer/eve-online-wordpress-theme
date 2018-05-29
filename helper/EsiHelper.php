@@ -74,21 +74,21 @@ class EsiHelper {
 	 * no external instanciation allowed
 	 */
 	protected function __construct() {
-		$this->esiUrl = 'https://esi.tech.ccp.is/latest/';
+		$this->esiUrl = 'https://esi.evetech.net/latest/';
 		$this->imageserverUrl = 'https://image.eveonline.com/';
 
 		/**
 		 * Assigning ESI Endpoints
 		 *
-		 * @see https://esi.tech.ccp.is/latest/
+		 * @see https://esi.evetech.net/latest/
 		 */
 		$this->esiEndpoints = [
-			'alliance-information' => 'alliances/', // getting alliance information by ID - https://esi.tech.ccp.is/latest/alliances/99000102/
-			'character-information' => 'characters/', // getting character information by ID - https://esi.tech.ccp.is/latest/characters/90607580/
-			'corporation-information' => 'corporations/', // getting corporation information by ID - https://esi.tech.ccp.is/latest/corporations/98000030/
-			'search' => 'search/', // Search for entities that match a given sub-string. - https://esi.tech.ccp.is/latest/search/?search=Yulai%20Federation&strict=true&categories=alliance
-			'system-information' => 'universe/systems/', // getting system information by ID - https://esi.tech.ccp.is/latest/universe/systems/30000003/
-			'type-information' => 'universe/types/', // getting types information by ID - https://esi.tech.ccp.is/latest/universe/types/670/
+			'alliance-information' => 'alliances/', // getting alliance information by ID - https://esi.evetech.net/latest/alliances/99000102/
+			'character-information' => 'characters/', // getting character information by ID - https://esi.evetech.net/latest/characters/90607580/
+			'corporation-information' => 'corporations/', // getting corporation information by ID - https://esi.evetech.net/latest/corporations/98000030/
+			'search' => 'search/', // Search for entities that match a given sub-string. - https://esi.evetech.net/latest/search/?search=Yulai%20Federation&strict=true&categories=alliance
+			'system-information' => 'universe/systems/', // getting system information by ID - https://esi.evetech.net/latest/universe/systems/30000003/
+			'type-information' => 'universe/types/', // getting types information by ID - https://esi.evetech.net/latest/universe/types/670/
 		];
 
 		/**

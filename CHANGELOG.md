@@ -1,8 +1,13 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180104...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180529...development)
 - in development
+
+## [v0.1-r20180529](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180529) - 2018-05-29
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180104...v0.1-r20180529)
+### Changed
+- ESI URL to the new one
 
 ## [v0.1-r20180104](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180104) - 2018-01-04
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20170929...v0.1-r20180104)
