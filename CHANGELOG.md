@@ -1,7 +1,7 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180529...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180601...development)
 - in development
 
 ## [v0.1-r20180601](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180601) - 2018-06-01
