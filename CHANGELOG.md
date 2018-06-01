@@ -4,6 +4,11 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180529...development)
 - in development
 
+## [v0.1-r20180601](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180601) - 2018-06-01
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180529...v0.1-r20180601)
+### Added
+- GPDR related checkbox to comment form (Issue: #24)
+
 ## [v0.1-r20180529](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180529) - 2018-05-29
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180104...v0.1-r20180529)
 ### Changed
