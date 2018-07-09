@@ -853,7 +853,6 @@ function eve_remove_wp_ver_css_js($src) {
  * Theme credits in footer
  */
 function eve_theme_credits() {
-    echo \sprintf(\__('(%1$s design and programming by %2$s)', 'eve-online'), '<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>', 'Rounon Dax'
-    );
+    echo \sprintf(\__('(%1$s design and programming by %2$s)', 'eve-online'), '<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>', 'Rounon Dax');
 }
 \add_action('eve_online_theme_credits', '\\WordPress\Themes\EveOnline\eve_theme_credits');
