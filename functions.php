@@ -14,7 +14,7 @@ namespace WordPress\Themes\EveOnline;
  * This is to determine between "development/staging" and "live/production" environments.
  * If you are testing this theme in your own test environment, make sure you
  * set the following in your webservers vhosts config.
- * 		SetEnv APPLICATION_ENV "development"
+ *      SetEnv APPLICATION_ENV "development"
  */
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
@@ -77,8 +77,8 @@ require_once(\get_theme_file_path('/admin/ThemeSettings.php'));
 /**
  * WP Filesystem API
  */
-require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
-require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
+require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
+require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 
 /**
  * Initiate needed general Classes
@@ -149,7 +149,7 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts'))
 \add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
 
-if(!function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
     function eve_get_javascripts() {
         return Helper\ThemeHelper::getThemeJavaScripts();
     }
@@ -564,7 +564,7 @@ function eve_widgets_init() {
  */
 if(!\function_exists('\WordPress\Themes\EveOnline\eve_excerpt_more')) {
     function eve_excerpt_more($more) {
-        return ' ' . $more . '<br/><a class="read-more" href="' . \get_permalink(\get_the_ID()) . '">' . __('Read More', 'eve-online') . '</a>';
+        return ' ' . $more . '<br/><a class="read-more" href="' . \get_permalink(\get_the_ID()) . '">' . \__('Read More', 'eve-online') . '</a>';
     }
 }
 \add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
@@ -725,7 +725,7 @@ function eve_get_theme_custom_style() {
     if(!empty($themeSettings['background_color'])) {
         $rgbValues = Helper\StringHelper::hextoRgb($themeSettings['background_color'], '0.8');
 
-        $themeCustomStyle .= '.container {background-color:rgba(' . join(',', $rgbValues) . ');}' . "\n";
+        $themeCustomStyle .= '.container {background-color:rgba(' . \join(',', $rgbValues) . ');}' . "\n";
     }
 
     // main navigation
