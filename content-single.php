@@ -37,7 +37,7 @@
                     'before' => '<div class="page-links">' . __('Pages:', 'eve-online'),
                     'after'  => '</div>',
                 ]);
-            } // END if(\function_exists('\EveOnline\eve_link_pages'))
+            }
             ?>
         </div>
     </section>
@@ -62,7 +62,7 @@
             </div>
         </div><!-- end .author-info -->
         <?php
-    } // END if(\get_the_author_meta('description'))
+    }
     ?>
     <hr/>
     <?php \WordPress\Themes\EveOnline\Helper\NavigationHelper::getArticleNavigation(true); ?>

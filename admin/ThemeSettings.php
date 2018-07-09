@@ -24,7 +24,7 @@ class ThemeSettings {
 
         // trigger the settings API
         $this->fireSettingsApi();
-    } // END public function __construct()
+    }
 
     private function fireSettingsApi() {
         $this->settingsFilter = 'register_eve_online_theme_settings';
@@ -32,7 +32,7 @@ class ThemeSettings {
         $this->settingsApi->init();
 
         \add_filter($this->settingsFilter, [$this, 'renderSettingsPage']);
-    } // END public function fireSettingsApi()
+    }
 
     public function renderSettingsPage() {
         $themeOptionsPage['eve-online-theme-settings'] = [
@@ -86,7 +86,7 @@ class ThemeSettings {
                 'content' => \sprintf(\__('Please make sure you have the %1$s plugin installed and activated.', 'eve-online'), '<a href="https://de.wordpress.org/plugins/ml-slider/" target="_blank">Meta Slider</a>'),
                 'callback' => null
             ];
-        } // END if($this->metaSlider->metasliderPluginExists() === false)
+        }
 
         if(\preg_match('/development/', \APPLICATION_ENV)) {
             $themeOptionsPage['eve-online-theme-settings']['tabs']['development'] = [
@@ -94,7 +94,7 @@ class ThemeSettings {
                 'tab_description' => \__('Delevopment Information', 'eve-online'),
                 'fields' => $this->getDevelopmentTabFields()
             ];
-        } // END if(\preg_match('/development/', \APPLICATION_ENV))
+        }
 
         return $themeOptionsPage;
     } // END public function renderSettingsPage()
@@ -130,7 +130,7 @@ class ThemeSettings {
                 'type' => 'checkbox',
                 'title' => \__('Navigation', 'eve-online'),
                 'choices' => [
-//					'sticky' => \__('Sticky Navigation', 'eve-online'),
+//                    'sticky' => \__('Sticky Navigation', 'eve-online'),
                     'even_cells' => \__('Even navigation cells in main navigation', 'eve-online'),
                 ],
                 'description' => \__('Transforms the main navigation into even cells instead of a random width. (Default: off)', 'eve-online')
@@ -144,7 +144,7 @@ class ThemeSettings {
                 'description' => \__('If checked the post meta information, such as categories, publish time and author will be displayed in article loop and article view. (Default: off)', 'eve-online')
             ],
         ];
-    } // END private function getGeneralTabFields()
+    }
 
     private function getBackgroundTabFields() {
         return [
@@ -175,7 +175,7 @@ class ThemeSettings {
                 'description' => \__('The contents background colour. If empty, the default (white) will be taken.', 'eve-online')
             ]
         ];
-    } // END private function getBackgroundTabFields()
+    }
 
     private function getSliderTabFields() {
         return [
@@ -200,7 +200,7 @@ class ThemeSettings {
                 'description' => \__('Show this slider only on front page in case no other slider is defined. (Default: on)', 'eve-online')
             ],
         ];
-    } // END private function getSliderTabFields()
+    }
 
     private function getPerformanceTabFields() {
         return [
@@ -222,7 +222,7 @@ class ThemeSettings {
             ],
             'remote_image_cache_time' => [
                 'type' => 'select',
-//				'title' => \__('Cache', 'eve-online'),
+//                'title' => \__('Cache', 'eve-online'),
                 'choices' => [
                     '21600' => \__('6 hours', 'eve-online'),
                     '43200' => \__('12 hours', 'eve-online'),
@@ -240,7 +240,7 @@ class ThemeSettings {
                 'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)<br><small><strong>Do not use this option if you are using any sort of caching plugin in your WordPress, it might break the path to the cached images.</strong></small>', 'eve-online')
             ],
         ];
-    } // END private function getSliderTabFields()
+    }
 
     private function getDevelopmentTabFields() {
         return [
@@ -266,5 +266,5 @@ class ThemeSettings {
                 'description' => \__('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions())</code>', 'eve-online')
             ]
         ];
-    } // END private function getDevelopmentTabFields()
-} // END class ThemeSettings
+    }
+}

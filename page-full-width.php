@@ -23,7 +23,7 @@ defined('ABSPATH') or die();
             </div><!--/.col -->
         </div><!--/.row -->
         <?php
-    } // END if(!empty($breadcrumbNavigation))
+    }
     ?>
 
     <?php
@@ -45,7 +45,7 @@ defined('ABSPATH') or die();
                                 ?>
                                 <h1><?php \the_title(); ?></h1>
                                 <?php
-                            } // END if(is_front_page())
+                            }
                             ?>
                         </h1>
                     </header>
@@ -64,7 +64,7 @@ defined('ABSPATH') or die();
             </div> <!--/.row -->
             <?php
         }
-    } // END if(have_posts())
+    }
     ?>
 </div><!-- /.container -->
 

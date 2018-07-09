@@ -12,10 +12,10 @@ class Shortcodes {
      * contructor
      */
     public function __construct() {
-//		$this->changeWpAuto();
+//        $this->changeWpAuto();
         $this->addShortcodesToWidgets();
         $this->registerShortcodes();
-    } // END public function __construct()
+    }
 
     /**
      * register all shortcodes
@@ -29,7 +29,7 @@ class Shortcodes {
         \add_shortcode('four_columns_three', [$this, 'shortcodeFourColumnsThree']);
         \add_shortcode('divider', [$this, 'shortcodeDivider']);
         \add_shortcode('credits', [$this, 'shortcodeCredits']);
-    } // END public function registerShortcodes()
+    }
 
     public function shortcodeTwoColumnsOne($atts, $content = null) {
         $args = \shortcode_atts([
@@ -56,7 +56,7 @@ class Shortcodes {
         $html = $prefix . '<div class="col-md-6">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
 
         return $html;
-    } // END public function shortcodeTwoColumnsOne($atts, $content = null)
+    }
 
     public function shortcodeThreeColumnsOne($atts, $content = null) {
         $args = \shortcode_atts([
@@ -81,7 +81,7 @@ class Shortcodes {
         }
 
         return $prefix . '<div class="col-md-4">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
-    } // END public function shortcodeThreeColumnsOne($atts, $content = null)
+    }
 
     public function shortcodeThreeColumnsTwo($atts, $content = null) {
         $args = \shortcode_atts([
@@ -106,7 +106,7 @@ class Shortcodes {
         }
 
         return $prefix . '<div class="col-md-8">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
-    } // END public function shortcodeThreeColumnsTwo($atts, $content = null)
+    }
 
     public function shortcodeFourColumnsOne($atts, $content = null) {
         $args = \shortcode_atts([
@@ -131,7 +131,7 @@ class Shortcodes {
         }
 
         return $prefix . '<div class="col-md-3">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
-    } // END public function shortcodeFourColumnsOne($atts, $content = null)
+    }
 
     public function shortcodeFourColumnsTwo($atts, $content = null) {
         $args = \shortcode_atts([
@@ -156,7 +156,7 @@ class Shortcodes {
         }
 
         return $prefix . '<div class="col-md-6">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
-    } // END public function shortcodeFourColumnsTwo($atts, $content = null)
+    }
 
     public function shortcodeFourColumnsThree($atts, $content = null) {
         $args = \shortcode_atts([
@@ -181,13 +181,13 @@ class Shortcodes {
         }
 
         return $prefix . '<div class="col-md-9">' . $this->removeAutopInShortcode($content) . '</div>' . $suffix;
-    } // END public function shortcodeFourColumnsThree($atts, $content = null)
+    }
 
     public function shortcodeDivider($atts) {
         $atts = null; // we don't need it here, but WP provides it anyways
 
         return '<div class="divider clearfix"></div>';
-    } // END public function shortcodeDivider($atts, $content = null)
+    }
 
     public function shortcodeCredits($atts, $content = null) {
         $attributes = \shortcode_atts([
@@ -200,22 +200,22 @@ class Shortcodes {
         $output = '<div class="article-credits clearfix"><header>' . $headlineOpen . \__('Credits:', 'eve-online') . $headlineClose . '</header>' . $this->removeAutopInShortcode($content) . '</div>';
 
         return $output;
-    } // END public function shortcodeCredits($atts, $content = null)
+    }
 
     public function changeWpAuto() {
         \remove_filter('the_content', 'wpautop');
         \add_filter('the_content', 'wpautop', 99);
         \add_filter('the_content', 'shortcode_unautop', 100);
-    } // END public function changeWpAuto()
+    }
 
     public function addShortcodesToWidgets() {
         \add_filter('widget_text', 'do_shortcode');
-    } // END public function addShortcodesToWidgets()
+    }
 
     public function removeAutopInShortcode($content) {
         $content = \do_shortcode(\shortcode_unautop($content));
         $content = \preg_replace('#^<\/p>|^<br \/>|<p>$#', '', $content);
 
         return $content;
-    } // END public function removeAutopInShortcode($content)
-} // END class Shortcodes
+    }
+}

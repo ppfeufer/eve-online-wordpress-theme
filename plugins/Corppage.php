@@ -17,14 +17,14 @@ class Corppage {
 
         $this->registerMetaBoxes();
         $this->registerShortcodes();
-    } // END public function __construct()
+    }
 
     public function registerShortcodes() {
         \add_shortcode('corplist', [
             $this,
             'shortcodeCorplist'
         ]);
-    } // END public function registerShortcodes()
+    }
 
     public function shortcodeCorplist($attributes) {
         $args = \shortcode_atts([
@@ -42,10 +42,10 @@ class Corppage {
 
         if($corpPages !== false) {
             $corplistHTML = $this->getCorporationPagesLoop($corpPages);
-        } // END if($corpPages !== false)
+        }
 
         return $corplistHTML;
-    } // END public function shortcodeCorplist($attributes)
+    }
 
     /**
      * Rendering the loop for the corporation pages
@@ -61,8 +61,8 @@ class Corppage {
         foreach($corpPages as $page) {
             if(!empty($page->post_content)) {
                 $corplistHTML .= $this->getCorporationPageLoopItem($page);
-            } // END if(!empty($page->post_content))
-        } // END foreach($corpPages as $page)
+            }
+        }
 
         $corplistHTML .= '</ul>';
         $corplistHTML .= '</div>';
@@ -77,7 +77,7 @@ class Corppage {
                             </script>';
 
         return $corplistHTML;
-    } // END private function getCorporationPagesLoop($corpPages)
+    }
 
     /**
      * Rendering the single loop item for the corporation pages
@@ -99,7 +99,7 @@ class Corppage {
         $corplistHTML .= '</li>';
 
         return $corplistHTML;
-    } // END private function getCorporationPageLoopItem($page)
+    }
 
     private function getCorporationPages() {
         $returnValue = false;
@@ -115,19 +115,19 @@ class Corppage {
 
         if($result) {
             $returnValue =  $result->posts;
-        } // END if($result)
+        }
 
         return $returnValue;
-    } // END public function getCorporationPages()
+    }
 
     public function registerMetaBoxes() {
         \add_action('add_meta_boxes', [$this, 'addMetaBox']);
         \add_action('save_post', [$this, 'savePageSettings']);
-    } // END public function registerMetaBoxes()
+    }
 
     public function addMetaBox() {
-        \add_meta_box('eve-corp-page-box', __('Corp Page?', 'eve-online'), [$this, 'renderMetaBox'], 'page', 'side');
-    } // END public function addMetaBox()
+        \add_meta_box('eve-corp-page-box', \__('Corp Page?', 'eve-online'), [$this, 'renderMetaBox'], 'page', 'side');
+    }
 
     public function renderMetaBox($post) {
         $isCorpPage = \get_post_meta($post->ID, 'eve_page_is_corp_page', true);
@@ -165,25 +165,25 @@ class Corppage {
                 <img src="<?php echo $corpLogoPath; ?>" alt="<?php echo $corpName; ?>">
             </p>
             <?php
-        } // END if(!empty($eve_page_corp_eve_ID))
+        }
 
         \wp_nonce_field('save', '_eve_corp_page_nonce');
-    } // END public function renderMetaBox($post)
+    }
 
     public function savePageSettings($postID) {
         $postNonce = \filter_input(\INPUT_POST, '_eve_corp_page_nonce');
 
         if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save')) {
             return false;
-        } // END if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save'))
+        }
 
         if(!\current_user_can('edit_post', $postID)) {
             return false;
-        } // END if(!\current_user_can('edit_post', $postID))
+        }
 
         if(\defined('DOING_AJAX')) {
             return false;
-        } // END if(defined('DOING_AJAX'))
+        }
 
         $isCorpPage = \filter_input(\INPUT_POST, 'eve_page_is_corp_page') === 'on';
         $showCorpLogo = '';
@@ -197,13 +197,13 @@ class Corppage {
             $showCorpLogo = \filter_input(\INPUT_POST, 'eve_page_show_corp_logo') === 'on';
             $corpName = \filter_input(\INPUT_POST, 'eve_page_corp_name');
             $corpID = $this->eveApi->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')), 'corporation');
-        } // END if(!empty($isCorpPage))
+        }
 
         \update_post_meta($postID, 'eve_page_corp_name', $corpName);
         \update_post_meta($postID, 'eve_page_is_corp_page', $isCorpPage);
         \update_post_meta($postID, 'eve_page_show_corp_logo', $showCorpLogo);
         \update_post_meta($postID, 'eve_page_corp_eve_ID', $corpID);
-    } // END public function savePageSettings($postID)
+    }
 
     public static function getCorprationLogo($corpPageID) {
         $corpName = \get_post_meta($corpPageID, 'eve_page_corp_name', true);
@@ -217,8 +217,8 @@ class Corppage {
             $html .= '</figure></div>';
 
             return $html;
-        } // END if($imagePath !== false)
+        }
 
         return false;
-    } // END public static function getCorprationLogo($corpPageID)
-} // END class Corppage
+    }
+}

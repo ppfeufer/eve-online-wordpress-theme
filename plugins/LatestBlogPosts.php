@@ -13,11 +13,11 @@ use WordPress\Themes\EveOnline;
 class LatestBlogPosts {
     public function __construct() {
         $this->registerShortcodes();
-    } // END public function __construct()
+    }
 
     public function registerShortcodes() {
         \add_shortcode('latestblogposts', [$this, 'shortcodeLatestBlogPosts']);
-    } // END public function registerShortcodes()
+    }
 
     public function shortcodeLatestBlogPosts($attributes) {
         $args = \shortcode_atts([
@@ -39,16 +39,19 @@ class LatestBlogPosts {
             'suppress_filters' => true,
             'ignore_sticky_posts' => true
         ];
-        /* @var $latestPosts object */
+
+        /**
+         * @var $latestPosts \WP_Query
+         */
         $latestPosts = new \WP_Query($queryArgs);
 
-        if($latestPosts->have_posts() && is_page()) {
+        if($latestPosts->have_posts() && \is_page()) {
             \ob_start();
 
             if(!empty($args['headline_text'])) {
                 echo '<' . $args['headline_type'] . ' class="latest-blogposts-headline">' . $args['headline_text'] . '</' . $args['headline_type'] . '>';
                 echo '<div class="latest-blogposts-headline-decoration"><div class="latest-blogposts-headline-decoration-inside"></div></div>';
-            } // END if(!empty($args['headline_text']))
+            }
 
             $blogPage = \get_option('page_for_posts');
             $uniqueID = \uniqid();
@@ -62,14 +65,14 @@ class LatestBlogPosts {
 
                 \get_template_part('content', \get_post_format($latestPosts->post_id));
                 echo '</li>';
-            } // END while($the_query->have_posts())
+            }
 
             echo '</ul>';
             echo '</div>';
             echo '<div>'
-                . '	<a class="news-more-link" href="' . \esc_url(\get_permalink($blogPage)) . '">'
-                . '		<span class="news-show-all read-more">' . \__('Show all article', 'eve-online') . '</span>'
-                . '	</a>'
+                . ' <a class="news-more-link" href="' . \esc_url(\get_permalink($blogPage)) . '">'
+                . '     <span class="news-show-all read-more">' . \__('Show all article', 'eve-online') . '</span>'
+                . ' </a>'
                 . '</div>';
 
             echo '<script type="text/javascript">
@@ -84,10 +87,10 @@ class LatestBlogPosts {
             $articleLoop = \ob_get_contents();
 
             \ob_end_clean();
-        } // END if($the_query->have_posts())
+        }
 
         \wp_reset_postdata();
 
         return $articleLoop;
-    } // END public function shortcodeLatestBlogPosts($attributes, $content = null)
-} // END class LatestBlogPosts
+    }
+}

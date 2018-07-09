@@ -16,13 +16,13 @@ class StringHelper {
 
             if(($strrpos = \strrpos($text,' ')) !== false) {
                 $text = \substr($text, 0, $strrpos);
-            } // END if(($strrpos = strrpos($text,' ')) !== false)
+            }
 
             $string = $text . ' [...]';
-        } // END if($pos < strlen($string))
+        }
 
         return $string;
-    } // END function cutString($string, $pos)
+    }
 
     /**
      * Make a string camelCase
@@ -46,10 +46,10 @@ class StringHelper {
 
         if($ucFirst === false) {
             $string = \lcfirst($string);
-        } // END if($ucFirst === false)
+        }
 
         return $string;
-    } // END public static function camelCase($string, $ucFirst = false, $noStrip = array())
+    }
 
     /**
      * converts a hex color string into an array with it's respective rgb(a) values
@@ -73,14 +73,14 @@ class StringHelper {
             $rgb['r'] = '0';
             $rgb['g'] = '0';
             $rgb['b'] = '0';
-        } // END if(\strlen($hex) == 6)
+        }
 
         if($alpha !== false) {
             $rgb['a'] = $alpha;
-        } // END if($alpha !== false)
+        }
 
         return $rgb;
-     } // END public function hextoRgb($hex, $alpha = false)
+     }
 
      /**
       * Encoding a string for E-Mail obfuscation
@@ -105,10 +105,10 @@ class StringHelper {
                     $chars[$key] = '&#x' . \dechex($ord) . ';'; // hexadecimal
                 } else {
                     $chars[$key] = '&#' . $ord . ';'; // decimal (ascii)
-                } // END if($r > 60 && $char != '@')
-            } // END if($ord < 128)
-        } // END foreach($chars as $key => $char)
+                }
+            }
+        }
 
         return \implode('', $chars);
-    } // END public static function encodeString($string)
-} // END class StringHelper
+    }
+}

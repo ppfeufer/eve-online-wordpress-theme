@@ -22,10 +22,10 @@ class RemoteHelper {
     public static function getInstance() {
         if(null === self::$instance) {
             self::$instance = new self;
-        } // END if(null === self::$instance)
+        }
 
         return self::$instance;
-    } // END public static function getInstance()
+    }
 
     /**
      * clone
@@ -57,7 +57,7 @@ class RemoteHelper {
 
         if(\count($parameter) > 0) {
             $params = '?' . \http_build_query($parameter);
-        } // END if(\count($parameter > 0))
+        }
 
         $remoteUrl = $url . $params;
 
@@ -65,5 +65,5 @@ class RemoteHelper {
         $data = \wp_remote_retrieve_body($get);
 
         return $data;
-    } // END private function getRemoteData($url, array $parameter)
-} // END class RemoteHelper extends \WordPress\Plugin\EveOnlineTranquilityStatus\Singletons\AbstractSingleton
+    }
+}

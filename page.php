@@ -23,7 +23,7 @@
                 </div><!--/.col -->
             </div><!--/.row -->
             <?php
-        } // END if(!empty($breadcrumbNavigation))
+        }
         ?>
 
         <?php
@@ -45,7 +45,7 @@
                                     ?>
                                     <h1><?php \the_title(); ?></h1>
                                     <?php
-                                } // END if(\is_front_page())
+                                }
                                 ?>
                             </header>
                             <article class="post clearfix" id="post-<?php \the_ID(); ?>">
@@ -59,7 +59,7 @@
                                     $oEmbed = \wp_oembed_get($videoUrl);
 
                                     echo $oEmbed;
-                                } // END if($isVideoGalleryPage)
+                                }
 
                                 /**
                                  * Let's see if we are by any chance in a Corp Page
@@ -68,7 +68,7 @@
                                 $showCorpLogo = \get_post_meta($post->ID, 'eve_page_show_corp_logo', true);
                                 if($isCorpPage && $showCorpLogo) {
                                     echo \WordPress\Themes\EveOnline\Plugins\Corppage::getCorprationLogo(\get_the_ID());
-                                } // END if($isCorpPage && $showCorpLogo)
+                                }
 
                                 echo the_content();
                                 ?>
@@ -76,8 +76,8 @@
                         </div> <!-- /.content -->
                     </div> <!-- /.col -->
                 <?php
-            } // END while(have_posts())
-        } // END if(have_posts())
+            }
+        }
 
         if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
@@ -85,15 +85,15 @@
                 <?php
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
                     \get_sidebar('page');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+                }
 
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                     \get_sidebar('general');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+                }
                 ?>
             </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!--/.row .main-content -->
 </div><!-- container -->

@@ -22,7 +22,7 @@ class ChildpageMenuWidget extends \WP_Widget {
         $control_options = [];
 
         parent::__construct($this->idBase, $this->widgetName, $widget_options, $control_options);
-    } // END public function __construct()
+    }
 
     /**
      * Widget Output
@@ -43,9 +43,9 @@ class ChildpageMenuWidget extends \WP_Widget {
                 echo $args['before_widget'];
                 echo '<ul class="childpages-list">' . $widgetData . '</ul>';
                 echo $args['after_widget'];
-            } // END if(!empty($widgetData))
-        } // END if(\is_page())
-    } // END public function widget($args, $instance)
+            }
+        }
+    }
 
     private function getWidgetData() {
         global $post;
@@ -59,7 +59,7 @@ class ChildpageMenuWidget extends \WP_Widget {
             $parent = $ancestors[$root];
         } else {
             $parent = $post->ID;
-        } // END if($post->post_parent)
+        }
 
         $returnValue = \wp_list_pages([
             'title_li' => '',
@@ -68,5 +68,5 @@ class ChildpageMenuWidget extends \WP_Widget {
         ]);
 
         return $returnValue;
-    } // END private function getWidgetData()
-} // END class ChildpageMenuWidget extends \WP_Widget
+    }
+}

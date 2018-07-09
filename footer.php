@@ -11,7 +11,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
                         <?php
                         if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-4')) {
                             \get_sidebar('footer');
-                        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-4'))
+                        }
                         ?>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
                                         echo '<p>';
                                         echo \stripslashes($options['footertext']);
                                         echo '</p>';
-                                    } // END if(!empty($options['footertext']))
+                                    }
                                     ?>
                                     <ul class="credit">
                                         <li>
@@ -54,7 +54,7 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
                                             'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
                                             'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
                                         ]);
-                                    } // END if(has_nav_menu('footer-menu'))
+                                    }
                                     ?>
                                 </div>
                             </div>

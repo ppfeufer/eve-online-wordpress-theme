@@ -9,12 +9,12 @@ use WordPress\Themes\EveOnline;
 class BootstrapContentGrid {
     public function __construct() {
         $this->registerShortcode();
-    } // END public function __construct()
+    }
 
     public function registerShortcode() {
         \add_shortcode('contentgrid', [$this, 'shortcodeContentGrid']);
         \add_shortcode('gridelement', [$this, 'shortcodeContentGridElement']);
-    } // END public function registerShortcode()
+    }
 
     public function shortcodeContentGrid($atts, $content = null) {
         $args = \shortcode_atts([
@@ -39,7 +39,7 @@ class BootstrapContentGrid {
                         </script>';
 
         return $gridHtml;
-    } // END public function shortcodeContentGrid($atts, $content = null)
+    }
 
     public function shortcodeContentGridElement($atts, $content = null) {
         $atts = null; // we don't need it here, but WP provides it anyways
@@ -54,5 +54,5 @@ class BootstrapContentGrid {
         $content = \preg_replace('#^<\/p>|^<br \/>|<p>$#', '', $content);
 
         return $content;
-    } // END public function removeAutopInShortcode($content)
-} // END class BootstrapContentGrid
+    }
+}

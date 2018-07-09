@@ -12,7 +12,7 @@ class ThemeHelper {
      */
     public static function getThemeDbVersion() {
         return '20170803';
-    } // END public static function getThemeDbVersion()
+    }
 
     /**
      * Returning the theme's default options
@@ -65,7 +65,7 @@ class ThemeHelper {
         ];
 
         return \apply_filters('eve_theme_options', $defaultOptions);
-    } // END public static function getThemeDefaultOptions()
+    }
 
     /**
      * Returning some theme related data
@@ -79,7 +79,7 @@ class ThemeHelper {
         $themeData = \wp_get_theme();
 
         return $themeData->get($parameter);
-    } // END function getThemeData($parameter)
+    }
 
     /**
      * Return the theme's javascripts
@@ -109,19 +109,19 @@ class ThemeHelper {
                 'in_footer' => false
             ],
             /* Modernizr */
-//			'Modernizr' => array(
-//				'handle' => 'modernizr',
-//				'source' => \get_template_directory_uri() . '/js/modernizr.min.js',
-//				'source-development' => \get_template_directory_uri() . '/js/modernizr.js',
-//				'deps' => '',
-//				'version' => '',
-//				'in_footer' => true
-//			),
+//            'Modernizr' => array(
+//                'handle' => 'modernizr',
+//                'source' => \get_template_directory_uri() . '/js/modernizr.min.js',
+//                'source-development' => \get_template_directory_uri() . '/js/modernizr.js',
+//                'deps' => '',
+//                'version' => '',
+//                'in_footer' => true
+//            ),
             /* Bootstrap's JS */
             'Bootstrap' => [
                 'handle' => 'bootstrap-js',
-                'source' => \get_theme_file_uri('/bootstrap/js/bootstrap.min.js'),
-                'source-development' => \get_theme_file_uri('/bootstrap/js/bootstrap.js'),
+                'source' => \get_theme_file_uri('/bootstrap/3.3.7/js/bootstrap.min.js'),
+                'source-development' => \get_theme_file_uri('/bootstrap/3.3.7/js/bootstrap.js'),
                 'deps' => [
                     'jquery'
                 ],
@@ -131,8 +131,8 @@ class ThemeHelper {
             /* Bootstrap Toolkit */
             'Bootstrap Toolkit' => [
                 'handle' => 'bootstrap-toolkit-js',
-                'source' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.min.js'),
-                'source-development' => \get_theme_file_uri('/bootstrap/bootstrap-toolkit/bootstrap-toolkit.js'),
+                'source' => \get_theme_file_uri('/bootstrap/toolkit/bootstrap-toolkit.min.js'),
+                'source-development' => \get_theme_file_uri('/bootstrap/toolkit/bootstrap-toolkit.js'),
                 'deps' => [
                     'bootstrap-js'
                 ],
@@ -164,7 +164,7 @@ class ThemeHelper {
         ];
 
         return $enqueue_script;
-    } // END public static function getThemeJavaScripts()
+    }
 
     /**
      * Return the theme's stylesheets
@@ -176,9 +176,7 @@ class ThemeHelper {
             /* Normalize CSS */
             'Normalize CSS' => [
                 'handle' => 'normalize',
-//				'source' => \get_template_directory_uri() . '/css/normalize.min.css',
                 'source' => \get_theme_file_uri('/css/normalize.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/css/normalize.css',
                 'source-development' => \get_theme_file_uri('/css/normalize.css'),
                 'deps' => [],
                 'version' => '3.0.3',
@@ -197,10 +195,8 @@ class ThemeHelper {
             /* Bootstrap */
             'Bootstrap' => [
                 'handle' => 'bootstrap',
-//				'source' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css',
-                'source' => \get_theme_file_uri('/bootstrap/css/bootstrap.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/bootstrap/css/bootstrap.css',
-                'source-development' => \get_theme_file_uri('/bootstrap/css/bootstrap.css'),
+                'source' => \get_theme_file_uri('/bootstrap/3.3.7/css/bootstrap.min.css'),
+                'source-development' => \get_theme_file_uri('/bootstrap/3.3.7/css/bootstrap.css'),
                 'deps' => [
                     'normalize'
                 ],
@@ -210,9 +206,7 @@ class ThemeHelper {
             /* Bootstrap Additional CSS */
             'Bootstrap Additional CSS' => [
                 'handle' => 'bootstrap-additional',
-//				'source' => \get_template_directory_uri() . '/css/bootstrap-additional.min.css',
                 'source' => \get_theme_file_uri('/css/bootstrap-additional.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/css/bootstrap-additional.css',
                 'source-development' => \get_theme_file_uri('/css/bootstrap-additional.css'),
                 'deps' => [
                     'bootstrap'
@@ -220,12 +214,19 @@ class ThemeHelper {
                 'version' => '3.3.7',
                 'media' => 'all'
             ],
+            /* Font Awesome */
+//            'Font Aweseome CSS' => [
+//                'handle' => 'font-awesome',
+//                'source' => \get_theme_file_uri('/font-awesome/4.7.0/css/font-awesome.min.css'),
+//                'source-development' => \get_theme_file_uri('/font-awesome/4.7.0/css/font-awesome.css'),
+//                'deps' => [],
+//                'version' => '4.7.0',
+//                'media' => 'all'
+//            ],
             /* Theme Main CSS */
             'EVE Online Theme Styles' => [
                 'handle' => 'eve-online',
-//				'source' => \get_template_directory_uri() . '/style.min.css',
                 'source' => \get_theme_file_uri('/style.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/style.css',
                 'source-development' => \get_theme_file_uri('/style.css'),
                 'deps' => [
                     'normalize',
@@ -238,9 +239,7 @@ class ThemeHelper {
             /* Theme Responsive CSS */
             'EVE Online Responsive Styles' => [
                 'handle' => 'eve-online-responsive-styles',
-//				'source' => \get_template_directory_uri() . '/css/responsive.min.css',
                 'source' => \get_theme_file_uri('/css/responsive.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/css/responsive.css',
                 'source-development' => \get_theme_file_uri('/css/responsive.css'),
                 'deps' => [
                     'eve-online'
@@ -251,9 +250,7 @@ class ThemeHelper {
             /* Adjustment to Plugins */
             'EVE Online Plugin Styles' => [
                 'handle' => 'eve-online-plugin-styles',
-//				'source' => \get_template_directory_uri() . '/css/plugin-tweaks.min.css',
                 'source' => \get_theme_file_uri('/css/plugin-tweaks.min.css'),
-//				'source-development' => \get_template_directory_uri() . '/css/plugin-tweaks.css',
                 'source-development' => \get_theme_file_uri('/css/plugin-tweaks.css'),
                 'deps' => [
                     'eve-online'
@@ -264,7 +261,7 @@ class ThemeHelper {
         ];
 
         return $enqueue_style;
-    } // END public static function getThemeStyleSheets()
+    }
 
     /**
      * Return the theme's admin stylesheets
@@ -285,7 +282,7 @@ class ThemeHelper {
         ];
 
         return $enqueue_style;
-    } // END public static function getThemeAdminStyleSheets()
+    }
 
     /**
      * Update the options array for our theme, if needed
@@ -306,15 +303,15 @@ class ThemeHelper {
                 $newOptions = \array_merge($defaultOptions, $currentOptions);
             } else {
                 $newOptions = $defaultOptions;
-            } // END if(\is_array($currentOptions))
+            }
 
             // Update the options
             \update_option($optionsName, $newOptions);
 
             // Update the DB Version
             \update_option($dbVersionFieldName, $newDbVersion);
-        } // END if($currentDbVersion !== $newDbVersion)
-    } // END function public static function updateOptions($optionsName, $dbVersionFieldName, $newDbVersion, $defaultOptions)
+        }
+    }
 
     /**
      * Alias for is_active_sidebar()
@@ -325,7 +322,7 @@ class ThemeHelper {
      */
     public static function hasSidebar($sidebarPosition) {
         return \is_active_sidebar($sidebarPosition);
-    } // END public static function hasSidebar($sidebarPosition)
+    }
 
     /**
      * Getting the default background mages that are shipped with the theme
@@ -340,12 +337,12 @@ class ThemeHelper {
 
         if($baseClass !== null) {
             $baseClass = '-' . $baseClass;
-        } // END if($baseClass !== null)
+        }
 
         if($handle) {
             while(false !== ($entry = \readdir($handle))) {
                 $files[$entry] = $entry;
-            } // END while(false !== ($entry = readdir($handle)))
+            }
 
             \closedir($handle);
 
@@ -356,12 +353,12 @@ class ThemeHelper {
                 foreach($images as &$image) {
                     $imageName = \ucwords(\str_replace('-', ' ', \preg_replace("/\\.[^.\\s]{3,4}$/", "", $image)));
                     $image = '<figure class="bg-image' . $baseClass . '"><img src="' . \get_template_directory_uri() . '/img/background/' . $image . '" style="width:100px; height:auto;" title="' . $imageName . '"><figcaption>' . $imageName . '</figcaption></figure>';
-                } // END foreach($images as &$image)
-            } // END if($withThumbnail === true)
+                }
+            }
 
             return $images;
-        } // END if($handle)
-    } // END public static function getDefaultBackgroundImages($withThumbnail = false, $baseClass = null)
+        }
+    }
 
     /**
      * Getting the themes background image
@@ -377,10 +374,10 @@ class ThemeHelper {
         // we have an uploaded image, so overwrite the background
         if($uploadedBackground === true) {
             $backgroundImage = \wp_get_attachment_url($themeSettings['background_image_upload']);
-        } // END if($uploadedBackground === true)
+        }
 
         return $backgroundImage;
-    } // END public static function getThemeBackgroundImage()
+    }
 
     /**
      * Getting the theme's name
@@ -389,5 +386,5 @@ class ThemeHelper {
      */
     public static function getThemeName() {
         return 'EVE Online';
-    } // END public static function getThemeName()
-} // END class ThemeHelper
+    }
+}

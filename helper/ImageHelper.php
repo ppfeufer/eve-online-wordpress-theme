@@ -36,13 +36,13 @@ class ImageHelper {
                         $attachment_id = $post_id;
 
                         break;
-                    } // END if($original_file === $file || \in_array($file, $cropped_image_files))
-                } // END foreach($query->posts as $post_id)
-            } // END if($query->have_posts())
-        } // END if(\strpos($url, $dir['baseurl'] . '/') !== false)
+                    }
+                }
+            }
+        }
 
         return $attachment_id;
-    } // END public static function getAttachmentId($url)
+    }
 
     /**
      * Getting the cached URL for a remote image
@@ -70,13 +70,13 @@ class ImageHelper {
                 if(\is_dir(CacheHelper::getImageCacheDir() . $cacheType) && \is_writable(CacheHelper::getImageCacheDir() . $cacheType)) {
                     if(CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl) === true) {
                         $returnValue = $cachedImage;
-                    } // END if(CacheHelper::cacheRemoteImageFile($cacheType, $remoteImageUrl) === true)
-                } // END if(\is_dir(CacheHelper::getImageCacheDir() . $cacheType) && \is_writable(CacheHelper::getImageCacheDir() . $cacheType))
+                    }
+                }
             } else {
                 $returnValue = $cachedImage;
-            } // END if(CacheHelper::checkCachedImage($cacheType, $imageName) === false)
-        } // END if(!empty($themeOptions['cache']['remote-image-cache']))
+            }
+        }
 
         return $returnValue;
-    } // END public static function getLocalCacheImageUri($cacheType = null, $remoteImageUrl = null)
-} // END class ImageHelper
+    }
+}

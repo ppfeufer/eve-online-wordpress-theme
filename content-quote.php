@@ -12,7 +12,7 @@
                 <?php
                 echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
                 \WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
-                \edit_post_link(__('Edit', 'eve-online'));
+                \edit_post_link(\__('Edit', 'eve-online'));
                 ?>
             </p>
         </aside><!--end .entry-details -->
@@ -51,20 +51,20 @@
                                 default:
                                     $thumbnail_size = "thumbnail";
                                     break;
-                            } // END switch($options['featured_img_arch_size'])
+                            }
 
                             \the_post_thumbnail($thumbnail_size);
-                        } // END if(isset($options['featured_img_arch_size']))
+                        }
                         ?>
                     </a>
                     <?php
-                } // END if(has_post_thumbnail())
+                }
 
                 if(isset($options['excerpts'])) {
                     echo \the_excerpt();
                 } else {
-                    echo \the_content('<span class="read-more">Read more</span>', 'eve-online');
-                } // END if(isset($options['excerpts']))
+                    echo \the_content('<span class="read-more">' . \__('Read more', 'eve-online') . '</span>', 'eve-online');
+                }
                 ?>
             </div><!-- end .entry-content -->
             <?php
