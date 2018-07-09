@@ -1,8 +1,15 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180601...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180709...development)
 - in development
+
+## [v0.1-r20180709](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180709) - 2018-07-09
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180601...v0.1-r20180709)
+### Changed
+- Developer contact updated
+- Discord server added to readme
+- Code formatting
 
 ## [v0.1-r20180601](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180601) - 2018-06-01
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180529...v0.1-r20180601)
