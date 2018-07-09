@@ -21,7 +21,7 @@ namespace WordPress\Themes\EveOnline;
 /**
  * EVE Online only works in WordPress 4.7 or later.
  */
-if(\version_compare($GLOBALS['wp_version'], '4.7-alpha', '<')) {
+if(\version_compare($GLOBALS['wp_version'], '4.7', '<')) {
     require_once(\get_template_directory() . '/addons/Compatibility.php');
 
     return false;
