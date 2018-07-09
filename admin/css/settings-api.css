@@ -1,41 +1,41 @@
 /* settings api
 ----------------------------------------------------------------------------- */
 .uploaded-file-url, .uploaded-image {
-	display: none;
-	padding: 0.5rem;
+    display: none;
+    padding: 0.5rem;
 }
 
 .settings-type-radio {
-	list-style-type: none;
-	margin-left: -0.5rem;
+    list-style-type: none;
+    margin-left: -0.5rem;
 }
 
 .settings-type-radio li.horizontal {
-	display: inline-block;
-	text-align: center;
-	margin: 0.5rem;
-	max-width: 100px;
-	vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    margin: 0.5rem;
+    max-width: 100px;
+    vertical-align: top;
 }
 
 .settings-type-radio li.horizontal input {
-	margin-right: 0;
-	/*width: 100%;*/
+    margin-right: 0;
+    /*width: 100%;*/
 }
 
 .settings-type-radio figure {
-	margin: 0rem;
-	margin-top: 0.5rem;
+    margin: 0rem;
+    margin-top: 0.5rem;
 }
 
 .upload-button a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .remove {
-	margin-top: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 ul.settings-group {
-	margin-top: 0;
+    margin-top: 0;
 }
