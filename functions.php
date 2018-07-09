@@ -153,7 +153,6 @@ if(!function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
     function eve_get_javascripts() {
         return Helper\ThemeHelper::getThemeJavaScripts();
     }
-
 }
 
 /**
@@ -646,7 +645,7 @@ function eve_wp_title($title, $sep) {
  */
 function eve_link_pages($args = []) {
     $arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, [
-        'before' => '<p>' . __('Pages:', 'eve-online'),
+        'before' => '<p>' . \__('Pages:', 'eve-online'),
         'after' => '</p>',
         'before_link' => '',
         'after_link' => '',
@@ -732,8 +731,8 @@ function eve_get_theme_custom_style() {
     // main navigation
     if(!empty($themeSettings['navigation']['even_cells'])) {
         $themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
-        $themeCustomStyle .= '	ul.main-navigation {display:table; width:100%;}' . "\n";
-        $themeCustomStyle .= '	ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";
+        $themeCustomStyle .= '  ul.main-navigation {display:table; width:100%;}' . "\n";
+        $themeCustomStyle .= '  ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";
         $themeCustomStyle .= '}' . "\n";
     }
 
@@ -776,7 +775,7 @@ function eve_comment_form_fields($fields) {
 
 function eve_comment_form($args) {
     $args['comment_field'] = '<div class="row"><div class="form-group comment-form-comment col-lg-12">'
-        . '	<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun', 'eve-online') . '"></textarea>'
+        . ' <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun', 'eve-online') . '"></textarea>'
         . '</div></div>';
     $args['class_submit'] = 'btn btn-default';
 
@@ -841,7 +840,7 @@ function eve_enable_youtube_jsapi($html) {
  * @return string
  */
 function eve_remove_wp_ver_css_js($src) {
-    if(strpos($src, 'ver=')) {
+    if(\strpos($src, 'ver=')) {
         $src = \remove_query_arg('ver', $src);
     }
 
