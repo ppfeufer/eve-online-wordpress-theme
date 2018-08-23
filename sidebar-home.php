@@ -5,7 +5,7 @@
         <?php
         if(\function_exists('\dynamic_sidebar')) {
             \dynamic_sidebar('home-column-1');
-        } // END if(function_exists('dynamic_sidebar'))
+        }
         ?>
     </div>
 
@@ -13,7 +13,7 @@
         <?php
         if(\function_exists('\dynamic_sidebar')) {
             \dynamic_sidebar('home-column-2');
-        } // END if(function_exists('dynamic_sidebar'))
+        }
         ?>
     </div>
 
@@ -21,7 +21,7 @@
         <?php
         if(\function_exists('\dynamic_sidebar')) {
             \dynamic_sidebar('home-column-3');
-        } // END if(function_exists('dynamic_sidebar'))
+        }
         ?>
     </div>
 
@@ -29,7 +29,7 @@
         <?php
         if(\function_exists('\dynamic_sidebar')) {
             \dynamic_sidebar('home-column-4');
-        } // END if(function_exists('dynamic_sidebar'))
+        }
         ?>
     </div>
 </div>

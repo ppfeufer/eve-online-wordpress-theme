@@ -2,7 +2,7 @@
  * Theme Name: EVE Online
  * Theme URI: https://github.com/ppfeufer/eve-online-wordpress-theme
  * Description: A beatyfull WordPress Theme inspired by the MMORPG EVE Online
- * Version: 0.1-r20180709
+ * Version: 0.1-r20180823
  * Author: YF [TN-NT] Rounon Dax
  * Author URI: http://yulaifederation.net
  * License: GNU General Public License v2 or later
@@ -35,6 +35,24 @@
 
     * html .clearfix {
         height: 1%;
+    }
+}
+
+/* Fonts
+----------------------------------------------------------------------------- */
+@media all {
+    /* amethysta-regular - latin */
+    @font-face {
+        font-family: 'Amethysta';
+        font-style: normal;
+        font-weight: 400;
+        src: url('fonts/amethysta/amethysta-v6-latin-regular.eot'); /* IE9 Compat Modes */
+        src: local('Amethysta Regular'), local('Amethysta-Regular'),
+            url('fonts/amethysta/amethysta-v6-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('fonts/amethysta/amethysta-v6-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+            url('fonts/amethysta/amethysta-v6-latin-regular.woff') format('woff'), /* Modern Browsers */
+            url('fonts/amethysta/amethysta-v6-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('fonts/amethysta/amethysta-v6-latin-regular.svg#Amethysta') format('svg'); /* Legacy iOS */
     }
 }
 

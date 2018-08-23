@@ -7,13 +7,13 @@ jQuery(document).ready(function($) {
     $('code.uploaded-file-url').each(function() {
         if($(this).html().trim() !== '') {
             $(this).css('display', 'inline-block');
-        } // END if($(this).html().trim() !== '')
+        }
     });
 
     $('img.uploaded-image').each(function() {
         if($(this).attr('src').trim() !== '') {
             $(this).css('display', 'block');
-        } // END if($(this).html().trim() !== '')
+        }
     });
 
     // Upload attachment
@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
             if(attachment.sizes && attachment.sizes.thumbnail && attachment.sizes.thumbnail.url) {
                 $(current + ' .image img').attr('src', attachment.sizes.thumbnail.url);
                 $(current + ' .image img').css('display', 'block');
-            } // END if(attachment.sizes && attachment.sizes.thumbnail && attachment.sizes.thumbnail.url)
+            }
 
             $(current + ' .url code').html(attachment.url).show();
             $(current + ' .attachment_id').val(attachment.id);
@@ -62,7 +62,7 @@ jQuery(document).ready(function($) {
     // Add color picker to fields
     if($('.colorpicker').length) {
         $('.colorpicker').wpColorPicker();
-    } // END if($('.colorpicker').length)
+    }
 
     // Nav click toggle
     if($('.nav-tab').length) {
@@ -77,5 +77,5 @@ jQuery(document).ready(function($) {
             $('.nav-tab').removeClass('nav-tab-active');
             $(this).addClass('nav-tab-active');
         });
-    } // END if($('.nav-tab').length)
+    }
 });

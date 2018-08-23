@@ -22,8 +22,8 @@ class Cron {
 
         if($init === true) {
             $this->init();
-        } // END if($init === true)
-    } // END public function __construct()
+        }
+    }
 
     /**
      * Returning all known theme crons as an array
@@ -38,7 +38,7 @@ class Cron {
                 'recurrence' => 'daily'
             ]
         ];
-    } // END public function getTemeCronEvents()
+    }
 
     /**
      * Initializing all the stuff
@@ -53,13 +53,13 @@ class Cron {
                 \add_action($cronEvent['hook'], [$this, 'cron' . \ucfirst($cronEvent['hook'])]);
             } else {
                 $this->removeCron($cronEvent['hook']);
-            } // END if(!empty($this->themeOptions['cron'][$cronEvent['hook']]))
-        } // END foreach($this->cronEvents as $cronEvent)
+            }
+        }
 
         \add_action('switch_theme', [$this, 'removeAllCrons'], 10 , 2);
 
         $this->scheduleCronEvents();
-    } // END public function init()
+    }
 
     /**
      * Removing all known theme crons
@@ -68,8 +68,8 @@ class Cron {
         foreach($this->cronEvents as $cronEvent) {
             // removing $cronEvent
             $this->removeCron($cronEvent['hook']);
-        } // END foreach($this->cronEvents as $cronEvent)
-    } // END public function removeAllCrons()
+        }
+    }
 
     /**
      * Remove a single cron job
@@ -87,9 +87,9 @@ class Cron {
         foreach($this->cronEvents as $cronEvent) {
             if(!\wp_next_scheduled($cronEvent['hook']) && !empty($this->themeOptions['cron'][$cronEvent['hook']])) {
                 \wp_schedule_event(\time(), $cronEvent['recurrence'], $cronEvent['hook']);
-            } // END if(!\wp_next_scheduled($cronEvent['hook']) && !empty($this->themeOptions['cron'][$cronEvent['hook']]))
-        } // END foreach($this->cronEvents as $cronEvent)
-    } //END public function scheduleDailyCron()
+            }
+        }
+    }
 
     /**
      * Cron Job: cleanupThemeImageCache
@@ -99,5 +99,5 @@ class Cron {
         $imageCacheDirectory = EveOnline\Helper\CacheHelper::getImageCacheDir();
 
         EveOnline\Helper\FilesystemHelper::deleteDirectoryRecursive($imageCacheDirectory, false);
-    } // END public function cronCleanupCacheDirectories()
-} // END class Cron
+    }
+}

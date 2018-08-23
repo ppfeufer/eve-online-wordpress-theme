@@ -18,7 +18,7 @@ defined('ABSPATH') or die();
             </div><!--/.col -->
         </div><!--/.row -->
         <?php
-    } // END if(!empty($breadcrumbNavigation))
+    }
     ?>
 
     <div class="row main-content">
@@ -37,13 +37,13 @@ defined('ABSPATH') or die();
                         <h1><?php \_e('No Results Found', 'eve-online'); ?></h1>
                     </header>
                     <?php
-                } // END if(have_posts())
+                }
 
                 if(\have_posts()) {
                     while(\have_posts()) {
                         \the_post();
                         \get_template_part('content', \get_post_format());
-                    } // END while(have_posts())
+                    }
                 } else {
                     ?>
                     <p class="lead">
@@ -54,7 +54,7 @@ defined('ABSPATH') or die();
                         <?php \get_search_form(); ?>
                     </div><!--/.well -->
                     <?php
-                } // END if(have_posts())
+                }
                 ?>
             </div> <!-- /.content -->
         </div> <!-- /.col -->
@@ -66,15 +66,15 @@ defined('ABSPATH') or die();
                 <?php
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
                     \get_sidebar('page');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+                }
 
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                     \get_sidebar('general');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+                }
                 ?>
                 </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!--/.row -->
 </div><!-- container -->

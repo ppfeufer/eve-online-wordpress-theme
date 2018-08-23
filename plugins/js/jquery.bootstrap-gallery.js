@@ -64,14 +64,14 @@
         }
 
         function showModal() {
-//			var src = $(this).find('img').attr('src');
+//            var src = $(this).find('img').attr('src');
             var src = $(this).find('figure').attr('data-fullsizeimage');
 
             // fix for lazy loading ...
-//			var lazySource = $(this).find('img').attr('data-lazy-src') || '';
-//			if(lazySource !== '') {
-//				src = lazySource;
-//			}
+//            var lazySource = $(this).find('img').attr('data-lazy-src') || '';
+//            if(lazySource !== '') {
+//                src = lazySource;
+//            }
 
             var largeImg = $(this).find('img').attr('data-bsp-large-src');
             var caption = $(this).find('figcaption').text();
@@ -121,14 +121,14 @@
             var ul = $(getCurrentUl());
             var index = $(this).attr('href');
 
-//			var src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
+//            var src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
             var src = ul.find('li[data-bsp-li-index="' + index + '"] figure').attr('data-fullsizeimage');
 
             // fix for lazy loading ...
-//			var lazySource = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-lazy-src') || '';
-//			if(lazySource !== '') {
-//				src = lazySource;
-//			}
+//            var lazySource = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-lazy-src') || '';
+//            if(lazySource !== '') {
+//                src = lazySource;
+//            }
 
             var largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-bsp-large-src');
 

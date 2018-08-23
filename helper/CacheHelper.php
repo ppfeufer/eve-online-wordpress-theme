@@ -12,7 +12,7 @@ class CacheHelper {
      */
     public static function getThemeCacheDir() {
         return \trailingslashit(\WP_CONTENT_DIR) . 'cache/eve-online/';
-    } // END public static function getThemeCacheDir()
+    }
 
     /**
      * Getting the URI for the cache directory
@@ -21,7 +21,7 @@ class CacheHelper {
      */
     public static function getThemeCacheUri() {
         return \trailingslashit(\WP_CONTENT_URL) . 'cache/eve-online/';
-    } // END public static function getThemeCacheUri()
+    }
 
     /**
      * Getting the URI for the cache directory
@@ -30,7 +30,7 @@ class CacheHelper {
      */
     public static function getImageCacheDir() {
         return \trailingslashit(self::getThemeCacheDir() . 'images');
-    } // END public static function getImageCacheDir()
+    }
 
     /**
      * Getting the local image cache URI
@@ -39,7 +39,7 @@ class CacheHelper {
      */
     public static function getImageCacheUri() {
         return \trailingslashit(self::getThemeCacheUri() . 'images');
-    } // END public static function getImageCacheUri()
+    }
 
     /**
      * creating our needed cache directories under:
@@ -57,8 +57,8 @@ class CacheHelper {
                 '',
                 0644
             );
-        } // END if(!$wpFileSystem->is_file(\trailingslashit($this->getPluginCacheDir()) . $directory . '/index.php'))
-    } // END public static function createCacheDirectories()
+        }
+    }
 
     /**
      * Check if a remote image has been cached locally
@@ -84,13 +84,13 @@ class CacheHelper {
                 $returnValue = false;
             } else {
                 $returnValue = true;
-            } // END if(\time() - \filemtime($cacheDir . $imageName) > 2 * 3600)
+            }
         } else {
             $returnValue = false;
-        } // END if(\file_exists($cacheDir . $imageName))
+        }
 
         return $returnValue;
-    } // END public static function checkCachedImage($cacheType = null, $imageName = null)
+    }
 
     /**
      * Cachng a remote image locally
@@ -114,8 +114,8 @@ class CacheHelper {
             $wpFileSystem = new \WP_Filesystem_Direct(null);
 
             return $wpFileSystem->put_contents($cacheDir . $imageFilename, $imageToFetch, 0755);
-        } // END if($extension === 'gif' || $extension === 'jpg' || $extension === 'jpeg' || $extension === 'png')
-    } // END public static function cacheRemoteImageFile($cacheType = null, $remoteImageUrl = null)
+        }
+    }
 
     /**
      * Getting transient cache information / data
@@ -127,7 +127,7 @@ class CacheHelper {
         $data = \get_transient($transientName);
 
         return $data;
-    } // END public function checkApiCache($transientName)
+    }
 
     /**
      * Setting the transient cahe
@@ -138,5 +138,5 @@ class CacheHelper {
      */
     public static function setTransientCache($transientName, $data, $time = 2) {
         \set_transient($transientName, $data, $time * \HOUR_IN_SECONDS);
-    } // END public function setApiCache($transientName, $data)
-} // END class CacheHelper
+    }
+}

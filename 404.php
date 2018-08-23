@@ -18,7 +18,7 @@ defined('ABSPATH') or die();
             </div><!--/.col -->
         </div><!--/.row -->
         <?php
-    } // END if(!empty($breadcrumbNavigation))
+    }
     ?>
 
     <div class="row main-top">
@@ -76,15 +76,15 @@ defined('ABSPATH') or die();
             <?php
             if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
                 \get_sidebar('page');
-            } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+            }
 
             if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                 \get_sidebar('general');
-            } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+            }
             ?>
             </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!--/.row -->
 </div><!-- container -->

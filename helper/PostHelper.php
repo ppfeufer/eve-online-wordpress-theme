@@ -20,8 +20,8 @@ class PostHelper {
                 )),
                 \esc_html(get_the_author())
             );
-        } // END if(!empty($options['post_meta']['show']))
-    } // END public static function getPostMetaInformation()
+        }
+    }
 
     /**
      * Display template for post categories and tags
@@ -41,8 +41,8 @@ class PostHelper {
             } // END if(has_tag() === true)
 
             \printf('</span>');
-        } // END if(!empty($options['show_post_meta']['yes']))
-    } // END public static function getPostCategoryAndTags()
+        }
+    }
 
     /**
      * check if a post has content or not
@@ -55,21 +55,21 @@ class PostHelper {
         $content = $content_post->post_content;
 
         return \trim(\str_replace('&nbsp;','',  \strip_tags($content))) !== '';
-    } // END public static function hasContent($postID)
+    }
 
     public static function getHeaderColClasses($echo = false) {
         if(ThemeHelper::hasSidebar('header-widget-area')) {
             $contentColClass = 'col-xs-12 col-sm-9 col-md-6 col-lg-6';
         } else {
             $contentColClass = 'col-xs-12 col-sm-9 col-md-9 col-lg-9';
-        } // END if(Helper\ThemeHelper::hasSidebar('header-widget-area'))
+        }
 
         if($echo === true) {
             echo $contentColClass;
         } else {
             return $contentColClass;
-        } // END if($echo === true)
-    } // END public static function getHeaderColClasses($echo = false)
+        }
+    }
 
     public static function getMainContentColClasses($echo = false) {
         if(\is_page() || \is_home()) {
@@ -77,21 +77,21 @@ class PostHelper {
                 $contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
             } else {
                 $contentColClass = 'col-lg-12 col-md-12 col-sm-12 col-12';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
+            }
         } else {
             if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
             } else {
                 $contentColClass = 'col-lg-12 col-md-12 col-sm-12 col-12';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
-        } // END if(\is_page())
+            }
+        }
 
         if($echo === true) {
             echo $contentColClass;
         } else {
             return $contentColClass;
-        } // END if($echo === true)
-    } // END public static function getMainContentColClasses($echo = false)
+        }
+    }
 
     public static function getLoopContentClasses($echo = false) {
         if(\is_page() || \is_home()) {
@@ -99,21 +99,21 @@ class PostHelper {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
+            }
         } else {
             if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
-        } // END if(\is_page())
+            }
+        }
 
         if($echo === true) {
             echo $contentColClass;
         } else {
             return $contentColClass;
-        } // END if($echo === true)
-    } // END function public static function geLoopContentClasses($echo = false)
+        }
+    }
 
     public static function getArticleNavigationPanelClasses($echo = false) {
         if(\is_page() || \is_home()) {
@@ -121,21 +121,21 @@ class PostHelper {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
+            }
         } else {
             if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
-            } // END if(ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post'))
-        } // END if(\is_page())
+            }
+        }
 
         if($echo === true) {
             echo $contentColClass;
         } else {
             return $contentColClass;
-        } // END if($echo === true)
-    } // END function public static function getArticleNavigationPanelClasses($echo = false)
+        }
+    }
 
     public static function getContentColumnCount($echo = false) {
         if(\is_page() || \is_home()) {
@@ -143,21 +143,21 @@ class PostHelper {
                 $columnCount = 3;
             } else {
                 $columnCount = 4;
-            } // END if(ThemeHelper::hasSidebar('sidebar-page'))
+            }
         } else {
             if(ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
                 $columnCount = 3;
             } else {
                 $columnCount = 4;
-            } // END if(ThemeHelper::hasSidebar('sidebar-page'))
-        } // END if(\is_page())
+            }
+        }
 
         if($echo === true) {
             echo $columnCount;
         } else {
             return $columnCount;
-        } // END if($echo === true)
-    } // END public static function getContentColumnCount($echo = false)
+        }
+    }
 
     public static function getExcerptById($postID, $excerptLength = 35) {
         $the_post = \get_post($postID); //Gets post ID
@@ -169,10 +169,10 @@ class PostHelper {
             \array_pop($words);
             \array_push($words, '…');
             $the_excerpt = \implode(' ', $words);
-        } // END if(\count($words) > $excerptLength)
+        }
 
         $the_excerpt = '<p>' . $the_excerpt . '</p>';
 
         return $the_excerpt;
-    } // END public static function getExcerptById($postID, $excerptLength = 35)
-} // END class PostHelper
+    }
+}

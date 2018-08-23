@@ -31,8 +31,8 @@
                                         <a href="<?php echo \esc_url(\home_url()); ?>"><img src="<?php echo $siteLogo; ?>" class="img-responsive" alt="<?php echo \get_bloginfo('name'); ?>"></a>
                                     </div>
                                     <?php
-                                } // END if($siteLogo !== false)
-                            } // END if(!empty($options['name']))
+                                }
+                            }
                             ?>
                             <div class="site-title">
                                 <span class="site-name"><?php echo \get_bloginfo('name'); ?></span>
@@ -55,7 +55,7 @@
                                             'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
                                             'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
                                         ]);
-                                    } // END if(has_nav_menu('header-menu'))
+                                    }
                                     ?>
                                 </nav>
                             </div>
@@ -71,13 +71,13 @@
                                         <?php
                                         if(\function_exists('\dynamic_sidebar')) {
                                             \dynamic_sidebar('header-widget-area');
-                                        } // END if(\function_exists('dynamic_sidebar'))
+                                        }
                                         ?>
                                     </div>
                                 </div>
                             </div>
                             <?php
-                        } // END if(\EveOnline\eve_has_sidebar('header-widget-area'))
+                        }
                         ?>
                     </div>
 
@@ -114,13 +114,13 @@
                                                     'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
                                                     'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
                                                 ]);
-                                            } // END if(\has_nav_menu('main-menu'))
+                                            }
 
                                             if(\has_nav_menu('header-menu')) {
                                                 $additionalMenuClass = null;
                                                 if(\has_nav_menu('main-menu')) {
                                                     $additionalMenuClass = ' secondary-mobile-menu';
-                                                } // END if(\has_nav_menu('main-menu'))
+                                                }
 
                                                 \wp_nav_menu([
                                                     'menu' => '',
@@ -131,7 +131,7 @@
                                                     'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
                                                     'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
                                                 ]);
-                                            } // END if(has_nav_menu('header-menu'))
+                                            }
                                             ?>
                                         </div><!-- /.navbar-collapse -->
                                     </nav>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <?php
-                    } // END if(\has_nav_menu('main-menu') || \has_nav_menu('header-menu'))
+                    }
                     ?>
                 </div><!-- /.container -->
             </div><!-- /.top-main-menu -->
@@ -155,7 +155,7 @@
                                 echo \fly_get_attachment_image(\get_post_thumbnail_id(), 'header-image');
                             } else {
                                 \the_post_thumbnail('header-image');
-                            } // END if(\function_exists('\fly_get_attachment_image'))
+                            }
                             ?>
                         </figure>
                         <?php
@@ -167,7 +167,7 @@
                                 $headerImage = \fly_get_attachment_image(\z_get_attachment_id_by_url(\z_taxonomy_image_url()), 'header-image');
                             } else {
                                 $headerImage = \z_taxonomy_image(null, 'header-image', null, false);
-                            } // END if(\function_exists('\fly_get_attachment_image'))
+                            }
 
                             if($headerImage !== '') {
                                 ?>
@@ -175,14 +175,14 @@
                                     <?php echo $headerImage; ?>
                                 </figure>
                                 <?php
-                            } // END if($headerImage !== '')
-                        } // END if(\function_exists('\z_taxonomy_image'))
+                            }
+                        }
                     } else {
                         /**
                          * Render our Slider, if we have one
                          */
                         \do_action('eve_render_header_slider');
-                    } // END if(\is_single() && \has_post_thumbnail())
+                    }
                     ?>
                 </div>
             </div>
@@ -206,8 +206,8 @@
                     </div>
                 </div><!--/.row -->
                 <?php
-            } // END if(\EveOnline\Helper\ThemeHelper::hasSidebar('home-left') || \EveOnline\Helper\ThemeHelper::hasSidebar('home-middle') || \EveOnline\Helper\ThemeHelper::hasSidebar('home-right'))
-        } // END if((\is_front_page()) && (\is_paged() == false))
+            }
+        }
         ?>
 
         <main>

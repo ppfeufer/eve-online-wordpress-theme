@@ -31,8 +31,8 @@ defined('ABSPATH') or die();
                     while(\have_posts()) {
                         \the_post();
                         \get_template_part('content-single');
-                    } // END while(have_posts())
-                } // END if(have_posts())
+                    }
+                }
                 ?>
             </div> <!-- /.content -->
         </div> <!-- /.col-lg-9 /.col-md-9 /.col-sm-9 /.col-9 -->
@@ -44,15 +44,15 @@ defined('ABSPATH') or die();
                 <?php
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-post')) {
                     \get_sidebar('post');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-post'))
+                }
 
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                     \get_sidebar('general');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+                }
                 ?>
                 </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-post') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!-- /.row -->
 </div> <!-- /.container -->

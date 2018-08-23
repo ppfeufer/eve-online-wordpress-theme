@@ -25,7 +25,7 @@
  */
 function isMobile() {
     return navigator.userAgent.match(/(iPhone|iPod|iPad|blackberry|android|Kindle|htc|lg|midp|mmp|mobile|nokia|opera mini|palm|pocket|psp|sgh|smartphone|symbian|treo mini|Playstation Portable|SonyEricsson|Samsung|MobileExplorer|PalmSource|Benq|Windows Phone|Windows Mobile|IEMobile|Windows CE|Nintendo Wii)/i);
-} // END function isMobile()
+}
 
 /* Stuff that needs jQuery
 ----------------------------------------------------------------------------- */
@@ -59,7 +59,7 @@ jQuery(function($) {
          */
         if($autMenuItems.length === 0) {
             $autMenuItems = $('ul.nav > li.menu-item-has-children');
-        } // END if($autMenuItems.length === 0)
+        }
 
         // fixing the menu for desktop
         $autMenuItems.each(function() {
@@ -84,7 +84,7 @@ jQuery(function($) {
                 // remove the parents link on mobile devices
                 if(isMobile()) {
                     $(this).find('>a').attr('href', '#');
-                } // END if(isMobile())
+                }
 
                 // 1st Level
                 $(this).find('>ul.children').addClass('dropdown-menu multi-level');
@@ -92,7 +92,7 @@ jQuery(function($) {
                 // 2nd Level and maybe more?
                 $(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu');
                 $(this).find('>ul.children ul').addClass('dropdown-menu');
-            } // END if(device === 'desktop')
+            }
 
             // fixing stuff for mobile
             if(device === 'mobile') {
@@ -121,9 +121,9 @@ jQuery(function($) {
                 // 2nd Level and maybe more?
                 $(this).find('>ul.children li.page_item_has_children').addClass('dropdown-submenu');
                 $(this).find('>ul.children ul').addClass('dropdown-menu');
-            } // END if(device == 'mobile')
+            }
         });
-    } // END function fixAutomaticMenu(viewport)
+    }
 
     (function($, viewport) {
         // the initial viewport (on page load)
@@ -131,7 +131,7 @@ jQuery(function($) {
             fixAutomaticMenu('mobile');
         } else {
             fixAutomaticMenu('desktop');
-        } // END if(viewport.is('xs'))
+        }
 
         // if the browser gets resized
         $(window).resize(
@@ -140,7 +140,7 @@ jQuery(function($) {
                     fixAutomaticMenu('mobile');
                 } else {
                     fixAutomaticMenu('desktop');
-                } // END if(viewport.is('xs'))
+                }
             }, 1)
         );
     })(jQuery, ResponsiveBootstrapToolkit);
@@ -150,7 +150,7 @@ jQuery(function($) {
         $('.navbar .dropdown > a').click(function() {
             location.href = this.href;
         });
-    } // END if(!isMobile())
+    }
 
     /**
      * Fix for youtube, vimeo and videopress oEmbed being responsive
@@ -162,7 +162,7 @@ jQuery(function($) {
         if(youtubeVideoData !== null) {
             var youtubeVideoID = youtubeVideoData['1'];
             $(this).attr('id', 'youtube-video-' + youtubeVideoID);
-        } // END if(youtubeVideoData != null)
+        }
 
         // removing non needed attributes from iframe and wrap it in our div
         $(this).removeAttr('height').removeAttr('width').wrap('<div class="embed-video-container"></div>');
@@ -222,13 +222,13 @@ jQuery(function($) {
          */
         var maxHeight = contentHeight - (headerHeight + footerHeight);
 
-//		this.$content.css({
-//			'overflow': 'hidden'
-//		});
+//        this.$content.css({
+//            'overflow': 'hidden'
+//        });
 
         this.$element.find('.modal-body').css({
             'max-height': maxHeight
-//			'overflow-y': 'auto'
+//            'overflow-y': 'auto'
         });
     } // END function setModalMaxHeight(element)
 
@@ -247,7 +247,7 @@ jQuery(function($) {
     $(window).resize(function() {
         if($('.modal.in').length !== 0) {
             setModalMaxHeight($('.modal.in'));
-        } // END if($('.modal.in').length !== 0)
+        }
     });
 
     /**
@@ -259,9 +259,9 @@ jQuery(function($) {
         /**
          * don't get triggered by:
          * the bootstrap slider or any other slider that uses the same data attributes
-         *		data-slide = next/prev
+         *      data-slide = next/prev
          * bootstrap accordion and other bootstrap elements that only toggle
-         *		data-toggle = collapse
+         *      data-toggle = collapse
          */
         if($(this).data('slide') === 'prev' || $(this).data('slide') === 'next' || $(this).data('toggle') === 'collapse' || $(this).data('toggle') === 'tab') {
             return;
@@ -299,10 +299,10 @@ jQuery(function($) {
                      */
                     if(hash !== '#pagetop' && hash !== '#respond') {
                         window.location.hash = hash;
-                    } // END if(hash !== '#pagetop')
+                    }
                 });
-            } // END if($(hash).offset() !== undefined)
-        } // End if(this.hash !== '')
+            }
+        }
     });
 
     /**

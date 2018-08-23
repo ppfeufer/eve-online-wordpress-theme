@@ -12,14 +12,13 @@ defined('ABSPATH') or die();
         <!--
         // Breadcrumb Navigation
         -->
-        <!--<div class="row">-->
         <div class="clearfix">
             <div class="col-md-12 breadcrumb-wrapper">
                 <?php echo $breadcrumbNavigation; ?>
             </div><!--/.col -->
         </div><!--/.row -->
         <?php
-    } // END if(!empty($breadcrumbNavigation))
+    }
     ?>
 
     <!--<div class="row main-content">-->
@@ -42,12 +41,12 @@ defined('ABSPATH') or die();
                             $tag_description = \tag_description();
                             if($tag_description) {
                                 echo \apply_filters('tag_archive_meta', '<div class="tag-archive-meta">' . $tag_description . '</div>');
-                            } // END if($tag_description)
+                            }
                         } elseif(\is_category()) {
                             \printf(\__('Category Archives: %s', 'eve-online'), '<span>' . \single_cat_title('', false) . '</span>');
                         } else {
                             \_e('Blog Archives', 'eve-online');
-                        } //END if(is_day())
+                        }
                         ?>
                     </h1>
                     <?php
@@ -55,7 +54,7 @@ defined('ABSPATH') or die();
                     $category_description = \category_description();
                     if($category_description) {
                         echo \apply_filters('category_archive_meta', '<div class="category-archive-meta">' . $category_description . '</div>');
-                    } // END if($category_description)
+                    }
                     ?>
                 </header>
                 <?php
@@ -65,7 +64,7 @@ defined('ABSPATH') or die();
 
                         echo '<div class="gallery-row row">';
                         echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
-                    } // END if(\get_post_type() === 'post')
+                    }
 
                     while(\have_posts()) {
                         \the_post();
@@ -79,7 +78,7 @@ defined('ABSPATH') or die();
                         if(\get_post_type() === 'post') {
                             echo '</li>';
                         }
-                    } // END while (have_posts())
+                    }
 
                     if(\get_post_type() === 'post') {
                         echo '</ul>';
@@ -93,14 +92,14 @@ defined('ABSPATH') or die();
                                     });
                                 });
                                 </script>';
-                    } // END if(\get_post_type() === 'post')
-                } // END if(have_posts())
+                    }
+                }
 
                 if(\function_exists('wp_pagenavi')) {
                     \wp_pagenavi();
                 } else {
                     \WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
-                } // END if(\function_exists('wp_pagenavi'))
+                }
                 ?>
             </div> <!-- /.content -->
         </div> <!-- /.col -->
@@ -112,15 +111,15 @@ defined('ABSPATH') or die();
             <?php
             if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
                 \get_sidebar('page');
-            } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+            }
 
             if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                 \get_sidebar('general');
-            } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+            }
             ?>
             </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!--/.row -->
 </div><!-- container -->

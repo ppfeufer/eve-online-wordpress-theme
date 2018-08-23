@@ -51,14 +51,14 @@ class BootstrapVideoGallery {
     public function __construct() {
         $this->registerShortcode();
         $this->registerMetabox();
-    } // END public function __construct()
+    }
 
     public function registerShortcode() {
         \add_shortcode('videogallery', [
             $this,
             'shortcodeVideogallery'
         ]);
-    } // END public function registerShortcode()
+    }
 
     public function shortcodeVideogallery($attributes) {
         $args = \shortcode_atts([
@@ -76,7 +76,7 @@ class BootstrapVideoGallery {
 
         if(!empty($id)) {
             $idList = (\preg_match('/,( )/', $id)) ? \explode(',', $id) : [$id];
-        } // END if(!empty($id))
+        }
 
         // loop through the pages and build the gallery code ....
         $uniqueID = \uniqid();
@@ -92,7 +92,7 @@ class BootstrapVideoGallery {
 
             if($pageChildren) {
                 $childPages = $this->getVideoPagesFromChildren($pageChildren);
-            } // END if($children)
+            }
 
             if(!empty($childPages)) {
                 foreach($childPages as $child) {
@@ -102,15 +102,15 @@ class BootstrapVideoGallery {
 
                     if($child->post_content) {
                         $videoGalleryHtml .= '<p>' . EveOnline\Helper\StringHelper::cutString($child->post_content, '140') . '</p>';
-                    } // END if($child->post_content)
+                    }
 
                     $videoGalleryHtml .= '</li>';
 
                     \wp_reset_query();
-                } // END foreach($childPages as $child)
+                }
             } else {
                 $videoGalleryHtml = false;
-            } // END if($childPages)
+            }
         } else {
             if(\is_singular()) {
                 $videos = \explode(',', $videoList);
@@ -126,19 +126,19 @@ class BootstrapVideoGallery {
                         $videoGalleryHtml .= $videoData->html;
                         $videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . $video . '" rel="external">' . $videoData->title . '</a></h2><span class="bootstrap-video-gallery-video-author small">' . sprintf(\__('&copy %1$s', 'eve-online'), $videoData->author_name) . ' (<a href="' . $videoData->author_url . '" rel=external">' . \__('Channel', 'eve-online') . '</a>)</span></header>';
                         $videoGalleryHtml .= '</li>';
-                    } // END if(\preg_match($youtubePattern, $video) || \preg_match($vimeoPattern, $video))
-                } // END foreach($videos as $video)
+                    }
+                }
             } else {
                 $videoGalleryHtml .= '<li>' . \__('The video gallery can only be displayed on a single site', 'eve-online') . '</li>';
             }
-        } // END if(empty($videoList))
+        }
 
         $videoGalleryHtml .= '</ul>';
         $videoGalleryHtml .= '</div>';
 
         if(empty($classes)) {
             $classes = EveOnline\Helper\PostHelper::getLoopContentClasses();
-        } // END if(empty($classes))
+        }
 
         $videoGalleryHtml .= '<script type="text/javascript">
                                 jQuery(document).ready(function() {
@@ -159,10 +159,10 @@ class BootstrapVideoGallery {
             $videoGalleryHtml .= EveOnline\Helper\NavigationHelper::getPreviousPostsLink(\__('Newer Videos <span class="meta-nav">&rarr;</span>', 'eve-online'), false);
             $videoGalleryHtml .= '</div>';
             $videoGalleryHtml .= '</nav><!-- #nav-videogallery .navigation -->';
-        } // END if($videoPages->max_num_pages > 1)
+        }
 
         return $videoGalleryHtml;
-    } // END public function shortcodeVideogallery($attributes)
+    }
 
     public function registerMetabox() {
         \add_action('add_meta_boxes', [
@@ -174,11 +174,11 @@ class BootstrapVideoGallery {
             $this,
             'saveMetaboxData'
         ]);
-    } // END function public function registerMetabox()
+    }
 
     public function metaboxVideopage() {
         \add_meta_box('eve-video-page-box', \__('Video Gallery Page?', 'eve-online'), [$this, 'renderVideopageMetabox'], 'page', 'side');
-    } // END public function metaboxVideopage()
+    }
 
     public function renderVideopageMetabox($post) {
         $eve_page_is_video_gallery_page = \get_post_meta($post->ID, 'eve_page_is_video_gallery_page', true);
@@ -224,10 +224,10 @@ class BootstrapVideoGallery {
                 </script>
             </p>
             <?php
-        } // END if(!empty($eve_page_corp_eve_ID))
+        }
 
         \wp_nonce_field('save', '_eve_video_page_nonce');
-    } // END public function renderVideopageMetabox()
+    }
 
     /**
      * Save the setting
@@ -240,15 +240,15 @@ class BootstrapVideoGallery {
 
         if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save')) {
             return false;
-        } // END if(empty($postNonce) || !\wp_verify_nonce($postNonce, 'save'))
+        }
 
         if(!\current_user_can('edit_post', $postID)) {
             return false;
-        } // END if(!current_user_can('edit_post', $postID))
+        }
 
         if(defined('DOING_AJAX')) {
             return false;
-        } // END if(defined('DOING_AJAX'))
+        }
 
         \update_post_meta($postID, 'eve_page_video_url', \filter_input(\INPUT_POST, 'eve_page_video_url'));
 
@@ -257,11 +257,12 @@ class BootstrapVideoGallery {
 
         $onlyListForParent = \filter_input(\INPUT_POST, 'eve_page_video_only_list_in_parent_gallery') == "on";
         \update_post_meta($postID, 'eve_page_video_only_list_in_parent_gallery', $onlyListForParent);
-    } // END function eve_corp_page_setting_save($postID)
+    }
 
     private function getVideoPages($postPerPage) {
         global $paged;
 
+        // Set up the objects needed
         $queryArgs = [
             'posts_per_page' => $postPerPage,
             'post_type' => 'page',
@@ -269,17 +270,16 @@ class BootstrapVideoGallery {
             'meta_value' => 1,
             'paged' => $paged
         ];
-        // Set up the objects needed
 
         $videoPages = new \WP_Query($queryArgs);
 
         return $videoPages;
-    } // END private function getChildPages()
+    }
 
     private function getVideoPagesFromChildren($children) {
         if(!\is_array($children) || \count($children) === 0) {
             return false;
-        } // END if(!is_array($children) || count($children) === 0)
+        }
 
         $videoPages = null;
         foreach($children as $id => $child) {
@@ -293,9 +293,9 @@ class BootstrapVideoGallery {
                 $videoPages[$id]->eve_page_video_only_list_in_parent_gallery = $eve_page_is_video_only_list_in_parent;
                 $videoPages[$id]->eve_page_video_url = $eve_page_video_url;
                 $videoPages[$id]->eve_page_video_oEmbed_code = \wp_oembed_get($eve_page_video_url);
-            } // END if(isset($eve_page_is_video_gallery_page))
-        } // END foreach($children as $id => $child)
+            }
+        }
 
         return $videoPages;
-    } // END private function getVideoPagesFromChildren($children)
-} // END class BootstrapVideoGallery
+    }
+}

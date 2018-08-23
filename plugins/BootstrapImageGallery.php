@@ -18,7 +18,7 @@ class BootstrapImageGallery {
 
     public function init() {
         \add_filter('post_gallery', [$this, 'imageGallery'], 10, 2);
-    } // END public function init()
+    }
 
     public function imageGallery($content, $attr) {
         global $instance, $post;
@@ -32,8 +32,8 @@ class BootstrapImageGallery {
 
             if(!$attr['orderby']) {
                 unset($attr['orderby']);
-            } // END if(!$attr['orderby'])
-        } // END if(isset($attr['orderby']))
+            }
+        }
 
         \extract(\shortcode_atts([
             'order' => 'ASC',
@@ -52,7 +52,7 @@ class BootstrapImageGallery {
 
         if('RAND' == $order) {
             $orderby = 'none';
-        } // END if('RAND' == $order)
+        }
 
         if($include) {
             $include = \preg_replace('/[^0-9,]+/', '', $include);
@@ -70,7 +70,7 @@ class BootstrapImageGallery {
 
             foreach($_attachments as $key => $val) {
                 $attachments[$val->ID] = $_attachments[$key];
-            } // END foreach($_attachments as $key => $val)
+            }
         } elseif($exclude) {
             $exclude = \preg_replace('/[^0-9,]+/', '', $exclude);
 
@@ -92,21 +92,21 @@ class BootstrapImageGallery {
                 'order' => $order,
                 'orderby' => $orderby
             ]);
-        } // END if($include)
+        }
 
         if(empty($attachments)) {
             return;
-        } // END if(empty($attachments))
+        }
 
         if(\is_feed()) {
             $output = "\n";
 
             foreach($attachments as $att_id => $attachment) {
                 $output .= \wp_get_attachment_link($att_id, 'post-loop-thumbnail', true) . "\n";
-            } // END foreach($attachments as $att_id => $attachment)
+            }
 
             return $output;
-        } // END if(is_feed())
+        }
 
         $itemtag = \tag_escape($itemtag);
         $captiontag = \tag_escape($captiontag);
@@ -138,7 +138,7 @@ class BootstrapImageGallery {
 
             $output .= '</' . $itemtag . '>' . "\n";
             $output .= '</li>' . "\n";
-        } // END foreach($attachments as $id => $attachment)
+        }
 
         $output .= '</ul></div>' . "\n";
         $output .= '<script type="text/javascript">
@@ -151,7 +151,7 @@ class BootstrapImageGallery {
             </script>';
 
         return $output;
-    } // END public function imageGallery($content, $attr)
+    }
 
     /**
      * Getting pages and Articles that contain a gallery
@@ -190,16 +190,16 @@ class BootstrapImageGallery {
 
                         if(\is_array($atts) && \array_key_exists('ids', $atts)) {
                             $items[$post->ID] = $post->post_title;
-                        } // END if(\is_array($atts) && \array_key_exists('ids', $atts))
-                    } // END foreach($keys as $key)
-                } // END if(\preg_match_all('/'. $pattern .'/s', $post->post_content, $matches) && \array_key_exists(2, $matches) && \in_array('gallery', $matches[2]))
-            } // END if(has_shortcode($post->post_content, 'gallery'))
-        } // END foreach($result->posts as $post)
+                        }
+                    }
+                }
+            }
+        }
 
         \wp_reset_postdata();
 
         return $items;
-    } // END public function getGalleryPages()
+    }
 
     /**
      * Get all images from a gallery page in an array
@@ -239,15 +239,15 @@ class BootstrapImageGallery {
                         if($images->have_posts()) {
                             foreach($images->posts as $image) {
                                 $galleryImages[$image->ID] = $image->guid;
-                            } // END foreach($images->posts as $image)
-                        } // END if($images->have_posts())
+                            }
+                        }
 
                         \wp_reset_query();
-                    } // END if(\is_array($atts) && \array_key_exists('ids', $atts))
-                } // END foreach($keys as $key)
-            } // END if(\preg_match_all('/'. $pattern .'/s', $post->post_content, $matches) && \array_key_exists(2, $matches) && \in_array('gallery', $matches[2]))
-        } // END if(has_shortcode($post->post_content, 'gallery'))
+                    }
+                }
+            }
+        }
 
         return $galleryImages;
-    } // END public function getGalleryImages($postID)
-} // END class BootstrapImageGallery
+    }
+}

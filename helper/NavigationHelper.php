@@ -26,8 +26,8 @@ class NavigationHelper {
                 </div>
             </nav><!-- #<?php echo $nav_id; ?> .navigation -->
             <?php
-        } // END if($wp_query->max_num_pages > 1)
-    } // END public static function getContentNav($nav_id)
+        }
+    }
 
     /**
      * Retrieves the next posts page link.
@@ -51,17 +51,17 @@ class NavigationHelper {
 
         if(!$max_page) {
             $max_page = $wp_query->max_num_pages;
-        } // END if(!$max_page)
+        }
 
         if(!$paged) {
             $paged = 1;
-        } // END if(!$paged)
+        }
 
         $nextpage = \intval($paged) + 1;
 
         if(null === $label) {
             $label = \__('&laquo; Previous Page', 'eve-online');
-        } // END if(null === $label)
+        }
 
         if(!\is_single() && ($nextpage <= $max_page)) {
             /**
@@ -78,8 +78,8 @@ class NavigationHelper {
             } else {
                 return '<a class="btn btn-default" href="' . \next_posts($max_page, false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
             }
-        } // END if(!\is_single() && ($nextpage <= $max_page))
-    } // END public static function getNextPostsLink($label = null, $max_page = 0, $echo = false)
+        }
+    }
 
     /**
      * Retrieves the previous posts page link.
@@ -95,7 +95,7 @@ class NavigationHelper {
 
         if(null === $label) {
             $label = \__('Next Page &raquo;', 'eve-online');
-        } // END if(null === $label)
+        }
 
         if(!\is_single() && $paged > 1) {
             /**
@@ -112,8 +112,8 @@ class NavigationHelper {
             } else {
                 return '<a class="btn btn-default" href="' . \previous_posts(false) . "\" $attr>" . \preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
             }
-        } // END if(!\is_single() && $paged > 1)
-    } // END public static function getPreviousPostsLink($label = null, $echo = false)
+        }
+    }
 
     /**
      * Get the Breadcrumb Navigation
@@ -152,7 +152,7 @@ class NavigationHelper {
 
                 if($thisCat->parent != 0) {
                     $breadcrumb .= '<li>' . \get_category_parents($parentCat, true, $sep . '</li><li>') . '</li>';
-                } // END if($thisCat->parent != 0)
+                }
 
                 $format = $before . ($addTexts ? (\__('Archive by category ', 'eve-online') . '"%s"') : '%s') . $after;
 
@@ -228,17 +228,17 @@ class NavigationHelper {
                 $breadcrumb .= \sprintf($format, $userdata->display_name);
             } elseif(\is_404()) {
                 $breadcrumb .= $before . \__('Error 404', 'eve-online') . $after;
-            } // END if(is_category())
+            }
 
             $breadcrumb .= '</ul>';
-        } // END if(!is_home() && !is_front_page() || is_paged())
+        }
 
         if($echo === true) {
             echo $breadcrumb;
         } else {
             return $breadcrumb;
-        } // END if($echo === true)
-    } // END public static function getBreadcrumbs($addTexts = true)
+        }
+    }
 
     /**
      * Articlenavigation.
@@ -271,20 +271,20 @@ class NavigationHelper {
                     $htmlOutput .= \fly_get_attachment_image(\get_post_thumbnail_id($previousPostObject->ID), 'post-loop-thumbnail');
                 } else {
                     $htmlOutput .= \get_the_post_thumbnail($previousPostObject->ID, 'post-loop-thumbnail');
-                } // END if(\function_exists('\fly_get_attachment_image'))
+                }
 
-//				$htmlOutput .= '<figcaption>' . $previousPostObject->post_title . '</figcaption>';
+//                $htmlOutput .= '<figcaption>' . $previousPostObject->post_title . '</figcaption>';
                 $htmlOutput .= '</figure>';
                 $htmlOutput .= '</a>';
                 $htmlOutput .= '</div>';
             } else {
                 // Article Image Plaveholder. We don't have it yet ....
-//				$htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($previousPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . \esc_html($previousPostObject->post_title) . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
-            } // END if(\has_post_thumbnail($obj_PreviousPost->ID))
+//                $htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($previousPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . \esc_html($previousPostObject->post_title) . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
+            }
 
             $htmlOutput .= '<div><em>' . \esc_html($previousPostObject->post_title) . '</em></div>';
             $htmlOutput .= '</div>';
-        } // END if($obj_PreviousPost)
+        }
 
         if($nextPostObject) {
             $htmlOutput .= '<div class="nav-next ' . \WordPress\Themes\EveOnline\Helper\PostHelper::getArticleNavigationPanelClasses() . ' pull-right text-align-right clearfix">';
@@ -299,20 +299,20 @@ class NavigationHelper {
                     $htmlOutput .= \fly_get_attachment_image(\get_post_thumbnail_id($nextPostObject->ID), 'post-loop-thumbnail');
                 } else {
                     $htmlOutput .= \get_the_post_thumbnail($nextPostObject->ID, 'post-loop-thumbnail');
-                } // END if(\function_exists('\fly_get_attachment_image'))
+                }
 
-//				$htmlOutput .= '<figcaption>' . $nextPostObject->post_title . '</figcaption>';
+//                $htmlOutput .= '<figcaption>' . $nextPostObject->post_title . '</figcaption>';
                 $htmlOutput .= '</figure>';
                 $htmlOutput .= '</a>';
                 $htmlOutput .= '</div>';
             } else {
                 // Article Image Plaveholder. We don't have it yet ....
-//				$htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($nextPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . \esc_html($nextPostObject->post_title) . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
-            } // END if(has_post_thumbnail($obj_NextPost->ID))
+//                $htmlOutput .= '<a class="related-article-header" href="' . \get_permalink($nextPostObject->ID) . '" rel="bookmark" title="' . \__('Permanent link to: ', 'eve-online') . \esc_html($nextPostObject->post_title) . '"><img width="251" height="115" title="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" alt="' . \__('Placeholder Postthumbnail Related Article', 'eve-online') . '" class="attachment-related-article wp-post-image" src="' . get_theme_file_uri('/images/placeholder/postthumbnail-related-article.jpg') . '" /></a>';
+            }
 
             $htmlOutput .= '<div><em>' . \esc_html($nextPostObject->post_title) . '</em></div>';
             $htmlOutput .= '</div>';
-        } // END if($obj_NextPost)
+        }
 
         $htmlOutput .= '</div>';
         $htmlOutput .= '</nav>';
@@ -321,6 +321,6 @@ class NavigationHelper {
             echo $htmlOutput;
         } else {
             return $htmlOutput;
-        } // END if($echo === true)
-    } // END function getArticleNavigation()
-} // END class NavigationHelper
+        }
+    }
+}

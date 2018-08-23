@@ -13,7 +13,7 @@ defined('ABSPATH') or die();
                     echo \fly_get_attachment_image(\get_post_thumbnail_id(), 'post-loop-thumbnail');
                 } else {
                     \the_post_thumbnail('post-loop-thumbnail');
-                } // END if(\function_exists('\fly_get_attachment_image'))
+                }
                 ?>
             </figure>
         </a>
@@ -32,7 +32,7 @@ defined('ABSPATH') or die();
                 <?php
                 echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
                 \WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
-                \edit_post_link(__('Edit', 'eve-online'));
+                \edit_post_link(\__('Edit', 'eve-online'));
                 ?>
             </p>
         </aside><!--end .entry-details -->
@@ -55,7 +55,7 @@ defined('ABSPATH') or die();
                 ?>
             </div><!-- end .entry-content -->
             <?php
-        } // END if(is_search())
+        }
         ?>
     </section>
 </article><!-- /.post-->

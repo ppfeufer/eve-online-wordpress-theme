@@ -29,7 +29,7 @@ function eve_switch_theme() {
     unset($_GET['activated']);
 
     \add_action('admin_notices', '\\WordPress\Themes\EveOnline\Addons\eve_upgrade_notice');
-} // END function eve_switch_theme()
+}
 \add_action('after_switch_theme', '\\WordPress\Themes\EveOnline\Addons\eve_switch_theme');
 
 /**
@@ -46,7 +46,7 @@ function eve_upgrade_notice() {
     $message = \sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version'));
 
     \printf('<div class="error"><p>%s</p></div>', $message);
-} // END function eve_upgrade_notice()
+}
 
 /**
  * Prevents the Customizer from being loaded on WordPress versions prior to 4.7.
@@ -59,7 +59,7 @@ function eve_customize() {
     \wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')), '', [
         'back_link' => true,
     ]);
-} // END function eve_customize()
+}
 \add_action('load-customize.php', '\\WordPress\Themes\EveOnline\Addons\eve_customize');
 
 /**
@@ -74,6 +74,6 @@ function eve_preview() {
 
     if(!empty($preview)) {
         \wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')));
-    } // END if(!empty($preview))
-} // END function eve_preview()
+    }
+}
 \add_action('template_redirect', '\\WordPress\Themes\EveOnline\Addons\eve_preview');

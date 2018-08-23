@@ -29,7 +29,7 @@ class Whitelabel {
      * Fire the actions to whitelabel WordPress
      *
      * Maybe edit the .htaccess file aswell
-     * 		RewriteRule ^login$ http://www.website.de/wp-login.php [NC,L]
+     *      RewriteRule ^login$ http://www.website.de/wp-login.php [NC,L]
      */
     public function __construct() {
         /**
@@ -61,7 +61,7 @@ class Whitelabel {
 
         $this->initActions();
         $this->initFilters();
-    } // END function __construct()
+    }
 
     public function initActions() {
         /**
@@ -69,7 +69,7 @@ class Whitelabel {
          */
         \add_action('login_head', [$this, 'customLoginLogoStyle']);
         \add_action('wp_dashboard_setup', [$this, 'addDashboardWidget']);
-    } // END public function initActions()
+    }
 
     public function initFilters() {
         /**
@@ -78,11 +78,11 @@ class Whitelabel {
         \add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
         \add_filter('login_headerurl', [$this, 'loginLogoUrl']);
         \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
-    } // END public function initFilters()
+    }
 
     private function getBackgroundImage() {
         return EveOnline\Helper\ThemeHelper::getThemeBackgroundImage();
-    } // END private function getBackgroundImage()
+    }
 
     /**
      * Custom URL Title
@@ -91,7 +91,7 @@ class Whitelabel {
      */
     public function loginLogoTitle() {
         return \get_bloginfo('name') . ' - ' . \get_bloginfo('description');
-    } // END public function loginLogoTitle()
+    }
 
     /**
      * Custom URL linked by the Logo on Login page
@@ -99,9 +99,8 @@ class Whitelabel {
      * @return Ambigous <string, mixed, boolean>
      */
     public function loginLogoUrl() {
-//		return \get_bloginfo('wpurl');
         return \site_url();
-    } // END public function loginLogoUrl()
+    }
 
     /**
      * Developer Info in Admin Footer
@@ -111,7 +110,7 @@ class Whitelabel {
             \__('Customized by:', 'eve-online'),
             ' <a href="' . $this->developerWebsite . '" target="_blank">' . $this->developerName . '</a>'
         );
-    } // END public function modifyAdminFooter()
+    }
 
     /**
      * Dashboard Widget with Developer Contact Info
@@ -128,11 +127,11 @@ class Whitelabel {
             <li><strong>' . \__('Customized by:', 'eve-online') . '</strong> ' . $this->developerName . '</li>
             <li><strong>' . \__('Discord:', 'eve-online') . '</strong> <a href="' . $this->developerDiscord . '" target="_blank">' . $this->developerDiscord . '</a></li>
         </ul>';
-    } // END public function themeInfo()
+    }
 
     public function addDashboardWidget() {
-        \wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', 'eve-online'), [$this, 'themeInfo']);
-    } // END public function addDashboardWidget()
+        \wp_add_dashboard_widget('wp_dashboard_widget', \__('Developer Contact', 'eve-online'), [$this, 'themeInfo']);
+    }
 
     /**
      * Custom Logo on Login Page
@@ -145,14 +144,14 @@ class Whitelabel {
 
         if($this->getLoginLogo() === null) {
             $size = 1;
-        } // END if($loginLogo === null)
+        }
 
         if($type !== null && $hasCustomLoginLogo === false) {
                 $size = ($type === 'alliance') ? 128 : 256;
-        } // END if($type !== null && $hasCustomLoginLogo === false)
+        }
 
         echo $this->getStyleSheet($size);
-    } // END public function customLoginLogoStyle()
+    }
 
     /**
      * Getting the Login Page CSS
@@ -203,17 +202,19 @@ class Whitelabel {
          * what ever we might have as logo here.
          */
         if(!empty($this->themeSettings['custom_login_logo'])) {
+            // Do nothing here
         } else {
             $type = (!empty($this->themeSettings['type'])) ? $this->themeSettings['type'] : null;
             $name = (!empty($this->themeSettings['name'])) ? $this->themeSettings['name'] : null;
 
             if($type !== null && $name !== null) {
                 $size = ($type === 'alliance') ? 128 : 256;
+
                 // getting the logo
                 $logo = $this->eveApi->getEntityLogoByName($name, $type, true, $size);
-            } // END if($type !== null && $name !== null)
-        } // END if(!empty($this->themeSettings['custom_login_logo']))
+            }
+        }
 
         return $logo;
-    } // END private function getLoginLogo()
-} // END class Whitelabel
+    }
+}

@@ -19,7 +19,7 @@ defined('ABSPATH') or die();
             </div><!--/.col -->
         </div><!--/.row -->
         <?php
-    } // END if(!empty($breadcrumbNavigation))
+    }
     ?>
 
     <!--<div class="row main-content">-->
@@ -33,7 +33,7 @@ defined('ABSPATH') or die();
 
                         echo '<div class="gallery-row row">';
                         echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
-                    } // END if(\get_post_type() === 'post')
+                    }
 
                     while(\have_posts()) {
                         \the_post();
@@ -61,16 +61,16 @@ defined('ABSPATH') or die();
                                     });
                                 });
                                 </script>';
-                    } // END if(\get_post_type() === 'post')
+                    }
                 } else {
 
-                } // END if(have_posts())
+                }
 
                 if(\function_exists('\wp_pagenavi')) {
                     \wp_pagenavi();
                 } else {
                     \WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
-                } // END if(\function_exists('wp_pagenavi'))
+                }
                 ?>
             </div>
         </div><!--/.col -->
@@ -82,15 +82,15 @@ defined('ABSPATH') or die();
                 <?php
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
                     \get_sidebar('page');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page'))
+                }
 
                 if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
                     \get_sidebar('general');
-                } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+                }
                 ?>
             </div><!--/.col -->
             <?php
-        } // END if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general'))
+        }
         ?>
     </div> <!--/.row -->
 </div><!-- container -->

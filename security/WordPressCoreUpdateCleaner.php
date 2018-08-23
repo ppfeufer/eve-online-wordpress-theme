@@ -19,7 +19,7 @@ class WordPressCoreUpdateCleaner {
         \add_action('core_upgrade_preamble', [$this, 'updateCleaner']);
         \add_action('upgrader_pre_install', [$this, 'updateCleaner']);
         \add_action('upgrader_post_install', [$this, 'updateCleaner']);
-    } // END function __construct()
+    }
 
     /**
      * Performs the update cleaning.
@@ -43,7 +43,7 @@ class WordPressCoreUpdateCleaner {
 
         if('do-core-upgrade' !== $action && 'do-core-reinstall' !== $action) {
             return;
-        } // END if('do-core-upgrade' !== $action && 'do-core-reinstall' !== $action)
+        }
 
         // Remove license, readme files
         $remove_files = [
@@ -67,9 +67,9 @@ class WordPressCoreUpdateCleaner {
             if(\file_exists(\ABSPATH . $file)) {
                 if(\unlink(\ABSPATH . $file)) {
                     \show_message(\__('Removing', 'eve-online') . ' ' . $file . '...');
-                } // END if(\unlink(\ABSPATH . $file))
-            } // END if(\file_exists(\ABSPATH . $file))
-        } // END foreach($remove_files as $file)
+                }
+            }
+        }
 
         // Load the updated default text localization domain for new strings
         \load_default_textdomain();
@@ -83,5 +83,5 @@ class WordPressCoreUpdateCleaner {
         include(\ABSPATH . 'wp-admin/admin-footer.php');
 
         exit();
-    } // END function updateCleaner($new_version)
-} // END class WordPressCoreUpdateCleaner
+    }
+}

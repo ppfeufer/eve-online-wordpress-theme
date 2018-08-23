@@ -14,14 +14,14 @@ namespace WordPress\Themes\EveOnline;
  * This is to determine between "development/staging" and "live/production" environments.
  * If you are testing this theme in your own test environment, make sure you
  * set the following in your webservers vhosts config.
- * 		SetEnv APPLICATION_ENV "development"
+ *      SetEnv APPLICATION_ENV "development"
  */
 \defined('APPLICATION_ENV') || \define('APPLICATION_ENV', (\preg_match('/development/', \getenv('APPLICATION_ENV')) || \preg_match('/staging/', \getenv('APPLICATION_ENV'))) ? \getenv('APPLICATION_ENV') : 'production');
 
 /**
  * EVE Online only works in WordPress 4.7 or later.
  */
-if(\version_compare($GLOBALS['wp_version'], '4.7-alpha', '<')) {
+if(\version_compare($GLOBALS['wp_version'], '4.7', '<')) {
     require_once(\get_template_directory() . '/addons/Compatibility.php');
 
     return false;
@@ -58,7 +58,6 @@ require_once(\get_theme_file_path('/plugins/BootstrapContentGrid.php'));
 require_once(\get_theme_file_path('/plugins/Corppage.php'));
 require_once(\get_theme_file_path('/plugins/Whitelabel.php'));
 require_once(\get_theme_file_path('/plugins/MoCache.php'));
-require_once(\get_theme_file_path('/plugins/EncodeEmailAddresses.php'));
 require_once(\get_theme_file_path('/plugins/ChildpageMenu.php'));
 require_once(\get_theme_file_path('/plugins/LatestBlogPosts.php'));
 require_once(\get_theme_file_path('/plugins/EveOnlineAvatar.php'));
@@ -78,8 +77,8 @@ require_once(\get_theme_file_path('/admin/ThemeSettings.php'));
 /**
  * WP Filesystem API
  */
-require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
-require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
+require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
+require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 
 /**
  * Initiate needed general Classes
@@ -92,7 +91,6 @@ new Plugins\BootstrapImageGallery;
 new Plugins\BootstrapVideoGallery;
 new Plugins\BootstrapContentGrid;
 new Plugins\Corppage;
-//new Plugins\EncodeEmailAddresses;
 new Plugins\Whitelabel;
 new Plugins\ChildpageMenu;
 new Plugins\LatestBlogPosts;
@@ -151,11 +149,10 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts')) {
 } // END if(!\function_exists('\WordPress\Themes\EveOnline\eve_enqueue_scripts'))
 \add_action('wp_enqueue_scripts', '\\WordPress\Themes\EveOnline\eve_enqueue_scripts');
 
-if(!function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
+if(!\function_exists('\WordPress\Themes\EveOnline\eve_get_javascripts')) {
     function eve_get_javascripts() {
         return Helper\ThemeHelper::getThemeJavaScripts();
     }
-
 }
 
 /**
@@ -567,7 +564,7 @@ function eve_widgets_init() {
  */
 if(!\function_exists('\WordPress\Themes\EveOnline\eve_excerpt_more')) {
     function eve_excerpt_more($more) {
-        return ' ' . $more . '<br/><a class="read-more" href="' . \get_permalink(\get_the_ID()) . '">' . __('Read More', 'eve-online') . '</a>';
+        return ' ' . $more . '<br/><a class="read-more" href="' . \get_permalink(\get_the_ID()) . '">' . \__('Read More', 'eve-online') . '</a>';
     }
 }
 \add_filter('excerpt_more', '\\WordPress\Themes\EveOnline\eve_excerpt_more');
@@ -648,7 +645,7 @@ function eve_wp_title($title, $sep) {
  */
 function eve_link_pages($args = []) {
     $arguments = \apply_filters('wp_link_pages_args', \wp_parse_args($args, [
-        'before' => '<p>' . __('Pages:', 'eve-online'),
+        'before' => '<p>' . \__('Pages:', 'eve-online'),
         'after' => '</p>',
         'before_link' => '',
         'after_link' => '',
@@ -728,14 +725,14 @@ function eve_get_theme_custom_style() {
     if(!empty($themeSettings['background_color'])) {
         $rgbValues = Helper\StringHelper::hextoRgb($themeSettings['background_color'], '0.8');
 
-        $themeCustomStyle .= '.container {background-color:rgba(' . join(',', $rgbValues) . ');}' . "\n";
+        $themeCustomStyle .= '.container {background-color:rgba(' . \join(',', $rgbValues) . ');}' . "\n";
     }
 
     // main navigation
     if(!empty($themeSettings['navigation']['even_cells'])) {
         $themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
-        $themeCustomStyle .= '	ul.main-navigation {display:table; width:100%;}' . "\n";
-        $themeCustomStyle .= '	ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";
+        $themeCustomStyle .= '  ul.main-navigation {display:table; width:100%;}' . "\n";
+        $themeCustomStyle .= '  ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";
         $themeCustomStyle .= '}' . "\n";
     }
 
@@ -778,7 +775,7 @@ function eve_comment_form_fields($fields) {
 
 function eve_comment_form($args) {
     $args['comment_field'] = '<div class="row"><div class="form-group comment-form-comment col-lg-12">'
-        . '	<textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun', 'eve-online') . '"></textarea>'
+        . ' <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" aria-required="true" required placeholder="' . \_x('Comment', 'noun', 'eve-online') . '"></textarea>'
         . '</div></div>';
     $args['class_submit'] = 'btn btn-default';
 
@@ -843,7 +840,7 @@ function eve_enable_youtube_jsapi($html) {
  * @return string
  */
 function eve_remove_wp_ver_css_js($src) {
-    if(strpos($src, 'ver=')) {
+    if(\strpos($src, 'ver=')) {
         $src = \remove_query_arg('ver', $src);
     }
 
@@ -856,7 +853,6 @@ function eve_remove_wp_ver_css_js($src) {
  * Theme credits in footer
  */
 function eve_theme_credits() {
-    echo \sprintf(\__('(%1$s design and programming by %2$s)', 'eve-online'), '<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>', 'Rounon Dax'
-    );
+    echo \sprintf(\__('(%1$s design and programming by %2$s)', 'eve-online'), '<a href="https://github.com/ppfeufer/eve-online-wordpress-theme">EVE Online theme</a>', 'Rounon Dax');
 }
 \add_action('eve_online_theme_credits', '\\WordPress\Themes\EveOnline\eve_theme_credits');

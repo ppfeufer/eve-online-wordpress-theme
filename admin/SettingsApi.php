@@ -24,7 +24,7 @@ class SettingsApi {
     public function __construct($settingsFilter, $defaultOptions = null) {
         $this->settingsFilter = $settingsFilter;
         $this->optionsDefault = $defaultOptions;
-    } // END public function __construct()
+    }
 
     /**
      * Settings API init
@@ -36,7 +36,7 @@ class SettingsApi {
         \add_action('admin_init', [$this, 'registerCallback']);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
         \add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
-    } // END public function init()
+    }
 
     /**
      * Init settings runs before admin_init
@@ -50,9 +50,9 @@ class SettingsApi {
             if($this->isSettingsPage() === true) {
                 \add_action('admin_head', [$this, 'adminStyles']);
                 \add_action('admin_head', [$this, 'adminScripts']);
-            } // END if($this->isSettingsPage() === true)
-        } // END if(is_admin())
-    } // END public function initSettings()
+            }
+        }
+    }
 
     /**
      * Creating pages and menus from the settingsArray
@@ -64,24 +64,38 @@ class SettingsApi {
 
                 if(empty($options['type'])) {
                     $options['type'] = 'plugin';
-                } // END if(empty($options['type']))
+                }
 
                 switch($options['type']) {
                     case 'theme':
                         \add_theme_page(
-                            $options['page_title'], $options['menu_title'], $options['capability'], $menu_slug, [$this, 'renderOptions']
+                            $options['page_title'],
+                            $options['menu_title'],
+                            $options['capability'],
+                            $menu_slug,
+                            [
+                                $this,
+                                'renderOptions'
+                            ]
                         );
                         break;
 
                     default:
                         \add_options_page(
-                            $options['page_title'], $options['menu_title'], $options['capability'], $menu_slug, [$this, 'renderOptions']
+                            $options['page_title'],
+                            $options['menu_title'],
+                            $options['capability'],
+                            $menu_slug,
+                            [
+                                $this,
+                                'renderOptions'
+                            ]
                         );
                         break;
-                } // END switch($options['type'])
-            } // END if(!empty($options['page_title']) && !empty($options['menu_title']) && !empty($options['option_name']))
-        } // END foreach($this->settingsArray as $menu_slug => $options)
-    } // END public function menuPage()
+                }
+            }
+        }
+    }
 
     /**
      * Register all fields and settings bound to it from the settingsArray
@@ -108,7 +122,13 @@ class SettingsApi {
                     ];
 
                     \add_settings_section(
-                        $section_args['id'], $section_args['title'], [$this, $section_args['callback']], $section_args['menu_page']
+                        $section_args['id'],
+                        $section_args['title'],
+                        [
+                            $this,
+                            $section_args['callback']
+                        ],
+                        $section_args['menu_page']
                     );
 
                     if(!empty($item['fields']) && is_array($item['fields'])) {
@@ -128,15 +148,23 @@ class SettingsApi {
                                 ];
 
                                 \add_settings_field(
-                                    $field_args['id'], $field_args['title'], [$this, $field_args['callback']], $field_args['menu_page'], $field_args['section'], $field_args['args']
+                                    $field_args['id'],
+                                    $field_args['title'],
+                                    [
+                                        $this,
+                                        $field_args['callback']
+                                    ],
+                                    $field_args['menu_page'],
+                                    $field_args['section'],
+                                    $field_args['args']
                                 );
-                            } // END if(is_array($field))
-                        } // END foreach($item['fields'] as $field_id => $field)
-                    } // END if(!empty($item['fields']) && is_array($item['fields']))
-                } // END foreach($settings['tabs'] as $tab_id => $item)
-            } // END if(!empty($settings['tabs']) && is_array($settings['tabs']))
-        } // END foreach($this->settingsArray as $page_id => $settings)
-    } // END public function registerFields()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Register callback is used for the button field type when user

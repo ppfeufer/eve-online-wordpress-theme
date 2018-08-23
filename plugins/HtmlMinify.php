@@ -17,12 +17,12 @@ class HtmlMinify {
     public function __construct($html) {
         if(!empty($html)) {
             $this->parseHTML($html);
-        } // END if(!empty($html))
-    } // END public function __construct($html)
+        }
+    }
 
     public function __toString() {
         return $this->html;
-    } // END public function __toString()
+    }
 
     protected function bottomComment($raw, $compressed) {
         $raw = \strlen($raw);
@@ -31,7 +31,7 @@ class HtmlMinify {
         $savings = \round($savings, 2);
 
         return '<!--HTML compressed, size saved ' . $savings . '%. From ' . $raw . ' bytes, now ' . $compressed . ' bytes-->';
-    } // END protected function bottomComment($raw, $compressed)
+    }
 
     protected function minifyHTML($html) {
         // Tese have to be removed right away ....
@@ -41,7 +41,7 @@ class HtmlMinify {
 
             // Remove any JS single line comments starting with //
             $html = \preg_replace('/\/\/ (.*)\n/', ' ', $html);
-        } // END if($this->remove_comments)
+        }
 
         $pattern = '/<(?<script>script).*?<\/script\s*>|<(?<style>style).*?<\/style\s*>|<!(?<comment>--).*?-->|<(?<tag>[\/\w.:-]*)(?:".*?"|\'.*?\'|[^\'">]+)*>|(?<text>((<[^!\/\w.:-])?[^<]*)+)|/si';
         \preg_match_all($pattern, $html, $matches, \PREG_SET_ORDER);
@@ -99,21 +99,21 @@ class HtmlMinify {
 
             if($strip) {
                 $content = $this->removeWhiteSpace($content);
-            } // END if($strip)
+            }
 
             $html .= $content;
-        } // END foreach($matches as $token)
+        }
 
         return $html;
-    } // END protected function minifyHTML($html)
+    }
 
     public function parseHTML($html) {
         $this->html = $this->minifyHTML($html);
 
         if($this->info_comment) {
             $this->html .= "\n" . $this->bottomComment($html, $this->html);
-        } // END if($this->info_comment)
-    } // END public function parseHTML($html)
+        }
+    }
 
     protected function removeWhiteSpace($str) {
         $str = \str_replace("\t", ' ', $str);
@@ -122,22 +122,22 @@ class HtmlMinify {
 
         while(\stristr($str, '  ')) {
             $str = \str_replace('  ', ' ', $str);
-        } // END while(\stristr($str, '  '))
+        }
 
         return $str;
-    } // END protected function removeWhiteSpace($str)
-} // END class HtmlMinify
+    }
+}
 
 function eve_html_compression_finish($html) {
     return new HtmlMinify($html);
-} // END function eve_html_compression_finish($html)
+}
 
 function eve_html_compression_start() {
     \ob_start('\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_finish');
-} // END function eve_html_compression_start()
+}
 
 $themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
 
 if(!empty($themeOptions['minify_html_output']['yes'])) {
     \add_action('get_header', '\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_start');
-} // END if(!empty($themeOptions['minify_html_output']['yes']))
+}

@@ -21,7 +21,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
     public function __construct() {
         $this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
         $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
-    } // END public function __construct()
+    }
 
     /**
      * @see Walker::start_lvl()
@@ -33,7 +33,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
     public function start_lvl(&$output, $depth = 0, $args = []) {
         $indent = \str_repeat("\t", $depth);
         $output .= "\n" . $indent . '<ul role="menu" class="dropdown-menu clearfix">' . "\n";
-    } // END public function start_lvl(&$output, $depth = 0, $args = array())
+    }
 
     /**
      * @see Walker::start_el()
@@ -82,19 +82,19 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
                     default:
                         $class_names .= ' dropdown-submenu';
                         break;
-                } // END switch($depth)
-            } // END if($args->has_children)
+                }
+            }
 
-            if(in_array('current-menu-item', $classes)) {
+            if(\in_array('current-menu-item', $classes)) {
                 $class_names .= ' active';
-            } // END if(in_array('current-menu-item', $classes))
+            }
 
             // let's check if a page actually has content ...
             $hasContent = true;
             if($item->post_parent !== 0 && EveOnline\Helper\PostHelper::hasContent($item->object_id) === false) {
                 $hasContent = false;
                 $class_names .= ' no-post-content';
-            } // END if($item->post_parent !== 0 && EveOnline\eve_post_has_content($item->object_id) === false)
+            }
 
             $class_names = $class_names ? ' class="' . \esc_attr($class_names) . '"' : '';
 
@@ -115,7 +115,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
                 $atts['class'] = 'dropdown-toggle';
             } else {
                 $atts['href'] = !empty($item->url) ? $item->url : '';
-            } // END if($args->has_children && $depth === 0)
+            }
 
             $atts = \apply_filters('nav_menu_link_attributes', $atts, $item, $args);
 
@@ -128,21 +128,21 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
                         // remove the link of no description is available
                         if($hasContent === false) {
                             $value = '#';
-                        } // END if($hasContent === false)
+                        }
                     } else {
                         $value = \esc_attr($value);
-                    } // END if($attr === 'href')
+                    }
 
                     if($attr === 'title') {
                         // change the title if no description is available
                         if($hasContent === false) {
-                            $value .= ' ' . __('(No description available)', 'eve-online');
-                        } // END if($hasContent === false)
-                    } // END if($attr === 'title')
+                            $value .= ' ' . \__('(No description available)', 'eve-online');
+                        }
+                    }
 
                     $attributes .= ' ' . $attr . '="' . $value . '"';
-                } // END if(!empty($value))
-            } // END foreach($atts as $attr => $value)
+                }
+            }
 
             $item_output = $args->before;
 
@@ -157,7 +157,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
                     $item_output .= '<a' . $attributes . '><span class="corp-' . \sanitize_title($item->title) . ' ' . \esc_attr($item->attr_title) . ' corp-eveID-' . $eve_page_corp_eve_ID . '"><img src="' . $corpLogoPath . '" width="24" height="24" alt="' . $item->title . '"></span>&nbsp;';
                 } else {
                     $item_output .= '<a' . $attributes . '>';
-                } // END if(!emptys($this->themeOptions['corp_logos_in_menu']['show']))
+                }
             } else {
                 /**
                  * Glyphicons
@@ -170,16 +170,16 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
                     $item_output .= '<a' . $attributes . '><span class="glyphicon ' . \esc_attr($item->attr_title) . '"></span>&nbsp;';
                 } else {
                     $item_output .= '<a' . $attributes . '>';
-                } // END if(!empty($item->attr_title))
-            } // END if($eve_page_corp_eve_ID)
+                }
+            }
 
             $item_output .= $args->link_before . \apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
             $item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
             $item_output .= $args->after;
 
             $output .= \apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
-        } // END if(strcasecmp($item->attr_title, 'divider') == 0 && $depth === 1)
-    } // END public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+        }
+    }
 
     /**
      * Traverse elements to create list from elements.
@@ -204,7 +204,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
     public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output) {
         if(!$element) {
             return;
-        } // END if(!$element)
+        }
 
         $id_field = $this->db_fields['id'];
 
@@ -214,7 +214,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
         } // END if(is_object($args[0]))
 
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
-    } // END public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
+    }
 
     /**
      * Menu Fallback
@@ -238,34 +238,34 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
                 if($container_id) {
                     $fb_output .= ' id="' . $container_id . '"';
-                } // END if($container_id)
+                }
 
                 if($container_class) {
                     $fb_output .= ' class="' . $container_class . '"';
-                } // END if($container_class)
+                }
 
                 $fb_output .= '>';
-            } // END if($container)
+            }
 
             $fb_output .= '<ul';
 
             if($menu_id) {
                 $fb_output .= ' id="' . $menu_id . '"';
-            } // END if($menu_id)
+            }
 
             if($menu_class) {
                 $fb_output .= ' class="' . $menu_class . '"';
-            } // END if($menu_class)
+            }
 
             $fb_output .= '>';
-            $fb_output .= '<li><a href="' . \admin_url('nav-menus.php') . '">' . __('Add a menu', 'eve-online') . '</a></li>';
+            $fb_output .= '<li><a href="' . \admin_url('nav-menus.php') . '">' . \__('Add a menu', 'eve-online') . '</a></li>';
             $fb_output .= '</ul>';
 
             if($container) {
                 $fb_output .= '</' . $container . '>';
-            } // END if($container)
+            }
 
             echo $fb_output;
-        } // END if(current_user_can('manage_options'))
-    } // END public static function fallback($args)
-} // END class BootstrapMenuWalker extends \Walker_Nav_Menu
+        }
+    }
+}
