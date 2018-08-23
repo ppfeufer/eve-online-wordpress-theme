@@ -4,6 +4,11 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180709...development)
 - in development
 
+## [v0.1-r20180823](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180823) - 2018-08-23
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180709...v0.1-r20180823)
+### Changed
+- Serving the font from the same server as the theme instead from google fonts server. GDPR Update!
+
 ## [v0.1-r20180709](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180709) - 2018-07-09
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180601...v0.1-r20180709)
 ### Changed
