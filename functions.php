@@ -38,7 +38,7 @@ require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 /**
  * Initiate needed general Classes
  */
-new Addons\Cron(true);
+//new Addons\Cron(true);
 new Plugins\MoCache;
 new Plugins\Metaslider(true);
 new Plugins\Shortcodes;
@@ -196,12 +196,12 @@ function eve_theme_setup() {
     ]);
 
     // Setting up the image cache directories
-    Helper\CacheHelper::createCacheDirectory();
-    Helper\CacheHelper::createCacheDirectory('images');
-    Helper\CacheHelper::createCacheDirectory('images/corporation');
-    Helper\CacheHelper::createCacheDirectory('images/alliance');
-    Helper\CacheHelper::createCacheDirectory('images/character');
-    Helper\CacheHelper::createCacheDirectory('images/render');
+//    Helper\CacheHelper::createCacheDirectory();
+//    Helper\CacheHelper::createCacheDirectory('images');
+//    Helper\CacheHelper::createCacheDirectory('images/corporation');
+//    Helper\CacheHelper::createCacheDirectory('images/alliance');
+//    Helper\CacheHelper::createCacheDirectory('images/character');
+//    Helper\CacheHelper::createCacheDirectory('images/render');
 }
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
 

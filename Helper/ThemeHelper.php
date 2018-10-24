@@ -37,9 +37,9 @@ class ThemeHelper {
                 'remote-image-cache' => 'remote-image-cache'
             ],
             'remote_image_cache_time' => '86400',
-            'cron' => [
-                'cleanupThemeImageCache' => ''
-            ],
+//            'cron' => [
+//                'cleanupThemeImageCache' => ''
+//            ],
 
             // background settings tab
             'use_background_image' => [

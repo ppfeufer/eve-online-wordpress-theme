@@ -208,7 +208,8 @@ class EsiHelper {
         // If we actually have a characterID
         if(!\is_null($characterID)) {
             $imageName = $characterID . '_' . $size. '.jpg';
-            $imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage('character', $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName);
+//            $imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage('character', $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName);
+            $imagePath = $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName;
 
             if($imageOnly === true) {
                 return $imagePath;
@@ -244,7 +245,8 @@ class EsiHelper {
 
         if(!\is_null($eveID)) {
             $imageName = $eveID . '_' . $size . '.png';
-            $imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($entityType, $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName);
+//            $imagePath = ImageHelper::getLocalCacheImageUriForRemoteImage($entityType, $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName);
+            $imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName;
 
             if($imageOnly === true) {
                 return $imagePath;

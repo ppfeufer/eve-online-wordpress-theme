@@ -231,14 +231,14 @@ class ThemeSettings {
                 ],
                 'description' => \__('Remote image caching time in hours (Default: 24hrs)', 'eve-online')
             ],
-            'cron' => [
-                'type' => 'checkbox',
-                'title' => \__('Cron Jobs', 'eve-online'),
-                'choices' => [
-                    'cleanupThemeImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
-                ],
-                'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)<br><small><strong>Do not use this option if you are using any sort of caching plugin in your WordPress, it might break the path to the cached images.</strong></small>', 'eve-online')
-            ],
+//            'cron' => [
+//                'type' => 'checkbox',
+//                'title' => \__('Cron Jobs', 'eve-online'),
+//                'choices' => [
+//                    'cleanupThemeImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
+//                ],
+//                'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)<br><small><strong>Do not use this option if you are using any sort of caching plugin in your WordPress, it might break the path to the cached images.</strong></small>', 'eve-online')
+//            ],
         ];
     }
 

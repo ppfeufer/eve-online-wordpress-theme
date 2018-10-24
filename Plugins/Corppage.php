@@ -10,10 +10,10 @@ use WordPress\Themes\EveOnline;
 \defined('ABSPATH') or die();
 
 class Corppage {
-    private $eveApi = null;
+    private $esiHelper = null;
 
     public function __construct() {
-        $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
+        $this->esiHelper = EveOnline\Helper\EsiHelper::getInstance();
 
         $this->registerMetaBoxes();
         $this->registerShortcodes();
@@ -88,7 +88,8 @@ class Corppage {
     private function getCorporationPageLoopItem($page) {
         $corpID = \get_post_meta($page->ID, 'eve_page_corp_eve_ID', true);
 
-        $corpLogo = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+//        $corpLogo = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+        $corpLogo = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
 
         $corplistHTML .= '<li>';
         $corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
@@ -159,8 +160,8 @@ class Corppage {
                 <label><strong><?php \_e('Corporation Logo', 'eve-online'); ?></strong></label>
                 <br>
                 <?php
-//                $corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_256.png';
-                $corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+//                $corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+                $corpLogoPath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
                 ?>
                 <img src="<?php echo $corpLogoPath; ?>" alt="<?php echo $corpName; ?>">
             </p>
@@ -196,7 +197,7 @@ class Corppage {
         if(!empty($isCorpPage)) {
             $showCorpLogo = \filter_input(\INPUT_POST, 'eve_page_show_corp_logo') === 'on';
             $corpName = \filter_input(\INPUT_POST, 'eve_page_corp_name');
-            $corpID = $this->eveApi->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')), 'corporation');
+            $corpID = $this->esiHelper->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')), 'corporation');
         }
 
         \update_post_meta($postID, 'eve_page_corp_name', $corpName);
@@ -209,7 +210,8 @@ class Corppage {
         $corpName = \get_post_meta($corpPageID, 'eve_page_corp_name', true);
         $corpID = \get_post_meta($corpPageID, 'eve_page_corp_eve_ID', true);
 
-        $imagePath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', EveOnline\Helper\EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+//        $imagePath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', EveOnline\Helper\EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png');
+        $imagePath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
 
         if($imagePath !== false) {
             $html = '<div class="eve-corp-page-corp-logo eve-image eve-corporation-logo-container"><figure><img src="' . $imagePath . '" class="eve-corporation-logo" alt="' . \esc_html($corpName) . '" width="256">';
