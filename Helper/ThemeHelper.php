@@ -6,12 +6,19 @@ namespace WordPress\Themes\EveOnline\Helper;
 
 class ThemeHelper {
     /**
+     * themeDbVersion
+     *
+     * @var string
+     */
+    protected static $themeDbVersion = '20170803';
+
+    /**
      * Return the current DB version used for the themes settings
      *
      * @return string
      */
     public static function getThemeDbVersion() {
-        return '20170803';
+        return self::$themeDbVersion;
     }
 
     /**
