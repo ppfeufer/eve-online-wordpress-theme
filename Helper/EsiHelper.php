@@ -10,6 +10,13 @@ namespace WordPress\Themes\EveOnline\Helper;
 
 class EsiHelper {
     /**
+     * ESI Client Version
+     *
+     * @var string
+     */
+    protected $esiClientVersion = '20181005';
+
+    /**
      * ESI URL
      *
      * @var string
@@ -77,6 +84,8 @@ class EsiHelper {
         $this->esiUrl = 'https://esi.evetech.net/latest/';
         $this->imageserverUrl = 'https://imageserver.eveonline.com/';
 
+        $this->checkEsiClient();
+
         /**
          * Assigning ESI Endpoints
          *
@@ -101,6 +110,105 @@ class EsiHelper {
             'item' => 'Type/',
             'inventory' => 'InventoryType/' // Ships and all the other stuff
         ];
+    }
+
+    /**
+     * Check if the ESI client needs to be updated
+     */
+    protected function checkEsiClient() {
+        /**
+         * Check for current ESI client version
+         */
+       if(\file_exists(\WP_CONTENT_DIR . '/EsiClient/client_version')) {
+           $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
+       }
+
+       if(version_compare($esiClientCurrentVersion, $this->esiClientVersion) < 0) {
+           $this->updateEsiClient();
+       }
+    }
+
+    /**
+     * Update the ESI client
+     *
+     * @throws \Exception
+     */
+    protected function updateEsiClient() {
+        // check if ZipArchive is available
+        $hasZipArchive = (\class_exists('ZipArchive')) ? true : false;
+
+        // the ESI client master zip file
+        $esiClientMasterZip = 'https://github.com/ppfeufer/wp-esi-client/archive/master.zip';
+
+        // tem local name
+        $esiClientZipFile = \WP_CONTENT_DIR . '/uploads/EsiClient.zip';
+
+        // get the zip file
+        \wp_remote_get($esiClientMasterZip, [
+            'timeout' => 300,
+            'stream' => true,
+            'filename' => $esiClientZipFile
+        ]);
+
+        // remove an older local version of the ESI client
+        if(\is_dir(\WP_CONTENT_DIR . '/EsiClient/')) {
+            $this->rrmdir(\WP_CONTENT_DIR . '/EsiClient/');
+        }
+
+        // extract using ZipArchive
+        if($hasZipArchive === true) {
+            $zip = new \ZipArchive;
+
+            if(!$zip->open($esiClientZipFile)) {
+                throw new \Exception('PHP-ZIP: Unable to open the Esi Client zip file');
+            }
+
+            if(!$zip->extractTo(\WP_CONTENT_DIR)) {
+                throw new \Exception('PHP-ZIP: Unable to extract Esi Client zip file');
+            }
+
+            $zip->close();
+        }
+
+        // extract using PclZip
+        if($hasZipArchive === false) {
+            require_once(\ABSPATH . 'wp-admin/includes/class-pclzip.php');
+
+            $zip = new \PclZip($esiClientZipFile);
+
+            if(!$zip->extract(\PCLZIP_OPT_PATH, \WP_CONTENT_DIR)) {
+                throw new \Exception('PHP-ZIP: Unable to extract Esi Client zip file');
+            }
+        }
+
+        // rename folder
+        \rename(\WP_CONTENT_DIR . '/wp-esi-client-master', \WP_CONTENT_DIR . '/EsiClient/');
+
+        // remove temp zip file
+        \unlink($esiClientZipFile);
+    }
+
+    /**
+     * Little helper to recirsively remove a directory
+     *
+     * @param string $dir
+     */
+    protected function rrmdir(string $dir) {
+        if(\is_dir($dir)) {
+            $objects = scandir($dir);
+
+            foreach($objects as $object) {
+                if($object != "." && $object != "..") {
+                    if(\is_dir($dir . "/" . $object)) {
+                        $this->rrmdir($dir . "/" . $object);
+                    } else {
+                        \unlink($dir . "/" . $object);
+                    }
+                }
+            }
+
+            \rmdir($dir);
+        }
     }
 
     public function getImageServerUrl() {
