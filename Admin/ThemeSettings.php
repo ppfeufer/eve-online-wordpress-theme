@@ -5,7 +5,9 @@
 
 namespace WordPress\Themes\EveOnline\Admin;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\EsiHelper;
+use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
+use \WordPress\Themes\EveOnline\Plugins\Metaslider;
 
 \defined('ABSPATH') or die();
 
@@ -18,9 +20,9 @@ class ThemeSettings {
     private $settingsFilter = null;
 
     public function __construct() {
-        $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
-        $this->metaSlider = new EveOnline\Plugins\Metaslider(false);
-        $this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+        $this->eveApi = EsiHelper::getInstance();
+        $this->metaSlider = new Metaslider(false);
+        $this->themeOptions = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
         // trigger the settings API
         $this->fireSettingsApi();
@@ -28,7 +30,7 @@ class ThemeSettings {
 
     private function fireSettingsApi() {
         $this->settingsFilter = 'register_eve_online_theme_settings';
-        $this->settingsApi = new SettingsApi($this->settingsFilter, EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+        $this->settingsApi = new SettingsApi($this->settingsFilter, ThemeHelper::getThemeDefaultOptions());
         $this->settingsApi->init();
 
         \add_filter($this->settingsFilter, [$this, 'renderSettingsPage']);
@@ -97,7 +99,7 @@ class ThemeSettings {
         }
 
         return $themeOptionsPage;
-    } // END public function renderSettingsPage()
+    }
 
     private function getGeneralTabFields() {
         return [
@@ -130,7 +132,6 @@ class ThemeSettings {
                 'type' => 'checkbox',
                 'title' => \__('Navigation', 'eve-online'),
                 'choices' => [
-//                    'sticky' => \__('Sticky Navigation', 'eve-online'),
                     'even_cells' => \__('Even navigation cells in main navigation', 'eve-online'),
                 ],
                 'description' => \__('Transforms the main navigation into even cells instead of a random width. (Default: off)', 'eve-online')
@@ -158,7 +159,7 @@ class ThemeSettings {
             ],
             'background_image' => [
                 'type' => 'radio',
-                'choices' => EveOnline\Helper\ThemeHelper::getDefaultBackgroundImages(true),
+                'choices' => ThemeHelper::getDefaultBackgroundImages(true),
                 'empty' => \__('Please Select', 'eve-online'),
                 'title' => \__('Background Image', 'eve-online'),
                 'description' => \__('Select one of the default Background images ... (Default: Amarr)', 'eve-online'),
@@ -212,33 +213,6 @@ class ThemeSettings {
                 ],
                 'description' => \__('By minifying the HTML output you might boost your websites performance. NOTE: this may not work on every server, so if you experience issues, turn this option off again!<br><small><strong>This feature is EXPERIMENTAL!</strong></small>', 'eve-online')
             ],
-            'cache' => [
-                'type' => 'checkbox',
-                'title' => \__('Cache', 'eve-online'),
-                'choices' => [
-                    'remote-image-cache' => \__('Use imagecache for images fetched from CCP\'s image server', 'eve-online')
-                ],
-                'description' => \__('If checked the images from CCP\'s image server will be cached locally. (Default: on)', 'eve-online')
-            ],
-            'remote_image_cache_time' => [
-                'type' => 'select',
-//                'title' => \__('Cache', 'eve-online'),
-                'choices' => [
-                    '21600' => \__('6 hours', 'eve-online'),
-                    '43200' => \__('12 hours', 'eve-online'),
-                    '64800' => \__('18 hours', 'eve-online'),
-                    '86400' => \__('24 hours', 'eve-online')
-                ],
-                'description' => \__('Remote image caching time in hours (Default: 24hrs)', 'eve-online')
-            ],
-//            'cron' => [
-//                'type' => 'checkbox',
-//                'title' => \__('Cron Jobs', 'eve-online'),
-//                'choices' => [
-//                    'cleanupThemeImageCache' => \__('Use a cronjob to clear the imagecache once a day.', 'eve-online')
-//                ],
-//                'description' => \__('If checked a WordPress cron will be initialized to clean up the image cache once a day. (Default: off)<br><small><strong>Do not use this option if you are using any sort of caching plugin in your WordPress, it might break the path to the cached images.</strong></small>', 'eve-online')
-//            ],
         ];
     }
 
@@ -246,7 +220,7 @@ class ThemeSettings {
         return [
             'eve_theme_options_sane' => [
                 'type' => 'custom',
-                'content' => '<pre>' . \print_r(EveOnline\Helper\ThemeHelper::getThemeDefaultOptions(), true) . '</pre>',
+                'content' => '<pre>' . \print_r(ThemeHelper::getThemeDefaultOptions(), true) . '</pre>',
                 'title' => \__('Options Array<br>(sane from functions.php)', 'eve-online'),
                 'callback' => null,
                 'description' => \__('This are the sane options defined in functions.php via <code>\WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions()</code>', 'eve-online')
@@ -260,7 +234,7 @@ class ThemeSettings {
             ],
             'eve_theme_options_merged' => [
                 'type' => 'custom',
-                'content' => '<pre>' . \print_r(\get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions()), true) . '</pre>',
+                'content' => '<pre>' . \print_r(\get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions()), true) . '</pre>',
                 'title' => \__('Options Array<br>(merged / used for Theme)', 'eve-online'),
                 'callback' => null,
                 'description' => \__('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions())</code>', 'eve-online')

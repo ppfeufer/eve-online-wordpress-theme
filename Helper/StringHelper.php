@@ -9,7 +9,7 @@ namespace WordPress\Themes\EveOnline\Helper;
 
 class StringHelper {
     public static function cutString($string, $pos) {
-        $string = strip_tags($string);
+        $string = \strip_tags($string);
 
         if($pos < \strlen($string)) {
             $text = \substr($string, 0, $pos);

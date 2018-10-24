@@ -2,8 +2,6 @@
 
 namespace WordPress\Themes\EveOnline\Addons;
 
-use WordPress\Themes\EveOnline;
-
 /**
  * EVE Online Theme back compat functionality
  *

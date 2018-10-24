@@ -2,7 +2,7 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
 
 class HtmlMinify {
     // Settings
@@ -136,7 +136,7 @@ function eve_html_compression_start() {
     \ob_start('\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_finish');
 }
 
-$themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+$themeOptions = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
 if(!empty($themeOptions['minify_html_output']['yes'])) {
     \add_action('get_header', '\\WordPress\\Themes\\EveOnline\\Plugins\\eve_html_compression_start');

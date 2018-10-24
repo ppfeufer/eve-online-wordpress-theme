@@ -10,17 +10,21 @@
  */
 namespace WordPress\Themes\EveOnline\Addons;
 
-use WordPress\Themes\EveOnline;
+use \Walker;
+use \Walker_Nav_Menu;
+use \WordPress\Themes\EveOnline\Helper\EsiHelper;
+use \WordPress\Themes\EveOnline\Helper\PostHelper;
+use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
 
 \defined('ABSPATH') or die();
 
-class BootstrapMenuWalker extends \Walker_Nav_Menu {
+class BootstrapMenuWalker extends Walker_Nav_Menu {
     private $themeOptions = null;
     private $eveApi = null;
 
     public function __construct() {
-        $this->themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
-        $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
+        $this->themeOptions = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $this->eveApi = EsiHelper::getInstance();
     }
 
     /**
@@ -91,7 +95,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
 
             // let's check if a page actually has content ...
             $hasContent = true;
-            if($item->post_parent !== 0 && EveOnline\Helper\PostHelper::hasContent($item->object_id) === false) {
+            if($item->post_parent !== 0 && PostHelper::hasContent($item->object_id) === false) {
                 $hasContent = false;
                 $class_names .= ' no-post-content';
             }
@@ -152,7 +156,6 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
             $eve_page_corp_eve_ID = \get_post_meta($item->object_id, 'eve_page_corp_eve_ID', true);
             if($eve_page_corp_eve_ID) {
                 if(!empty($this->themeOptions['corp_logos_in_menu']['show'])) {
-//                    $corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_32.png');
                     $corpLogoPath = $this->eveApi->getImageServerEndpoint('corporation') . $eve_page_corp_eve_ID . '_32.png';
 
                     $item_output .= '<a' . $attributes . '><span class="corp-' . \sanitize_title($item->title) . ' ' . \esc_attr($item->attr_title) . ' corp-eveID-' . $eve_page_corp_eve_ID . '"><img src="' . $corpLogoPath . '" width="24" height="24" alt="' . $item->title . '"></span>&nbsp;';
@@ -212,7 +215,7 @@ class BootstrapMenuWalker extends \Walker_Nav_Menu {
         // Display this element.
         if(\is_object($args[0])) {
             $args[0]->has_children = !empty($children_elements[$element->$id_field]);
-        } // END if(is_object($args[0]))
+        }
 
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
     }

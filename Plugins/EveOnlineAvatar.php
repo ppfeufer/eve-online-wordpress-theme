@@ -2,13 +2,13 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\EsiHelper;
 
 class EveOnlineAvatar {
     private $eveApi = null;
 
     public function __construct() {
-        $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
+        $this->eveApi = EsiHelper::getInstance();
 
         $this->init();
     }

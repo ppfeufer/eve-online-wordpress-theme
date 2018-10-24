@@ -2,6 +2,8 @@
 
 namespace WordPress\Themes\EveOnline\Helper;
 
+use \WP_Query;
+
 \defined('ABSPATH') or die();
 
 class NavigationHelper {

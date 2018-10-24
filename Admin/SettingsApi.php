@@ -5,7 +5,8 @@
 
 namespace WordPress\Themes\EveOnline\Admin;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\StringHelper;
+use \WP_Query;
 
 \defined('ABSPATH') or die();
 
@@ -131,7 +132,7 @@ class SettingsApi {
                         $section_args['menu_page']
                     );
 
-                    if(!empty($item['fields']) && is_array($item['fields'])) {
+                    if(!empty($item['fields']) && \is_array($item['fields'])) {
                         foreach($item['fields'] as $field_id => $field) {
                             if(\is_array($field)) {
                                 $sanitized_field_id = \sanitize_title($field_id);
@@ -180,19 +181,19 @@ class SettingsApi {
                 $nonce = \wp_verify_nonce($getWpNonce);
 
                 if(!empty($nonce)) {
-                    if(function_exists($getCallback)) {
+                    if(\function_exists($getCallback)) {
                         $message = \call_user_func($getCallback);
                         \update_option('rsa-message', $message);
 
-                        $url = admin_url('options-general.php?page=' . $getPage);
+                        $url = \admin_url('options-general.php?page=' . $getPage);
                         \wp_redirect($url);
 
                         die;
-                    } // END if(function_exists($getCallback))
-                } // END if(!empty($nonce))
-            } // END if(!empty($getCallback))
-        } // END if($this->isSettingsPage() === true)
-    } // END public function registerCallback()
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Check if the current page is a settings page
@@ -206,16 +207,16 @@ class SettingsApi {
         foreach($this->settingsArray as $menu => $page) {
             $page = $page; // we need to do this shit here
             $menus[] = $menu;
-        } // END foreach($this->settingsArray as $menu => $page)
+        }
 
         if(\in_array($get_page, $menus)) {
             $returnValue = true;
         } else {
             $returnValue = false;
-        } // END if(in_array($get_page, $menus))
+        }
 
         return $returnValue;
-    } // END public function isSettingsPage()
+    }
 
     /**
      * Return an array for the choices in a select field type
@@ -226,26 +227,26 @@ class SettingsApi {
         if(!empty($this->args['choices']) && \is_array($this->args['choices'])) {
             foreach($this->args['choices'] as $slug => $choice) {
                 $items[$slug] = $choice;
-            } // END foreach($this->args['choices'] as $slug => $choice)
-        } // END if(!empty($this->args['choices']) && is_array($this->args['choices']))
+            }
+        }
 
         return $items;
-    } // END public function selectChoices()
+    }
 
     /**
      * Get values from built in WordPress functions
      */
     public function get() {
         if(!empty($this->args['get'])) {
-            $item_array = \call_user_func_array([$this, 'get_' . EveOnline\Helper\StringHelper::camelCase($this->args['get'], true)], [$this->args]);
+            $item_array = \call_user_func_array([$this, 'get_' . StringHelper::camelCase($this->args['get'], true)], [$this->args]);
         } elseif(!empty($this->args['choices'])) {
             $item_array = $this->selectChoices($this->args);
         } else {
             $item_array = [];
-        } // END if(!empty($this->args['get']))
+        }
 
         return $item_array;
-    } // END public function get()
+    }
 
     /**
      * Get users from WordPress, used by the select field type
@@ -257,10 +258,10 @@ class SettingsApi {
 
         foreach($users as $user) {
             $items[$user->ID] = $user->display_name;
-        } // END foreach($users as $user)
+        }
 
         return $items;
-    } // END public function getUsers()
+    }
 
     /**
      * Get menus from WordPress, used by the select field type
@@ -272,11 +273,11 @@ class SettingsApi {
         if(!empty($menus)) {
             foreach($menus as $location => $description) {
                 $items[$location] = $description;
-            } // END foreach($menus as $location => $description)
-        } // END if(!empty($menus))
+            }
+        }
 
         return $items;
-    } // END public function getMenus()
+    }
 
     /**
      * Get posts from WordPress, used by the select field type
@@ -294,7 +295,7 @@ class SettingsApi {
                 'suppress_filters' => true
             ];
 
-            $the_query = new \WP_Query($args);
+            $the_query = new WP_Query($args);
 
             if($the_query->have_posts()) {
                 while($the_query->have_posts()) {
@@ -303,14 +304,14 @@ class SettingsApi {
                     global $post;
 
                     $items[$post->ID] = \get_the_title();
-                } // END while($the_query->have_posts())
-            } // END if($the_query->have_posts())
+                }
+            }
 
             \wp_reset_postdata();
         }
 
         return $items;
-    } // END public function getPosts()
+    }
 
     /**
      * Get terms from WordPress, used by the select field type
@@ -326,11 +327,11 @@ class SettingsApi {
                 unset($key); // we don't need that variable here
 
                 $items[$term->term_id] = $term->name;
-            } // END foreach($terms as $key => $term)
-        } // END if(!empty($terms))
+            }
+        }
 
         return $items;
-    } // END public function getTerms()
+    }
 
     /**
      * Get taxonomies from WordPress, used by the select field type
@@ -343,11 +344,11 @@ class SettingsApi {
         if(!empty($taxonomies)) {
             foreach($taxonomies as $taxonomy) {
                 $items[$taxonomy->name] = $taxonomy->label;
-            } // END foreach($taxonomies as $taxonomy)
-        } // END if(!empty($taxonomies))
+            }
+        }
 
         return $items;
-    } // END public function getTaxonomies()
+    }
 
     /**
      * Get sidebars from WordPress, used by the select field type
@@ -360,11 +361,11 @@ class SettingsApi {
         if(!empty($wp_registered_sidebars)) {
             foreach($wp_registered_sidebars as $sidebar) {
                 $items[$sidebar['id']] = $sidebar['name'];
-            } // END foreach($wp_registered_sidebars as $sidebar)
-        } // END if(!empty($wp_registered_sidebars))
+            }
+        }
 
         return $items;
-    } // END public function getSidebars()
+    }
 
     /**
      * Get themes from WordPress, used by the select field type
@@ -377,11 +378,11 @@ class SettingsApi {
         if(!empty($themes)) {
             foreach($themes as $key => $theme) {
                 $items[$key] = $theme->get('Name');
-            } // END foreach($themes as $key => $theme)
-        } // END if(!empty($themes))
+            }
+        }
 
         return $items;
-    } // END public function getThemes()
+    }
 
     /**
      * Get plugins from WordPress, used by the select field type
@@ -394,11 +395,11 @@ class SettingsApi {
         if(!empty($plugins)) {
             foreach($plugins as $key => $plugin) {
                 $items[$key] = $plugin['Name'];
-            } // END foreach($plugins as $key => $plugin)
-        } // END if(!empty($plugins))
+            }
+        }
 
         return $items;
-    } // END public function getPlugins()
+    }
 
     /**
      * Get post_types from WordPress, used by the select field type
@@ -411,11 +412,11 @@ class SettingsApi {
         if(!empty($post_types)) {
             foreach($post_types as $key => $post_type) {
                 $items[$key] = $post_type->name;
-            } // END foreach($post_types as $key => $post_type)
-        } // END if(!empty($post_types))
+            }
+        }
 
         return $items;
-    } // END public function get_post_types()
+    }
 
     /**
      * Find a selected value in select or multiselect field type
@@ -427,10 +428,10 @@ class SettingsApi {
             $returnValue = $this->multiselectedValue($key);
         } else {
             $returnValue = $this->selectedValue($key);
-        } // END if($this->valueType() == 'array')
+        }
 
         return $returnValue;
-    } // END public function selected($key)
+    }
 
     /**
      * Return selected html if the value is selected in select field type
@@ -440,10 +441,10 @@ class SettingsApi {
 
         if($this->value($this->options, $this->args) === $key) {
             $result = ' selected="selected"';
-        } // END if($this->value($this->options, $this->args) === $key)
+        }
 
         return $result;
-    } // END public function selectedValue($key)
+    }
 
     /**
      * Return selected html if the value is selected in multiselect field type
@@ -454,10 +455,10 @@ class SettingsApi {
 
         if(\is_array($value) && \in_array($key, $value)) {
             $result = ' selected="selected"';
-        } // END if(is_array($value) && in_array($key, $value))
+        }
 
         return $result;
-    } // END public function multiselectedValue($key)
+    }
 
     /**
      * Return checked html if the value is checked in radio or checkboxes
@@ -469,10 +470,10 @@ class SettingsApi {
             $checked = (!empty($value) && \in_array($slug, $this->value())) ? ' checked="checked"' : '';
         } else {
             $checked = (!empty($value) && $slug == $this->value()) ? ' checked="checked"' : '';
-        } // END if($this->valueType() == 'array')
+        }
 
         return $checked;
-    } // END public function checked($slug)
+    }
 
     /**
      * Return the value. If the value is not saved the default value is used if
@@ -488,12 +489,12 @@ class SettingsApi {
             $default = (!empty($this->args['default']) && \is_array($this->args['default'])) ? $this->args['default'] : [];
         } else {
             $default = (!empty($this->args['default'])) ? $this->args['default'] : '';
-        } // END if($this->valueType() == 'array')
+        }
 
         $value = (isset($this->options[$this->args['field_id']])) ? $this->options[$this->args['field_id']] : $default;
 
         return $value;
-    } // END public function value($key = null)
+    }
 
     /**
      * Check if the current value type is a single value or a multiple
@@ -528,10 +529,10 @@ class SettingsApi {
             $returnValue = 'string';
         } elseif(\in_array($this->args['type'], $defaultMultiple)) {
             $returnValue = 'array';
-        } // END if(in_array($this->args['type'], $defaultSingle))
+        }
 
         return $returnValue;
-    } // END public function valueType()
+    }
 
     /**
      * Check if a checkbox has items
@@ -541,10 +542,10 @@ class SettingsApi {
 
         if(!empty($this->args['choices']) && \is_array($this->args['choices'])) {
             $returnValue = true;
-        } // END if(!empty($this->args['choices']) && is_array($this->args['choices']))
+        }
 
         return $returnValue;
-    } // END public function hasItems()
+    }
 
     /**
      * Return the html name of the field
@@ -557,10 +558,10 @@ class SettingsApi {
             $returnValue = $option_name . '[' . $this->args['field_id'] . '][' . $slug . ']';
         } else {
             $returnValue = $option_name . '[' . $this->args['field_id'] . ']';
-        } // END if($this->valueType() == 'array')
+        }
 
         return $returnValue;
-    } // END public function name($slug = '')
+    }
 
     /**
      * Return the size of a multiselect type. If not set it will calculate it
@@ -574,13 +575,13 @@ class SettingsApi {
             } else {
                 $count = \count($items);
                 $count = (!empty($this->args['empty']) ) ? $count + 1 : $count;
-            } // END if(!empty($this->args['size']))
+            }
 
             $size = ' size="' . $count . '"';
-        } // END if($this->args['type'] == 'multiselect')
+        }
 
         return $size;
-    } // END public function size($items)
+    }
 
     /**
      * All the field types in html
@@ -610,7 +611,7 @@ class SettingsApi {
                     }
 
                     foreach($items as $key => $choice) {
-                        $key = sanitize_title($key);
+                        $key = \sanitize_title($key);
                         $out .= '<option value="' . $key . '" ' . $this->selected($key) . '>' . $choice . '</option>';
                     }
 
@@ -634,7 +635,7 @@ class SettingsApi {
                         }
 
                         $out .= '</ul>';
-                    } // END if($this->hasItems())
+                    }
                     break;
 
                 case 'text':
@@ -661,7 +662,7 @@ class SettingsApi {
                         'textarea_name' => $option_name . '[' . $args['field_id'] . ']',
                     ];
 
-                    wp_editor($this->value(), $args['field_id'], $tinymce_settings);
+                    \wp_editor($this->value(), $args['field_id'], $tinymce_settings);
                     break;
 
                 case 'image':
@@ -756,22 +757,22 @@ class SettingsApi {
                         \call_user_func($args['callback'], $data);
                     }
                     break;
-            } // END switch($args['type'])
-        } // END if(!empty($args['type']))
+            }
+        }
 
         echo $out;
 
         if(!empty($args['description'])) {
             echo '<p class="description">' . $args['description'] . '</div>';
-        } // END if(!empty($args['description']))
-    } // END public function renderFields($args)
+        }
+    }
 
     /**
      * Callback for field registration.
      * It's required by WordPress but not used by this class
      */
     public function callback() {
-    } // END public function callback()
+    }
 
     /**
      * Final output on the settings page
@@ -788,7 +789,7 @@ class SettingsApi {
                 <?php
                 if(!empty($settings['before_tabs_text'])) {
                     echo $settings['before_tabs_text'];
-                } // END if(!empty($settings['before_tabs_text']))
+                }
                 ?>
                 <form action='options.php' method='post'>
                     <?php
@@ -805,7 +806,7 @@ class SettingsApi {
                             echo '<a class="nav-tab nav-tab-' . $sanitized_id . $active . '" href="#tab-content-' . $sanitized_id . '">' . $tab_title . '</a>';
 
                             $i++;
-                        } // END foreach($settings['tabs'] as $settings_id => $section)
+                        }
                         ?>
                         </h2>
 
@@ -817,8 +818,8 @@ class SettingsApi {
                             </div>
                             <?php
                             \update_option('rsa-message', '');
-                        } // END if(!empty($message))
-                    } // END if($tab_count > 1)
+                        }
+                    }
 
                     $i = 0;
                     foreach($settings['tabs'] as $settings_id => $section) {
@@ -835,7 +836,7 @@ class SettingsApi {
                         echo '</div>';
 
                         $i++;
-                    } // END foreach($settings['tabs'] as $settings_id => $section)
+                    }
 
                     \submit_button();
                     ?>
@@ -843,12 +844,12 @@ class SettingsApi {
                 <?php
                 if(!empty($settings['after_tabs_text'])) {
                     echo $settings['after_tabs_text'];
-                } // END if(!empty($settings['after_tabs_text']))
+                }
                 ?>
             </div>
             <?php
-        } // END if(!empty($settings['tabs']) && is_array($settings['tabs']))
-    } // END public function renderOptions()
+        }
+    }
 
     /**
      * Register scripts
@@ -862,8 +863,8 @@ class SettingsApi {
                 'settings-api',
                 (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/js/settings-api.js' : \get_template_directory_uri() . '/admin/js/settings-api.min.js'
             );
-        } // END if($this->isSettingsPage() === true)
-    } // END public function enqueueScripts()
+        }
+    }
 
     /**
      * Register styles
@@ -880,8 +881,8 @@ class SettingsApi {
                 'settings-api',
                 (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/css/settings-api.css' : \get_template_directory_uri() . '/admin/css/settings-api.min.css'
             );
-        } // END if($this->isSettingsPage() === true)
-    } // END public function enqueueStyles()
+        }
+    }
 
     /**
      * Inline scripts and styles
@@ -910,8 +911,8 @@ class SettingsApi {
             }
             </style>
             <?php
-        } // END if($this->isSettingsPage() === true)
-    } // END public function adminStyes()
+        }
+    }
 
     public function adminScripts() {
         if($this->isSettingsPage() === true) {
@@ -931,14 +932,14 @@ class SettingsApi {
                                     dateFormat: '<?php echo $date_format; ?>'
                                 });
                                 <?php
-                            } // END if($field['type'] == 'datepicker')
-                        } // END foreach($tab['fields'] as $field_key => $field)
-                    } // END foreach($page['tabs'] as $tab)
-                } // END foreach($settingsArray as $page)
+                            }
+                        }
+                    }
+                }
                 ?>
             });
             </script>
             <?php
-        } // END if($this->isSettingsPage() === true)
-    } // END public function adminScripts()
-} // END class SettingsApi
+        }
+    }
+}

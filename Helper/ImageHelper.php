@@ -2,6 +2,8 @@
 
 namespace WordPress\Themes\EveOnline\Helper;
 
+use \WP_Query;
+
 \defined('ABSPATH') or die();
 
 class ImageHelper {
@@ -24,7 +26,7 @@ class ImageHelper {
                 ]
             ];
 
-            $query = new \WP_Query($query_args);
+            $query = new WP_Query($query_args);
 
             if($query->have_posts()) {
                 foreach($query->posts as $post_id) {

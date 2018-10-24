@@ -6,6 +6,10 @@
 
 namespace WordPress\Themes\EveOnline\Helper;
 
+use \Exception;
+use \PclZip;
+use \ZipArchive;
+
 \defined('ABSPATH') or die();
 
 class EsiHelper {
@@ -131,7 +135,7 @@ class EsiHelper {
     /**
      * Update the ESI client
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function updateEsiClient() {
         // check if ZipArchive is available
@@ -157,14 +161,14 @@ class EsiHelper {
 
         // extract using ZipArchive
         if($hasZipArchive === true) {
-            $zip = new \ZipArchive;
+            $zip = new ZipArchive;
 
             if(!$zip->open($esiClientZipFile)) {
-                throw new \Exception('PHP-ZIP: Unable to open the Esi Client zip file');
+                throw new Exception('PHP-ZIP: Unable to open the Esi Client zip file');
             }
 
             if(!$zip->extractTo(\WP_CONTENT_DIR)) {
-                throw new \Exception('PHP-ZIP: Unable to extract Esi Client zip file');
+                throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
             }
 
             $zip->close();
@@ -174,10 +178,10 @@ class EsiHelper {
         if($hasZipArchive === false) {
             require_once(\ABSPATH . 'wp-admin/includes/class-pclzip.php');
 
-            $zip = new \PclZip($esiClientZipFile);
+            $zip = new PclZip($esiClientZipFile);
 
             if(!$zip->extract(\PCLZIP_OPT_PATH, \WP_CONTENT_DIR)) {
-                throw new \Exception('PHP-ZIP: Unable to extract Esi Client zip file');
+                throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
             }
         }
 

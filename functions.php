@@ -175,7 +175,7 @@ function eve_theme_setup() {
     Helper\ThemeHelper::updateOptions('eve_theme_options', 'eve_theme_db_version', Helper\ThemeHelper::getThemeDbVersion(), Helper\ThemeHelper::getThemeDefaultOptions());
 
     /**
-     * Loading out textdomain
+     * Loading our textdomain
      */
     \load_theme_textdomain('eve-online', \get_template_directory() . '/l10n');
 

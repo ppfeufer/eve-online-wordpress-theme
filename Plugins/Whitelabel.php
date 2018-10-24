@@ -5,7 +5,8 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\EsiHelper;
+use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
 
 \defined('ABSPATH') or die();
 
@@ -52,12 +53,12 @@ class Whitelabel {
         /**
          * Getting theme settings
          */
-        $this->themeSettings = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+        $this->themeSettings = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
         /**
          * Starting the helper classes
          */
-        $this->eveApi = EveOnline\Helper\EsiHelper::getInstance();
+        $this->eveApi = EsiHelper::getInstance();
 
         $this->initActions();
         $this->initFilters();
@@ -81,7 +82,7 @@ class Whitelabel {
     }
 
     private function getBackgroundImage() {
-        return EveOnline\Helper\ThemeHelper::getThemeBackgroundImage();
+        return ThemeHelper::getThemeBackgroundImage();
     }
 
     /**

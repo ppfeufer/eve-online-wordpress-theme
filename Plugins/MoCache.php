@@ -7,6 +7,8 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
+use \MO;
+
 class MoCache {
     private $cacheGroup = 'eve-mo';
     private $moCacheArray = null;
@@ -39,7 +41,7 @@ class MoCache {
             if(\is_array($cache)) {
                 global $l10n;
 
-                $mo = new \MO();
+                $mo = new MO();
                 $mo->entries = $cache['entries'];
                 $mo->set_headers($cache['headers']);
                 $l10n[$domain] = $mo;

@@ -7,7 +7,7 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\PostHelper;
 
 \defined('ABSPATH') or die();
 
@@ -144,7 +144,7 @@ class BootstrapImageGallery {
         $output .= '<script type="text/javascript">
             jQuery(document).ready(function() {
                 jQuery("ul.bootstrap-' . $selector . '").bootstrapGallery({
-                    "classes" : "' . EveOnline\Helper\PostHelper::getLoopContentClasses() . '",
+                    "classes" : "' . PostHelper::getLoopContentClasses() . '",
                     "hasModal" : true
                 });
             });

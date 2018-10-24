@@ -5,7 +5,9 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\EsiHelper;
+use \WordPress\Themes\EveOnline\Helper\StringHelper;
+use \WP_Query;
 
 \defined('ABSPATH') or die();
 
@@ -13,7 +15,7 @@ class Corppage {
     private $esiHelper = null;
 
     public function __construct() {
-        $this->esiHelper = EveOnline\Helper\EsiHelper::getInstance();
+        $this->esiHelper = EsiHelper::getInstance();
 
         $this->registerMetaBoxes();
         $this->registerShortcodes();
@@ -95,7 +97,7 @@ class Corppage {
         $corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
         $corplistHTML .= '<header><h2 class="corporationlist-title"><a href="' . \get_permalink($page->ID) . '">' . $page->post_title . '</a></h2></header>';
 
-        $corplistHTML .= '<p>' . EveOnline\Helper\StringHelper::cutString(strip_shortcodes($page->post_content), '200') . '</p>';
+        $corplistHTML .= '<p>' . StringHelper::cutString(strip_shortcodes($page->post_content), '200') . '</p>';
 
         $corplistHTML .= '</li>';
 
@@ -105,7 +107,7 @@ class Corppage {
     private function getCorporationPages() {
         $returnValue = false;
 
-        $result = new \WP_Query([
+        $result = new WP_Query([
             'post_type' => 'page',
             'meta_key' => 'eve_page_is_corp_page',
             'meta_value' => 1,

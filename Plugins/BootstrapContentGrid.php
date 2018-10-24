@@ -2,7 +2,7 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\PostHelper;
 
 \defined('ABSPATH') or die();
 
@@ -18,7 +18,7 @@ class BootstrapContentGrid {
 
     public function shortcodeContentGrid($atts, $content = null) {
         $args = \shortcode_atts([
-            'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
+            'classes' => PostHelper::getLoopContentClasses(),
         ],$atts);
 
         $uniqueID = \uniqid();

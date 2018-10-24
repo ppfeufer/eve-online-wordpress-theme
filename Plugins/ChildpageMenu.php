@@ -2,8 +2,6 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
-
 class ChildpageMenu {
     /**
      * constructor

@@ -6,7 +6,8 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\PostHelper;
+use \WP_Query;
 
 \defined('ABSPATH') or die();
 
@@ -21,8 +22,8 @@ class LatestBlogPosts {
 
     public function shortcodeLatestBlogPosts($attributes) {
         $args = \shortcode_atts([
-            'number' => EveOnline\Helper\PostHelper::getContentColumnCount(),
-            'classes' => EveOnline\Helper\PostHelper::getLoopContentClasses(),
+            'number' => PostHelper::getContentColumnCount(),
+            'classes' => PostHelper::getLoopContentClasses(),
             'headline_type' => 'h2',
             'headline_text' => ''
         ], $attributes);
@@ -43,7 +44,7 @@ class LatestBlogPosts {
         /**
          * @var $latestPosts \WP_Query
          */
-        $latestPosts = new \WP_Query($queryArgs);
+        $latestPosts = new WP_Query($queryArgs);
 
         if($latestPosts->have_posts() && \is_page()) {
             \ob_start();

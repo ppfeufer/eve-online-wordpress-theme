@@ -5,7 +5,7 @@
 
 namespace WordPress\Themes\EveOnline\Plugins;
 
-use WordPress\Themes\EveOnline;
+use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
 
 \defined('ABSPATH') or die();
 
@@ -142,7 +142,7 @@ class Metaslider {
              * No slider set, check for our default slider
              */
             if(empty($page_slider)) {
-                $themeOptions = \get_option('eve_theme_options', EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+                $themeOptions = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
                 if(!empty($themeOptions['default_slider'])) {
                      if(!\is_front_page() && isset($themeOptions['default_slider_on']['frontpage_only'])) {
