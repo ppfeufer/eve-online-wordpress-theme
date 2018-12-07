@@ -18,13 +18,6 @@ use \ZipArchive;
 
 class EsiHelper {
     /**
-     * ESI Client Version
-     *
-     * @var string
-     */
-    protected $esiClientVersion = '20181202';
-
-    /**
      * ESI URL
      *
      * @var string
@@ -88,6 +81,27 @@ class EsiHelper {
      * @var UniverseRepository
      */
     private $universeApi = null;
+
+    /**
+     * Option field name for database version
+     *
+     * @var string
+     */
+    protected $optionDatabaseFieldName = 'eve-online-theme-database-version';
+
+    /**
+     * Database version
+     *
+     * @var string
+     */
+    protected $databaseVersion = 20181006;
+
+    /**
+     * Database version
+     *
+     * @var string
+     */
+    protected $esiClientVersion = 20181202;
 
     /**
      * Returning the instance
@@ -157,6 +171,33 @@ class EsiHelper {
     }
 
     /**
+     * getNewDatabaseVersion
+     *
+     * @return int
+     */
+    protected function getNewDatabaseVersion() {
+        return $this->databaseVersion;
+    }
+
+    /**
+     * getNewEsiClientVersion
+     *
+     * @return int
+     */
+    protected function getNewEsiClientVersion() {
+        return $this->esiClientVersion;
+    }
+
+    /**
+     * Returning the database version field name
+     *
+     * @return string
+     */
+    protected function getDatabaseFieldName() {
+        return $this->optionDatabaseFieldName;
+    }
+
+    /**
      * Check if the ESI client needs to be updated
      */
     protected function checkEsiClient() {
@@ -167,9 +208,9 @@ class EsiHelper {
            $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
        }
 
-       if(\version_compare($esiClientCurrentVersion, $this->esiClientVersion) < 0) {
-           $this->updateEsiClient($this->esiClientVersion);
-       }
+       if(\version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
+            $this->updateEsiClient($this->getNewEsiClientVersion());
+        }
     }
 
     /**
@@ -252,6 +293,45 @@ class EsiHelper {
 
             \rmdir($dir);
         }
+    }
+
+    /**
+     * Check if the database needs to be updated
+     */
+    protected function checkDatabaseForUpdates() {
+        $currentVersion = $this->getCurrentDatabaseVersion();
+
+        if(\version_compare($currentVersion, $this->getNewDatabaseVersion()) < 0) {
+            $this->updateDatabase($this->getNewDatabaseVersion());
+        }
+
+        /**
+         * Update database version
+         */
+        \update_option($this->getDatabaseFieldName(), $this->getNewDatabaseVersion());
+    }
+
+    /**
+     * Update the plugin database
+     */
+    public function updateDatabase() {
+        $this->createEsiCacheTable();
+    }
+
+    private function createEsiCacheTable() {
+        $charsetCollate = $this->wpdb->get_charset_collate();
+        $tableName = $this->wpdb->base_prefix . 'eve_online_esi_cache';
+
+        $sql = "CREATE TABLE $tableName (
+            esi_route varchar(255),
+            value longtext,
+            valid_until varchar(255),
+            PRIMARY KEY esi_route (esi_route)
+        ) $charsetCollate;";
+
+        require_once(\ABSPATH . 'wp-admin/includes/upgrade.php');
+
+        \dbDelta($sql);
     }
 
     public function getImageServerUrl() {
