@@ -5,6 +5,7 @@
 ### Changed
 - Autoloading classes instead of including them individually
 - German translation updated
+- Minimum needed ESI client version
 
 ### Removed
 - MO Cache

@@ -8,6 +8,10 @@ namespace WordPress\Themes\EveOnline\Helper;
 
 use \Exception;
 use \PclZip;
+use \WordPress\EsiClient\Repository\AllianceRepository;
+use \WordPress\EsiClient\Repository\CharacterRepository;
+use \WordPress\EsiClient\Repository\CorporationRepository;
+use \WordPress\EsiClient\Repository\UniverseRepository;
 use \ZipArchive;
 
 \defined('ABSPATH') or die();
@@ -18,7 +22,7 @@ class EsiHelper {
      *
      * @var string
      */
-    protected $esiClientVersion = '20181005';
+    protected $esiClientVersion = '20181202';
 
     /**
      * ESI URL
@@ -58,6 +62,34 @@ class EsiHelper {
     protected static $instance = null;
 
     /**
+     * allianceApi
+     *
+     * @var AllianceRepository
+     */
+    private $allianceApi = null;
+
+    /**
+     * corporationApi
+     *
+     * @var CorporationRepository
+     */
+    private $corporationApi = null;
+
+    /**
+     * characterApi
+     *
+     * @var CharacterRepository
+     */
+    private $characterApi = null;
+
+    /**
+     * universeApi
+     *
+     * @var UniverseRepository
+     */
+    private $universeApi = null;
+
+    /**
      * Returning the instance
      *
      * @return \WordPress\Themes\EveOnline\Helper\EsiHelper
@@ -87,6 +119,14 @@ class EsiHelper {
     protected function __construct() {
         $this->esiUrl = 'https://esi.evetech.net/latest/';
         $this->imageserverUrl = 'https://imageserver.eveonline.com/';
+
+        /**
+         * ESI API Client
+         */
+        $this->allianceApi = new AllianceRepository;
+        $this->corporationApi = new CorporationRepository;
+        $this->characterApi = new CharacterRepository;
+        $this->universeApi = new UniverseRepository;
 
         $this->checkEsiClient();
 
@@ -127,8 +167,8 @@ class EsiHelper {
            $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
        }
 
-       if(version_compare($esiClientCurrentVersion, $this->esiClientVersion) < 0) {
-           $this->updateEsiClient();
+       if(\version_compare($esiClientCurrentVersion, $this->esiClientVersion) < 0) {
+           $this->updateEsiClient($this->esiClientVersion);
        }
     }
 
@@ -137,24 +177,26 @@ class EsiHelper {
      *
      * @throws Exception
      */
-    protected function updateEsiClient() {
+    protected function updateEsiClient(string $version = null) {
         // check if ZipArchive is available
         $hasZipArchive = (\class_exists('ZipArchive')) ? true : false;
 
-        // the ESI client master zip file
-        $esiClientMasterZip = 'https://github.com/ppfeufer/wp-esi-client/archive/master.zip';
+        $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/master.zip';
+        $dirInZipFile = '/wp-esi-client-master';
 
-        // tem local name
+        if(!\is_null($version)) {
+            $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/v' . $version . '.zip';
+            $dirInZipFile = '/wp-esi-client-' . $version;
+        }
+
         $esiClientZipFile = \WP_CONTENT_DIR . '/uploads/EsiClient.zip';
 
-        // get the zip file
-        \wp_remote_get($esiClientMasterZip, [
+        \wp_remote_get($remoteZipFile, [
             'timeout' => 300,
             'stream' => true,
             'filename' => $esiClientZipFile
         ]);
 
-        // remove an older local version of the ESI client
         if(\is_dir(\WP_CONTENT_DIR . '/EsiClient/')) {
             $this->rrmdir(\WP_CONTENT_DIR . '/EsiClient/');
         }
@@ -162,7 +204,6 @@ class EsiHelper {
         // extract using ZipArchive
         if($hasZipArchive === true) {
             $zip = new ZipArchive;
-
             if(!$zip->open($esiClientZipFile)) {
                 throw new Exception('PHP-ZIP: Unable to open the Esi Client zip file');
             }
@@ -185,10 +226,8 @@ class EsiHelper {
             }
         }
 
-        // rename folder
-        \rename(\WP_CONTENT_DIR . '/wp-esi-client-master', \WP_CONTENT_DIR . '/EsiClient/');
+        \rename(\WP_CONTENT_DIR . $dirInZipFile, \WP_CONTENT_DIR . '/EsiClient/');
 
-        // remove temp zip file
         \unlink($esiClientZipFile);
     }
 
@@ -199,7 +238,7 @@ class EsiHelper {
      */
     protected function rrmdir(string $dir) {
         if(\is_dir($dir)) {
-            $objects = scandir($dir);
+            $objects = \scandir($dir);
 
             foreach($objects as $object) {
                 if($object != "." && $object != "..") {
