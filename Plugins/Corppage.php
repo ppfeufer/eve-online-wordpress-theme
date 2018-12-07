@@ -199,7 +199,9 @@ class Corppage {
         if(!empty($isCorpPage)) {
             $showCorpLogo = \filter_input(\INPUT_POST, 'eve_page_show_corp_logo') === 'on';
             $corpName = \filter_input(\INPUT_POST, 'eve_page_corp_name');
-            $corpID = $this->esiHelper->getEveIdFromName(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')), 'corporation');
+
+            $corpData = $this->esiHelper->getIdFromName([\trim(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')))], 'corporations');
+            $corpID = $corpData['0']->getId;
         }
 
         \update_post_meta($postID, 'eve_page_corp_name', $corpName);

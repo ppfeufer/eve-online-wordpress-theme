@@ -152,80 +152,137 @@ class EsiHelper {
         return $this->getImageServerUrl() . $this->imageserverEndpoints[$group];
     }
 
-    public function getCharacterData($characterID) {
-        $characterData = $this->getEsiData($this->esiEndpoints['character-information'] . $characterID . '/');
-
-        return [
-            'data' => $characterData
-        ];
-    }
-
-    public function getCorporationData($corporationID) {
-        $corporationData = $this->getEsiData($this->esiEndpoints['corporation-information'] . $corporationID . '/');
-
-        return [
-            'data' => $corporationData
-        ];
-    }
-
-    public function getAllianceData($allianceID) {
-        $allianceData = $this->getEsiData($this->esiEndpoints['alliance-information'] . $allianceID . '/', 3600);
-
-        return [
-            'data' => $allianceData
-        ];
-    }
+    /**
+     * Get character data by ID
+     *
+     * @param int $characterId
+     * @return \WordPress\EsiClient\Model\Character\CharactersCharacterId
+     */
+//    public function getCharacterData(int $characterId) {
+//        $characterData = $this->databaseHelper->getCachedEsiDataFromDb('characters/' . $characterId);
+//
+//        if(\is_null($characterData)) {
+//            $characterData = $this->characterApi->charactersCharacterId($characterId);
+//
+//            if(!\is_null($characterData)) {
+//                $this->databaseHelper->writeEsiCacheDataToDb([
+//                    'characters/' . $characterId,
+//                    \maybe_serialize($characterData),
+//                    \strtotime('+1 week')
+//                ]);
+//            }
+//        }
+//
+//        return [
+//            'data' => $characterData
+//        ];
+//    }
 
     /**
-     * Get the EVE ID by it's name
+     * Get corporation data by ID
      *
-     * @param type $name
-     * @param type $type
+     * @param int $corporationId
+     * @return \WordPress\EsiClient\Model\Corporation\CorporationsCorporationId
+     */
+//    public function getCorporationData(int $corporationId) {
+//        $corporationData = $this->databaseHelper->getCachedEsiDataFromDb('corporations/' . $corporationId);
+//
+//        if(\is_null($corporationData)) {
+//            $corporationData = $this->corporationApi->corporationsCorporationId($corporationId);
+//
+//            if(!\is_null($corporationData)) {
+//                $this->databaseHelper->writeEsiCacheDataToDb([
+//                    'corporations/' . $corporationId,
+//                    \maybe_serialize($corporationData),
+//                    \strtotime('+1 week')
+//                ]);
+//            }
+//        }
+//
+//        return [
+//            'data' => $corporationData
+//        ];
+//    }
+
+    /**
+     * Get alliance data by ID
+     *
+     * @param int $allianceId
+     * @return \WordPress\EsiClient\Model\Alliance\AlliancesAllianceId
+     */
+//    public function getAllianceData(int $allianceId) {
+//        $allianceData = $this->databaseHelper->getCachedEsiDataFromDb('alliances/' . $allianceId);
+//
+//        if(\is_null($allianceData)) {
+//            $allianceData = $this->allianceApi->alliancesAllianceId($allianceId);
+//
+//            if(!\is_null($allianceData)) {
+//                $this->databaseHelper->writeEsiCacheDataToDb([
+//                    'alliances/' . $allianceId,
+//                    \maybe_serialize($allianceData),
+//                    \strtotime('+1 week')
+//                ]);
+//            }
+//        }
+//
+//        return [
+//            'data' => $allianceData
+//        ];
+//    }
+
+    /**
+     * Get the IDs to an array of names
+     *
+     * @param array $names
+     * @param string $type
      * @return type
      */
-    public function getEveIdFromName($name, $type) {
+    public function getIdFromName(array $names, string $type) {
         $returnData = null;
 
-        $data = $this->getEsiData($this->esiEndpoints['search'] . '?search=' . \urlencode(\wp_specialchars_decode($name, \ENT_QUOTES)) . '&strict=true&categories=' . $type, 3600);
+        /* @var $esiData \WordPress\EsiClient\Model\Universe\UniverseIds */
+        $esiData = $this->universeApi->universeIds(\array_values($names));
 
-        if(!isset($data->error) && !empty((array) $data) && isset($data->{$type})) {
-            /**
-             * -= FIX =-
-             * CCPs strict mode is not really strict, so we have to check manually ....
-             * Please CCP, get your shit sorted ...
-             *
-             * @todo Replace this with /universe/ids/ logic
-             */
-            foreach($data->{$type} as $entityID) {
-                switch($type) {
-                    case 'character':
-                        $characterSheet = $this->getCharacterData($entityID);
+        switch($type) {
+            case 'agents':
+                $returnData = $esiData->getAgents();
+                break;
 
-                        if($this->isValidEsiData($characterSheet) === true && \strtolower($characterSheet['data']->name) === \strtolower($name)) {
-                            $returnData = $entityID;
-                            break;
-                        }
-                        break;
+            case 'alliances':
+                $returnData = $esiData->getAlliances();
+                break;
 
-                    case 'corporation':
-                        $corporationSheet = $this->getCorporationData($entityID);
+            case 'constellations':
+                $returnData = $esiData->getConstellations();
+                break;
 
-                        if($this->isValidEsiData($corporationSheet) === true && \strtolower($corporationSheet['data']->name) === \strtolower($name)) {
-                            $returnData = $entityID;
-                            break;
-                        }
-                        break;
+            case 'characters':
+                $returnData = $esiData->getCharacters();
+                break;
 
-                    case 'alliance':
-                        $allianceSheet = $this->getAllianceData($entityID);
+            case 'corporations':
+                $returnData = $esiData->getCorporations();
+                break;
 
-                        if($this->isValidEsiData($allianceSheet) === true && \strtolower($allianceSheet['data']->name) === \strtolower($name)) {
-                            $returnData = $entityID;
-                            break;
-                        }
-                        break;
-                }
-            }
+            case 'factions':
+                $returnData = $esiData->getFactions();
+                break;
+
+            case 'inventoryTypes':
+                $returnData = $esiData->getInventoryTypes();
+                break;
+
+            case 'regions':
+                $returnData = $esiData->getRegions();
+                break;
+
+            case 'stations':
+                $returnData = $esiData->getStations();
+                break;
+
+            case 'systems':
+                $returnData = $esiData->getSystems();
+                break;
         }
 
         return $returnData;
@@ -244,7 +301,8 @@ class EsiHelper {
     public function getCharacterImageByName($characterName, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null) {
         $returnData = null;
 
-        $characterID = $this->getEveIdFromName($characterName, 'character');
+        $characterData = $this->getIdFromName([\trim($characterName)], 'characters');
+        $characterID = (!\is_null($characterData)) ? $characterData['0']->getId() : null;
 
         // If we actually have a characterID
         if(!\is_null($characterID)) {
@@ -281,7 +339,8 @@ class EsiHelper {
     public function getEntityLogoByName($entityName, $entityType, $imageOnly = true, $size = 128) {
         $returnData = null;
 
-        $eveID = $this->getEveIdFromName($entityName, $entityType);
+        $eveEntityData = $this->getIdFromName([\trim($entityName)], $entityType . 's');
+        $eveID = (!\is_null($eveEntityData)) ? $eveEntityData['0']->getId() : null;
 
         if(!\is_null($eveID)) {
             $imageName = $eveID . '_' . $size . '.png';
@@ -304,29 +363,29 @@ class EsiHelper {
      * @param int $cacheTime Caching time in hours (Default: 120)
      * @return object
      */
-    private function getEsiData($route, $cacheTime = 120) {
-        $returnValue = null;
-
-        $transientName = \sanitize_title('eve-esi-data_' . $route);
-        $data = CacheHelper::getTransientCache($transientName);
-
-        if($data === false || empty($data)) {
-            $data = RemoteHelper::getInstance()->getRemoteData($this->esiUrl . $route);
-
-            /**
-             * setting the transient caches
-             */
-            if(!isset($data->error) && !empty($data)) {
-                CacheHelper::setTransientCache($transientName, $data, $cacheTime);
-            }
-        }
-
-        if(!empty($data) && !isset($data->error)) {
-            $returnValue = \json_decode($data);
-        }
-
-        return $returnValue;
-    }
+//    private function getEsiData($route, $cacheTime = 120) {
+//        $returnValue = null;
+//
+//        $transientName = \sanitize_title('eve-esi-data_' . $route);
+//        $data = CacheHelper::getTransientCache($transientName);
+//
+//        if($data === false || empty($data)) {
+//            $data = RemoteHelper::getInstance()->getRemoteData($this->esiUrl . $route);
+//
+//            /**
+//             * setting the transient caches
+//             */
+//            if(!isset($data->error) && !empty($data)) {
+//                CacheHelper::setTransientCache($transientName, $data, $cacheTime);
+//            }
+//        }
+//
+//        if(!empty($data) && !isset($data->error)) {
+//            $returnValue = \json_decode($data);
+//        }
+//
+//        return $returnValue;
+//    }
 
     /**
      * Check if we have valid ESI data or not
@@ -334,13 +393,13 @@ class EsiHelper {
      * @param array $esiData
      * @return boolean
      */
-    public function isValidEsiData($esiData) {
-        $returnValue = false;
-
-        if(!\is_null($esiData) && isset($esiData['data']) && !\is_null($esiData['data']) && !isset($esiData['data']->error)) {
-            $returnValue = true;
-        }
-
-        return $returnValue;
-    }
+//    public function isValidEsiData($esiData) {
+//        $returnValue = false;
+//
+//        if(!\is_null($esiData) && isset($esiData['data']) && !\is_null($esiData['data']) && !isset($esiData['data']->error)) {
+//            $returnValue = true;
+//        }
+//
+//        return $returnValue;
+//    }
 }
