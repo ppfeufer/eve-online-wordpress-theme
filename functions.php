@@ -38,6 +38,7 @@ require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 /**
  * Initiate needed general Classes
  */
+new Helper\UpdateHelper;
 new Plugins\Metaslider(true);
 new Plugins\Shortcodes;
 new Plugins\BootstrapImageGallery;
