@@ -4,8 +4,10 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180823...development)
 ### Changed
 - Autoloading classes instead of including them individually
-- German translation updated
 - Common ESI client integrated
+
+## Updated
+- German translation
 
 ### Removed
 - MO Cache
