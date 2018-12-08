@@ -2,10 +2,9 @@
 
 namespace WordPress\Themes\EveOnline\Plugins\Widgets;
 
-use WordPress\Themes\EveOnline;
-use WordPress\Themes\EveOnline\Plugins;
+use WP_Widget;
 
-class ChildpageMenuWidget extends \WP_Widget {
+class ChildpageMenuWidget extends WP_Widget {
     public $idBase = null;
     public $widgetName = null;
 
