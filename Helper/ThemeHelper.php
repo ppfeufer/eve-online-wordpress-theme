@@ -92,35 +92,6 @@ class ThemeHelper {
      */
     public static function getThemeJavaScripts() {
         $enqueue_script = [
-            /* Html5Shiv */
-            'Html5Shiv' => [
-                'handle' => 'html5shiv',
-                'condition' => 'lt IE 9',
-                'source' => \get_theme_file_uri('/js/html5shiv.min.js'),
-                'source-development' => \get_theme_file_uri('/js/html5shiv.js'),
-                'deps' => '',
-                'version' => '',
-                'in_footer' => false
-            ],
-            /* Respond JS */
-            'Respond JS' => [
-                'handle' => 'respondJS',
-                'condition' => 'lt IE 9',
-                'source' => \get_theme_file_uri('/js/respond.min.js'),
-                'source-development' => \get_theme_file_uri('/js/respond.js'),
-                'deps' => '',
-                'version' => '',
-                'in_footer' => false
-            ],
-            /* Modernizr */
-//            'Modernizr' => array(
-//                'handle' => 'modernizr',
-//                'source' => \get_template_directory_uri() . '/js/modernizr.min.js',
-//                'source-development' => \get_template_directory_uri() . '/js/modernizr.js',
-//                'deps' => '',
-//                'version' => '',
-//                'in_footer' => true
-//            ),
             /* Bootstrap's JS */
             'Bootstrap' => [
                 'handle' => 'bootstrap-js',
