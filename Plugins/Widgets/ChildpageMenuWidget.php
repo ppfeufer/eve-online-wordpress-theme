@@ -49,23 +49,19 @@ class ChildpageMenuWidget extends WP_Widget {
     private function getWidgetData() {
         global $post;
 
-        $returnValue = false;
+        $parent = $post->ID;
 
         if($post->post_parent) {
             $ancestors = \get_post_ancestors($post->ID);
 
             $root = \count($ancestors) - 1;
             $parent = $ancestors[$root];
-        } else {
-            $parent = $post->ID;
         }
 
-        $returnValue = \wp_list_pages([
+        return \wp_list_pages([
             'title_li' => '',
             'child_of' => $parent,
             'echo' => false
         ]);
-
-        return $returnValue;
     }
 }

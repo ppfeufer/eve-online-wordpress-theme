@@ -374,6 +374,10 @@
 
     .eve-childpage-menu-widget .childpages-list {
         padding-left: 0;
+        clear: both;
+        border-style: solid;
+        border-color: rgb(220,220,220);
+        border-width: 2px 0;
     }
 
     .childpages-list > .page_item {
@@ -385,7 +389,7 @@
     }
 
     .childpages-list .page_item a {
-        padding: 0.5rem 1rem 0.5rem 0;
+        padding: 0.5rem 1rem 0.5rem 1rem;
         display: block;
         color: inherit;
     }
@@ -410,7 +414,7 @@
     .childpages-list .children .current_page_item > a::before {
         content: '';
         display: inline-block;
-        margin-left: -0.75rem;
+        margin-left: -1rem;
         margin-right: 0.5rem;
         border: 0 solid rgba(0,0,0,0);
         border-width: 0.4rem 0.2rem 0.4rem 0.3125rem;
