@@ -17,7 +17,10 @@ class Corppage {
     public function __construct() {
         $this->esiHelper = EsiHelper::getInstance();
 
-        $this->registerMetaBoxes();
+        if(\is_admin()) {
+            $this->registerMetaBoxes();
+        }
+
         $this->registerShortcodes();
     }
 
@@ -161,10 +164,7 @@ class Corppage {
             <p class="checkbox-wrapper">
                 <label><strong><?php \_e('Corporation Logo', 'eve-online'); ?></strong></label>
                 <br>
-                <?php
-//                $corpLogoPath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
-                $corpLogoPath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
-                ?>
+                <?php $corpLogoPath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png'; ?>
                 <img src="<?php echo $corpLogoPath; ?>" alt="<?php echo $corpName; ?>">
             </p>
             <?php
@@ -201,7 +201,10 @@ class Corppage {
             $corpName = \filter_input(\INPUT_POST, 'eve_page_corp_name');
 
             $corpData = $this->esiHelper->getIdFromName([\trim(\stripslashes(\filter_input(\INPUT_POST, 'eve_page_corp_name')))], 'corporations');
-            $corpID = $corpData['0']->getId;
+
+            if(!\is_null($corpData)) {
+                $corpID = $corpData['0']->getId();
+            }
         }
 
         \update_post_meta($postID, 'eve_page_corp_name', $corpName);
@@ -214,8 +217,7 @@ class Corppage {
         $corpName = \get_post_meta($corpPageID, 'eve_page_corp_name', true);
         $corpID = \get_post_meta($corpPageID, 'eve_page_corp_eve_ID', true);
 
-//        $imagePath = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', EveOnline\Helper\EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png');
-        $imagePath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
+        $imagePath = EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png';
 
         if($imagePath !== false) {
             $html = '<div class="eve-corp-page-corp-logo eve-image eve-corporation-logo-container"><figure><img src="' . $imagePath . '" class="eve-corporation-logo" alt="' . \esc_html($corpName) . '" width="256">';
