@@ -32,16 +32,6 @@ class Corppage {
     }
 
     public function shortcodeCorplist($attributes) {
-        $args = \shortcode_atts([
-            'type' => 'boxes'
-        ], $attributes);
-
-        /**
-         * Not used at this moment
-         */
-        unset($args);
-//        $type = $args['type'];
-
         $corpPages = $this->getCorporationPages();
         $corplistHTML = null;
 
@@ -60,7 +50,7 @@ class Corppage {
      */
     private function getCorporationPagesLoop($corpPages) {
         $uniqueID = \uniqid();
-        $corplistHTML .= '<div class="gallery-row row">';
+        $corplistHTML = '<div class="gallery-row row">';
         $corplistHTML .= '<ul class="bootstrap-gallery bootstrap-corporationlist bootstrap-corporationlist-' . $uniqueID . ' clearfix">';
 
         foreach($corpPages as $page) {
@@ -93,10 +83,9 @@ class Corppage {
     private function getCorporationPageLoopItem($page) {
         $corpID = \get_post_meta($page->ID, 'eve_page_corp_eve_ID', true);
 
-//        $corpLogo = EveOnline\Helper\ImageHelper::getLocalCacheImageUriForRemoteImage('corporation', $this->eveApi->getImageServerEndpoint('corporation') . $corpID . '_256.png');
         $corpLogo = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
 
-        $corplistHTML .= '<li>';
+        $corplistHTML = '<li>';
         $corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
         $corplistHTML .= '<header><h2 class="corporationlist-title"><a href="' . \get_permalink($page->ID) . '">' . $page->post_title . '</a></h2></header>';
 
