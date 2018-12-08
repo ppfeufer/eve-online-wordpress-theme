@@ -67,6 +67,11 @@
 //            var src = $(this).find('img').attr('src');
             var src = $(this).find('figure').attr('data-fullsizeimage');
 
+            // We might have a Gutenberg gallery
+            if(!src) {
+                src = $(this).find('img').attr('src');
+            }
+
             // fix for lazy loading ...
 //            var lazySource = $(this).find('img').attr('data-lazy-src') || '';
 //            if(lazySource !== '') {
@@ -124,6 +129,11 @@
 //            var src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
             var src = ul.find('li[data-bsp-li-index="' + index + '"] figure').attr('data-fullsizeimage');
 
+            // We might have a Gutenberg gallery
+            if(!src) {
+                src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
+            }
+
             // fix for lazy loading ...
 //            var lazySource = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-lazy-src') || '';
 //            if(lazySource !== '') {
@@ -131,6 +141,11 @@
 //            }
 
             var largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-bsp-large-src');
+
+            // We might have a Gutenberg gallery
+            if(!largeImg) {
+                largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
+            }
 
             if(typeof largeImg === 'string') {
                 src = largeImg;

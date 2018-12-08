@@ -146,8 +146,8 @@ class ThemeHelper {
             /* Bootstrap Gallery */
             'Bootstrap Gallery' => [
                 'handle' => 'bootstrap-gallery-js',
-                'source' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.min.js'),
-                'source-development' => \get_theme_file_uri('/plugins/js/jquery.bootstrap-gallery.js'),
+                'source' => \get_theme_file_uri('/Plugins/js/jquery.bootstrap-gallery.min.js'),
+                'source-development' => \get_theme_file_uri('/Plugins/js/jquery.bootstrap-gallery.js'),
                 'deps' => [
                     'jquery'
                 ],

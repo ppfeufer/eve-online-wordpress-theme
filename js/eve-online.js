@@ -325,4 +325,17 @@ jQuery(function($) {
          */
         $(this).attr('placeholder', placeholder);
     });
+
+    /**
+     * Gutenberg Gallery
+     *
+     * We need no bootstrap classes here since Gutenberg takes care of this,
+     * but we still want our nice modal window ...
+     */
+    if($('ul.wp-block-gallery').length !== 0) {
+        $('ul.wp-block-gallery').bootstrapGallery({
+            'classes' : '',
+            'hasModal' : true
+        });
+    }
 });

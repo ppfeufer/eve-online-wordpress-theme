@@ -426,3 +426,17 @@
         display: block;
     }
 }
+
+/* gutenberg tweaks
+----------------------------------------------------------------------------- */
+@media all {
+    .wp-block-gallery li figure {
+        cursor: pointer;
+    }
+
+    .wp-block-gallery li figure:hover img {
+        -webkit-box-shadow: 0 0 5px #000;
+        -moz-box-shadow: 0 0 5px #000;
+        box-shadow: 0 0 5px #000;
+    }
+}
