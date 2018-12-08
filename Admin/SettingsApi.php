@@ -1,4 +1,22 @@
 <?php
+
+/*
+ * Copyright (C) 2018 p.pfeufer
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Settings API ( modified from http://www.wp-load.com/register-settings-api/ )
  */
@@ -481,7 +499,6 @@ class SettingsApi {
      *
      * Return as string or array
      */
-//	public function value($key = null) {
     public function value() {
         $value = '';
 
@@ -592,8 +609,6 @@ class SettingsApi {
 
         $options = \get_option($args['option_name'], $this->optionsDefault);
         $this->options = $options;
-
-//		$screen = \get_current_screen();
 
         $option_name = \sanitize_title($args['option_name']);
         $out = '';
