@@ -4,6 +4,7 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180823...development)
 ### Added
 - Modal window capability for Gutenberg gallery
+- [latestblogposts] shortcode to documentation
 
 ### Changed
 - Autoloading classes instead of including them individually
