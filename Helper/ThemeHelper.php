@@ -245,8 +245,8 @@ class ThemeHelper {
             /* Adjustment to Plugins */
             'EVE Online Admin Styles' => [
                 'handle' => 'eve-online-admin-styles',
-                'source' => \get_template_directory_uri() . '/admin/css/eve-online-admin-style.min.css',
-                'source-development' => \get_template_directory_uri() . '/admin/css/eve-online-admin-style.css',
+                'source' => \get_template_directory_uri() . '/Admin/css/eve-online-admin-style.min.css',
+                'source-development' => \get_template_directory_uri() . '/Admin/css/eve-online-admin-style.css',
                 'deps' => [],
                 'version' => \sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'

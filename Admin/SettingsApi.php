@@ -876,7 +876,7 @@ class SettingsApi {
             \wp_enqueue_script('jquery-ui-datepicker');
             \wp_enqueue_script(
                 'settings-api',
-                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/js/settings-api.js' : \get_template_directory_uri() . '/admin/js/settings-api.min.js'
+                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/Admin/js/settings-api.js' : \get_template_directory_uri() . '/Admin/js/settings-api.min.js'
             );
         }
     }
@@ -887,14 +887,14 @@ class SettingsApi {
     public function enqueueStyles() {
         if($this->isSettingsPage() === true) {
             \wp_enqueue_style('wp-color-picker');
-            \wp_enqueue_style('jquery-ui', \get_template_directory_uri() . '/admin/css/jquery-ui.min.css');
+            \wp_enqueue_style('jquery-ui', \get_template_directory_uri() . '/Admin/css/jquery-ui.min.css');
             \wp_enqueue_style(
                 'font-awesome',
                 (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css'
             );
             \wp_enqueue_style(
                 'settings-api',
-                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/admin/css/settings-api.css' : \get_template_directory_uri() . '/admin/css/settings-api.min.css'
+                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/Admin/css/settings-api.css' : \get_template_directory_uri() . '/Admin/css/settings-api.min.css'
             );
         }
     }
