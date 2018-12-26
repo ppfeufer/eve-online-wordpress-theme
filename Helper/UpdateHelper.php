@@ -116,6 +116,8 @@ class UpdateHelper {
      * Check if the ESI client needs to be updated
      */
     protected function checkEsiClient() {
+        $esiClientCurrentVersion = 0;
+
         /**
          * Check for current ESI client version
          */

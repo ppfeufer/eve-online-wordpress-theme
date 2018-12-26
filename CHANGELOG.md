@@ -14,7 +14,7 @@
 - German translation
 
 ### Removed
-- MO Cache
+- MO Cache (not really needed)
 - Support for older Internet Explorer (Version 9 and older)
 
 ## [v0.1-r20180823](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20180823) - 2018-08-23
