@@ -14,9 +14,9 @@
  * @param {type} body
  * @returns {undefined}
  */
-(function(body) {
+((function(body) {
     body.className = body.className.replace(/\bno-js\b/, 'js');
-})(document.body);
+})(document.body));
 
 /**
  * Detecting mobile devices
@@ -125,7 +125,7 @@ jQuery(function($) {
         });
     }
 
-    (function($, viewport) {
+    ((function($, viewport) {
         // the initial viewport (on page load)
         if(viewport.is('xs')) {
             fixAutomaticMenu('mobile');
@@ -143,7 +143,7 @@ jQuery(function($) {
                 }
             }, 1)
         );
-    })(jQuery, ResponsiveBootstrapToolkit);
+    })(jQuery, ResponsiveBootstrapToolkit));
 
     // make parent clickable if not on mobile device
     if(!isMobile()) {
@@ -159,6 +159,7 @@ jQuery(function($) {
     $oEmbedVideos.each(function() {
         // adding the youtube video ID to the iframe
         var youtubeVideoData = $(this).attr('src').match(/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/);
+
         if(youtubeVideoData !== null) {
             var youtubeVideoID = youtubeVideoData['1'];
             $(this).attr('id', 'youtube-video-' + youtubeVideoID);
@@ -286,7 +287,7 @@ jQuery(function($) {
              * The optional number (500) specifies the number of milliseconds
              * it takes to scroll to the specified area
              */
-            if($(hash).offset() !== undefined) {
+            if($(hash).offset() !== '') {
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top
                 }, 500, function() {
@@ -294,8 +295,8 @@ jQuery(function($) {
                      * Add hash (#) to URL when done scrolling
                      * (default click behavior) as long as it's not
                      * one of the following:
-                     *		#pagetop	=> to-top link
-                     *		#respond	=> comment form respond
+                     *      #pagetop    => to-top link
+                     *      #respond    => comment form respond
                      */
                     if(hash !== '#pagetop' && hash !== '#respond') {
                         window.location.hash = hash;
@@ -325,4 +326,17 @@ jQuery(function($) {
          */
         $(this).attr('placeholder', placeholder);
     });
+
+    /**
+     * Gutenberg Gallery
+     *
+     * We need no bootstrap classes here since Gutenberg takes care of this,
+     * but we still want our nice modal window ...
+     */
+    if($('ul.wp-block-gallery').length !== 0) {
+        $('ul.wp-block-gallery').bootstrapGallery({
+            'classes' : '',
+            'hasModal' : true
+        });
+    }
 });

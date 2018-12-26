@@ -98,3 +98,16 @@ Example:
 [Our Corporations](https://yulaifederation.net/our-corporations/)
 
 ![](images/our-corporations.png)
+
+### Latest Blog Posts
+
+The [latestblogposts] shortcode gives you an overview over your latest article and it's an easy way to show these on your front page.
+
+![](images/latest-blog-post-shortcode.png)
+
+Example:
+[latestblogposts headline_type='h2' headline_text='Latest Article']
+
+Supported Options:
+- headline_type => The type of your headline. Can be h1 - h6. Default is h2 if this option is not set.
+- headline_text => Your headline. If not set, no headline wil be displayed.

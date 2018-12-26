@@ -1,11 +1,30 @@
 <?php
 
+/*
+ * Copyright (C) 2018 p.pfeufer
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 /**
  * Our Theme's namespace to keep the global namespace clear
  *
  * WordPress\Themes\EveOnline
  */
 namespace WordPress\Themes\EveOnline;
+
+require_once(\trailingslashit(\dirname(__FILE__)) . 'inc/autoloader.php');
 
 /**
  * Just to make sure, if this line is not in wp-config, that our environment
@@ -28,53 +47,6 @@ if(\version_compare($GLOBALS['wp_version'], '4.7', '<')) {
 }
 
 /**
- * Loading Theme Addon Classes
- */
-require_once(\get_theme_file_path('/addons/BootstrapMenuWalker.php'));
-require_once(\get_theme_file_path('/addons/Cron.php'));
-
-/**
- * Loading Helper Classes
- */
-require_once(\get_theme_file_path('/helper/ThemeHelper.php'));
-require_once(\get_theme_file_path('/helper/NavigationHelper.php'));
-require_once(\get_theme_file_path('/helper/PostHelper.php'));
-require_once(\get_theme_file_path('/helper/EsiHelper.php'));
-require_once(\get_theme_file_path('/helper/RemoteHelper.php'));
-require_once(\get_theme_file_path('/helper/StringHelper.php'));
-require_once(\get_theme_file_path('/helper/ImageHelper.php'));
-require_once(\get_theme_file_path('/helper/FilesystemHelper.php'));
-require_once(\get_theme_file_path('/helper/CacheHelper.php'));
-require_once(\get_theme_file_path('/helper/CommentHelper.php'));
-
-/**
- * Loading Plugins
- */
-require_once(\get_theme_file_path('/plugins/Metaslider.php'));
-require_once(\get_theme_file_path('/plugins/Shortcodes.php'));
-require_once(\get_theme_file_path('/plugins/BootstrapImageGallery.php'));
-require_once(\get_theme_file_path('/plugins/BootstrapVideoGallery.php'));
-require_once(\get_theme_file_path('/plugins/BootstrapContentGrid.php'));
-require_once(\get_theme_file_path('/plugins/Corppage.php'));
-require_once(\get_theme_file_path('/plugins/Whitelabel.php'));
-require_once(\get_theme_file_path('/plugins/MoCache.php'));
-require_once(\get_theme_file_path('/plugins/ChildpageMenu.php'));
-require_once(\get_theme_file_path('/plugins/LatestBlogPosts.php'));
-require_once(\get_theme_file_path('/plugins/EveOnlineAvatar.php'));
-require_once(\get_theme_file_path('/plugins/HtmlMinify.php'));
-
-/**
- * Loading Security Classes
- */
-require_once(\get_theme_file_path('/security/WordPressCoreUpdateCleaner.php'));
-
-/**
- * Theme Options
- */
-require_once(\get_theme_file_path('/admin/SettingsApi.php'));
-require_once(\get_theme_file_path('/admin/ThemeSettings.php'));
-
-/**
  * WP Filesystem API
  */
 require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
@@ -83,8 +55,7 @@ require_once(\ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 /**
  * Initiate needed general Classes
  */
-new Addons\Cron(true);
-new Plugins\MoCache;
+new Helper\UpdateHelper;
 new Plugins\Metaslider(true);
 new Plugins\Shortcodes;
 new Plugins\BootstrapImageGallery;
@@ -220,7 +191,7 @@ function eve_theme_setup() {
     Helper\ThemeHelper::updateOptions('eve_theme_options', 'eve_theme_db_version', Helper\ThemeHelper::getThemeDbVersion(), Helper\ThemeHelper::getThemeDefaultOptions());
 
     /**
-     * Loading out textdomain
+     * Loading our textdomain
      */
     \load_theme_textdomain('eve-online', \get_template_directory() . '/l10n');
 
@@ -241,12 +212,12 @@ function eve_theme_setup() {
     ]);
 
     // Setting up the image cache directories
-    Helper\CacheHelper::createCacheDirectory();
-    Helper\CacheHelper::createCacheDirectory('images');
-    Helper\CacheHelper::createCacheDirectory('images/corporation');
-    Helper\CacheHelper::createCacheDirectory('images/alliance');
-    Helper\CacheHelper::createCacheDirectory('images/character');
-    Helper\CacheHelper::createCacheDirectory('images/render');
+//    Helper\CacheHelper::createCacheDirectory();
+//    Helper\CacheHelper::createCacheDirectory('images');
+//    Helper\CacheHelper::createCacheDirectory('images/corporation');
+//    Helper\CacheHelper::createCacheDirectory('images/alliance');
+//    Helper\CacheHelper::createCacheDirectory('images/character');
+//    Helper\CacheHelper::createCacheDirectory('images/render');
 }
 \add_action('after_setup_theme', '\\WordPress\Themes\EveOnline\eve_theme_setup');
 

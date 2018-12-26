@@ -2,7 +2,7 @@
  * Theme Name: EVE Online
  * Theme URI: https://github.com/ppfeufer/eve-online-wordpress-theme
  * Description: A beatyfull WordPress Theme inspired by the MMORPG EVE Online
- * Version: 0.1-r20180823
+ * Version: 0.1-r20181226
  * Author: YF [TN-NT] Rounon Dax
  * Author URI: http://yulaifederation.net
  * License: GNU General Public License v2 or later
@@ -118,7 +118,6 @@
     }
 
     .alignleft {
-        /*display: block;*/
         float: left;
     }
 
@@ -128,7 +127,6 @@
     }
 
     .alignright {
-        /*display: block;*/
         float: right;
     }
 
@@ -226,10 +224,6 @@
         border-top: 1px solid #ededed;
         padding: 6px 10px 6px 0;
     }
-
-    /*	.entry-content *, .content * {
-            max-width: 100%;
-        }*/
 
     .entry-content dd, .content dd, .comment-content dd {
         line-height: 1.714285714;
@@ -340,13 +334,6 @@
         margin-right: 16px;
         margin-right: 1rem;
     }
-
-    /*	.site-title {
-            margin-top: 18px;
-            margin-top: 1.125rem;
-            font-size: 32px;
-            font-size: 2rem;
-        }*/
 
     .site-title {
         margin-top: 32px;
@@ -605,11 +592,9 @@
         max-width: 44.0625rem;
         max-height: 395px;
         max-height: 24.6875rem;
-        /*overflow: hidden;*/
     }
 
     .read-more {
-        /*background-color: rgb(66,139,202);*/
         background-color: rgb(73,86,96);
         border-color: rgb(66,139,202);
         color: rgb(255,255,255);
@@ -664,8 +649,6 @@
         margin-top: 0.3125rem;
         margin-right: 16px;
         margin-right: 1rem;
-        /*		margin-bottom: 10px;
-                margin-bottom: 0.625rem;*/
     }
 }
 
@@ -837,6 +820,7 @@
         height: 2.5rem;
         vertical-align: middle;
     }
+
     .icon-totop::before, .icon-totop::after {
         content: "";
         display: block;
@@ -852,6 +836,7 @@
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
     }
+
     .icon-totop::after {
         top: 1.3em;
     }

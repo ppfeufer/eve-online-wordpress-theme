@@ -1,0 +1,850 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EVE Online\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-26 12:34+0000\n"
+"PO-Revision-Date: 2018-12-26 12:35+0000\n"
+"Last-Translator: ppfeufer <develop@ppfeufer.de>\n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Loco-Target-Locale: de_DE\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.0; wp-5.1-alpha-44362"
+
+#: 404.php:56
+msgid "This is Embarrassing"
+msgstr "Das ist peinlich"
+
+#: 404.php:60
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching, or one of the links below, can help."
+msgstr ""
+"Sieht so aus als könnten wir nicht finden was Du erhofft hast. Vielleicht "
+"hilft die Suche weiter?"
+
+#: 404.php:67
+msgid "All Pages"
+msgstr "Alle Seiten"
+
+#: 404.php:74
+msgid "Categories"
+msgstr "Kategorien"
+
+#. Name of the template
+msgid "Default Page (Full Width)"
+msgstr "Default Page (Volle Breite)"
+
+#: comments.php:31
+#, php-format
+msgid "Comments for »%1$s«"
+msgstr "Kommentare zu »%1$s«"
+
+#: comments.php:45
+msgid "&larr; Older Comments"
+msgstr "&larr; Ältere Kommentare"
+
+#: comments.php:48
+msgid "Newer Comments &rarr;"
+msgstr "Neuere kommentare &rarr;"
+
+#: comments.php:55
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen"
+
+#: searchform.php:25 searchform.php:26
+msgid "Search"
+msgstr "Suche"
+
+#: functions.php:256
+msgid "Main Menu"
+msgstr "Hauptmenü"
+
+#: functions.php:257
+msgid "Footer Menu"
+msgstr "Fußmenü"
+
+#: functions.php:258
+msgid "Header Menu"
+msgstr "Kopfmenü"
+
+#. Translators: If there are characters in your language that are not
+#. supported by Source Sans Pro, translate this to 'off'. Do not translate
+#. into your own language.
+#: functions.php:319
+msgctxt "Source Sans Pro font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not
+#. supported by Bitter, translate this to 'off'. Do not translate into your
+#. own language.
+#: functions.php:326
+msgctxt "Bitter font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:388
+msgid "Page Sidebar"
+msgstr "Page Sidebar"
+
+#: functions.php:389
+msgid ""
+"This sidebar will be displayed if the current is a page or your blog index."
+msgstr "Diese Sidebar wird nur auf Seiten und dem Blogindex angezeigt."
+
+#: functions.php:400
+msgid "Post Sidebar"
+msgstr "Post Sidebar"
+
+#: functions.php:401
+msgid ""
+"This sidebar will always be displayed if the current is a post / blog "
+"article."
+msgstr "Diese Sidebar wird nur in Blogartikeln angezeigt."
+
+#: functions.php:412
+msgid "General Sidebar"
+msgstr "Generelle Sidebar"
+
+#: functions.php:414
+msgid ""
+"General sidebar that is always right from the topic, below the side specific "
+"sidebars"
+msgstr ""
+"Generelle Sidebar welche immer unter den seitenspezifischen Sidebars "
+"angezeigt wird."
+
+#: functions.php:424 functions.php:426
+msgid "Home Column 1"
+msgstr "Home Column 1"
+
+#: functions.php:436 functions.php:438
+msgid "Home Column 2"
+msgstr "Home Column 2"
+
+#: functions.php:448 functions.php:450
+msgid "Home Column 3"
+msgstr "Home Column 3"
+
+#: functions.php:460 functions.php:462
+msgid "Home Column 4"
+msgstr "Home Column 4"
+
+#: functions.php:472 functions.php:474
+msgid "Footer Column 1"
+msgstr "Footer Column 1"
+
+#: functions.php:484 functions.php:486
+msgid "Footer Column 2"
+msgstr "Footer Column 2"
+
+#: functions.php:496 functions.php:498
+msgid "Footer Column 3"
+msgstr "Footer Column 3"
+
+#: functions.php:508 functions.php:510
+msgid "Footer Column 4"
+msgstr "Footer Column 4"
+
+#: functions.php:521 functions.php:523
+msgid "Header Widget Area"
+msgstr "Header Widget Bereich"
+
+#: functions.php:538
+msgid "Read More"
+msgstr "Weiterlesen"
+
+#: functions.php:602
+#, php-format
+msgid "Page %s"
+msgstr "Seite %s"
+
+#: functions.php:619 content-single.php:57
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: functions.php:727
+msgid "Name"
+msgstr "Name"
+
+#: functions.php:730
+msgid "Email"
+msgstr "E-Mail"
+
+#: functions.php:733
+msgid "Website"
+msgstr "Webseite"
+
+#: functions.php:739
+msgid ""
+"Save my name, email, and website in this browser for the next time I comment."
+msgstr ""
+"Meinen Namen, E-Mail und Website in diesem Browser speichern, bis ich wieder "
+"kommentiere."
+
+#: functions.php:749
+msgctxt "noun"
+msgid "Comment"
+msgstr "Kommentar"
+
+#: functions.php:827
+#, php-format
+msgid "(%1$s design and programming by %2$s)"
+msgstr "(%1$s designed und umgesetzt von %2$s)"
+
+#: content-status.php:26 content.php:44 content-image.php:26
+#: content-aside.php:26 content-link.php:26 content-quote.php:26
+#: content-audio.php:26 content-video.php:26 content-gallery.php:26
+#: content-chat.php:26
+#, php-format
+msgid "Permalink to %s"
+msgstr "Permalink zu %s"
+
+#: content-status.php:35 content.php:53 content-image.php:35
+#: content-single.php:33 content-aside.php:35 content-link.php:35
+#: content-quote.php:35 content-audio.php:35 content-video.php:35
+#: content-gallery.php:35 content-chat.php:35
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: content-status.php:86 content.php:72 content-image.php:86
+#: content-aside.php:86 content-link.php:86 content-quote.php:86
+#: content-audio.php:86 content-video.php:86 content-gallery.php:86
+#: content-chat.php:86
+msgid "Read more"
+msgstr "Weiterlesen"
+
+#: content-single.php:74
+msgid "Written by "
+msgstr "Geschrieben von"
+
+#: archive.php:50
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Tagesarchiv: %s"
+
+#: archive.php:52
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Monatsarchiv: %s"
+
+#: archive.php:52
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: archive.php:54
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Jahresarchiv: %s"
+
+#: archive.php:54
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: archive.php:56
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Schlagwortarchiv: %s"
+
+#: archive.php:64
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Kategoriearchiv: %s"
+
+#: archive.php:66
+msgid "Blog Archives"
+msgstr "Blogarchiv"
+
+#. Name of the template
+msgid "Default Page (With Sidebar)"
+msgstr "Default Page (Mit Sidebar)"
+
+#: header.php:116
+msgid "Toggle navigation"
+msgstr "Navigation umschalten"
+
+#: header.php:121
+msgid "Menu"
+msgstr "Menü"
+
+#: search.php:49
+#, php-format
+msgid "Search Results for: %s"
+msgstr "Suchergebnis für: %s"
+
+#: search.php:55
+msgid "No Results Found"
+msgstr "Nichts gefunden"
+
+#: search.php:68
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps you "
+"should try again with a different search term."
+msgstr ""
+"Wie es aussieht können wir nicht finden wonach Du suchst. Vielleicht hilft "
+"ein anderer Suchbegriff weiter."
+
+#: footer.php:98
+msgid "back to top"
+msgstr "Nach oben"
+
+#: Admin/ThemeSettings.php:60
+msgid "Options"
+msgstr "Optionen"
+
+#: Admin/ThemeSettings.php:61
+msgid "EVE Online Theme Settings"
+msgstr "EVE Online Theme Einstellungen"
+
+#: Admin/ThemeSettings.php:68
+msgid "General Settings"
+msgstr "Generelle Einstellungen"
+
+#: Admin/ThemeSettings.php:69
+msgid "General Theme Settings"
+msgstr "Generelle Theme Einstellungen"
+
+#: Admin/ThemeSettings.php:77 Admin/ThemeSettings.php:78
+msgid "Background Settings"
+msgstr "Hintergrund Einstellungen"
+
+#: Admin/ThemeSettings.php:86 Admin/ThemeSettings.php:87
+msgid "Slider Settings"
+msgstr "Slider Einstellungen"
+
+#: Admin/ThemeSettings.php:95 Admin/ThemeSettings.php:96
+msgid "Performance Settings"
+msgstr "Performance Einstellungen"
+
+#: Admin/ThemeSettings.php:105
+msgid "Meta Slider Warning"
+msgstr "Meta Slider Warnung"
+
+#: Admin/ThemeSettings.php:106 Admin/ThemeSettings.php:211
+#, php-format
+msgid "Please make sure you have the %1$s plugin installed and activated."
+msgstr "Stelle dicher, dass das %1$s Plugin installiert und aktiviert ist."
+
+#: Admin/ThemeSettings.php:113
+msgid "Development Infos"
+msgstr "Development Infos"
+
+#: Admin/ThemeSettings.php:114
+msgid "Delevopment Information"
+msgstr "Delevopment Information"
+
+#: Admin/ThemeSettings.php:127
+msgid "Alliance"
+msgstr "Allianz"
+
+#: Admin/ThemeSettings.php:128
+msgid "Corporation"
+msgstr "Corporation"
+
+#: Admin/ThemeSettings.php:130 Admin/ThemeSettings.php:181
+msgid "Please Select"
+msgstr "Bitte wählen"
+
+#: Admin/ThemeSettings.php:131
+msgid "Entity Type"
+msgstr "Typ"
+
+#: Admin/ThemeSettings.php:132
+msgid "Is this a Corporation or an Alliance Website?"
+msgstr "Ist dies eine Corp oder Allianz Webseite?"
+
+#: Admin/ThemeSettings.php:136
+msgid "Entity Name"
+msgstr "Name"
+
+#: Admin/ThemeSettings.php:137
+#, php-format
+msgid "The Name of your Corp/Alliance %1$s"
+msgstr "Der Name Deiner Corp/Allianz %1$s"
+
+#: Admin/ThemeSettings.php:138
+msgid "Your Logo"
+msgstr "Dein Logo"
+
+#: Admin/ThemeSettings.php:143
+msgid "Corp Logos"
+msgstr "Corp Logos"
+
+#: Admin/ThemeSettings.php:145
+msgid "Show corp logos in menu for corp pages."
+msgstr "Zeige Corp Logos im Menü für Corp Seiten."
+
+#: Admin/ThemeSettings.php:147
+msgid ""
+"Only available if you are running an alliance website, so you can have the "
+"corp logos in your \"Our Corporations\" menu. (Default: on)"
+msgstr ""
+"Nur verfügbar wenn es sich um eine Allianz-Webseite handelt. Somit stehen "
+"Dir die Corp Logos in einem eventuellen \"Unsere Corporations\" Menü zur "
+"Verfügung. (Standard: an)"
+
+#: Admin/ThemeSettings.php:151
+msgid "Navigation"
+msgstr "Navigation"
+
+#: Admin/ThemeSettings.php:153
+msgid "Even navigation cells in main navigation"
+msgstr "Gleiche Breite für Menüpunkte"
+
+#: Admin/ThemeSettings.php:155
+msgid ""
+"Transforms the main navigation into even cells instead of a random width. "
+"(Default: off)"
+msgstr ""
+"Versucht die Punkte des Hauptmenüs in gleichmäßige Zellen aufzuteilen. "
+"(Standard: aus)"
+
+#: Admin/ThemeSettings.php:159
+msgid "Post Meta"
+msgstr "Post Meta"
+
+#: Admin/ThemeSettings.php:161
+msgid ""
+"Show post meta (categories and all that stuff) in article loop and article "
+"view."
+msgstr "Zeige Post Meta an (Kategorien und so weiter)"
+
+#: Admin/ThemeSettings.php:163
+msgid ""
+"If checked the post meta information, such as categories, publish time and "
+"author will be displayed in article loop and article view. (Default: off)"
+msgstr ""
+"Wenn aktiv, die Post Meta Daten werden im Artikel Loop angezeigt. (Standard: "
+"aus)"
+
+#: Admin/ThemeSettings.php:172
+msgid "Use Background Image"
+msgstr "Hintergrundbild nutzen"
+
+#: Admin/ThemeSettings.php:174
+msgid "Yes, I want to use background images on this website."
+msgstr "Ja, ich möchte ein hintergrundbild nutzen."
+
+#: Admin/ThemeSettings.php:176
+msgid ""
+"If this option is checked, the website will use your selected (down below) "
+"background image instead of a simple colored background. (Default: on)"
+msgstr ""
+"Wenn aktiv, nutzt die Webseite Dein ausgewähltes Hintergrundbilde (Auswahl "
+"unten) an Stelle eines einfachen farbigen Hintergrundes. (Standard: an)"
+
+#: Admin/ThemeSettings.php:182
+msgid "Background Image"
+msgstr "Hintergrundbild"
+
+#: Admin/ThemeSettings.php:183
+msgid "Select one of the default Background images ... (Default: Amarr)"
+msgstr "Wähle ein Hintergrundbild. (Standard: Amarr)"
+
+#: Admin/ThemeSettings.php:189
+msgid "... or upload your own"
+msgstr "... oder lade ein eigenes Bild hoch."
+
+#: Admin/ThemeSettings.php:193
+msgid "Background Colour"
+msgstr "Hintergrund Farbe"
+
+#: Admin/ThemeSettings.php:194
+msgid ""
+"The contents background colour. If empty, the default (white) will be taken."
+msgstr ""
+"Der Hintergrund des Content Bereiches. Wenn leer, wird die Standardfarbe "
+"(weiß) hergenommen."
+
+#: Admin/ThemeSettings.php:209
+msgid "Default Slider on Front Page"
+msgstr "Standard Slider auf der Startseite"
+
+#: Admin/ThemeSettings.php:211
+msgid "Select the default slider for your front page"
+msgstr "Wähle den Standard Slider für die Startseite"
+
+#: Admin/ThemeSettings.php:215
+msgid "Pages with Slider"
+msgstr "Seiten mit Slider"
+
+#: Admin/ThemeSettings.php:217
+msgid "Show only on front page."
+msgstr "Nur auf der Startseite anzeigen."
+
+#: Admin/ThemeSettings.php:219
+msgid ""
+"Show this slider only on front page in case no other slider is defined. "
+"(Default: on)"
+msgstr "Zeige diesen Slider nur auf der Startseite (Standard: an)"
+
+#: Admin/ThemeSettings.php:228
+msgid "HTML Output"
+msgstr "HTML Ausgabe"
+
+#: Admin/ThemeSettings.php:230
+msgid "Minify HTML output?"
+msgstr "HTML Ausgabe komprimieren?"
+
+#: Admin/ThemeSettings.php:232
+msgid ""
+"By minifying the HTML output you might boost your websites performance. NOTE:"
+" this may not work on every server, so if you experience issues, turn this "
+"option off again!<br><small><strong>This feature is EXPERIMENTAL!</strong>"
+"</small>"
+msgstr ""
+"Komprimierung der HTML Ausgabe kann die Performance Deiner Webseite steigern."
+" Hinweis: Dies mag nicht auf jeden Server funktionieren. Solltest Du "
+"Störungen feststellen, deaktiviere diese Funktion wieder!<br><small><strong>"
+"Diese Funktion ist EXPERIMENTELL!</strong></small>"
+
+#: Admin/ThemeSettings.php:242
+msgid "Options Array<br>(sane from functions.php)"
+msgstr "Options Array<br>(sane from functions.php)"
+
+#: Admin/ThemeSettings.php:244
+msgid ""
+"This are the sane options defined in functions.php via <code>"
+"\\WordPress\\Themes\\EveOnline\\Helper\\ThemeHelper::getThemeDefaultOptions()"
+"</code>"
+msgstr ""
+"Dies sind die Standardoptionen definiert in der functions.php <code>"
+"\\WordPress\\Themes\\EveOnline\\Helper\\ThemeHelper::getThemeDefaultOptions()"
+"</code>"
+
+#: Admin/ThemeSettings.php:249
+msgid "Options Array<br>(from DB)"
+msgstr "Options Array<br>(from DB)"
+
+#: Admin/ThemeSettings.php:251
+msgid ""
+"This are the options from our database via <code>"
+"\\get_option('eve_theme_options')</code>"
+msgstr ""
+"Dies sind die Optionen die in der Datenbank gespeichert sind. <code>"
+"\\get_option('eve_theme_options')</code>"
+
+#: Admin/ThemeSettings.php:256
+msgid "Options Array<br>(merged / used for Theme)"
+msgstr "Options Array<br>(merged / used for Theme)"
+
+#: Admin/ThemeSettings.php:258
+msgid ""
+"This are the options used for the theme via <code>"
+"\\get_option('eve_theme_options', "
+"\\WordPress\\Themes\\EveOnline\\Helper\\ThemeHelper::getThemeDefaultOptions()"
+")</code>"
+msgstr ""
+"Dies sind die Optionen wie sie für das Theme genutzt werden. <code>"
+"\\get_option('eve_theme_options', "
+"\\WordPress\\Themes\\EveOnline\\Helper\\ThemeHelper::getThemeDefaultOptions()"
+")</code>"
+
+#: Admin/SettingsApi.php:695 Admin/SettingsApi.php:726
+msgid "Upload"
+msgstr "Hochladen"
+
+#: Admin/SettingsApi.php:706 Admin/SettingsApi.php:739
+msgid "Remove"
+msgstr "Entfernen"
+
+#: Helper/PostHelper.php:29
+#, php-format
+msgid ""
+"Posted on <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time><span "
+"class=\"byline\"> <span class=\"sep\"> by </span> <span class=\"author "
+"vcard\">%7$s</span></span>"
+msgstr ""
+"Veröffentlich am <time class=\"entry-date\" datetime=\"%3$s\">%4$s</time>"
+"<span class=\"byline\"> <span class=\"sep\"> von </span> <span "
+"class=\"author vcard\">%7$s</span></span>"
+
+#: Helper/PostHelper.php:35
+#, php-format
+msgid "View all posts by %s"
+msgstr "Alle Artikel von %s anschauen"
+
+#: Helper/NavigationHelper.php:39
+msgid "Post navigation"
+msgstr "Atrikelnavigation"
+
+#: Helper/NavigationHelper.php:41
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Artikel"
+
+#: Helper/NavigationHelper.php:44
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Neuere Artikel <span class=\"meta-nav\">&rarr;</span>"
+
+#: Helper/NavigationHelper.php:82
+msgid "&laquo; Previous Page"
+msgstr "&laquo; Vorherige Seite"
+
+#: Helper/NavigationHelper.php:116
+msgid "Next Page &raquo;"
+msgstr "Nächste Seite &raquo;"
+
+#: Helper/NavigationHelper.php:148
+msgid "Home"
+msgstr "Home"
+
+#: Helper/NavigationHelper.php:176
+msgid "Archive by category "
+msgstr "Kategoriearchiv"
+
+#: Helper/NavigationHelper.php:234
+msgid "Search results for "
+msgstr "Suchergebnisse für "
+
+#: Helper/NavigationHelper.php:238
+msgid "Posts tagged "
+msgstr "Artikel verschlagwortet"
+
+#: Helper/NavigationHelper.php:245
+msgid "Articles posted by "
+msgstr "Artikel geschrieben von "
+
+#: Helper/NavigationHelper.php:249
+msgid "Error 404"
+msgstr "Fehler 404"
+
+#: Helper/NavigationHelper.php:277
+msgid "Post Navigation"
+msgstr "Artikelnavigation"
+
+#: Helper/NavigationHelper.php:282
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vorherige"
+
+#: Helper/NavigationHelper.php:310
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nächste <span class=\"meta-nav\">&rarr;</span>"
+
+#: Helper/CommentHelper.php:66
+msgid "Pingback:"
+msgstr "Pingback"
+
+#: Helper/CommentHelper.php:101
+msgid "Post author"
+msgstr "Artikelautor"
+
+#: Helper/CommentHelper.php:115
+msgid "Your comment is awaiting moderation."
+msgstr "Dein Kommentar befindet sich in Moderation"
+
+#: Helper/CommentHelper.php:131
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s um %2$s"
+
+#: Helper/CommentHelper.php:144
+msgid "Reply <span>&darr;</span>"
+msgstr "Antwort <span>&darr;</span>"
+
+#: Plugins/Metaslider.php:48
+msgid "Page Meta Slider"
+msgstr "Page Meta Slider"
+
+#: Plugins/Metaslider.php:74
+msgid "Display Page Meta Slider"
+msgstr "Page Meta Slider anzeigen"
+
+#: Plugins/Metaslider.php:88
+msgid "Stretch Page Meta Slider"
+msgstr "Page Meta Slider strecken"
+
+#: Plugins/Metaslider.php:126
+msgid "None"
+msgstr "Keine"
+
+#: Plugins/Metaslider.php:135
+msgid "Slider: "
+msgstr "Slider: "
+
+#: Plugins/Shortcodes.php:217
+msgid "Credits:"
+msgstr "Credits:"
+
+#: Plugins/Whitelabel.php:129 Plugins/Whitelabel.php:146
+msgid "Customized by:"
+msgstr "Gestaltet von:"
+
+#: Plugins/Whitelabel.php:140
+msgid "Theme:"
+msgstr "Theme:"
+
+#: Plugins/Whitelabel.php:141
+#, php-format
+msgid " (%1$s | %2$s)"
+msgstr " (%1$s | %2$s)"
+
+#: Plugins/Whitelabel.php:147
+msgid "Discord:"
+msgstr "Discord:"
+
+#: Plugins/Whitelabel.php:152
+msgid "Developer Contact"
+msgstr "Entwickler Kontakt"
+
+#: Plugins/EveOnlineAvatar.php:37
+msgid ""
+"If you set your nickname to your pilot's name, you EVE avatar will be used "
+"here."
+msgstr ""
+"Wenn Dein Nickname Deinem EVE Character entspricht, wird hier Dein EVE "
+"Avatar genutzt"
+
+#: Plugins/Corppage.php:142
+msgid "Corp Page?"
+msgstr "Corp Seite?"
+
+#: Plugins/Corppage.php:151
+msgid "Corp Page Settings"
+msgstr "Corp Seiten Einstellungen"
+
+#: Plugins/Corppage.php:154
+msgid "Is Corp Page?"
+msgstr "Ist dies eine Corp Seite?"
+
+#: Plugins/Corppage.php:158
+msgid "Show Corp Logo at the beginning of your page's content?"
+msgstr "Zeige das Corp Logo am Anfang des Inhalts einer Corp Seite"
+
+#: Plugins/Corppage.php:161
+msgid "Corporation Name:"
+msgstr "Corporation Name:"
+
+#: Plugins/Corppage.php:168
+msgid "Corporation ID"
+msgstr "Corporation ID"
+
+#: Plugins/Corppage.php:172
+msgid "Corporation Logo"
+msgstr "Corporation Logo"
+
+#: Plugins/LatestBlogPosts.php:93
+msgid "Show all article"
+msgstr "Zeige alle Artikel"
+
+#: Plugins/BootstrapVideoGallery.php:149
+#, php-format
+msgid "&copy %1$s"
+msgstr "&copy %1$s"
+
+#: Plugins/BootstrapVideoGallery.php:149
+msgid "Channel"
+msgstr "Kanal"
+
+#: Plugins/BootstrapVideoGallery.php:154
+msgid "The video gallery can only be displayed on a single site"
+msgstr "Die Videogallerie kann nur auf einer Einzelseite angezeigt werden."
+
+#: Plugins/BootstrapVideoGallery.php:176
+msgid "Video Navigation"
+msgstr "Video Navigation"
+
+#: Plugins/BootstrapVideoGallery.php:178
+msgid "<span class=\"meta-nav\">&larr;</span> Older Videos"
+msgstr "<span class=\"meta-nav\">&larr;</span> Ältere Videos"
+
+#: Plugins/BootstrapVideoGallery.php:181
+msgid "Newer Videos <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Neuere Videos <span class=\"meta-nav\">&rarr;</span>"
+
+#: Plugins/BootstrapVideoGallery.php:202
+msgid "Video Gallery Page?"
+msgstr "Video Gallery Seite?"
+
+#: Plugins/BootstrapVideoGallery.php:210
+msgid "Video Gallery Settings"
+msgstr "Video Gallery Einstellungen"
+
+#: Plugins/BootstrapVideoGallery.php:213
+msgid "Is Video Gallery Page?"
+msgstr "Ist dies eine Video Seite?"
+
+#: Plugins/BootstrapVideoGallery.php:217
+msgid "Only list if it's parent gallery"
+msgstr "Nur anzeigen wenn innerhalb einer Gallerie"
+
+#: Plugins/BootstrapVideoGallery.php:220
+msgid "Video URL:"
+msgstr "Video URL:"
+
+#: Plugins/BootstrapVideoGallery.php:227
+msgid "Your Video"
+msgstr "Dein Video"
+
+#: Security/WordPressCoreUpdateCleaner.php:87
+msgid "Removing"
+msgstr "Removing"
+
+#: Security/WordPressCoreUpdateCleaner.php:96
+msgid "WordPress updated successfully"
+msgstr "WordPress wurde erfolgreich aktualisiert"
+
+#: Security/WordPressCoreUpdateCleaner.php:97
+#, php-format
+msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
+msgstr "Willkommen zu WordPress %1$s. <a href=\"%2$s\">Erfahre mehr</a>."
+
+#: Addons/Compatibility.php:61 Addons/Compatibility.php:74
+#: Addons/Compatibility.php:91
+#, php-format
+msgid ""
+"EVE Online Theme requires at least WordPress version 4.7. You are running "
+"version %s. Please upgrade and try again."
+msgstr ""
+"Das EVE Online Theme setzt mindestens WordPress 4.7 voraus. Du hast %s. "
+"Bitte aktualisiere Dein WordPress."
+
+#: Addons/BootstrapMenuWalker.php:161
+msgid "(No description available)"
+msgstr "(Keine beschreibung verfügbar)"
+
+#: Addons/BootstrapMenuWalker.php:283
+msgid "Add a menu"
+msgstr "Menü hinzufügen"
+
+#: Plugins/Widgets/ChildpageMenuWidget.php:30
+msgid "Childpage Menu Widget"
+msgstr "Childpage Menu Widget"
+
+#: Plugins/Widgets/ChildpageMenuWidget.php:35
+msgid "Displaying the childpages as a menu in your sidebar."
+msgstr "Zeigt die Unterseiten als Menü in Deiner Sidebar."
+
+#. Name of the theme
+msgid "EVE Online"
+msgstr "EVE Online"
+
+#. Description of the theme
+msgid "A beatyfull WordPress Theme inspired by the MMORPG EVE Online"
+msgstr "Ein schönes WordPress THeme, inspiriert durch das MMORPG EVE Online"
+
+#. Theme URI of the theme
+msgid "https://github.com/ppfeufer/eve-online-wordpress-theme"
+msgstr "https://github.com/ppfeufer/eve-online-wordpress-theme"
+
+#. Author of the theme
+msgid "YF [TN-NT] Rounon Dax"
+msgstr "YF [TN-NT] Rounon Dax"
+
+#. Theme URI of the theme
+msgid "http://yulaifederation.net"
+msgstr "http://yulaifederation.net"
