@@ -154,7 +154,7 @@ class EsiHelper {
         /* @var $esiData UniverseIds */
         $esiData = $this->universeApi->universeIds(\array_values($names));
 
-        if(!\is_null($esiData)) {
+        if(\is_a($esiData, '\WordPress\EsiClient\Model\Universe\UniverseIds')) {
             switch($type) {
                 case 'agents':
                     $returnData = $esiData->getAgents();
