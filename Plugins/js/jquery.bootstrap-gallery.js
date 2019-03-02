@@ -126,10 +126,9 @@
             var ul = $(getCurrentUl());
             var index = $(this).attr('href');
 
-//            var src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
             var src = ul.find('li[data-bsp-li-index="' + index + '"] figure').attr('data-fullsizeimage');
 
-            // We might have a Gutenberg gallery
+            // failsafe if there is for whatever reason no data attribute
             if(!src) {
                 src = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
             }
@@ -140,15 +139,17 @@
 //                src = lazySource;
 //            }
 
-            var largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-bsp-large-src');
-
             // We might have a Gutenberg gallery
-            if(!largeImg) {
-                largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
-            }
+            if(!src) {
+                var largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('data-fullsizeimage');
 
-            if(typeof largeImg === 'string') {
-                src = largeImg;
+                if(!largeImg) {
+                    largeImg = ul.find('li[data-bsp-li-index="' + index + '"] img').attr('src');
+                }
+
+                if(typeof largeImg === 'string') {
+                    src = largeImg;
+                }
             }
 
             $('.modal-body img').attr('src', src);
