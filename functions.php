@@ -299,7 +299,6 @@ function eve_gallery_style_filter($a) {
     return "<div class=\"gallery\">";
 }
 \add_filter('gallery_style', '\\WordPress\Themes\EveOnline\eve_gallery_style_filter');
-//\add_filter('gallery_style', \create_function('$a', 'return "<div class=\'gallery\'>";'));
 
 /**
  * Return the Google font stylesheet URL, if available.
