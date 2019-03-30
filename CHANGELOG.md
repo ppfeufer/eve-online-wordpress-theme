@@ -1,7 +1,10 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20181226...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190330...development)
+
+## [v0.1-r20190330](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190330) - 2019-03-30
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20181226...v0.1-r20190330)
 ### Fixed
 - Lightbox-Effect for (Gutenberg) gallery is now detecting the right image again when clicking on "previous".
 - Deprecated warnings
@@ -10,7 +13,7 @@
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20180823...v0.1-r20181226)
 ### Added
 - Modal window capability for Gutenberg gallery
-- [latestblogposts] shortcode to documentation
+- ```[latestblogposts]``` shortcode to documentation
 
 ### Changed
 - Autoloading classes instead of including them individually
