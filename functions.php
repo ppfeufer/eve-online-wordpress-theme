@@ -295,7 +295,11 @@ if(!\function_exists('\WordPress\Themes\EveOnline\eve_title_separator')) {
  * Remove integrated gallery styles in the content area of standard gallery shortcode.
  * style in css.
  */
-\add_filter('gallery_style', \create_function('$a', 'return "<div class=\'gallery\'>";'));
+function eve_gallery_style_filter($a) {
+    return "<div class=\"gallery\">";
+}
+\add_filter('gallery_style', '\\WordPress\Themes\EveOnline\eve_gallery_style_filter');
+//\add_filter('gallery_style', \create_function('$a', 'return "<div class=\'gallery\'>";'));
 
 /**
  * Return the Google font stylesheet URL, if available.

@@ -34,7 +34,8 @@ class EveOnlineAvatar {
         \add_filter('get_avatar', [$this, 'eveCharacterAvatar'], 10, 5);
         \add_filter('bp_core_fetch_avatar', [$this, 'fetchEveCharacterAvatar'], 1, 2);
         \add_filter('bp_core_fetch_avatar_url', [$this, 'fetchEveCharacterAvatar'], 1, 2);
-        \add_filter('user_profile_picture_description', \create_function('$desc', 'return "' . \__('If you set your nickname to your pilot\'s name, you EVE avatar will be used here.', 'eve-online') . '";'));
+//        \add_filter('user_profile_picture_description', \create_function('$desc', 'return "' . \__('If you set your nickname to your pilot\'s name, you EVE avatar will be used here.', 'eve-online') . '";'));
+        \add_filter('user_profile_picture_description', [$this, 'userProfilePictureDescription']);
     }
 
     public function eveCharacterAvatar($content, $id_or_email) {
@@ -86,5 +87,9 @@ class EveOnlineAvatar {
         }
 
         return $returnValue;
+    }
+
+    public function userProfilePictureDescription($desc) {
+        return \__('If you set your nickname to your pilot\'s name, you EVE avatar will be used here.', 'eve-online');
     }
 }
