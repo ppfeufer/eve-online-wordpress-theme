@@ -38,6 +38,10 @@ class ChildpageMenu {
      * initialze the widget
      */
     public function initWidget() {
-        \add_action('widgets_init', \create_function('', 'return register_widget("\\WordPress\Themes\EveOnline\Plugins\Widgets\ChildpageMenuWidget");'));
+        \add_action('widgets_init', [$this, 'registerWidget']);
+    }
+
+    public function registerWidget() {
+        return \register_widget("\\WordPress\Themes\EveOnline\Plugins\Widgets\ChildpageMenuWidget");
     }
 }
