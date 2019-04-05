@@ -96,7 +96,12 @@ class Whitelabel {
          */
         \add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
         \add_filter('login_headerurl', [$this, 'loginLogoUrl']);
-        \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
+
+        if(\version_compare(\floatval(\get_bloginfo('version')), '5.2', '<')) {
+            \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
+        } else {
+            \add_filter('login_headertext', [$this, 'loginLogoTitle']);
+        }
     }
 
     private function getBackgroundImage() {
