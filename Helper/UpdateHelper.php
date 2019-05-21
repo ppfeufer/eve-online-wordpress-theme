@@ -121,11 +121,12 @@ class UpdateHelper {
         /**
          * Check for current ESI client version
          */
-       if(\file_exists(\WP_CONTENT_DIR . '/EsiClient/client_version')) {
-           $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
-       }
+        if(\class_exists('\WordPress\EsiClient\Swagger')) {
+            $esiClient = new \WordPress\EsiClient\Swagger;
+            $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
+        }
 
-       if(\version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
+        if(\version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
             $this->updateEsiClient($this->getNewEsiClientVersion());
         }
     }
