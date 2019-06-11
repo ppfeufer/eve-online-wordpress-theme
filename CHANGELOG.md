@@ -1,8 +1,13 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611.2...development)
 - in development
+
+## [v0.1-r20190611.2](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190611.2) - 2019-06-11
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611...v0.1-r20190611.2)
+### Fixed
+- Hotfix for new ESI client and cache database table
 
 ## [v0.1-r20190611](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190611) - 2019-06-11
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190330...v0.1-r20190611)
