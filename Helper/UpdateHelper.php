@@ -38,14 +38,14 @@ class UpdateHelper {
      *
      * @var string
      */
-    protected $databaseVersion = 20181006;
+    protected $databaseVersion = 20190611;
 
     /**
      * Database version
      *
      * @var string
      */
-    protected $esiClientVersion = 20181202;
+    protected $esiClientVersion = 20190611;
 
     /**
      * WordPress Database Instance
@@ -232,6 +232,13 @@ class UpdateHelper {
         }
 
         /**
+         * truncate cache table
+         */
+        if($currentVersion < 20190611) {
+            $this->truncateCacheTable();
+        }
+
+        /**
          * Update database version
          */
         \update_option($this->getDatabaseFieldName(), $this->getNewDatabaseVersion());
@@ -258,5 +265,12 @@ class UpdateHelper {
         require_once(\ABSPATH . 'wp-admin/includes/upgrade.php');
 
         \dbDelta($sql);
+    }
+
+    private function truncateCacheTable() {
+        $tableName = $this->wpdb->base_prefix . 'eve_online_esi_cache';
+
+        $sql = "TRUNCATE $tableName;";
+        $this->wpdb->query($sql);
     }
 }
