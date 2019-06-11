@@ -23,7 +23,6 @@
 
 namespace WordPress\Themes\EveOnline\Helper;
 
-use \WordPress\EsiClient\Model\Universe\UniverseIds;
 use \WordPress\EsiClient\Repository\AllianceRepository;
 use \WordPress\EsiClient\Repository\CharacterRepository;
 use \WordPress\EsiClient\Repository\CorporationRepository;
@@ -151,10 +150,10 @@ class EsiHelper {
     public function getIdFromName(array $names, string $type) {
         $returnData = null;
 
-        /* @var $esiData UniverseIds */
+        /* @var $esiData \WordPress\EsiClient\Model\Universe\Ids */
         $esiData = $this->universeApi->universeIds(\array_values($names));
 
-        if(\is_a($esiData, '\WordPress\EsiClient\Model\Universe\UniverseIds')) {
+        if(\is_a($esiData, '\WordPress\EsiClient\Model\Universe\Ids')) {
             switch($type) {
                 case 'agents':
                     $returnData = $esiData->getAgents();

@@ -38,11 +38,42 @@ class Whitelabel {
     private $themeGithubIssueUri = null;
 
     private $themeBackgroundUrl = null;
-    private $customLoginLogo = null;
 
     private $themeSettings = null;
 
     private $eveApi = null;
+
+    private function getDeveloperName() {
+        return $this->developerName;
+    }
+
+    private function getDeveloperWebsite() {
+        return $this->developerWebsite;
+    }
+
+    private function getDeveloperDiscord() {
+        return $this->developerDiscord;
+    }
+
+    private function getThemeName() {
+        return $this->themeName;
+    }
+
+    private function getThemeGithubUri() {
+        return $this->themeGithubUri;
+    }
+
+    private function getThemeGithubIssueUri() {
+        return $this->themeGithubIssueUri;
+    }
+
+    private function getThemeBackgroundUrl() {
+        return $this->themeBackgroundUrl;
+    }
+
+    function getEveApi() {
+        return $this->eveApi;
+    }
 
     /**
      * Fire the actions to whitelabel WordPress
@@ -61,12 +92,11 @@ class Whitelabel {
         /**
          * Setting Developer Information
          */
-        $this->developerName = 'YF [TN-NT] Rounon Dax';
-        $this->developerWebsite = 'https://yulaifederation.net';
+        $this->developerName = '[TN-NT] Rounon Dax';
+        $this->developerWebsite = 'https://terra-nanotech.de';
         $this->developerDiscord = 'https://discord.gg/YymuCZa';
 
         $this->themeBackgroundUrl = $this->getBackgroundImage();
-        $this->customLoginLogo = $this->getLoginLogo();
 
         /**
          * Getting theme settings
@@ -96,7 +126,12 @@ class Whitelabel {
          */
         \add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
         \add_filter('login_headerurl', [$this, 'loginLogoUrl']);
-        \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
+
+        if(\version_compare(\floatval(\get_bloginfo('version')), '5.2', '<')) {
+            \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
+        } else {
+            \add_filter('login_headertext', [$this, 'loginLogoTitle']);
+        }
     }
 
     private function getBackgroundImage() {
@@ -124,11 +159,13 @@ class Whitelabel {
     /**
      * Developer Info in Admin Footer
      */
-    public function modifyAdminFooter() {
-        echo \sprintf('<span id="footer-thankyou">%1$s</span> %2$s',
+    public function modifyAdminFooter($content) {
+        $content .= \sprintf(' | %1$s %2$s',
             \__('Customized by:', 'eve-online'),
-            ' <a href="' . $this->developerWebsite . '" target="_blank">' . $this->developerName . '</a>'
+            ' <a href="' . $this->getDeveloperWebsite() . '" target="_blank">' . $this->getDeveloperName() . '</a>'
         );
+
+        return $content;
     }
 
     /**
@@ -137,14 +174,14 @@ class Whitelabel {
     public function themeInfo() {
         echo '<ul>
             <li>
-                <strong>' . \__('Theme:', 'eve-online') . '</strong> ' . $this->themeName .
+                <strong>' . \__('Theme:', 'eve-online') . '</strong> ' . $this->getThemeName() .
                 \sprintf(\__(' (%1$s | %2$s)', 'eve-online'),
-                    '<a href="' . $this->themeGithubUri . '" target="_blank">Github</a>',
-                    '<a href="' . $this->themeGithubIssueUri . '" target="_blank">Issue Tracker</a>'
+                    '<a href="' . $this->getThemeGithubUri() . '" target="_blank">Github</a>',
+                    '<a href="' . $this->getThemeGithubIssueUri() . '" target="_blank">Issue Tracker</a>'
                 ) . '
             </li>
-            <li><strong>' . \__('Customized by:', 'eve-online') . '</strong> ' . $this->developerName . '</li>
-            <li><strong>' . \__('Discord:', 'eve-online') . '</strong> <a href="' . $this->developerDiscord . '" target="_blank">' . $this->developerDiscord . '</a></li>
+            <li><strong>' . \__('Customized by:', 'eve-online') . '</strong> ' . $this->getDeveloperName() . '</li>
+            <li><strong>' . \__('Discord:', 'eve-online') . '</strong> <a href="' . $this->getDeveloperDiscord() . '" target="_blank">' . $this->getDeveloperDiscord() . '</a></li>
         </ul>';
     }
 
@@ -181,7 +218,7 @@ class Whitelabel {
     private function getStyleSheet($logoSize = 320) {
         return '<style type="text/css">
         body {
-            background-image: url("' . $this->themeBackgroundUrl . '");
+            background-image: url("' . $this->getThemeBackgroundUrl() . '");
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -230,7 +267,7 @@ class Whitelabel {
                 $size = ($type === 'alliance') ? 128 : 256;
 
                 // getting the logo
-                $logo = $this->eveApi->getEntityLogoByName($name, $type, true, $size);
+                $logo = $this->getEveApi()->getEntityLogoByName($name, $type, true, $size);
             }
         }
 

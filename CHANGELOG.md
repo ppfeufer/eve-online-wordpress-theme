@@ -1,7 +1,16 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190330...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611...development)
+- in development
+
+## [v0.1-r20190611](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190611) - 2019-06-11
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190330...v0.1-r20190611)
+### Fixed
+- WordPress deprecation notice for uppcoming WP 5.2 (Notice: login_headertitle is deprecated since version 5.2.0! Use login_headertext instead. Usage of the title attribute on the login logo is not recommended for accessibility reasons. Use the link text instead. in /var/www/ppfeufer/webroot/dev.ppfeufer.de/wordpress/wp-includes/functions.php on line 4699)
+
+### Changed
+- Code updated to work with the new release of the ESI Client
 
 ## [v0.1-r20190330](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190330) - 2019-03-30
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20181226...v0.1-r20190330)
