@@ -123,7 +123,17 @@ class UpdateHelper {
          */
         if(\class_exists('\WordPress\EsiClient\Swagger')) {
             $esiClient = new \WordPress\EsiClient\Swagger;
-            $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
+
+            if(\method_exists($esiClient, 'getEsiClientVersion')) {
+                $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
+            }
+        }
+
+        // backwards compatibility with older ESI clients
+        if(\is_null($esiClientCurrentVersion)) {
+            if(\file_exists(\WP_CONTENT_DIR . '/EsiClient/client_version')) {
+                $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
+            }
         }
 
         if(\version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
