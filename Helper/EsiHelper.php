@@ -110,7 +110,7 @@ class EsiHelper {
      * no external instanciation allowed
      */
     protected function __construct() {
-        $this->imageserverUrl = 'https://imageserver.eveonline.com/';
+        $this->imageserverUrl = 'https://images.evetech.net/';
 
         /**
          * ESI API Client
