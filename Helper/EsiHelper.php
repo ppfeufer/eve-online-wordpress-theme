@@ -124,11 +124,11 @@ class EsiHelper {
          * Assigning Imagesever Endpoints
          */
         $this->imageserverEndpoints = [
-            'alliance' => 'Alliance/',
-            'corporation' => 'Corporation/',
-            'character' => 'Character/',
-            'item' => 'Type/',
-            'inventory' => 'InventoryType/' // Ships and all the other stuff
+            'alliance' => 'alliances/%d/logo',
+            'corporation' => 'corporations/%d/logo',
+            'character' => 'characters/%d/portrait',
+            'typeIcon' => 'types/%d/icon',
+            'typeRender' => 'types/%d/render'
         ];
     }
 
@@ -218,8 +218,10 @@ class EsiHelper {
 
         // If we actually have a characterID
         if(!\is_null($characterID)) {
-            $imageName = $characterID . '_' . $size. '.jpg';
-            $imagePath = $this->imageserverUrl . $this->imageserverEndpoints['character'] . $imageName;
+            $imagePath = \sprintf(
+                $this->imageserverUrl . $this->imageserverEndpoints['character'] . '?size=' . $size,
+                $characterID
+            );
 
             if($imageOnly === true) {
                 return $imagePath;
@@ -255,8 +257,10 @@ class EsiHelper {
         $eveID = (!\is_null($eveEntityData)) ? $eveEntityData['0']->getId() : null;
 
         if(!\is_null($eveID)) {
-            $imageName = $eveID . '_' . $size . '.png';
-            $imagePath = $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . $imageName;
+            $imagePath = \sprintf(
+                $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . '?size=' . $size,
+                $eveID
+            );
 
             if($imageOnly === true) {
                 return $imagePath;
