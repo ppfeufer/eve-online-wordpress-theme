@@ -1,8 +1,13 @@
 # Change Log
 
 ## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611.2...development)
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20191101...development)
 - in development
+
+## [v0.1-r20191101](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20191101) - 2019-11-01
+[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611.2...v0.1-r20191101)
+### Changed
+- CCP Image Server
 
 ## [v0.1-r20190611.2](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20190611.2) - 2019-06-11
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20190611...v0.1-r20190611.2)

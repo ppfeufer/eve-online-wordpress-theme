@@ -101,7 +101,10 @@ class Corppage {
     private function getCorporationPageLoopItem($page) {
         $corpID = \get_post_meta($page->ID, 'eve_page_corp_eve_ID', true);
 
-        $corpLogo = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png';
+        $corpLogo = \sprintf(
+            $this->esiHelper->getImageServerEndpoint('corporation') . '?size=256.png',
+            $corpID
+        );
 
         $corplistHTML = '<li>';
         $corplistHTML .= '<figure><a href="' . \get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
@@ -171,7 +174,12 @@ class Corppage {
             <p class="checkbox-wrapper">
                 <label><strong><?php \_e('Corporation Logo', 'eve-online'); ?></strong></label>
                 <br>
-                <?php $corpLogoPath = $this->esiHelper->getImageServerEndpoint('corporation') . $corpID . '_256.png'; ?>
+                <?php
+                $corpLogoPath = \sprintf(
+                    $this->esiHelper->getImageServerEndpoint('corporation') . '?size=256.png',
+                    $corpID
+                );
+                ?>
                 <img src="<?php echo $corpLogoPath; ?>" alt="<?php echo $corpName; ?>">
             </p>
             <?php
@@ -224,7 +232,10 @@ class Corppage {
         $corpName = \get_post_meta($corpPageID, 'eve_page_corp_name', true);
         $corpID = \get_post_meta($corpPageID, 'eve_page_corp_eve_ID', true);
 
-        $imagePath = EsiHelper::getInstance()->getImageServerEndpoint('corporation') . $corpID . '_256.png';
+        $imagePath = \sprintf(
+            EsiHelper::getInstance()->getImageServerEndpoint('corporation') . '?size=256.png',
+            $corpID
+        );
 
         if($imagePath !== false) {
             $html = '<div class="eve-corp-page-corp-logo eve-image eve-corporation-logo-container"><figure><img src="' . $imagePath . '" class="eve-corporation-logo" alt="' . \esc_html($corpName) . '" width="256">';

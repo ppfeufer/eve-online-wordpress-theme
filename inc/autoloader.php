@@ -52,9 +52,14 @@ function autoload($className) {
 }
 
 /**
- * Autoloading ESI classes
+ * In preparation to switch the ESI Client to an WPMU plugin
  */
-\spl_autoload_register('\WordPress\Themes\EveOnline\autoloadEsiClient');
+if(!\defined('\WordPress\EsiClient\WP_ESI_CLIENT_LOADED')) {
+    /**
+     * Autoloading ESI classes
+     */
+    \spl_autoload_register('\WordPress\Themes\EveOnline\autoloadEsiClient');
+}
 
 function autoloadEsiClient($className) {
     // If the specified $className does not include our namespace, duck out.
