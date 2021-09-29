@@ -1,8 +1,9 @@
 # Change Log
 
-## [In Development](https://github.com/ppfeufer/eve-online-wordpress-theme/tree/development)
-[Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20191102...development)
-- in development
+## [v0.1-r20210929]
+
+### Changed
+- Esi client version
 
 ## [v0.1-r20191102](https://github.com/ppfeufer/eve-online-wordpress-theme/releases/tag/v0.1-r20191102) - 2019-11-02
 [Full Changelog](https://github.com/ppfeufer/eve-online-wordpress-theme/compare/v0.1-r20191101..v0.1-r20191102)
