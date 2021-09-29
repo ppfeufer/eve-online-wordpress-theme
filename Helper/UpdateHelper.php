@@ -45,7 +45,7 @@ class UpdateHelper {
      *
      * @var string
      */
-    protected $esiClientVersion = 20190611;
+    protected $esiClientVersion = 20210929;
 
     /**
      * WordPress Database Instance

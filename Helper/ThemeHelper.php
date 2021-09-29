@@ -321,12 +321,23 @@ class ThemeHelper {
             // we are only looking for images
             $images = \preg_grep('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
 
+//            \array_unshift($images, 'current');
+            $currentEveExpansionThemeImage = 'https://web.ccpgamescdn.com/aws/eveonline/sso/background.jpg';
+
             if($withThumbnail === true) {
                 foreach($images as &$image) {
                     $imageName = \ucwords(\str_replace('-', ' ', \preg_replace("/\\.[^.\\s]{3,4}$/", "", $image)));
                     $image = '<figure class="bg-image' . $baseClass . '"><img src="' . \get_template_directory_uri() . '/img/background/' . $image . '" style="width:100px; height:auto;" title="' . $imageName . '"><figcaption>' . $imageName . '</figcaption></figure>';
                 }
+
+                $currentEveExpansionThemeImage = '<figure class="bg-image' . $baseClass . '"><img src="' . $currentEveExpansionThemeImage . '" style="width:100px; height:auto;" title="' . \__('Current EVE Expansion', 'eve-online') . '"><figcaption>' . \__('Current EVE Expansion', 'eve-online') . '</figcaption></figure>';
             }
+
+            /**
+             * Special case:
+             *  Current EVE Expansion theme Image
+             */
+            $images = ['current-eve-expansion' => $currentEveExpansionThemeImage] + $images;
 
             return $images;
         }
@@ -341,6 +352,11 @@ class ThemeHelper {
         $themeSettings = \get_option('eve_theme_options', self::getThemeDefaultOptions());
 
         $backgroundImage = \get_template_directory_uri() . '/img/background/' . $themeSettings['background_image'];
+
+        if($themeSettings['background_image'] === 'current-eve-expansion') {
+            $backgroundImage = 'https://web.ccpgamescdn.com/aws/eveonline/sso/background.jpg';
+        }
+
         $uploadedBackground = (empty($themeSettings['background_image_upload'])) ? false : true;
 
         // we have an uploaded image, so overwrite the background
