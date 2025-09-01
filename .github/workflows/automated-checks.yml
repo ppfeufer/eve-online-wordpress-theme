@@ -1,0 +1,43 @@
+name: Automated Checks
+
+env:
+  NODE_VERSION: 22 # [LTS] End of Life: 30 Apr 2027 (https://endoflife.date/nodejs)
+
+on:
+  push:
+    branches:
+      - '**'
+
+    tags-ignore:
+      - '**'
+
+  pull_request:
+    branches:
+      - '**'
+
+    tags-ignore:
+      - '**'
+
+jobs:
+  # pre-commit Checks
+  pre-commit:
+    name: pre-commit Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Composer
+        uses: php-actions/composer@v6
+#        with:
+#          composer-options: install --no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader --classmap-authoritative
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: npm install
+
+      - name: Run Pre Commit Checks
+        uses: pre-commit/action@v3.0.1

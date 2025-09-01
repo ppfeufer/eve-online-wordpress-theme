@@ -1,0 +1,33 @@
+name: Create Release Asset
+
+on:
+  release:
+    # https://docs.github.com/en/actions/reference/events-that-trigger-workflows#release
+    types: [released, prereleased]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    # Release to PyPI
+    name: Create Release Asset
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Create the zip file
+      - name: Create zip file
+        run: make release-archive
+
+      # Release
+      - name: Add Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # The name of the file(s) to upload
+          files: |
+            my_project.zip
