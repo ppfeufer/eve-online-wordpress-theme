@@ -1,0 +1,56 @@
+{
+    "name": "ppfeufer/eve-online",
+    "type": "wordpress-theme",
+    "license": "GPL-3.0-or-later",
+    "description": "EVE Online WordPress Theme",
+    "authors": [
+        {
+            "name": "Peter Pfeufer",
+            "email": "info@ppfeufer.de"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^5.6"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "wp-cli/wp-cli-bundle": "^2.12",
+        "squizlabs/php_codesniffer": "^3.13",
+        "brianhenryie/strauss": "=0.21.1"
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "Sources/Libs",
+            "namespace_prefix": "Ppfeufer\\Theme\\EVEOnline\\Libs\\",
+            "include_modified_date": false,
+            "include_author": false
+        }
+    },
+    "scripts": {
+        "strauss": [
+            "Composer\\Config::disableProcessTimeout",
+            "vendor/bin/strauss",
+            "composer dump-autoload"
+        ],
+        "post-install-cmd": [
+            "@strauss"
+        ],
+        "post-update-cmd": [
+            "@strauss"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "classmap-authoritative": true,
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Ppfeufer\\Theme\\EVEOnline\\": "Sources"
+        },
+        "classmap": [
+            "vendor"
+        ]
+    }
+}
