@@ -17,18 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Addons\BootstrapMenuWalker;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-$options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\ThemeHelper::getThemeDefaultOptions());
+$options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 ?>
         </main>
+
         <footer>
             <div class="footer-wrapper">
                 <div class="row">
                     <div class="container">
                         <?php
-                        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-1') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-2') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-3') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('footer-column-4')) {
-                            \get_sidebar('footer');
+                        if (ThemeHelper::hasSidebar('footer-column-1') || ThemeHelper::hasSidebar('footer-column-2') || ThemeHelper::hasSidebar('footer-column-3') || ThemeHelper::hasSidebar('footer-column-4')) {
+                            get_sidebar('footer');
                         }
                         ?>
                     </div>
@@ -42,19 +46,19 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
                             <div class="col-md-12">
                                 <div class="pull-left copyright-text">
                                     <?php
-                                    if(!empty($options['footertext'])) {
+                                    if (!empty($options['footertext'])) {
                                         echo '<p>';
-                                        echo \stripslashes($options['footertext']);
+                                        echo stripslashes($options['footertext']);
                                         echo '</p>';
                                     }
                                     ?>
                                     <ul class="credit">
                                         <li>
-                                            &copy; <?php echo \date('Y'); ?> <a href="<?php echo \esc_url(\home_url()); ?>"><?php \bloginfo(); ?></a>
+                                            &copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url(home_url()); ?>"><?php bloginfo(); ?></a>
                                         </li>
                                         <li>
                                             <?php
-                                            \do_action('eve_online_theme_credits');
+                                            do_action('eve_online_theme_credits');
                                             ?>
                                         </li>
                                     </ul><!-- end .credit -->
@@ -62,15 +66,15 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
 
                                 <div class="footer-menu-wrapper">
                                     <?php
-                                    if(\has_nav_menu('footer-menu')) {
-                                        \wp_nav_menu([
+                                    if (has_nav_menu('footer-menu')) {
+                                        wp_nav_menu([
                                             'menu' => '',
                                             'theme_location' => 'footer-menu',
                                             'depth' => 1,
                                             'container' => false,
                                             'menu_class' => 'footer-menu',
-                                            'fallback_cb' => '\WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker::fallback',
-                                            'walker' => new \WordPress\Themes\EveOnline\Addons\BootstrapMenuWalker
+                                            'fallback_cb' => '\Ppfeufer\Theme\EVEOnline\Addons\BootstrapMenuWalker::fallback',
+                                            'walker' => new BootstrapMenuWalker
                                         ]);
                                     }
                                     ?>
@@ -95,10 +99,10 @@ $options = \get_option('eve_theme_options', \WordPress\Themes\EveOnline\Helper\T
             <a href="#pagetop" tabindex="-1" class="totoplink">
                 <i class="icon icon-totop"></i>
                 <span class="sr-hint">
-                    <?php \_e('back to top', 'eve-online'); ?>
+                    <?php _e('back to top', 'eve-online'); ?>
                 </span>
             </a>
         </footer>
-        <?php \wp_footer(); ?>
+        <?php wp_footer(); ?>
     </body>
 </html>

@@ -4,7 +4,6 @@
     .embed-video-container {
         position: relative;
         padding-bottom: 56.25%;
-        height: 0;
         overflow: hidden;
         max-width: 100%;
         height: auto;
@@ -21,7 +20,7 @@
     }
 
     .mce-tinymce .mce-menubar {
-        background-color: rgb(255, 255, 255);
+        background-color: rgb(255 255 255);
         border: none;
     }
 }
@@ -72,7 +71,7 @@
     /* Edit Flow internal comments
     ------------------------------------------------------------------------- */
     #ef-comments img.eve-character-image {
-        border: 1px solid #CCCCCC;
+        border: 1px solid rgb(204 204 204);
         float: left;
         margin-left: 2px;
         margin-right: 15px;

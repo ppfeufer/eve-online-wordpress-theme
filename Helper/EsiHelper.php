@@ -21,88 +21,59 @@
  * Talking to the ESI API ...
  */
 
-namespace WordPress\Themes\EveOnline\Helper;
+namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-use \WordPress\EsiClient\Repository\AllianceRepository;
-use \WordPress\EsiClient\Repository\CharacterRepository;
-use \WordPress\EsiClient\Repository\CorporationRepository;
-use \WordPress\EsiClient\Repository\UniverseRepository;
-
-\defined('ABSPATH') or die();
+use WordPress\EsiClient\Repository\AllianceRepository;
+use WordPress\EsiClient\Repository\CharacterRepository;
+use WordPress\EsiClient\Repository\CorporationRepository;
+use WordPress\EsiClient\Repository\UniverseRepository;
 
 class EsiHelper {
-    /**
-     * Image Server URL
-     *
-     * @var string
-     */
-    private $imageserverUrl = null;
-
-    /**
-     * Image Server Endpoints
-     *
-     * @var array
-     */
-    private $imageserverEndpoints = null;
-
     /**
      * instance
      *
      * static variable to keep the current (and only!) instance of this class
-     *
-     * @var Singleton
      */
-    protected static $instance = null;
-
+    protected static ?EsiHelper $instance = null;
+    /**
+     * Image Server URL
+     *
+     * @var string|null
+     */
+    private ?string $imageserverUrl;
+    /**
+     * Image Server Endpoints
+     *
+     * @var array|null
+     */
+    private ?array $imageserverEndpoints;
     /**
      * allianceApi
      *
-     * @var AllianceRepository
+     * @var AllianceRepository|null
      */
-    private $allianceApi = null;
+    private ?AllianceRepository $allianceApi;
 
     /**
      * corporationApi
      *
-     * @var CorporationRepository
+     * @var CorporationRepository|null
      */
-    private $corporationApi = null;
+    private ?CorporationRepository $corporationApi;
 
     /**
      * characterApi
      *
-     * @var CharacterRepository
+     * @var CharacterRepository|null
      */
-    private $characterApi = null;
+    private ?CharacterRepository $characterApi;
 
     /**
      * universeApi
      *
-     * @var UniverseRepository
+     * @var UniverseRepository|null
      */
-    private $universeApi = null;
-
-    /**
-     * Returning the instance
-     *
-     * @return \WordPress\Themes\EveOnline\Helper\EsiHelper
-     */
-    public static function getInstance() {
-        if(null === self::$instance) {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * clone
-     *
-     * no cloning allowed
-     */
-    protected function __clone() {
-        ;
-    }
+    private ?UniverseRepository $universeApi;
 
     /**
      * constructor
@@ -132,72 +103,25 @@ class EsiHelper {
         ];
     }
 
-    public function getImageServerUrl() {
-        return $this->imageserverUrl;
+    /**
+     * Returning the instance
+     *
+     * @return \Ppfeufer\Theme\EVEOnline\Helper\EsiHelper|null
+     */
+    public static function getInstance(): ?EsiHelper {
+        if (null === self::$instance) {
+            self::$instance = new self;
+        }
+
+        return self::$instance;
     }
 
-    public function getImageServerEndpoint($group) {
+    public function getImageServerEndpoint($group): string {
         return $this->getImageServerUrl() . $this->imageserverEndpoints[$group];
     }
 
-    /**
-     * Get the IDs to an array of names
-     *
-     * @param array $names
-     * @param string $type
-     * @return type
-     */
-    public function getIdFromName(array $names, string $type) {
-        $returnData = null;
-
-        /* @var $esiData \WordPress\EsiClient\Model\Universe\Ids */
-        $esiData = $this->universeApi->universeIds(\array_values($names));
-
-        if(\is_a($esiData, '\WordPress\EsiClient\Model\Universe\Ids')) {
-            switch($type) {
-                case 'agents':
-                    $returnData = $esiData->getAgents();
-                    break;
-
-                case 'alliances':
-                    $returnData = $esiData->getAlliances();
-                    break;
-
-                case 'constellations':
-                    $returnData = $esiData->getConstellations();
-                    break;
-
-                case 'characters':
-                    $returnData = $esiData->getCharacters();
-                    break;
-
-                case 'corporations':
-                    $returnData = $esiData->getCorporations();
-                    break;
-
-                case 'factions':
-                    $returnData = $esiData->getFactions();
-                    break;
-
-                case 'inventoryTypes':
-                    $returnData = $esiData->getInventoryTypes();
-                    break;
-
-                case 'regions':
-                    $returnData = $esiData->getRegions();
-                    break;
-
-                case 'stations':
-                    $returnData = $esiData->getStations();
-                    break;
-
-                case 'systems':
-                    $returnData = $esiData->getSystems();
-                    break;
-            }
-        }
-
-        return $returnData;
+    public function getImageServerUrl(): ?string {
+        return $this->imageserverUrl;
     }
 
     /**
@@ -206,36 +130,69 @@ class EsiHelper {
      * @param string $characterName
      * @param boolean $imageOnly
      * @param int $size
-     * @param string $newWidth
-     * @param string $newHeight
+     * @param string|null $newWidth
+     * @param string|null $newHeight
      * @return string
      */
-    public function getCharacterImageByName($characterName, $imageOnly = true, $size = 128, $newWidth = null, $newHeight = null) {
+    public function getCharacterImageByName(string $characterName, bool $imageOnly = true, int $size = 128, string $newWidth = null, string $newHeight = null): ?string {
         $returnData = null;
 
-        $characterData = $this->getIdFromName([\trim($characterName)], 'characters');
-        $characterID = (!\is_null($characterData)) ? $characterData['0']->getId() : null;
+        $characterData = $this->getIdFromName([trim($characterName)], 'characters');
+        $characterID = (!is_null($characterData)) ? $characterData['0']->getId() : null;
 
         // If we actually have a characterID
-        if(!\is_null($characterID)) {
-            $imagePath = \sprintf(
+        if (!is_null($characterID)) {
+            $imagePath = sprintf(
                 $this->imageserverUrl . $this->imageserverEndpoints['character'] . '?size=' . $size,
                 $characterID
             );
 
-            if($imageOnly === true) {
+            if ($imageOnly === true) {
                 return $imagePath;
             }
 
-            if(!\is_null($newWidth)) {
+            if (!is_null($newWidth)) {
                 $newWidth = ' width="' . $newWidth . '"';
             }
 
-            if(!\is_null($newHeight)) {
+            if (!is_null($newHeight)) {
                 $newHeight = ' height="' . $newHeight . '"';
             }
 
             $returnData = '<img src="' . $imagePath . '" class="eve-character-image eve-character-id-' . $characterID . '" alt="' . $characterName . '">';
+        }
+
+        return $returnData;
+    }
+
+    /**
+     * Get the IDs to an array of names
+     *
+     * @param array $names
+     * @param string $type
+     * @return array|null
+     * @throws \Exception
+     */
+    public function getIdFromName(array $names, string $type): ?array {
+        $returnData = null;
+
+        /* @var $esiData \WordPress\EsiClient\Model\Universe\Ids */
+        $esiData = $this->universeApi->universeIds(array_values($names));
+
+        if (is_a($esiData, '\WordPress\EsiClient\Model\Universe\Ids')) {
+            $returnData = match ($type) {
+                'agents' => $esiData->getAgents(),
+                'alliances' => $esiData->getAlliances(),
+                'constellations' => $esiData->getConstellations(),
+                'characters' => $esiData->getCharacters(),
+                'corporations' => $esiData->getCorporations(),
+                'factions' => $esiData->getFactions(),
+                'inventoryTypes' => $esiData->getInventoryTypes(),
+                'regions' => $esiData->getRegions(),
+                'stations' => $esiData->getStations(),
+                'systems' => $esiData->getSystems(),
+                default => throw new \Exception('Unexpected value'),
+            };
         }
 
         return $returnData;
@@ -248,21 +205,21 @@ class EsiHelper {
      * @param string $entityType corporation/alliance
      * @param boolean $imageOnly
      * @param int $size
-     * @return string
+     * @return string|null
      */
-    public function getEntityLogoByName($entityName, $entityType, $imageOnly = true, $size = 128) {
+    public function getEntityLogoByName(string $entityName, string $entityType, bool $imageOnly = true, int $size = 128): ?string {
         $returnData = null;
 
-        $eveEntityData = $this->getIdFromName([\trim($entityName)], $entityType . 's');
-        $eveID = (!\is_null($eveEntityData)) ? $eveEntityData['0']->getId() : null;
+        $eveEntityData = $this->getIdFromName([trim($entityName)], $entityType . 's');
+        $eveID = (!is_null($eveEntityData)) ? $eveEntityData['0']->getId() : null;
 
-        if(!\is_null($eveID)) {
-            $imagePath = \sprintf(
+        if (!is_null($eveID)) {
+            $imagePath = sprintf(
                 $this->imageserverUrl . $this->imageserverEndpoints[$entityType] . '?size=' . $size,
                 $eveID
             );
 
-            if($imageOnly === true) {
+            if ($imageOnly === true) {
                 return $imagePath;
             }
 
@@ -270,5 +227,13 @@ class EsiHelper {
         }
 
         return $returnData;
+    }
+
+    /**
+     * clone
+     *
+     * no cloning allowed
+     */
+    protected function __clone() {
     }
 }

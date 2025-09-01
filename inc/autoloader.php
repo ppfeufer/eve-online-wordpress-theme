@@ -1,28 +1,30 @@
 <?php
 
-namespace WordPress\Themes\EveOnline;
+namespace Ppfeufer\Theme\EVEOnline;
 
-\spl_autoload_register('\WordPress\Themes\EveOnline\autoload');
+// phpcs:disable
+spl_autoload_register('\Ppfeufer\Theme\EVEOnline\autoload');
+// phpcs:enable
 
 function autoload($className) {
     // If the specified $className does not include our namespace, duck out.
-    if(\strpos($className, 'WordPress\Themes\EveOnline') === false) {
+    if (strpos($className, 'Ppfeufer\Theme\EVEOnline') === false) {
         return;
     }
 
     // Split the class name into an array to read the namespace and class.
-    $fileParts = \explode('\\', $className);
+    $fileParts = explode('\\', $className);
 
     // Do a reverse loop through $fileParts to build the path to the file.
     $namespace = '';
-    for($i = \count($fileParts) - 1; $i > 0; $i--) {
+    for ($i = count($fileParts) - 1; $i > 0; $i--) {
         // Read the current component of the file part.
-        $current = \str_ireplace('_', '-', $fileParts[$i]);
+        $current = str_ireplace('_', '-', $fileParts[$i]);
 
         $namespace = '/' . $current . $namespace;
 
         // If we're at the first entry, then we're at the filename.
-        if(\count($fileParts) - 1 === $i) {
+        if (count($fileParts) - 1 === $i) {
             $namespace = '';
             $fileName = $current . '.php';
 
@@ -31,9 +33,9 @@ function autoload($className) {
              * Otherwise, just set the $file_name equal to that of the class
              * filename structure.
              */
-            if(\strpos(\strtolower($fileParts[\count($fileParts) - 1]), 'interface')) {
+            if (strpos(strtolower($fileParts[count($fileParts) - 1]), 'interface')) {
                 // Grab the name of the interface from its qualified name.
-                $interfaceNameParts = \explode('_', $fileParts[\count($fileParts) - 1]);
+                $interfaceNameParts = explode('_', $fileParts[count($fileParts) - 1]);
                 $interfaceName = $interfaceNameParts[0];
 
                 $fileName = $interfaceName . '.php';
@@ -41,11 +43,11 @@ function autoload($className) {
         }
 
         // Now build a path to the file using mapping to the file location.
-        $filepath = \trailingslashit(\dirname(\dirname(__FILE__)) . $namespace);
+        $filepath = trailingslashit(dirname(__FILE__, 2) . $namespace);
         $filepath .= $fileName;
 
         // If the file exists in the specified path, then include it.
-        if(\file_exists($filepath)) {
+        if (file_exists($filepath)) {
             include_once($filepath);
         }
     }
@@ -54,32 +56,34 @@ function autoload($className) {
 /**
  * In preparation to switch the ESI Client to an WPMU plugin
  */
-if(!\defined('\WordPress\EsiClient\WP_ESI_CLIENT_LOADED')) {
+if (!defined('\WordPress\EsiClient\WP_ESI_CLIENT_LOADED')) {
     /**
      * Autoloading ESI classes
      */
-    \spl_autoload_register('\WordPress\Themes\EveOnline\autoloadEsiClient');
+    // phpcs:disable
+    spl_autoload_register('\Ppfeufer\Theme\EVEOnline\autoloadEsiClient');
+    // phpcs:enable
 }
 
 function autoloadEsiClient($className) {
     // If the specified $className does not include our namespace, duck out.
-    if(\strpos($className, 'WordPress\EsiClient') === false) {
+    if (strpos($className, 'WordPress\EsiClient') === false) {
         return;
     }
 
     // Split the class name into an array to read the namespace and class.
-    $fileParts = \explode('\\', $className);
+    $fileParts = explode('\\', $className);
 
     // Do a reverse loop through $fileParts to build the path to the file.
     $namespace = '';
-    for($i = \count($fileParts) - 1; $i > 0; $i--) {
+    for ($i = count($fileParts) - 1; $i > 0; $i--) {
         // Read the current component of the file part.
-        $current = \str_ireplace('_', '-', $fileParts[$i]);
+        $current = str_ireplace('_', '-', $fileParts[$i]);
 
         $namespace = '/' . $current . $namespace;
 
         // If we're at the first entry, then we're at the filename.
-        if(\count($fileParts) - 1 === $i) {
+        if (count($fileParts) - 1 === $i) {
             $namespace = '';
             $fileName = $current . '.php';
 
@@ -88,9 +92,9 @@ function autoloadEsiClient($className) {
              * Otherwise, just set the $file_name equal to that of the class
              * filename structure.
              */
-            if(\strpos(\strtolower($fileParts[\count($fileParts) - 1]), 'interface')) {
+            if (strpos(strtolower($fileParts[count($fileParts) - 1]), 'interface')) {
                 // Grab the name of the interface from its qualified name.
-                $interfaceNameParts = \explode('_', $fileParts[\count($fileParts) - 1]);
+                $interfaceNameParts = explode('_', $fileParts[count($fileParts) - 1]);
                 $interfaceName = $interfaceNameParts[0];
 
                 $fileName = $interfaceName . '.php';
@@ -98,11 +102,11 @@ function autoloadEsiClient($className) {
         }
 
         // Now build a path to the file using mapping to the file location.
-        $filepath = \trailingslashit(\WP_CONTENT_DIR . '/EsiClient' . $namespace);
+        $filepath = trailingslashit(WP_CONTENT_DIR . '/EsiClient' . $namespace);
         $filepath .= $fileName;
 
         // If the file exists in the specified path, then include it.
-        if(\file_exists($filepath)) {
+        if (file_exists($filepath)) {
             include_once($filepath);
         }
     }

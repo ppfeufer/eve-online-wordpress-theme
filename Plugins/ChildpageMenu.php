@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Plugins;
+namespace Ppfeufer\Theme\EVEOnline\Plugins;
 
 class ChildpageMenu {
     /**
@@ -42,6 +42,6 @@ class ChildpageMenu {
     }
 
     public function registerWidget() {
-        return \register_widget("\\WordPress\Themes\EveOnline\Plugins\Widgets\ChildpageMenuWidget");
+        return \register_widget("\\Ppfeufer\Theme\EVEOnline\Plugins\Widgets\ChildpageMenuWidget");
     }
 }

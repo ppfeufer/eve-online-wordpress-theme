@@ -17,20 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use function Ppfeufer\Theme\EVEOnline\eve_link_pages;
+
 defined('ABSPATH') or die();
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php \post_class('clearfix content-single'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix content-single'); ?>>
     <header class="entry-header">
         <h1 class="entry-title">
-            <?php \the_title(); ?>
+            <?php the_title(); ?>
         </h1>
         <aside class="entry-details">
             <p class="meta">
                 <?php
-                echo \WordPress\Themes\EveOnline\Helper\PostHelper::getPostMetaInformation();
-                \WordPress\Themes\EveOnline\Helper\PostHelper::getPostCategoryAndTags();
-                \edit_post_link(\__('Edit', 'eve-online'));
+                PostHelper::getPostMetaInformation();
+                PostHelper::getPostCategoryAndTags();
+                edit_post_link(__('Edit', 'eve-online'));
                 ?>
             </p>
         </aside><!--end .entry-details -->
@@ -39,10 +43,10 @@ defined('ABSPATH') or die();
     <section class="post-content clearfix">
         <div class="entry-content clearfix">
             <?php
-            echo \the_content();
+            the_content();
 
-            if(\function_exists('\WordPress\Themes\EveOnline\eve_link_pages')) {
-                \WordPress\Themes\EveOnline\eve_link_pages([
+            if (function_exists('\Ppfeufer\Theme\EVEOnline\eve_link_pages')) {
+                eve_link_pages([
                     'before' => '<ul class="pagination">',
                     'after' => '</ul>',
                     'before_link' => '<li>',
@@ -53,7 +57,7 @@ defined('ABSPATH') or die();
                     'nextpagelink' => '&raquo;'
                 ]);
             } else {
-                \wp_link_pages( [
+                wp_link_pages([
                     'before' => '<div class="page-links">' . __('Pages:', 'eve-online'),
                     'after'  => '</div>',
                 ]);
@@ -64,28 +68,28 @@ defined('ABSPATH') or die();
 
     <?php
     // AUTHOR INFO
-    if(\get_the_author_meta('description')) {
+    if (get_the_author_meta('description')) {
         ?>
         <hr/>
         <div class="author-info clearfix">
             <div class="author-details">
                 <h3>
                     <?php
-                    echo \__('Written by ', 'eve-online');
-                    echo \get_the_author();
+                    echo __('Written by ', 'eve-online');
+                    echo get_the_author();
                     ?>
                 </h3>
-                <?php echo \get_avatar(\get_the_author_meta('user_email')); ?>
+                <?php echo get_avatar(get_the_author_meta('user_email')); ?>
             </div><!-- end .author-details -->
             <div class="author-description">
-                <?php echo \wpautop(\get_the_author_meta('description')); ?>
+                <?php echo wpautop(get_the_author_meta('description')); ?>
             </div>
         </div><!-- end .author-info -->
         <?php
     }
     ?>
-    <hr/>
-    <?php \WordPress\Themes\EveOnline\Helper\NavigationHelper::getArticleNavigation(true); ?>
-    <hr/>
-    <?php \comments_template(); ?>
+    <hr>
+    <?php NavigationHelper::getArticleNavigation(true); ?>
+    <hr>
+    <?php comments_template(); ?>
 </article><!-- /.post-->

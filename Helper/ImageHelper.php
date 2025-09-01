@@ -17,19 +17,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Helper;
+namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-use \WP_Query;
-
-\defined('ABSPATH') or die();
+use WP_Query;
+use WP_Post;
 
 class ImageHelper {
-    public static function getAttachmentId($url) {
+    public static function getAttachmentId($url): int|WP_Post {
         $attachment_id = 0;
-        $dir = \wp_upload_dir();
+        $dir = wp_upload_dir();
 
-        if(\strpos($url, $dir['baseurl'] . '/') !== false) { // Is URL in uploads directory?
-            $file = \basename($url);
+        if (str_contains($url, $dir['baseurl'] . '/')) { // Is URL in uploads directory?
+            $file = basename($url);
             $query_args = [
                 'post_type' => 'attachment',
                 'post_status' => 'inherit',
@@ -45,13 +44,13 @@ class ImageHelper {
 
             $query = new WP_Query($query_args);
 
-            if($query->have_posts()) {
-                foreach($query->posts as $post_id) {
-                    $meta = \wp_get_attachment_metadata($post_id);
-                    $original_file = \basename($meta['file']);
-                    $cropped_image_files = \wp_list_pluck($meta['sizes'], 'file');
+            if ($query->have_posts()) {
+                foreach ($query->posts as $post_id) {
+                    $meta = wp_get_attachment_metadata($post_id);
+                    $original_file = basename($meta['file']);
+                    $cropped_image_files = wp_list_pluck($meta['sizes'], 'file');
 
-                    if($original_file === $file || \in_array($file, $cropped_image_files)) {
+                    if ($original_file === $file || in_array($file, $cropped_image_files)) {
                         $attachment_id = $post_id;
 
                         break;

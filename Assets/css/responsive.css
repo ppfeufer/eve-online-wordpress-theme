@@ -1,0 +1,142 @@
+/*!
+ * Responsive CSS for EVE Online Theme
+ *
+ * Created on : 03.02.2017, 09:15:32
+ * Author     : p.pfeufer
+ */
+
+/* Very Small Smartphones
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 320px) {
+    .site-title {
+        font-size: 1.2rem;
+        margin-top: 1.5625rem;
+    }
+}
+
+/* Smartphones
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 560px) {
+    .site-title {
+        font-size: 1.5rem;
+        margin-top: 1.8125rem;
+    }
+
+    /* navigation
+    ------------------------------------------------------------------------- */
+    .corporations-meta-menu > .dropdown-menu li {
+        float: left;
+        width: 50%;
+    }
+}
+
+/* Tablets (768px and up)
+----------------------------------------------------------------------------- */
+@media screen and (min-width: 768px) {
+    #top-header {
+        display: block;
+    }
+
+    .header-widget {
+        display: block;
+    }
+
+    .header-menu-wrapper {
+        float: right;
+    }
+
+    .header-menu li {
+        display: inline;
+        padding-left: 0.3125rem;
+        padding-right: 0.625rem;
+    }
+
+    .sidebar-wrapper {
+        border-left: 1px solid rgb(220 220 220);
+    }
+
+    .footer-menu-wrapper {
+        float: right;
+    }
+
+    .footer-menu-wrapper ul, ol {
+        margin-left: 0.625rem;
+    }
+
+    /* navigation
+    ------------------------------------------------------------------------- */
+    .corporations-meta-menu {
+        position: static !important;
+    }
+
+    .corporations-meta-menu > .dropdown-menu li {
+        float: left;
+        width: 50%;
+    }
+
+    .dropdown > .dropdown-menu {
+        display: block;
+        opacity: 0;
+        transition: visibility 0s linear 0.2s, opacity 0.2s linear;
+        visibility: hidden;
+    }
+
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transition-delay: 0s;
+        visibility: visible;
+    }
+
+    .dropdown-submenu {
+        position: relative !important;
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+        border-radius: 0 !important;
+        left: 100% !important;
+        margin-left: -1px !important;
+        margin-top: -6px !important;
+        top: 0 !important;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block !important;
+    }
+
+    .site-title {
+        font-size: 2rem;
+        margin-top: 1.125rem;
+    }
+}
+
+/* Medium Devices (desktops, 992px and up)
+----------------------------------------------------------------------------- */
+@media all and (min-width: 992px) {
+    #top-header ul, ol {
+        margin-left: 0.625rem;
+    }
+
+    /* navigation
+    ------------------------------------------------------------------------- */
+    .corporations-meta-menu > .dropdown-menu li {
+        width: 33%;
+    }
+}
+
+/* Large Devices (large desktops, 1200px and up)
+----------------------------------------------------------------------------- */
+@media all and (min-width: 1200px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+/* Large Devices (large desktops, 1700px and up)
+----------------------------------------------------------------------------- */
+@media all and (min-width: 1700px) {
+    .container {
+        max-width: 105rem;
+        width: 90%;
+    }
+}

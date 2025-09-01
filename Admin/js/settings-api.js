@@ -1,6 +1,8 @@
 /* global wp */
 
 jQuery(document).ready(function($) {
+    'use strict';
+
     /**
      * Check all upload sections for uploaded files
      */
@@ -20,11 +22,11 @@ jQuery(document).ready(function($) {
     $('.upload, .image img, .url code').click(function(e) {
         e.preventDefault();
 
-        var sendAttachmentBkp = wp.media.editor.send.attachment;
-        var dataID = $(this).data('field-id');
+        const sendAttachmentBkp = wp.media.editor.send.attachment;
+        const dataID = $(this).data('field-id');
 
         wp.media.editor.send.attachment = function(props, attachment) {
-            var current = '[data-id="' + dataID + '"]';
+            const current = '[data-id="' + dataID + '"]';
 
             if(attachment.sizes && attachment.sizes.thumbnail && attachment.sizes.thumbnail.url) {
                 $(current + ' .image img').attr('src', attachment.sizes.thumbnail.url);
@@ -48,8 +50,8 @@ jQuery(document).ready(function($) {
     $('.remove').click(function(e) {
         e.preventDefault();
 
-        var dataID = $(this).parent().attr('data-id');
-        var current = '[data-id="' + dataID + '"]';
+        const dataID = $(this).parent().attr('data-id');
+        const current = '[data-id="' + dataID + '"]';
 
         $(current + ' .url code').html('').hide();
         $(current + ' .attachment_id').val('');
@@ -69,7 +71,7 @@ jQuery(document).ready(function($) {
         $('.nav-tab').click(function(e) {
             e.preventDefault();
 
-            var id = $(this).attr('href').substr(1);
+            const id = $(this).attr('href').substr(1);
 
             $('.tab-content').hide();
             $('#' + id).show();

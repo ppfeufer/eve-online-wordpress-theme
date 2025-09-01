@@ -17,15 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -42,13 +47,13 @@ defined('ABSPATH') or die();
 
     <!--<div class="row main-content">-->
     <div class="main-content clearfix">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner single">
                 <?php
-                if(\have_posts()) {
-                    while(\have_posts()) {
-                        \the_post();
-                        \get_template_part('content-single');
+                if (have_posts()) {
+                    while (have_posts()) {
+                        the_post();
+                        get_template_part('content-single');
                     }
                 }
                 ?>
@@ -56,16 +61,16 @@ defined('ABSPATH') or die();
         </div> <!-- /.col-lg-9 /.col-md-9 /.col-sm-9 /.col-9 -->
 
         <?php
-        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-post') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::hasSidebar('sidebar-post') || ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
                 <?php
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-                    \get_sidebar('general');
+                if (ThemeHelper::hasSidebar('sidebar-general')) {
+                    get_sidebar('general');
                 }
 
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-post')) {
-                    \get_sidebar('post');
+                if (ThemeHelper::hasSidebar('sidebar-post')) {
+                    get_sidebar('post');
                 }
                 ?>
                 </div><!--/.col -->
@@ -75,4 +80,4 @@ defined('ABSPATH') or die();
     </div> <!-- /.row -->
 </div> <!-- /.container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>

@@ -17,15 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -42,68 +47,66 @@ defined('ABSPATH') or die();
 
     <!--<div class="row main-content">-->
     <div class="main-conten clearfixt">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-index content-loop">
                 <?php
-                if(\have_posts()) {
-                    if(\get_post_type() === 'post') {
-                        $uniqueID = \uniqid();
+                if (have_posts()) {
+                    $uniqueID = uniqid('', true);
 
+                    if (get_post_type() === 'post') {
                         echo '<div class="gallery-row row">';
                         echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
                     }
 
-                    while(\have_posts()) {
-                        \the_post();
+                    while (have_posts()) {
+                        the_post();
 
-                        if(\get_post_type() === 'post') {
+                        if (get_post_type() === 'post') {
                             echo '<li>';
                         }
 
-                        \get_template_part('content', \get_post_format());
+                        get_template_part('content', get_post_format());
 
-                        if(\get_post_type() === 'post') {
+                        if (get_post_type() === 'post') {
                             echo '</li>';
                         }
                     } // END while (have_posts())
 
-                    if(\get_post_type() === 'post') {
+                    if (get_post_type() === 'post') {
                         echo '</ul>';
                         echo '</div>';
 
                         echo '<script type="text/javascript">
                                 jQuery(document).ready(function() {
                                     jQuery("ul.bootstrap-post-loop-gallery-' . $uniqueID . '").bootstrapGallery({
-                                        "classes" : "' . \WordPress\Themes\EveOnline\Helper\PostHelper::getLoopContentClasses() . '",
+                                        "classes" : "' . PostHelper::getLoopContentClasses() . '",
                                         "hasModal" : false
                                     });
                                 });
                                 </script>';
                     }
-                } else {
-
                 }
 
-                if(\function_exists('\wp_pagenavi')) {
-                    \wp_pagenavi();
+                if (function_exists('\wp_pagenavi')) {
+                    wp_pagenavi();
                 } else {
-                    \WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
+                    NavigationHelper::getContentNav('nav-below');
                 }
                 ?>
             </div>
         </div><!--/.col -->
 
         <?php
-        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
                 <?php
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-                    \get_sidebar('general');
+                if (ThemeHelper::hasSidebar('sidebar-general')) {
+                    get_sidebar('general');
                 }
 
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
-                    \get_sidebar('page');
+                if (ThemeHelper::hasSidebar('sidebar-page')) {
+                    get_sidebar('page');
                 }
                 ?>
             </div><!--/.col -->
@@ -113,4 +116,4 @@ defined('ABSPATH') or die();
     </div> <!--/.row -->
 </div><!-- container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>

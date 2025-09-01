@@ -17,15 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -41,71 +46,71 @@ defined('ABSPATH') or die();
 
     <!--<div class="row main-content">-->
     <div class="main-content clearfix">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-archive">
                 <header class="page-title">
                     <h1>
                         <?php
-                        if(\is_day()) {
-                            \printf(\__('Daily Archives: %s', 'eve-online'), '<span>' . \get_the_date() . '</span>');
-                        } elseif(is_month()) {
-                            \printf(\__('Monthly Archives: %s', 'eve-online'), '<span>' . \get_the_date(\_x('F Y', 'monthly archives date format', 'eve-online')) . '</span>');
-                        } elseif(is_year()) {
-                            \printf(\__('Yearly Archives: %s', 'eve-online'), '<span>' . \get_the_date(_x('Y', 'yearly archives date format', 'eve-online')) . '</span>');
-                        } elseif(is_tag()) {
-                            \printf(\__('Tag Archives: %s', 'eve-online'), '<span>' . \single_tag_title('', false) . '</span>');
+                        if (is_day()) {
+                            printf(__('Daily Archives: %s', 'eve-online'), '<span>' . get_the_date() . '</span>');
+                        } elseif (is_month()) {
+                            printf(__('Monthly Archives: %s', 'eve-online'), '<span>' . get_the_date(_x('F Y', 'monthly archives date format', 'eve-online')) . '</span>');
+                        } elseif (is_year()) {
+                            printf(__('Yearly Archives: %s', 'eve-online'), '<span>' . get_the_date(_x('Y', 'yearly archives date format', 'eve-online')) . '</span>');
+                        } elseif (is_tag()) {
+                            printf(__('Tag Archives: %s', 'eve-online'), '<span>' . single_tag_title('', false) . '</span>');
 
                             // Show an optional tag description
-                            $tag_description = \tag_description();
-                            if($tag_description) {
-                                echo \apply_filters('tag_archive_meta', '<div class="tag-archive-meta">' . $tag_description . '</div>');
+                            $tag_description = tag_description();
+                            if ($tag_description) {
+                                echo apply_filters('tag_archive_meta', '<div class="tag-archive-meta">' . $tag_description . '</div>');
                             }
-                        } elseif(\is_category()) {
-                            \printf(\__('Category Archives: %s', 'eve-online'), '<span>' . \single_cat_title('', false) . '</span>');
+                        } elseif (is_category()) {
+                            printf(__('Category Archives: %s', 'eve-online'), '<span>' . single_cat_title('', false) . '</span>');
                         } else {
-                            \_e('Blog Archives', 'eve-online');
+                            _e('Blog Archives', 'eve-online');
                         }
                         ?>
                     </h1>
                     <?php
                     // Show an optional category description
-                    $category_description = \category_description();
-                    if($category_description) {
-                        echo \apply_filters('category_archive_meta', '<div class="category-archive-meta">' . $category_description . '</div>');
+                    $category_description = category_description();
+                    if ($category_description) {
+                        echo apply_filters('category_archive_meta', '<div class="category-archive-meta">' . $category_description . '</div>');
                     }
                     ?>
                 </header>
                 <?php
-                if(\have_posts()) {
-                    if(\get_post_type() === 'post') {
-                        $uniqueID = \uniqid();
+                if (have_posts()) {
+                    $uniqueID = uniqid('', true);
 
+                    if (get_post_type() === 'post') {
                         echo '<div class="gallery-row row">';
                         echo '<ul class="bootstrap-gallery bootstrap-post-loop-gallery bootstrap-post-loop-gallery-' . $uniqueID . ' clearfix">';
                     }
 
-                    while(\have_posts()) {
-                        \the_post();
+                    while (have_posts()) {
+                        the_post();
 
-                        if(\get_post_type() === 'post') {
+                        if (get_post_type() === 'post') {
                             echo '<li>';
                         }
 
-                        \get_template_part('content', \get_post_format());
+                        get_template_part('content', get_post_format());
 
-                        if(\get_post_type() === 'post') {
+                        if (get_post_type() === 'post') {
                             echo '</li>';
                         }
                     }
 
-                    if(\get_post_type() === 'post') {
+                    if (get_post_type() === 'post') {
                         echo '</ul>';
                         echo '</div>';
 
                         echo '<script type="text/javascript">
                                 jQuery(document).ready(function() {
                                     jQuery("ul.bootstrap-post-loop-gallery-' . $uniqueID . '").bootstrapGallery({
-                                        "classes" : "' . \WordPress\Themes\EveOnline\Helper\PostHelper::getLoopContentClasses() . '",
+                                        "classes" : "' . PostHelper::getLoopContentClasses() . '",
                                         "hasModal" : false
                                     });
                                 });
@@ -113,26 +118,26 @@ defined('ABSPATH') or die();
                     }
                 }
 
-                if(\function_exists('wp_pagenavi')) {
-                    \wp_pagenavi();
+                if (function_exists('wp_pagenavi')) {
+                    wp_pagenavi();
                 } else {
-                    \WordPress\Themes\EveOnline\Helper\NavigationHelper::getContentNav('nav-below');
+                    NavigationHelper::getContentNav('nav-below');
                 }
                 ?>
             </div> <!-- /.content -->
         </div> <!-- /.col -->
 
         <?php
-        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
             <?php
-            if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-                \get_sidebar('general');
+            if (ThemeHelper::hasSidebar('sidebar-general')) {
+                get_sidebar('general');
             }
 
-            if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
-                \get_sidebar('page');
+            if (ThemeHelper::hasSidebar('sidebar-page')) {
+                get_sidebar('page');
             }
             ?>
             </div><!--/.col -->
@@ -142,4 +147,4 @@ defined('ABSPATH') or die();
     </div> <!--/.row -->
 </div><!-- container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>

@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Helper;
-
-\defined('ABSPATH') or die();
+namespace Ppfeufer\Theme\EVEOnline\Helper;
 
 class FilesystemHelper {
     /**
@@ -27,29 +25,30 @@ class FilesystemHelper {
      *
      * @param string $directory
      * @param boolean $removeDirectory Remove the given Directoy as well? (true or false)
+     * @return void
      */
-    public static function deleteDirectoryRecursive($directory, $removeDirectory = false) {
+    public static function deleteDirectoryRecursive(string $directory, bool $removeDirectory = false): void {
         // open dir and save it in a handle
-        $entry = \opendir($directory);
+        $entry = opendir($directory);
 
         // read content of $dir and save it in $file
-        while($file = \readdir($entry)) {
+        while ($file = readdir($entry)) {
             $path = $directory . '/' . $file;
 
             if ($file !== '.' && $file !== '..') {
                 // check if handle is a dir or a file
-                if(\is_dir($path)) {
+                if (is_dir($path)) {
                     self::deleteDirectoryRecursive($path);
                 } else {
-                    \unlink($path);
+                    unlink($path);
                 }
             }
         }
 
         // close dir handle
-        \closedir($entry);
+        closedir($entry);
 
-        if($removeDirectory === true) {
+        if ($removeDirectory === true) {
             //remove dir
             rmdir($directory);
         }
