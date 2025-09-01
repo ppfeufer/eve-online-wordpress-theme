@@ -17,30 +17,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Plugins;
+namespace Ppfeufer\Theme\EVEOnline\Plugins;
 
-use \WordPress\Themes\EveOnline\Helper\PostHelper;
-
-\defined('ABSPATH') or die();
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
 
 class BootstrapContentGrid {
     public function __construct() {
         $this->registerShortcode();
     }
 
-    public function registerShortcode() {
-        \add_shortcode('contentgrid', [$this, 'shortcodeContentGrid']);
-        \add_shortcode('gridelement', [$this, 'shortcodeContentGridElement']);
+    public function registerShortcode(): void {
+        add_shortcode('contentgrid', [$this, 'shortcodeContentGrid']);
+        add_shortcode('gridelement', [$this, 'shortcodeContentGridElement']);
     }
 
-    public function shortcodeContentGrid($atts, $content = null) {
-        $args = \shortcode_atts([
+    public function shortcodeContentGrid($atts, $content = null): string {
+        $args = shortcode_atts([
             'classes' => PostHelper::getLoopContentClasses(),
-        ],$atts);
+        ], $atts);
 
-        $uniqueID = \uniqid();
-        $gridHtml = null;
-        $gridHtml .= '<div class="content-grid-row row">';
+        $uniqueID = uniqid('', true);
+        $gridHtml = '<div class="content-grid-row row">';
         $gridHtml .= '<ul class="bootstrap-content-grid bootstrap-content-grid-' . $uniqueID . ' clearfix">';
         $gridHtml .= $this->removeAutopInShortcode($content);
         $gridHtml .= '</ul>';
@@ -58,18 +55,15 @@ class BootstrapContentGrid {
         return $gridHtml;
     }
 
-    public function shortcodeContentGridElement($atts, $content = null) {
-        $atts = null; // we don't need it here, but WP provides it anyways
+    public function removeAutopInShortcode($content): array|string|null {
+        $content = do_shortcode(shortcode_unautop($content));
 
-        $gridHtml = '<li>' . $this->removeAutopInShortcode($content) . '</li>';
-
-        return $gridHtml;
+        return preg_replace('#^</p>|^<br />|<p>$#', '', $content);
     }
 
-    public function removeAutopInShortcode($content) {
-        $content = \do_shortcode(\shortcode_unautop($content));
-        $content = \preg_replace('#^<\/p>|^<br \/>|<p>$#', '', $content);
+    public function shortcodeContentGridElement($atts, $content = null): string {
+        $atts = null; // we don't need it here, but WP provides it anyways
 
-        return $content;
+        return '<li>' . $this->removeAutopInShortcode($content) . '</li>';
     }
 }

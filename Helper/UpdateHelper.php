@@ -17,13 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Helper;
+namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-use \Exception;
-use \PclZip;
-use \ZipArchive;
-
-\defined('ABSPATH') or die();
+use Exception;
+use PclZip;
+use WordPress\EsiClient\Swagger;
+use wpdb;
+use ZipArchive;
 
 class UpdateHelper {
     /**
@@ -31,28 +31,21 @@ class UpdateHelper {
      *
      * @var string
      */
-    protected $optionDatabaseFieldName = 'eve-online-theme-database-version';
+    protected string $optionDatabaseFieldName = 'eve-online-theme-database-version';
 
     /**
      * Database version
      *
-     * @var string
+     * @var int
      */
-    protected $databaseVersion = 20190611;
+    protected int $databaseVersion = 20190611;
 
     /**
      * Database version
      *
-     * @var string
+     * @var int
      */
-    protected $esiClientVersion = 20210929;
-
-    /**
-     * WordPress Database Instance
-     *
-     * @var \wpdb
-     */
-    private $wpdb = null;
+    protected int $esiClientVersion = 20210929;
 
     /**
      * hasZipArchive
@@ -61,7 +54,14 @@ class UpdateHelper {
      *
      * @var bool
      */
-    protected $hasZipArchive = false;
+    protected bool $hasZipArchive = false;
+
+    /**
+     * WordPress Database Instance
+     *
+     * @var wpdb|null
+     */
+    private ?wpdb $wpdb;
 
     /**
      * constructor
@@ -70,19 +70,40 @@ class UpdateHelper {
         global $wpdb;
 
         $this->wpdb = $wpdb;
-        $this->hasZipArchive = (\class_exists('ZipArchive')) ? true : false;
+        $this->hasZipArchive = class_exists('ZipArchive');
 
         $this->checkEsiClient();
         $this->checkDatabaseForUpdates();
     }
 
     /**
-     * getNewDatabaseVersion
-     *
-     * @return int
+     * Check if the ESI client needs to be updated
+     * @throws \Exception
      */
-    protected function getNewDatabaseVersion() {
-        return $this->databaseVersion;
+    protected function checkEsiClient(): void {
+        $esiClientCurrentVersion = 0;
+
+        /**
+         * Check for current ESI client version
+         */
+        if (class_exists('\WordPress\EsiClient\Swagger')) {
+            $esiClient = new Swagger;
+
+            if (method_exists($esiClient, 'getEsiClientVersion')) {
+                $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
+            }
+        }
+
+        // backwards compatibility with older ESI clients
+        if (is_null($esiClientCurrentVersion)) {
+            if (file_exists(WP_CONTENT_DIR . '/EsiClient/client_version')) {
+                $esiClientCurrentVersion = trim(file_get_contents(WP_CONTENT_DIR . '/EsiClient/client_version'));
+            }
+        }
+
+        if (version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
+            $this->updateEsiClient($this->getNewEsiClientVersion());
+        }
     }
 
     /**
@@ -90,55 +111,8 @@ class UpdateHelper {
      *
      * @return int
      */
-    protected function getNewEsiClientVersion() {
+    protected function getNewEsiClientVersion(): int {
         return $this->esiClientVersion;
-    }
-
-    /**
-     * Returning the database version field name
-     *
-     * @return string
-     */
-    protected function getDatabaseFieldName() {
-        return $this->optionDatabaseFieldName;
-    }
-
-    /**
-     * Getting the current database version
-     *
-     * @return string
-     */
-    public function getCurrentDatabaseVersion() {
-        return \get_option($this->getDatabaseFieldName());
-    }
-
-    /**
-     * Check if the ESI client needs to be updated
-     */
-    protected function checkEsiClient() {
-        $esiClientCurrentVersion = 0;
-
-        /**
-         * Check for current ESI client version
-         */
-        if(\class_exists('\WordPress\EsiClient\Swagger')) {
-            $esiClient = new \WordPress\EsiClient\Swagger;
-
-            if(\method_exists($esiClient, 'getEsiClientVersion')) {
-                $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
-            }
-        }
-
-        // backwards compatibility with older ESI clients
-        if(\is_null($esiClientCurrentVersion)) {
-            if(\file_exists(\WP_CONTENT_DIR . '/EsiClient/client_version')) {
-                $esiClientCurrentVersion = \trim(\file_get_contents(\WP_CONTENT_DIR . '/EsiClient/client_version'));
-            }
-        }
-
-        if(\version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
-            $this->updateEsiClient($this->getNewEsiClientVersion());
-        }
     }
 
     /**
@@ -146,36 +120,36 @@ class UpdateHelper {
      *
      * @throws Exception
      */
-    protected function updateEsiClient(string $version = null) {
+    protected function updateEsiClient(string $version = null): void {
         $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/master.zip';
         $dirInZipFile = '/wp-esi-client-master';
 
-        if(!\is_null($version)) {
+        if (!is_null($version)) {
             $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/v' . $version . '.zip';
             $dirInZipFile = '/wp-esi-client-' . $version;
         }
 
-        $esiClientZipFile = \WP_CONTENT_DIR . '/uploads/EsiClient.zip';
+        $esiClientZipFile = WP_CONTENT_DIR . '/uploads/EsiClient.zip';
 
-        \wp_remote_get($remoteZipFile, [
+        wp_remote_get($remoteZipFile, [
             'timeout' => 300,
             'stream' => true,
             'filename' => $esiClientZipFile
         ]);
 
-        if(\is_dir(\WP_CONTENT_DIR . '/EsiClient/')) {
-            $this->rrmdir(\WP_CONTENT_DIR . '/EsiClient/');
+        if (is_dir(WP_CONTENT_DIR . '/EsiClient/')) {
+            $this->rrmdir(WP_CONTENT_DIR . '/EsiClient/');
         }
 
         // extract using ZipArchive
-        if($this->hasZipArchive === true) {
+        if ($this->hasZipArchive === true) {
             $zip = new ZipArchive;
 
-            if(!$zip->open($esiClientZipFile)) {
+            if (!$zip->open($esiClientZipFile)) {
                 throw new Exception('PHP-ZIP: Unable to open the Esi Client zip file');
             }
 
-            if(!$zip->extractTo(\WP_CONTENT_DIR)) {
+            if (!$zip->extractTo(WP_CONTENT_DIR)) {
                 throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
             }
 
@@ -183,19 +157,19 @@ class UpdateHelper {
         }
 
         // extract using PclZip
-        if($this->hasZipArchive === false) {
-            require_once(\ABSPATH . 'wp-admin/includes/class-pclzip.php');
+        if ($this->hasZipArchive === false) {
+            require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
 
             $zip = new PclZip($esiClientZipFile);
 
-            if(!$zip->extract(\PCLZIP_OPT_PATH, \WP_CONTENT_DIR)) {
+            if (!$zip->extract(PCLZIP_OPT_PATH, WP_CONTENT_DIR)) {
                 throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
             }
         }
 
-        \rename(\WP_CONTENT_DIR . $dirInZipFile, \WP_CONTENT_DIR . '/EsiClient/');
+        rename(WP_CONTENT_DIR . $dirInZipFile, WP_CONTENT_DIR . '/EsiClient/');
 
-        \unlink($esiClientZipFile);
+        unlink($esiClientZipFile);
     }
 
     /**
@@ -203,55 +177,82 @@ class UpdateHelper {
      *
      * @param string $dir
      */
-    protected function rrmdir(string $dir) {
-        if(\is_dir($dir)) {
-            $objects = \scandir($dir);
+    protected function rrmdir(string $dir): void {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
 
-            foreach($objects as $object) {
-                if($object != "." && $object != "..") {
-                    if(\is_dir($dir . "/" . $object)) {
-                        $this->rrmdir($dir . "/" . $object);
+            foreach ($objects as $object) {
+                if ($object !== '.' && $object !== '..') {
+                    if (is_dir($dir . '/' . $object)) {
+                        $this->rrmdir($dir . '/' . $object);
                     } else {
-                        \unlink($dir . "/" . $object);
+                        unlink($dir . '/' . $object);
                     }
                 }
             }
 
-            \rmdir($dir);
+            rmdir($dir);
         }
     }
 
     /**
      * Check if the database needs to be updated
      */
-    protected function checkDatabaseForUpdates() {
+    protected function checkDatabaseForUpdates(): void {
         $currentVersion = $this->getCurrentDatabaseVersion();
 
-        if(\version_compare($currentVersion, $this->getNewDatabaseVersion()) < 0) {
+        if (version_compare($currentVersion, $this->getNewDatabaseVersion()) < 0) {
             $this->updateDatabase();
         }
 
         /**
          * truncate cache table
          */
-        if($currentVersion < 20190611) {
+        if ($currentVersion < 20190611) {
             $this->truncateCacheTable();
         }
 
         /**
          * Update database version
          */
-        \update_option($this->getDatabaseFieldName(), $this->getNewDatabaseVersion());
+        update_option($this->getDatabaseFieldName(), $this->getNewDatabaseVersion());
+    }
+
+    /**
+     * Getting the current database version
+     *
+     * @return int
+     */
+    public function getCurrentDatabaseVersion(): int {
+        return get_option($this->getDatabaseFieldName());
+    }
+
+    /**
+     * Returning the database version field name
+     *
+     * @return string
+     */
+    protected function getDatabaseFieldName(): string {
+        return $this->optionDatabaseFieldName;
+    }
+
+    /**
+     * getNewDatabaseVersion
+     *
+     * @return int
+     */
+    protected function getNewDatabaseVersion(): int {
+        return $this->databaseVersion;
     }
 
     /**
      * Update the plugin database
      */
-    public function updateDatabase() {
+    public function updateDatabase(): void {
         $this->createEsiCacheTable();
     }
 
-    private function createEsiCacheTable() {
+    private function createEsiCacheTable(): void {
         $charsetCollate = $this->wpdb->get_charset_collate();
         $tableName = $this->wpdb->base_prefix . 'eve_online_esi_cache';
 
@@ -262,12 +263,12 @@ class UpdateHelper {
             PRIMARY KEY esi_route (esi_route)
         ) $charsetCollate;";
 
-        require_once(\ABSPATH . 'wp-admin/includes/upgrade.php');
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        \dbDelta($sql);
+        dbDelta($sql);
     }
 
-    private function truncateCacheTable() {
+    private function truncateCacheTable(): void {
         $tableName = $this->wpdb->base_prefix . 'eve_online_esi_cache';
 
         $sql = "TRUNCATE $tableName;";

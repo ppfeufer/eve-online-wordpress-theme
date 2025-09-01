@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Addons;
+namespace Ppfeufer\Theme\EVEOnline\Addons;
 
 /**
  * EVE Online Theme back compat functionality
@@ -39,13 +39,15 @@ namespace WordPress\Themes\EveOnline\Addons;
  * @since EVE Online Theme 0.1-r20170324
  */
 function eve_switch_theme() {
-    \switch_theme(\WP_DEFAULT_THEME);
+    switch_theme(WP_DEFAULT_THEME);
 
     unset($_GET['activated']);
 
-    \add_action('admin_notices', '\\WordPress\Themes\EveOnline\Addons\eve_upgrade_notice');
+    add_action('admin_notices', '\\Ppfeufer\Theme\EVEOnline\Addons\eve_upgrade_notice');
 }
-\add_action('after_switch_theme', '\\WordPress\Themes\EveOnline\Addons\eve_switch_theme');
+// phpcs:disable
+add_action('after_switch_theme', '\\Ppfeufer\Theme\EVEOnline\Addons\eve_switch_theme');
+// phpcs:enable
 
 /**
  * Adds a message for unsuccessful theme switch.
@@ -58,9 +60,9 @@ function eve_switch_theme() {
  * @global string $wp_version WordPress version.
  */
 function eve_upgrade_notice() {
-    $message = \sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version'));
+    $message = sprintf(__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), get_bloginfo('version'));
 
-    \printf('<div class="error"><p>%s</p></div>', $message);
+    printf('<div class="error"><p>%s</p></div>', $message);
 }
 
 /**
@@ -71,11 +73,13 @@ function eve_upgrade_notice() {
  * @global string $wp_version WordPress version.
  */
 function eve_customize() {
-    \wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')), '', [
+    wp_die(sprintf(__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), get_bloginfo('version')), '', [
         'back_link' => true,
     ]);
 }
-\add_action('load-customize.php', '\\WordPress\Themes\EveOnline\Addons\eve_customize');
+// phpcs:disable
+add_action('load-customize.php', '\\Ppfeufer\Theme\EVEOnline\Addons\eve_customize');
+// phpcs:enable
 
 /**
  * Prevents the Theme Preview from being loaded on WordPress versions prior to 4.7.
@@ -85,10 +89,12 @@ function eve_customize() {
  * @global string $wp_version WordPress version.
  */
 function eve_preview() {
-    $preview = \filter_input('get', 'preview');
+    $preview = filter_input('get', 'preview');
 
-    if(!empty($preview)) {
-        \wp_die(\sprintf(\__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), \get_bloginfo('version')));
+    if (!empty($preview)) {
+        wp_die(sprintf(__('EVE Online Theme requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again.', 'eve-online'), get_bloginfo('version')));
     }
 }
-\add_action('template_redirect', '\\WordPress\Themes\EveOnline\Addons\eve_preview');
+// phpcs:disable
+add_action('template_redirect', '\\Ppfeufer\Theme\EVEOnline\Addons\eve_preview');
+// phpcs:enable

@@ -20,11 +20,10 @@
 
 .settings-type-radio li.horizontal input {
     margin-right: 0;
-    /*width: 100%;*/
 }
 
 .settings-type-radio figure {
-    margin: 0rem;
+    margin: 0;
     margin-top: 0.5rem;
 }
 

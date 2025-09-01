@@ -17,15 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -40,42 +45,42 @@ defined('ABSPATH') or die();
     ?>
 
     <div class="row main-top">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?>">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?>">
             <header>
                 <h1>
-                    <a href="<?php \the_permalink() ?>" rel="bookmark" title="<?php \the_title(); ?>"><?php \the_title(); ?></a>
+                    <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
                 </h1>
             </header><!-- / header -->
         </div><!--/.col -->
     </div><!--/.row -->
 
     <div class="row main-content">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-404">
                 <header class="page-title">
-                    <h1><?php \_e('This is Embarrassing', 'eve-online'); ?></h1>
+                    <h1><?php _e('This is Embarrassing', 'eve-online'); ?></h1>
                 </header>
 
                 <p class="lead">
-                    <?php \_e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help.', 'eve-online'); ?>
+                    <?php _e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help.', 'eve-online'); ?>
                 </p>
 
                 <div class="well">
-                    <?php \get_search_form(); ?>
+                    <?php get_search_form(); ?>
                 </div>
 
-                <h2><?php \_e('All Pages', 'eve-online'); ?></h2>
+                <h2><?php _e('All Pages', 'eve-online'); ?></h2>
 
                 <?php
-                \wp_page_menu();
-                \the_widget('WP_Widget_Recent_Posts');
+                wp_page_menu();
+                the_widget('WP_Widget_Recent_Posts');
                 ?>
 
-                <h2><?php \_e('Categories', 'eve-online'); ?></h2>
+                <h2><?php _e('Categories', 'eve-online'); ?></h2>
 
                 <ul>
                     <?php
-                    \wp_list_categories([
+                    wp_list_categories([
                         'orderby' => 'count',
                         'order' => 'DESC',
                         'show_count' => 1,
@@ -88,16 +93,16 @@ defined('ABSPATH') or die();
         </div> <!-- /.col -->
 
         <?php
-        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
             <?php
-            if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-                \get_sidebar('general');
+            if (ThemeHelper::hasSidebar('sidebar-general')) {
+                get_sidebar('general');
             }
 
-            if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
-                \get_sidebar('page');
+            if (ThemeHelper::hasSidebar('sidebar-page')) {
+                get_sidebar('page');
             }
             ?>
             </div><!--/.col -->
@@ -107,4 +112,4 @@ defined('ABSPATH') or die();
     </div> <!--/.row -->
 </div><!-- container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>

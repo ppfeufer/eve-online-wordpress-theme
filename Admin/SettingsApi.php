@@ -21,12 +21,10 @@
  * Settings API ( modified from http://www.wp-load.com/register-settings-api/ )
  */
 
-namespace WordPress\Themes\EveOnline\Admin;
+namespace Ppfeufer\Theme\EVEOnline\Admin;
 
-use \WordPress\Themes\EveOnline\Helper\StringHelper;
-use \WP_Query;
-
-\defined('ABSPATH') or die();
+use Ppfeufer\Theme\EVEOnline\Helper\StringHelper;
+use WP_Query;
 
 class SettingsApi {
     /**
@@ -49,12 +47,12 @@ class SettingsApi {
      * Settings API init
      */
     public function init() {
-        \add_action('init', [$this, 'initSettings']);
-        \add_action('admin_menu', [$this, 'menuPage']);
-        \add_action('admin_init', [$this, 'registerFields']);
-        \add_action('admin_init', [$this, 'registerCallback']);
-        \add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
-        \add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
+        add_action('init', [$this, 'initSettings']);
+        add_action('admin_menu', [$this, 'menuPage']);
+        add_action('admin_init', [$this, 'registerFields']);
+        add_action('admin_init', [$this, 'registerCallback']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
     }
 
     /**
@@ -63,31 +61,54 @@ class SettingsApi {
      * Add admin_head for scripts and styles
      */
     public function initSettings() {
-        if(\is_admin()) {
-            $this->settingsArray = \apply_filters($this->settingsFilter, []);
+        if (is_admin()) {
+            $this->settingsArray = apply_filters($this->settingsFilter, []);
 
-            if($this->isSettingsPage() === true) {
-                \add_action('admin_head', [$this, 'adminStyles']);
-                \add_action('admin_head', [$this, 'adminScripts']);
+            if ($this->isSettingsPage() === true) {
+                add_action('admin_head', [$this, 'adminStyles']);
+                add_action('admin_head', [$this, 'adminScripts']);
             }
         }
+    }
+
+    /**
+     * Check if the current page is a settings page
+     */
+    public function isSettingsPage() {
+        $menus = [];
+
+        $getPage = filter_input(INPUT_GET, 'page');
+        $get_page = (!empty($getPage)) ? $getPage : '';
+
+        foreach ($this->settingsArray as $menu => $page) {
+            $page = $page; // we need to do this shit here
+            $menus[] = $menu;
+        }
+
+        if (in_array($get_page, $menus)) {
+            $returnValue = true;
+        } else {
+            $returnValue = false;
+        }
+
+        return $returnValue;
     }
 
     /**
      * Creating pages and menus from the settingsArray
      */
     public function menuPage() {
-        foreach($this->settingsArray as $menu_slug => $options) {
-            if(!empty($options['page_title']) && !empty($options['menu_title']) && !empty($options['option_name'])) {
-                $options['capability'] = (!empty($options['capability']) ) ? $options['capability'] : 'manage_options';
+        foreach ($this->settingsArray as $menu_slug => $options) {
+            if (!empty($options['page_title']) && !empty($options['menu_title']) && !empty($options['option_name'])) {
+                $options['capability'] = (!empty($options['capability'])) ? $options['capability'] : 'manage_options';
 
-                if(empty($options['type'])) {
+                if (empty($options['type'])) {
                     $options['type'] = 'plugin';
                 }
 
-                switch($options['type']) {
+                switch ($options['type']) {
                     case 'theme':
-                        \add_theme_page(
+                        add_theme_page(
                             $options['page_title'],
                             $options['menu_title'],
                             $options['capability'],
@@ -100,7 +121,7 @@ class SettingsApi {
                         break;
 
                     default:
-                        \add_options_page(
+                        add_options_page(
                             $options['page_title'],
                             $options['menu_title'],
                             $options['capability'],
@@ -120,18 +141,18 @@ class SettingsApi {
      * Register all fields and settings bound to it from the settingsArray
      */
     public function registerFields() {
-        foreach($this->settingsArray as $page_id => $settings) {
-            if(!empty($settings['tabs']) && \is_array($settings['tabs'])) {
-                foreach($settings['tabs'] as $tab_id => $item) {
-                    $sanitized_tab_id = \sanitize_title($tab_id);
-                    $tab_description = (!empty($item['tab_description']) ) ? $item['tab_description'] : '';
+        foreach ($this->settingsArray as $page_id => $settings) {
+            if (!empty($settings['tabs']) && is_array($settings['tabs'])) {
+                foreach ($settings['tabs'] as $tab_id => $item) {
+                    $sanitized_tab_id = sanitize_title($tab_id);
+                    $tab_description = (!empty($item['tab_description'])) ? $item['tab_description'] : '';
                     $this->section_id = $sanitized_tab_id;
                     $setting_args = [
                         'option_group' => 'section_page_' . $page_id . '_' . $sanitized_tab_id,
                         'option_name' => $settings['option_name']
                     ];
 
-                    \register_setting($setting_args['option_group'], $setting_args['option_name']);
+                    register_setting($setting_args['option_group'], $setting_args['option_name']);
 
                     $section_args = [
                         'id' => 'section_id_' . $sanitized_tab_id,
@@ -140,7 +161,7 @@ class SettingsApi {
                         'menu_page' => $page_id . '_' . $sanitized_tab_id
                     ];
 
-                    \add_settings_section(
+                    add_settings_section(
                         $section_args['id'],
                         $section_args['title'],
                         [
@@ -150,11 +171,11 @@ class SettingsApi {
                         $section_args['menu_page']
                     );
 
-                    if(!empty($item['fields']) && \is_array($item['fields'])) {
-                        foreach($item['fields'] as $field_id => $field) {
-                            if(\is_array($field)) {
-                                $sanitized_field_id = \sanitize_title($field_id);
-                                $title = (!empty($field['title']) ) ? $field['title'] : '';
+                    if (!empty($item['fields']) && is_array($item['fields'])) {
+                        foreach ($item['fields'] as $field_id => $field) {
+                            if (is_array($field)) {
+                                $sanitized_field_id = sanitize_title($field_id);
+                                $title = (!empty($field['title'])) ? $field['title'] : '';
                                 $field['field_id'] = $sanitized_field_id;
                                 $field['option_name'] = $settings['option_name'];
                                 $field_args = [
@@ -166,7 +187,7 @@ class SettingsApi {
                                     'args' => $field
                                 ];
 
-                                \add_settings_field(
+                                add_settings_field(
                                     $field_args['id'],
                                     $field_args['title'],
                                     [
@@ -190,21 +211,21 @@ class SettingsApi {
      * click the button
      */
     public function registerCallback() {
-        if($this->isSettingsPage() === true) {
-            $getCallback = \filter_input(\INPUT_GET, 'callback');
-            $getWpNonce = \filter_input(\INPUT_GET, '_wpnonce');
-            $getPage = \filter_input(\INPUT_GET, 'page');
+        if ($this->isSettingsPage() === true) {
+            $getCallback = filter_input(INPUT_GET, 'callback');
+            $getWpNonce = filter_input(INPUT_GET, '_wpnonce');
+            $getPage = filter_input(INPUT_GET, 'page');
 
-            if(!empty($getCallback)) {
-                $nonce = \wp_verify_nonce($getWpNonce);
+            if (!empty($getCallback)) {
+                $nonce = wp_verify_nonce($getWpNonce);
 
-                if(!empty($nonce)) {
-                    if(\function_exists($getCallback)) {
-                        $message = \call_user_func($getCallback);
-                        \update_option('rsa-message', $message);
+                if (!empty($nonce)) {
+                    if (function_exists($getCallback)) {
+                        $message = call_user_func($getCallback);
+                        update_option('rsa-message', $message);
 
-                        $url = \admin_url('options-general.php?page=' . $getPage);
-                        \wp_redirect($url);
+                        $url = admin_url('options-general.php?page=' . $getPage);
+                        wp_redirect($url);
 
                         die;
                     }
@@ -214,67 +235,14 @@ class SettingsApi {
     }
 
     /**
-     * Check if the current page is a settings page
-     */
-    public function isSettingsPage() {
-        $menus = [];
-        $returnValue = false;
-
-        $getPage = \filter_input(\INPUT_GET, 'page');
-        $get_page = (!empty($getPage)) ? $getPage : '';
-        foreach($this->settingsArray as $menu => $page) {
-            $page = $page; // we need to do this shit here
-            $menus[] = $menu;
-        }
-
-        if(\in_array($get_page, $menus)) {
-            $returnValue = true;
-        } else {
-            $returnValue = false;
-        }
-
-        return $returnValue;
-    }
-
-    /**
-     * Return an array for the choices in a select field type
-     */
-    public function selectChoices() {
-        $items = [];
-
-        if(!empty($this->args['choices']) && \is_array($this->args['choices'])) {
-            foreach($this->args['choices'] as $slug => $choice) {
-                $items[$slug] = $choice;
-            }
-        }
-
-        return $items;
-    }
-
-    /**
-     * Get values from built in WordPress functions
-     */
-    public function get() {
-        if(!empty($this->args['get'])) {
-            $item_array = \call_user_func_array([$this, 'get_' . StringHelper::camelCase($this->args['get'], true)], [$this->args]);
-        } elseif(!empty($this->args['choices'])) {
-            $item_array = $this->selectChoices($this->args);
-        } else {
-            $item_array = [];
-        }
-
-        return $item_array;
-    }
-
-    /**
      * Get users from WordPress, used by the select field type
      */
     public function getUsers() {
         $items = [];
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $users = \get_users($args);
+        $users = get_users($args);
 
-        foreach($users as $user) {
+        foreach ($users as $user) {
             $items[$user->ID] = $user->display_name;
         }
 
@@ -286,10 +254,10 @@ class SettingsApi {
      */
     public function getMenus() {
         $items = [];
-        $menus = \get_registered_nav_menus();
+        $menus = get_registered_nav_menus();
 
-        if(!empty($menus)) {
-            foreach($menus as $location => $description) {
+        if (!empty($menus)) {
+            foreach ($menus as $location => $description) {
                 $items[$location] = $description;
             }
         }
@@ -303,7 +271,7 @@ class SettingsApi {
     public function getPosts() {
         $items = null;
 
-        if($this->args['get'] === 'posts' && !empty($this->args['post_type'])) {
+        if ($this->args['get'] === 'posts' && !empty($this->args['post_type'])) {
             $args = [
                 'category' => 0,
                 'post_type' => 'post',
@@ -315,17 +283,17 @@ class SettingsApi {
 
             $the_query = new WP_Query($args);
 
-            if($the_query->have_posts()) {
-                while($the_query->have_posts()) {
+            if ($the_query->have_posts()) {
+                while ($the_query->have_posts()) {
                     $the_query->the_post();
 
                     global $post;
 
-                    $items[$post->ID] = \get_the_title();
+                    $items[$post->ID] = get_the_title();
                 }
             }
 
-            \wp_reset_postdata();
+            wp_reset_postdata();
         }
 
         return $items;
@@ -336,12 +304,12 @@ class SettingsApi {
      */
     public function getTerms() {
         $items = [];
-        $taxonomies = (!empty($this->args['taxonomies']) ) ? $this->args['taxonomies'] : null;
+        $taxonomies = (!empty($this->args['taxonomies'])) ? $this->args['taxonomies'] : null;
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $terms = \get_terms($taxonomies, $args);
+        $terms = get_terms($taxonomies, $args);
 
-        if(!empty($terms)) {
-            foreach($terms as $key => $term) {
+        if (!empty($terms)) {
+            foreach ($terms as $key => $term) {
                 unset($key); // we don't need that variable here
 
                 $items[$term->term_id] = $term->name;
@@ -357,10 +325,10 @@ class SettingsApi {
     public function getTaxonomies() {
         $items = [];
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $taxonomies = \get_taxonomies($args, 'objects');
+        $taxonomies = get_taxonomies($args, 'objects');
 
-        if(!empty($taxonomies)) {
-            foreach($taxonomies as $taxonomy) {
+        if (!empty($taxonomies)) {
+            foreach ($taxonomies as $taxonomy) {
                 $items[$taxonomy->name] = $taxonomy->label;
             }
         }
@@ -376,8 +344,8 @@ class SettingsApi {
 
         global $wp_registered_sidebars;
 
-        if(!empty($wp_registered_sidebars)) {
-            foreach($wp_registered_sidebars as $sidebar) {
+        if (!empty($wp_registered_sidebars)) {
+            foreach ($wp_registered_sidebars as $sidebar) {
                 $items[$sidebar['id']] = $sidebar['name'];
             }
         }
@@ -391,11 +359,41 @@ class SettingsApi {
     public function getThemes() {
         $items = [];
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $themes = \wp_get_themes($args);
+        $themes = wp_get_themes($args);
 
-        if(!empty($themes)) {
-            foreach($themes as $key => $theme) {
+        if (!empty($themes)) {
+            foreach ($themes as $key => $theme) {
                 $items[$key] = $theme->get('Name');
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     * Get values from built in WordPress functions
+     */
+    public function get() {
+        if (!empty($this->args['get'])) {
+            $item_array = call_user_func_array([$this, 'get_' . StringHelper::camelCase($this->args['get'], true)], [$this->args]);
+        } elseif (!empty($this->args['choices'])) {
+            $item_array = $this->selectChoices($this->args);
+        } else {
+            $item_array = [];
+        }
+
+        return $item_array;
+    }
+
+    /**
+     * Return an array for the choices in a select field type
+     */
+    public function selectChoices() {
+        $items = [];
+
+        if (!empty($this->args['choices']) && is_array($this->args['choices'])) {
+            foreach ($this->args['choices'] as $slug => $choice) {
+                $items[$slug] = $choice;
             }
         }
 
@@ -408,10 +406,10 @@ class SettingsApi {
     public function getPlugins() {
         $items = [];
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $plugins = \get_plugins($args);
+        $plugins = get_plugins($args);
 
-        if(!empty($plugins)) {
-            foreach($plugins as $key => $plugin) {
+        if (!empty($plugins)) {
+            foreach ($plugins as $key => $plugin) {
                 $items[$key] = $plugin['Name'];
             }
         }
@@ -425,10 +423,10 @@ class SettingsApi {
     public function getPostTypes() {
         $items = [];
         $args = (!empty($this->args['args'])) ? $this->args['args'] : null;
-        $post_types = \get_post_types($args, 'objects');
+        $post_types = get_post_types($args, 'objects');
 
-        if(!empty($post_types)) {
-            foreach($post_types as $key => $post_type) {
+        if (!empty($post_types)) {
+            foreach ($post_types as $key => $post_type) {
                 $items[$key] = $post_type->name;
             }
         }
@@ -437,196 +435,32 @@ class SettingsApi {
     }
 
     /**
-     * Find a selected value in select or multiselect field type
-     */
-    public function selected($key) {
-        $returnValue = null;
-
-        if($this->valueType() == 'array') {
-            $returnValue = $this->multiselectedValue($key);
-        } else {
-            $returnValue = $this->selectedValue($key);
-        }
-
-        return $returnValue;
-    }
-
-    /**
-     * Return selected html if the value is selected in select field type
-     */
-    public function selectedValue($key) {
-        $result = '';
-
-        if($this->value($this->options, $this->args) === $key) {
-            $result = ' selected="selected"';
-        }
-
-        return $result;
-    }
-
-    /**
-     * Return selected html if the value is selected in multiselect field type
-     */
-    public function multiselectedValue($key) {
-        $result = '';
-        $value = $this->value($this->options, $this->args, $key);
-
-        if(\is_array($value) && \in_array($key, $value)) {
-            $result = ' selected="selected"';
-        }
-
-        return $result;
-    }
-
-    /**
-     * Return checked html if the value is checked in radio or checkboxes
-     */
-    public function checked($slug) {
-        $value = $this->value();
-
-        if($this->valueType() == 'array') {
-            $checked = (!empty($value) && \in_array($slug, $this->value())) ? ' checked="checked"' : '';
-        } else {
-            $checked = (!empty($value) && $slug == $this->value()) ? ' checked="checked"' : '';
-        }
-
-        return $checked;
-    }
-
-    /**
-     * Return the value. If the value is not saved the default value is used if
-     * exists in the settingsArray.
-     *
-     * Return as string or array
-     */
-    public function value() {
-        $value = '';
-
-        if($this->valueType() == 'array') {
-            $default = (!empty($this->args['default']) && \is_array($this->args['default'])) ? $this->args['default'] : [];
-        } else {
-            $default = (!empty($this->args['default'])) ? $this->args['default'] : '';
-        }
-
-        $value = (isset($this->options[$this->args['field_id']])) ? $this->options[$this->args['field_id']] : $default;
-
-        return $value;
-    }
-
-    /**
-     * Check if the current value type is a single value or a multiple
-     * value field type, return string or array
-     */
-    public function valueType() {
-        $returnValue = null;
-        $defaultSingle = [
-            'select',
-            'radio',
-            'text',
-            'email',
-            'url',
-            'color',
-            'date',
-            'number',
-            'password',
-            'colorpicker',
-            'textarea',
-            'datepicker',
-            'tinymce',
-            'image',
-            'file'
-        ];
-
-        $defaultMultiple = [
-            'multiselect',
-            'checkbox'
-        ];
-
-        if(\in_array($this->args['type'], $defaultSingle)) {
-            $returnValue = 'string';
-        } elseif(\in_array($this->args['type'], $defaultMultiple)) {
-            $returnValue = 'array';
-        }
-
-        return $returnValue;
-    }
-
-    /**
-     * Check if a checkbox has items
-     */
-    public function hasItems() {
-        $returnValue = false;
-
-        if(!empty($this->args['choices']) && \is_array($this->args['choices'])) {
-            $returnValue = true;
-        }
-
-        return $returnValue;
-    }
-
-    /**
-     * Return the html name of the field
-     */
-    public function name($slug = '') {
-        $returnValue = null;
-        $option_name = \sanitize_title($this->args['option_name']);
-
-        if($this->valueType() == 'array') {
-            $returnValue = $option_name . '[' . $this->args['field_id'] . '][' . $slug . ']';
-        } else {
-            $returnValue = $option_name . '[' . $this->args['field_id'] . ']';
-        }
-
-        return $returnValue;
-    }
-
-    /**
-     * Return the size of a multiselect type. If not set it will calculate it
-     */
-    public function size($items) {
-        $size = '';
-
-        if($this->args['type'] == 'multiselect') {
-            if(!empty($this->args['size'])) {
-                $count = $this->args['size'];
-            } else {
-                $count = \count($items);
-                $count = (!empty($this->args['empty']) ) ? $count + 1 : $count;
-            }
-
-            $size = ' size="' . $count . '"';
-        }
-
-        return $size;
-    }
-
-    /**
      * All the field types in html
      */
     public function renderFields($args) {
-        $args['field_id'] = \sanitize_title($args['field_id']);
+        $args['field_id'] = sanitize_title($args['field_id']);
         $this->args = $args;
 
-        $options = \get_option($args['option_name'], $this->optionsDefault);
+        $options = get_option($args['option_name'], $this->optionsDefault);
         $this->options = $options;
 
-        $option_name = \sanitize_title($args['option_name']);
+        $option_name = sanitize_title($args['option_name']);
         $out = '';
 
-        if(!empty($args['type'])) {
-            switch($args['type']) {
+        if (!empty($args['type'])) {
+            switch ($args['type']) {
                 case 'select':
                 case 'multiselect':
-                    $multiple = ($args['type'] == 'multiselect') ? ' multiple' : '';
+                    $multiple = ($args['type'] === 'multiselect') ? ' multiple' : '';
                     $items = $this->get($args);
                     $out .= '<select' . $multiple . ' name="' . $this->name() . '"' . $this->size($items) . '>';
 
-                    if(!empty($args['empty'])) {
+                    if (!empty($args['empty'])) {
                         $out .= '<option value="" ' . $this->selected('') . '>' . $args['empty'] . '</option>';
                     }
 
-                    foreach($items as $key => $choice) {
-                        $key = \sanitize_title($key);
+                    foreach ($items as $key => $choice) {
+                        $key = sanitize_title($key);
                         $out .= '<option value="' . $key . '" ' . $this->selected($key) . '>' . $choice . '</option>';
                     }
 
@@ -635,12 +469,12 @@ class SettingsApi {
 
                 case 'radio':
                 case 'checkbox':
-                    if($this->hasItems()) {
-                        $horizontal = (isset($args['align']) && (string) $args['align'] == 'horizontal') ? ' class="horizontal"' : '';
+                    if ($this->hasItems()) {
+                        $horizontal = (isset($args['align']) && (string)$args['align'] === 'horizontal') ? ' class="horizontal"' : '';
 
                         $out .= '<ul class="settings-group settings-type-' . $args['type'] . '">';
 
-                        foreach($args['choices'] as $slug => $choice) {
+                        foreach ($args['choices'] as $slug => $choice) {
                             $checked = $this->checked($slug);
 
                             $out .= '<li' . $horizontal . '><label>';
@@ -677,82 +511,108 @@ class SettingsApi {
                         'textarea_name' => $option_name . '[' . $args['field_id'] . ']',
                     ];
 
-                    \wp_editor($this->value(), $args['field_id'], $tinymce_settings);
+                    wp_editor($this->value(), $args['field_id'], $tinymce_settings);
                     break;
 
                 case 'image':
-                    $image_obj = (!empty($options[$args['field_id']])) ? \wp_get_attachment_image_src($options[$args['field_id']], 'thumbnail') : '';
+                    $image_obj = (!empty($options[$args['field_id']])) ? wp_get_attachment_image_src($options[$args['field_id']], 'thumbnail') : '';
                     $image = (!empty($image_obj)) ? $image_obj[0] : '';
                     $upload_status = (!empty($image_obj)) ? ' style="display: none"' : '';
                     $remove_status = (!empty($image_obj)) ? '' : ' style="display: none"';
                     $value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : '';
                     ?>
-                    <div data-id="<?php echo $args['field_id']; ?>">
-                        <div class="upload" data-field-id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
+                    <div data-id="<?php
+                    echo $args['field_id']; ?>">
+                        <div class="upload" data-field-id="<?php
+                        echo $args['field_id']; ?>"<?php
+                        echo $upload_status; ?>>
                             <span class="button upload-button">
                                 <a href="#">
                                     <i class="fa fa-upload"></i>
-                                    <?php echo \__('Upload', 'eve-online'); ?>
+                                    <?php
+                                    echo __('Upload', 'eve-online'); ?>
                                 </a>
                             </span>
                         </div>
                         <div class="image">
-                            <img class="uploaded-image" src="<?php echo $image; ?>" id="<?php echo $args['field_id']; ?>" />
+                            <img class="uploaded-image" src="<?php
+                            echo $image; ?>" id="<?php
+                            echo $args['field_id']; ?>"/>
                         </div>
-                        <div class="remove"<?php echo $remove_status; ?>>
+                        <div class="remove"<?php
+                        echo $remove_status; ?>>
                             <span class="button upload-button">
                                 <a href="#">
                                     <i class="fa fa-trash"></i>
-                                    <?php echo \__('Remove', 'eve-online'); ?>
+                                    <?php
+                                    echo __('Remove', 'eve-online'); ?>
                                 </a>
                             </span>
                         </div>
-                        <input type="hidden" class="attachment_id" value="<?php echo $value; ?>" name="<?php echo $option_name; ?>[<?php echo $args['field_id']; ?>]">
+                        <input type="hidden" class="attachment_id" value="<?php
+                        echo $value; ?>" name="<?php
+                        echo $option_name; ?>[<?php
+                        echo $args['field_id']; ?>]">
                     </div>
                     <?php
                     break;
 
                 case 'file':
-                    $file_url = (!empty($options[$args['field_id']])) ? \wp_get_attachment_url($options[$args['field_id']]) : '';
+                    $file_url = (!empty($options[$args['field_id']])) ? wp_get_attachment_url($options[$args['field_id']]) : '';
                     $upload_status = (!empty($file_url)) ? ' style="display: none"' : '';
                     $remove_status = (!empty($file_url)) ? '' : ' style="display: none"';
                     $value = (!empty($options[$args['field_id']])) ? $options[$args['field_id']] : '';
                     ?>
-                    <div data-id="<?php echo $args['field_id']; ?>">
-                        <div class="upload" data-field-id="<?php echo $args['field_id']; ?>"<?php echo $upload_status; ?>>
+                    <div data-id="<?php
+                    echo $args['field_id']; ?>">
+                        <div class="upload" data-field-id="<?php
+                        echo $args['field_id']; ?>"<?php
+                        echo $upload_status; ?>>
                             <span class="button upload-button">
                                 <a href="#">
                                     <i class="fa fa-upload"></i>
-                                    <?php echo \__('Upload', 'eve-online'); ?>
+                                    <?php
+                                    echo __('Upload', 'eve-online'); ?>
                                 </a>
                             </span>
                         </div>
                         <div class="url">
-                            <code class="uploaded-file-url" title="Attachment ID: <?php echo $value; ?>" data-field-id="<?php echo $args['field_id']; ?>">
-                                <?php echo $file_url; ?>
+                            <code class="uploaded-file-url" title="Attachment ID: <?php
+                            echo $value; ?>" data-field-id="<?php
+                            echo $args['field_id']; ?>">
+                                <?php
+                                echo $file_url; ?>
                             </code>
                         </div>
-                        <div class="remove"<?php echo $remove_status; ?>>
+                        <div class="remove"<?php
+                        echo $remove_status; ?>>
                             <span class="button upload-button">
                                 <a href="#">
                                     <i class="fa fa-trash"></i>
-                                    <?php echo \__('Remove', 'eve-online'); ?>
+                                    <?php
+                                    echo __('Remove', 'eve-online'); ?>
                                 </a>
                             </span>
                         </div>
-                        <input type="hidden" class="attachment_id" value="<?php echo $value; ?>" name="<?php echo $option_name; ?>[<?php echo $args['field_id']; ?>]">
+                        <input type="hidden" class="attachment_id" value="<?php
+                        echo $value; ?>" name="<?php
+                        echo $option_name; ?>[<?php
+                        echo $args['field_id']; ?>]">
                     </div>
                     <?php
                     break;
 
                 case 'button':
-                    $getPage = \filter_input(\INPUT_GET, 'page');
+                    $getPage = filter_input(INPUT_GET, 'page');
                     $warning_message = (!empty($args['warning-message'])) ? $args['warning-message'] : 'Unsaved settings will be lost. Continue?';
                     $warning = (!empty($args['warning'])) ? ' onclick="return confirm(' . "'" . $warning_message . "'" . ')"' : '';
                     $label = (!empty($args['label'])) ? $args['label'] : '';
-                    $complete_url = \wp_nonce_url(\admin_url('options-general.php?page=' . $getPage . '&callback=' . $args['callback']));
+                    $complete_url = wp_nonce_url(admin_url('options-general.php?page=' . $getPage . '&callback=' . $args['callback']));
                     ?>
-                    <a href="<?php echo $complete_url; ?>" class="button button-secondary"<?php echo $warning; ?>><?php echo $label; ?></a>
+                    <a href="<?php
+                    echo $complete_url; ?>" class="button button-secondary"<?php
+                    echo $warning; ?>><?php
+                        echo $label; ?></a>
                     <?php
                     break;
 
@@ -764,12 +624,12 @@ class SettingsApi {
                         'args' => $args
                     ];
 
-                    if($args['content'] !== null) {
+                    if ($args['content'] !== null) {
                         echo $args['content'];
                     }
 
-                    if($args['callback'] !== null) {
-                        \call_user_func($args['callback'], $data);
+                    if ($args['callback'] !== null) {
+                        call_user_func($args['callback'], $data);
                     }
                     break;
             }
@@ -777,9 +637,173 @@ class SettingsApi {
 
         echo $out;
 
-        if(!empty($args['description'])) {
+        if (!empty($args['description'])) {
             echo '<p class="description">' . $args['description'] . '</div>';
         }
+    }
+
+    /**
+     * Return the html name of the field
+     */
+    public function name($slug = '') {
+        $returnValue = null;
+        $option_name = sanitize_title($this->args['option_name']);
+
+        if ($this->valueType() === 'array') {
+            $returnValue = $option_name . '[' . $this->args['field_id'] . '][' . $slug . ']';
+        } else {
+            $returnValue = $option_name . '[' . $this->args['field_id'] . ']';
+        }
+
+        return $returnValue;
+    }
+
+    /**
+     * Check if the current value type is a single value or a multiple
+     * value field type, return string or array
+     */
+    public function valueType() {
+        $returnValue = null;
+        $defaultSingle = [
+            'select',
+            'radio',
+            'text',
+            'email',
+            'url',
+            'color',
+            'date',
+            'number',
+            'password',
+            'colorpicker',
+            'textarea',
+            'datepicker',
+            'tinymce',
+            'image',
+            'file'
+        ];
+
+        $defaultMultiple = [
+            'multiselect',
+            'checkbox'
+        ];
+
+        if (in_array($this->args['type'], $defaultSingle)) {
+            $returnValue = 'string';
+        } elseif (in_array($this->args['type'], $defaultMultiple)) {
+            $returnValue = 'array';
+        }
+
+        return $returnValue;
+    }
+
+    /**
+     * Return the size of a multiselect type. If not set it will calculate it
+     */
+    public function size($items) {
+        $size = '';
+
+        if ($this->args['type'] === 'multiselect') {
+            if (!empty($this->args['size'])) {
+                $count = $this->args['size'];
+            } else {
+                $count = count($items);
+                $count = (!empty($this->args['empty'])) ? $count + 1 : $count;
+            }
+
+            $size = ' size="' . $count . '"';
+        }
+
+        return $size;
+    }
+
+    /**
+     * Find a selected value in select or multiselect field type
+     */
+    public function selected($key) {
+        $returnValue = null;
+
+        if ($this->valueType() === 'array') {
+            $returnValue = $this->multiselectedValue($key);
+        } else {
+            $returnValue = $this->selectedValue($key);
+        }
+
+        return $returnValue;
+    }
+
+    /**
+     * Return selected html if the value is selected in multiselect field type
+     */
+    public function multiselectedValue($key) {
+        $result = '';
+        $value = $this->value($this->options, $this->args, $key);
+
+        if (is_array($value) && in_array($key, $value)) {
+            $result = ' selected="selected"';
+        }
+
+        return $result;
+    }
+
+    /**
+     * Return the value. If the value is not saved the default value is used if
+     * exists in the settingsArray.
+     *
+     * Return as string or array
+     */
+    public function value() {
+        $value = '';
+
+        if ($this->valueType() === 'array') {
+            $default = (!empty($this->args['default']) && is_array($this->args['default'])) ? $this->args['default'] : [];
+        } else {
+            $default = (!empty($this->args['default'])) ? $this->args['default'] : '';
+        }
+
+        $value = (isset($this->options[$this->args['field_id']])) ? $this->options[$this->args['field_id']] : $default;
+
+        return $value;
+    }
+
+    /**
+     * Return selected html if the value is selected in select field type
+     */
+    public function selectedValue($key) {
+        $result = '';
+
+        if ($this->value($this->options, $this->args) === $key) {
+            $result = ' selected="selected"';
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check if a checkbox has items
+     */
+    public function hasItems() {
+        $returnValue = false;
+
+        if (!empty($this->args['choices']) && is_array($this->args['choices'])) {
+            $returnValue = true;
+        }
+
+        return $returnValue;
+    }
+
+    /**
+     * Return checked html if the value is checked in radio or checkboxes
+     */
+    public function checked($slug) {
+        $value = $this->value();
+
+        if ($this->valueType() === 'array') {
+            $checked = (!empty($value) && in_array($slug, $this->value())) ? ' checked="checked"' : '';
+        } else {
+            $checked = (!empty($value) && $slug == $this->value()) ? ' checked="checked"' : '';
+        }
+
+        return $checked;
     }
 
     /**
@@ -793,71 +817,72 @@ class SettingsApi {
      * Final output on the settings page
      */
     public function renderOptions() {
-        $page = \filter_input(\INPUT_GET, 'page');
+        $page = filter_input(INPUT_GET, 'page');
         $settings = $this->settingsArray[$page];
-        $message = \get_option('rsa-message');
+        $message = get_option('rsa-message');
 
-        if(!empty($settings['tabs']) && \is_array($settings['tabs'])) {
-            $tab_count = \count($settings['tabs']);
+        if (!empty($settings['tabs']) && is_array($settings['tabs'])) {
+            $tab_count = count($settings['tabs']);
             ?>
             <div class="wrap">
                 <?php
-                if(!empty($settings['before_tabs_text'])) {
+                if (!empty($settings['before_tabs_text'])) {
                     echo $settings['before_tabs_text'];
                 }
                 ?>
                 <form action='options.php' method='post'>
                     <?php
-                    if($tab_count > 1) {
+                    if ($tab_count > 1) {
                         ?>
                         <h2 class="nav-tab-wrapper">
-                        <?php
-                        $i = 0;
-                        foreach($settings['tabs'] as $settings_id => $section) {
-                            $sanitized_id = \sanitize_title($settings_id);
-                            $tab_title = (!empty($section['tab_title'])) ? $section['tab_title'] : $sanitized_id;
-                            $active = ($i == 0) ? ' nav-tab-active' : '';
+                            <?php
+                            $i = 0;
+                            foreach ($settings['tabs'] as $settings_id => $section) {
+                                $sanitized_id = sanitize_title($settings_id);
+                                $tab_title = (!empty($section['tab_title'])) ? $section['tab_title'] : $sanitized_id;
+                                $active = ($i == 0) ? ' nav-tab-active' : '';
 
-                            echo '<a class="nav-tab nav-tab-' . $sanitized_id . $active . '" href="#tab-content-' . $sanitized_id . '">' . $tab_title . '</a>';
+                                echo '<a class="nav-tab nav-tab-' . $sanitized_id . $active . '" href="#tab-content-' . $sanitized_id . '">' . $tab_title . '</a>';
 
-                            $i++;
-                        }
-                        ?>
+                                $i++;
+                            }
+                            ?>
                         </h2>
 
                         <?php
-                        if(!empty($message)) {
+                        if (!empty($message)) {
                             ?>
                             <div class="updated settings-error">
-                                <p><strong><?php echo $message; ?></strong></p>
+                                <p><strong><?php
+                                        echo $message; ?></strong></p>
                             </div>
                             <?php
-                            \update_option('rsa-message', '');
+                            update_option('rsa-message', '');
                         }
                     }
 
                     $i = 0;
-                    foreach($settings['tabs'] as $settings_id => $section) {
-                        $sanitized_id = \sanitize_title($settings_id);
+                    foreach ($settings['tabs'] as $settings_id => $section) {
+                        $sanitized_id = sanitize_title($settings_id);
                         $page_id = $page . '_' . $sanitized_id;
 
                         $display = ($i == 0) ? ' style="display: block;"' : ' style="display:none;"';
 
                         echo '<div class="tab-content" id="tab-content-' . $sanitized_id . '"' . $display . '>';
-                        echo \settings_fields('section_page_' . $page . '_' . $sanitized_id);
+                        settings_fields('section_page_' . $page . '_' . $sanitized_id);
 
-                        \do_settings_sections($page_id);
+                        do_settings_sections($page_id);
 
                         echo '</div>';
 
                         $i++;
                     }
 
-                    \submit_button();
+                    submit_button();
                     ?>
                 </form>
                 <?php
-                if(!empty($settings['after_tabs_text'])) {
+                if (!empty($settings['after_tabs_text'])) {
                     echo $settings['after_tabs_text'];
                 }
                 ?>
@@ -870,13 +895,13 @@ class SettingsApi {
      * Register scripts
      */
     public function enqueueScripts() {
-        if($this->isSettingsPage() === true) {
-            \wp_enqueue_media();
-            \wp_enqueue_script('wp-color-picker');
-            \wp_enqueue_script('jquery-ui-datepicker');
-            \wp_enqueue_script(
+        if ($this->isSettingsPage() === true) {
+            wp_enqueue_media();
+            wp_enqueue_script('wp-color-picker');
+            wp_enqueue_script('jquery-ui-datepicker');
+            wp_enqueue_script(
                 'settings-api',
-                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/Admin/js/settings-api.js' : \get_template_directory_uri() . '/Admin/js/settings-api.min.js'
+                get_template_directory_uri() . '/Admin/js/settings-api.min.js'
             );
         }
     }
@@ -885,16 +910,16 @@ class SettingsApi {
      * Register styles
      */
     public function enqueueStyles() {
-        if($this->isSettingsPage() === true) {
-            \wp_enqueue_style('wp-color-picker');
-            \wp_enqueue_style('jquery-ui', \get_template_directory_uri() . '/Admin/css/jquery-ui.min.css');
-            \wp_enqueue_style(
+        if ($this->isSettingsPage() === true) {
+            wp_enqueue_style('wp-color-picker');
+            wp_enqueue_style('jquery-ui', get_template_directory_uri() . '/Admin/css/jquery-ui.min.css');
+            wp_enqueue_style(
                 'font-awesome',
-                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/font-awesome/css/font-awesome.css' : \get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css'
+                get_template_directory_uri() . 'Assets/libs/font-awesome/4.7.0/css/font-awesome.min.css'
             );
-            \wp_enqueue_style(
+            wp_enqueue_style(
                 'settings-api',
-                (\preg_match('/development/', \APPLICATION_ENV)) ? \get_template_directory_uri() . '/Admin/css/settings-api.css' : \get_template_directory_uri() . '/Admin/css/settings-api.min.css'
+                get_template_directory_uri() . '/Admin/css/settings-api.min.css'
             );
         }
     }
@@ -903,56 +928,60 @@ class SettingsApi {
      * Inline scripts and styles
      */
     public function adminStyles() {
-        if($this->isSettingsPage() === true) {
+        if ($this->isSettingsPage() === true) {
             ?>
             <style type="text/css">
-            .image img {
-                border: 1px solid #ddd;
-                vertical-align: bottom;
-            }
-            .image img:hover {
-                cursor: pointer;
-            }
-            .nav-tab:focus {
-                outline: none;
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
-            .rsa-delete {
-                color: #a00;
-            }
-            .rsa-delete:hover {
-                color: red;
-            }
+                .image img {
+                    border: 1px solid rgb(221 221 221);
+                    vertical-align: bottom;
+                }
+
+                .image img:hover {
+                    cursor: pointer;
+                }
+
+                .nav-tab:focus {
+                    outline: none;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+
+                .rsa-delete {
+                    color: rgb(170 0 0);
+                }
+
+                .rsa-delete:hover {
+                    color: rgb(255 0 0);
+                }
             </style>
             <?php
         }
     }
 
     public function adminScripts() {
-        if($this->isSettingsPage() === true) {
+        if ($this->isSettingsPage() === true) {
             ?>
             <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                <?php
-                $settingsArray = $this->settingsArray;
+                jQuery(document).ready(function ($) {
+                    <?php
+                    $settingsArray = $this->settingsArray;
 
-                foreach($settingsArray as $page) {
-                    foreach($page['tabs'] as $tab) {
-                        foreach($tab['fields'] as $field_key => $field) {
-                            if($field['type'] == 'datepicker') {
-                                $date_format = (!empty($field['format']) ) ? $field['format'] : \get_option('date_format');
-                                ?>
-                                $('[data-id="<?php echo $field_key; ?>"]').datepicker({
-                                    dateFormat: '<?php echo $date_format; ?>'
-                                });
-                                <?php
+                    foreach ($settingsArray as $page) {
+                        foreach ($page['tabs'] as $tab) {
+                            foreach ($tab['fields'] as $field_key => $field) {
+                                if ($field['type'] === 'datepicker') {
+                                    $date_format = (!empty($field['format'])) ? $field['format'] : get_option('date_format');
+                                    ?>
+                                    $('[data-id="<?php echo $field_key; ?>"]').datepicker({
+                                        dateFormat: '<?php echo $date_format; ?>'
+                                    });
+                                    <?php
+                                }
                             }
                         }
                     }
-                }
-                ?>
-            });
+                    ?>
+                });
             </script>
             <?php
         }

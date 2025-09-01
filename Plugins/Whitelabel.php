@@ -21,59 +21,25 @@
  * Whitelabeling WordPress
  */
 
-namespace WordPress\Themes\EveOnline\Plugins;
+namespace Ppfeufer\Theme\EVEOnline\Plugins;
 
-use \WordPress\Themes\EveOnline\Helper\EsiHelper;
-use \WordPress\Themes\EveOnline\Helper\ThemeHelper;
-
-\defined('ABSPATH') or die();
+use Ppfeufer\Theme\EVEOnline\Helper\EsiHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 
 class Whitelabel {
-    private $developerName = null;
-    private $developerWebsite = null;
-    private $developerDiscord = null;
+    private ?string $developerName;
+    private ?string $developerWebsite;
+    private ?string $developerDiscord;
 
-    private $themeName = null;
-    private $themeGithubUri = null;
-    private $themeGithubIssueUri = null;
+    private ?string $themeName;
+    private ?string $themeGithubUri;
+    private ?string $themeGithubIssueUri;
 
-    private $themeBackgroundUrl = null;
+    private ?string $themeBackgroundUrl;
 
-    private $themeSettings = null;
+    private mixed $themeSettings;
 
-    private $eveApi = null;
-
-    private function getDeveloperName() {
-        return $this->developerName;
-    }
-
-    private function getDeveloperWebsite() {
-        return $this->developerWebsite;
-    }
-
-    private function getDeveloperDiscord() {
-        return $this->developerDiscord;
-    }
-
-    private function getThemeName() {
-        return $this->themeName;
-    }
-
-    private function getThemeGithubUri() {
-        return $this->themeGithubUri;
-    }
-
-    private function getThemeGithubIssueUri() {
-        return $this->themeGithubIssueUri;
-    }
-
-    private function getThemeBackgroundUrl() {
-        return $this->themeBackgroundUrl;
-    }
-
-    function getEveApi() {
-        return $this->eveApi;
-    }
+    private EsiHelper|null $eveApi;
 
     /**
      * Fire the actions to whitelabel WordPress
@@ -101,7 +67,7 @@ class Whitelabel {
         /**
          * Getting theme settings
          */
-        $this->themeSettings = \get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $this->themeSettings = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
 
         /**
          * Starting the helper classes
@@ -112,101 +78,158 @@ class Whitelabel {
         $this->initFilters();
     }
 
-    public function initActions() {
+    private function getBackgroundImage(): string {
+        return ThemeHelper::getThemeBackgroundImage();
+    }
+
+    public function initActions(): void {
         /**
          * Actions
          */
-        \add_action('login_head', [$this, 'customLoginLogoStyle']);
-        \add_action('wp_dashboard_setup', [$this, 'addDashboardWidget']);
+        add_action('login_head', [$this, 'customLoginLogoStyle']);
+        add_action('wp_dashboard_setup', [$this, 'addDashboardWidget']);
     }
 
-    public function initFilters() {
+    public function initFilters(): void {
         /**
          * Filters
          */
-        \add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
-        \add_filter('login_headerurl', [$this, 'loginLogoUrl']);
+        add_filter('admin_footer_text', [$this, 'modifyAdminFooter']);
+        add_filter('login_headerurl', [$this, 'loginLogoUrl']);
 
-        if(\version_compare(\floatval(\get_bloginfo('version')), '5.2', '<')) {
-            \add_filter('login_headertitle', [$this, 'loginLogoTitle']);
+        if (version_compare((float)get_bloginfo('version'), '5.2', '<')) {
+            add_filter('login_headertitle', [$this, 'loginLogoTitle']);
         } else {
-            \add_filter('login_headertext', [$this, 'loginLogoTitle']);
+            add_filter('login_headertext', [$this, 'loginLogoTitle']);
         }
-    }
-
-    private function getBackgroundImage() {
-        return ThemeHelper::getThemeBackgroundImage();
     }
 
     /**
      * Custom URL Title
      *
-     * @return Ambigous <string, mixed>
+     * @return string
      */
-    public function loginLogoTitle() {
-        return \get_bloginfo('name') . ' - ' . \get_bloginfo('description');
+    public function loginLogoTitle(): string {
+        return get_bloginfo('name') . ' - ' . get_bloginfo('description');
     }
 
     /**
      * Custom URL linked by the Logo on Login page
      *
-     * @return Ambigous <string, mixed, boolean>
+     * @return string
      */
-    public function loginLogoUrl() {
-        return \site_url();
+    public function loginLogoUrl(): string {
+        return site_url();
     }
 
     /**
      * Developer Info in Admin Footer
      */
-    public function modifyAdminFooter($content) {
-        $content .= \sprintf(' | %1$s %2$s',
-            \__('Customized by:', 'eve-online'),
+    public function modifyAdminFooter(string $content): string {
+        $content .= sprintf(
+            ' | %1$s %2$s',
+            __('Customized by:', 'eve-online'),
             ' <a href="' . $this->getDeveloperWebsite() . '" target="_blank">' . $this->getDeveloperName() . '</a>'
         );
 
         return $content;
     }
 
+    private function getDeveloperWebsite(): ?string {
+        return $this->developerWebsite;
+    }
+
+    private function getDeveloperName(): ?string {
+        return $this->developerName;
+    }
+
     /**
      * Dashboard Widget with Developer Contact Info
      */
-    public function themeInfo() {
+    public function themeInfo(): void {
         echo '<ul>
             <li>
-                <strong>' . \__('Theme:', 'eve-online') . '</strong> ' . $this->getThemeName() .
-                \sprintf(\__(' (%1$s | %2$s)', 'eve-online'),
-                    '<a href="' . $this->getThemeGithubUri() . '" target="_blank">Github</a>',
-                    '<a href="' . $this->getThemeGithubIssueUri() . '" target="_blank">Issue Tracker</a>'
-                ) . '
+                <strong>' . __('Theme:', 'eve-online') . '</strong> ' . $this->getThemeName() .
+            sprintf(
+                __(' (%1$s | %2$s)', 'eve-online'),
+                '<a href="' . $this->getThemeGithubUri() . '" target="_blank">Github</a>',
+                '<a href="' . $this->getThemeGithubIssueUri() . '" target="_blank">Issue Tracker</a>'
+            ) . '
             </li>
-            <li><strong>' . \__('Customized by:', 'eve-online') . '</strong> ' . $this->getDeveloperName() . '</li>
-            <li><strong>' . \__('Discord:', 'eve-online') . '</strong> <a href="' . $this->getDeveloperDiscord() . '" target="_blank">' . $this->getDeveloperDiscord() . '</a></li>
+            <li><strong>' . __('Customized by:', 'eve-online') . '</strong> ' . $this->getDeveloperName() . '</li>
+            <li><strong>' . __('Discord:', 'eve-online') . '</strong> <a href="' . $this->getDeveloperDiscord() . '" target="_blank">' . $this->getDeveloperDiscord() . '</a></li>
         </ul>';
     }
 
-    public function addDashboardWidget() {
-        \wp_add_dashboard_widget('wp_dashboard_widget', \__('Developer Contact', 'eve-online'), [$this, 'themeInfo']);
+    private function getThemeName(): ?string {
+        return $this->themeName;
+    }
+
+    private function getThemeGithubUri(): ?string {
+        return $this->themeGithubUri;
+    }
+
+    private function getThemeGithubIssueUri(): ?string {
+        return $this->themeGithubIssueUri;
+    }
+
+    private function getDeveloperDiscord(): ?string {
+        return $this->developerDiscord;
+    }
+
+    public function addDashboardWidget(): void {
+        wp_add_dashboard_widget('wp_dashboard_widget', __('Developer Contact', 'eve-online'), [$this, 'themeInfo']);
     }
 
     /**
      * Custom Logo on Login Page
      */
-    public function customLoginLogoStyle() {
+    public function customLoginLogoStyle(): void {
         $type = (!empty($this->themeSettings['type'])) ? $this->themeSettings['type'] : null;
-        $hasCustomLoginLogo = (!empty($this->themeSettings['custom_login_logo'])) ? true : false;
+        $hasCustomLoginLogo = !empty($this->themeSettings['custom_login_logo']);
 
         $size = 320;
 
-        if($this->getLoginLogo() === null) {
+        if ($this->getLoginLogo() === null) {
             $size = 1;
         }
 
-        if($type !== null && $hasCustomLoginLogo === false) {
-                $size = ($type === 'alliance') ? 128 : 256;
+        if ($type !== null && $hasCustomLoginLogo === false) {
+            $size = ($type === 'alliance') ? 128 : 256;
         }
 
         echo $this->getStyleSheet($size);
+    }
+
+    /**
+     * Getting the Login Screen Logo
+     *
+     * @return string|null The Login Logo URL
+     */
+    private function getLoginLogo(): ?string {
+        $logo = null;
+
+        /**
+         * Check if we have a custom login logo or not and use
+         * what ever we might have as logo here.
+         */
+        if (empty($this->themeSettings['custom_login_logo'])) {
+            $type = (!empty($this->themeSettings['type'])) ? $this->themeSettings['type'] : null;
+            $name = (!empty($this->themeSettings['name'])) ? $this->themeSettings['name'] : null;
+
+            if ($type !== null && $name !== null) {
+                $size = ($type === 'alliance') ? 128 : 256;
+
+                // getting the logo
+                $logo = $this->getEveApi()->getEntityLogoByName($name, $type, true, $size);
+            }
+        }
+
+        return $logo;
+    }
+
+    public function getEveApi(): EsiHelper|null {
+        return $this->eveApi;
     }
 
     /**
@@ -215,8 +238,8 @@ class Whitelabel {
      * @param int $logoSize
      * @return string The Login Page CSS
      */
-    private function getStyleSheet($logoSize = 320) {
-        return '<style type="text/css">
+    private function getStyleSheet(int $logoSize = 320): string {
+        return '<style>
         body {
             background-image: url("' . $this->getThemeBackgroundUrl() . '");
             background-position: center center;
@@ -227,15 +250,12 @@ class Whitelabel {
         h1 a {
             background-image:url(' . $this->getLoginLogo() . ') !important;
             background-size: cover !important;
-            height: ' . $logoSize . 'px !important;
-            width: ' . $logoSize . 'px !important;
             height: ' . 1 / 16 * $logoSize . 'rem !important;
             width: ' . 1 / 16 * $logoSize . 'rem !important;
             margin-bottom: 0 !important;
             padding-bottom: 0 !important;
         }
         .login form {
-            margin-top: 10px !important;
             margin-top: 0.625rem !important;
             background-color: rgba(255,255,255,0.7);
         }
@@ -245,32 +265,7 @@ class Whitelabel {
         </style>';
     }
 
-    /**
-     * Getting the Login Screen Logo
-     *
-     * @return type
-     */
-    private function getLoginLogo() {
-        $logo = null;
-
-        /**
-         * Check if we have a custom login logo or not and use
-         * what ever we might have as logo here.
-         */
-        if(!empty($this->themeSettings['custom_login_logo'])) {
-            // Do nothing here
-        } else {
-            $type = (!empty($this->themeSettings['type'])) ? $this->themeSettings['type'] : null;
-            $name = (!empty($this->themeSettings['name'])) ? $this->themeSettings['name'] : null;
-
-            if($type !== null && $name !== null) {
-                $size = ($type === 'alliance') ? 128 : 256;
-
-                // getting the logo
-                $logo = $this->getEveApi()->getEntityLogoByName($name, $type, true, $size);
-            }
-        }
-
-        return $logo;
+    private function getThemeBackgroundUrl(): ?string {
+        return $this->themeBackgroundUrl;
     }
 }

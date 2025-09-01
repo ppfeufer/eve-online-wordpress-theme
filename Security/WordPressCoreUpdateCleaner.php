@@ -22,9 +22,8 @@
  *
  * Removing files that are not needed form website root
  */
-namespace WordPress\Themes\EveOnline\Security;
 
-\defined('ABSPATH') or die();
+namespace Ppfeufer\Theme\EVEOnline\Security;
 
 class WordPressCoreUpdateCleaner {
     /**
@@ -32,11 +31,11 @@ class WordPressCoreUpdateCleaner {
      *
      * @since 1.0
      */
-    function __construct() {
-        \add_action('_core_updated_successfully', [$this, 'updateCleaner'], 0, 1);
-        \add_action('core_upgrade_preamble', [$this, 'updateCleaner']);
-        \add_action('upgrader_pre_install', [$this, 'updateCleaner']);
-        \add_action('upgrader_post_install', [$this, 'updateCleaner']);
+    public function __construct() {
+        add_action('_core_updated_successfully', [$this, 'updateCleaner'], 0);
+        add_action('core_upgrade_preamble', [$this, 'updateCleaner']);
+        add_action('upgrader_pre_install', [$this, 'updateCleaner']);
+        add_action('upgrader_post_install', [$this, 'updateCleaner']);
     }
 
     /**
@@ -49,17 +48,17 @@ class WordPressCoreUpdateCleaner {
      * a response message to the core update screen letting you know which files
      * that were removed.
      *
+     * @param string $new_version New version of updated WordPress.
      * @since 1.0
-     * @param string New version of updated WordPress.
      */
-    function updateCleaner($new_version) {
+    public function updateCleaner(string $new_version): void {
         global $pagenow, $action;
 
-        if('update-core.php' !== $pagenow) {
+        if ('update-core.php' !== $pagenow) {
             return;
         } // END if('update-core.php' !== $pagenow)
 
-        if('do-core-upgrade' !== $action && 'do-core-reinstall' !== $action) {
+        if ('do-core-upgrade' !== $action && 'do-core-reinstall' !== $action) {
             return;
         }
 
@@ -81,24 +80,22 @@ class WordPressCoreUpdateCleaner {
             'wp-config-sample.php'
         ];
 
-        foreach($remove_files as $file) {
-            if(\file_exists(\ABSPATH . $file)) {
-                if(\unlink(\ABSPATH . $file)) {
-                    \show_message(\__('Removing', 'eve-online') . ' ' . $file . '...');
-                }
+        foreach ($remove_files as $file) {
+            if (file_exists(ABSPATH . $file) && unlink(ABSPATH . $file)) {
+                show_message(__('Removing', 'eve-online') . ' ' . $file . '...');
             }
         }
 
         // Load the updated default text localization domain for new strings
-        \load_default_textdomain();
+        load_default_textdomain();
 
         // See do_core_upgrade()
-        \show_message(\__('WordPress updated successfully', 'eve-online') . '.');
-        \show_message('<span>' . \sprintf(\__('Welcome to WordPress %1$s. <a href="%2$s">Learn more</a>.', 'eve-online'), $new_version, \esc_url(\self_admin_url('about.php?updated'))) . '</span>');
+        show_message(__('WordPress updated successfully', 'eve-online') . '.');
+        show_message('<span>' . sprintf(__('Welcome to WordPress %1$s. <a href="%2$s">Learn more</a>.', 'eve-online'), $new_version, esc_url(self_admin_url('about.php?updated'))) . '</span>');
         echo '</div>';
 
         // Include admin-footer.php and exit
-        include(\ABSPATH . 'wp-admin/admin-footer.php');
+        include(ABSPATH . 'wp-admin/admin-footer.php');
 
         exit();
     }

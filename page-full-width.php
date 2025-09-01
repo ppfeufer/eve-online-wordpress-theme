@@ -17,19 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+
 defined('ABSPATH') or die();
 
 /**
  * Template Name: Default Page (Full Width)
  */
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -45,9 +48,9 @@ defined('ABSPATH') or die();
     ?>
 
     <?php
-    if(\have_posts()) {
-        while(\have_posts()) {
-            \the_post();
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
             ?>
             <!--<div class="row main-top">-->
             <div class="main-top clearfix">
@@ -55,13 +58,13 @@ defined('ABSPATH') or die();
                     <header>
                         <h1>
                             <?php
-                            if(\is_front_page()) {
+                            if (is_front_page()) {
                                 ?>
-                                <h1><?php echo \get_bloginfo('name'); ?></h1>
+                                <h1><?php echo get_bloginfo('name'); ?></h1>
                                 <?php
                             } else {
                                 ?>
-                                <h1><?php \the_title(); ?></h1>
+                                <h1><?php the_title(); ?></h1>
                                 <?php
                             }
                             ?>
@@ -74,8 +77,8 @@ defined('ABSPATH') or die();
             <div class="main-content clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 content-wrapper">
                     <div class="content content-inner content-full-width content-page">
-                        <article class="post clearfix" id="post-<?php \the_ID(); ?>">
-                            <?php echo \the_content(); ?>
+                        <article class="post clearfix" id="post-<?php the_ID(); ?>">
+                            <?php the_content(); ?>
                         </article>
                     </div> <!-- /.content -->
                 </div> <!-- /.col -->
@@ -86,4 +89,4 @@ defined('ABSPATH') or die();
     ?>
 </div><!-- /.container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>
