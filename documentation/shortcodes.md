@@ -9,6 +9,7 @@
 With this theme using the bootstrap framework, of yourse you are able to set up a basic grid for some elements in your content as well. [contentgrid] is the shortcode that is used for that, together with [gridelement]. While [contentgrid] takes care of drawing the ourt grid frame, the [gridelement] shortcode has the content itself for your element.
 
 Example:
+
 ```
 [contentgrid classes="col-sm-6"]
 
@@ -49,6 +50,7 @@ There are different shortcodes to create columns. They all are following a namin
 All column shortcodes accept "position" as option. Values can be "first" and "last". In fact, it has to be set for the first and teh last column, so the system known where to generate the rest of the HTML markup for the columns.
 
 Example:
+
 ```
 [three_columns_one position="first"]
 
@@ -82,6 +84,7 @@ The [credits] shortcode can be used right below your article to give some credit
 This shortcode accepts the parameter "headline" which determins what type the headline should be. Default is "h4". The headline text will always be "Credits".
 
 Example (with a h2 headline):
+
 ```
 [credits headline="h2"]
 
@@ -109,5 +112,6 @@ Example:
 [latestblogposts headline_type='h2' headline_text='Latest Article']
 
 Supported Options:
+
 - headline_type => The type of your headline. Can be h1 - h6. Default is h2 if this option is not set.
 - headline_text => Your headline. If not set, no headline wil be displayed.

@@ -17,15 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Ppfeufer\Theme\EVEOnline\Helper\NavigationHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
+
 defined('ABSPATH') or die();
 
-\get_header();
+get_header();
 ?>
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = \WordPress\Themes\EveOnline\Helper\NavigationHelper::getBreadcrumbNavigation();
-    if(!empty($breadcrumbNavigation)) {
+    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+
+    if (!empty($breadcrumbNavigation)) {
         ?>
         <!--
         // Breadcrumb Navigation
@@ -40,36 +45,36 @@ defined('ABSPATH') or die();
     ?>
 
     <div class="row main-content">
-        <div class="<?php echo \WordPress\Themes\EveOnline\Helper\PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-search">
                 <?php
-                if(\have_posts()) {
+                if (have_posts()) {
                     ?>
                     <header class="post-title">
-                        <h1><?php \printf(\__('Search Results for: %s', 'eve-online'), '<span>' . \get_search_query() . '</span>'); ?></h1>
+                        <h1><?php printf(__('Search Results for: %s', 'eve-online'), '<span>' . get_search_query() . '</span>'); ?></h1>
                     </header>
                     <?php
                 } else {
                     ?>
                     <header class="post-title">
-                        <h1><?php \_e('No Results Found', 'eve-online'); ?></h1>
+                        <h1><?php _e('No Results Found', 'eve-online'); ?></h1>
                     </header>
                     <?php
                 }
 
-                if(\have_posts()) {
-                    while(\have_posts()) {
-                        \the_post();
-                        \get_template_part('content', \get_post_format());
+                if (have_posts()) {
+                    while (have_posts()) {
+                        the_post();
+                        get_template_part('content', get_post_format());
                     }
                 } else {
                     ?>
                     <p class="lead">
-                        <?php \_e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps you should try again with a different search term.', 'eve-online'); ?>
+                        <?php _e('It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps you should try again with a different search term.', 'eve-online'); ?>
                     </p>
 
                     <div class="well">
-                        <?php \get_search_form(); ?>
+                        <?php get_search_form(); ?>
                     </div><!--/.well -->
                     <?php
                 }
@@ -78,16 +83,16 @@ defined('ABSPATH') or die();
         </div> <!-- /.col -->
 
         <?php
-        if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page') || \WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
             ?>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
                 <?php
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-general')) {
-                    \get_sidebar('general');
+                if (ThemeHelper::hasSidebar('sidebar-general')) {
+                    get_sidebar('general');
                 }
 
-                if(\WordPress\Themes\EveOnline\Helper\ThemeHelper::hasSidebar('sidebar-page')) {
-                    \get_sidebar('page');
+                if (ThemeHelper::hasSidebar('sidebar-page')) {
+                    get_sidebar('page');
                 }
                 ?>
                 </div><!--/.col -->
@@ -97,4 +102,4 @@ defined('ABSPATH') or die();
     </div> <!--/.row -->
 </div><!-- container -->
 
-<?php \get_footer(); ?>
+<?php get_footer(); ?>

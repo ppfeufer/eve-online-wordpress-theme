@@ -17,40 +17,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace WordPress\Themes\EveOnline\Helper;
-
-\defined('ABSPATH') or die();
+namespace Ppfeufer\Theme\EVEOnline\Helper;
 
 class CommentHelper {
     public static function getComments($comment, $args, $depth) {
-        switch($comment->comment_type) {
+        switch ($comment->comment_type) {
             case 'pingback':
             case 'trackback':
                 echo self::getTrackbackTemplate();
                 break;
-            default :
+            default:
                 // Proceed with normal comments.
                 global $post;
                 ?>
-                <li class="comment media" id="comment-<?php \comment_ID(); ?>">
-                    <?php echo self::getCommenterAvatar($comment); ?>
-                    <div class="media-body">
-                        <h4 class="media-heading comment-author vcard">
-                            <?php echo self::getCommentAuthor($post, $comment); ?>
-                        </h4>
+            <li class="comment media" id="comment-<?php
+            comment_ID(); ?>">
+                <?php
+                echo self::getCommenterAvatar($comment); ?>
+                <div class="media-body">
+                    <h4 class="media-heading comment-author vcard">
                         <?php
-                        echo self::getCommentModerated($comment);
-
-                        \comment_text();
-                        ?>
-                        <p class="meta">
-                            <?php echo self::getCommentMeta($comment); ?>
-                        </p>
-                        <p class="reply">
-                            <?php echo self::getCommentReply($args, $depth); ?>
-                        </p>
-                    </div> <!--/.media-body -->
+                        echo self::getCommentAuthor($post, $comment); ?>
+                    </h4>
                     <?php
+                    echo self::getCommentModerated($comment);
+
+                    comment_text();
+                    ?>
+                    <p class="meta">
+                        <?php
+                        echo self::getCommentMeta($comment); ?>
+                    </p>
+                    <p class="reply">
+                        <?php
+                        echo self::getCommentReply($args, $depth); ?>
+                    </p>
+                </div> <!--/.media-body -->
+                <?php
                 break;
         }
     }
@@ -61,9 +64,9 @@ class CommentHelper {
      * @return string
      */
     public static function getTrackbackTemplate() {
-        $returnValue = '<li class="comment media" id="comment-' . \get_comment_ID() . '">';
+        $returnValue = '<li class="comment media" id="comment-' . get_comment_ID() . '">';
         $returnValue .= '<div class="media-body">';
-        $returnValue .= '<p>' . \__('Pingback:', 'eve-online') . ' ' . \get_comment_author_link() . '</p>';
+        $returnValue .= '<p>' . __('Pingback:', 'eve-online') . ' ' . get_comment_author_link() . '</p>';
         $returnValue .= '</div><!--/.media-body -->';
 
         return $returnValue;
@@ -78,10 +81,10 @@ class CommentHelper {
     public static function getCommenterAvatar($comment) {
         $returnValue = null;
 
-        if(!empty($comment->comment_author_url)) {
-            $returnValue = '<a href="' . $comment->comment_author_url . '" class="pull-left comment-avatar">' . \get_avatar($comment, 64) . '</a>';
+        if (!empty($comment->comment_author_url)) {
+            $returnValue = '<a href="' . $comment->comment_author_url . '" class="pull-left comment-avatar">' . get_avatar($comment, 64) . '</a>';
         } else {
-            $returnValue = '<span class="pull-left comment-avatar">' . \get_avatar($comment, 64) . '</span>';
+            $returnValue = '<span class="pull-left comment-avatar">' . get_avatar($comment, 64) . '</span>';
         }
 
         return $returnValue;
@@ -95,10 +98,11 @@ class CommentHelper {
      * @return string
      */
     public static function getCommentAuthor($post, $comment) {
-        return \sprintf('<cite class="fn">%1$s %2$s</cite>',
-            \get_comment_author_link(),
+        return sprintf(
+            '<cite class="fn">%1$s %2$s</cite>',
+            get_comment_author_link(),
             // If current post author is also comment author, make it known visually.
-            ($comment->user_id === $post->post_author) ? '<span class="label"> ' . \__('Post author', 'eve-online') . '</span> ' : ''
+            ($comment->user_id === $post->post_author) ? '<span class="label"> ' . __('Post author', 'eve-online') . '</span> ' : ''
         );
     }
 
@@ -111,8 +115,8 @@ class CommentHelper {
     public static function getCommentModerated($comment) {
         $returnValue = '';
 
-        if('0' === $comment->comment_approved) {
-            $returnValue = '<p class="comment-awaiting-moderation">' . \__('Your comment is awaiting moderation.', 'eve-online') . '</p>';
+        if ('0' === $comment->comment_approved) {
+            $returnValue = '<p class="comment-awaiting-moderation">' . __('Your comment is awaiting moderation.', 'eve-online') . '</p>';
         }
 
         return $returnValue;
@@ -125,10 +129,11 @@ class CommentHelper {
      * @return string
      */
     public static function getCommentMeta($comment) {
-        return \sprintf('<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
-            \esc_url(\get_comment_link($comment->comment_ID)),
-            \get_comment_time('c'),
-            \sprintf(\__('%1$s at %2$s', 'eve-online'), \get_comment_date(), \get_comment_time())
+        return sprintf(
+            '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
+            esc_url(get_comment_link($comment->comment_ID)),
+            get_comment_time('c'),
+            sprintf(__('%1$s at %2$s', 'eve-online'), get_comment_date(), get_comment_time())
         );
     }
 
@@ -140,8 +145,8 @@ class CommentHelper {
      * @return string
      */
     public static function getCommentReply($args, $depth) {
-        return \get_comment_reply_link(\array_merge($args, [
-            'reply_text' => \__('Reply <span>&darr;</span>', 'eve-online'),
+        return get_comment_reply_link(array_merge($args, [
+            'reply_text' => __('Reply <span>&darr;</span>', 'eve-online'),
             'depth' => $depth,
             'max_depth' => $args['max_depth']
         ]));

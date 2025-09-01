@@ -23,37 +23,36 @@
  * based on: https://github.com/twittem/wp-bootstrap-gallery
  */
 
-namespace WordPress\Themes\EveOnline\Plugins;
+namespace Ppfeufer\Theme\EVEOnline\Plugins;
 
-use \WordPress\Themes\EveOnline\Helper\PostHelper;
-
-\defined('ABSPATH') or die();
+use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
+use WP_Query;
 
 class BootstrapImageGallery {
     public function __construct() {
         $this->init();
     } // END public function __construct()
 
-    public function init() {
-        \add_filter('post_gallery', [$this, 'imageGallery'], 10, 2);
+    public function init(): void {
+        add_filter('post_gallery', [$this, 'imageGallery'], 10, 2);
     }
 
-    public function imageGallery($content, $attr) {
+    public function imageGallery($content, $attr): ?string {
         global $instance, $post;
 
         unset($content); // we don't need it here
 
         $instance++;
 
-        if(isset($attr['orderby'])) {
-            $attr['orderby'] = \sanitize_sql_orderby($attr['orderby']);
+        if (isset($attr['orderby'])) {
+            $attr['orderby'] = sanitize_sql_orderby($attr['orderby']);
 
-            if(!$attr['orderby']) {
+            if (!$attr['orderby']) {
                 unset($attr['orderby']);
             }
         }
 
-        \extract(\shortcode_atts([
+        extract(array: shortcode_atts([
             'order' => 'ASC',
             'orderby' => 'menu_order ID',
             'id' => $post->ID,
@@ -66,16 +65,16 @@ class BootstrapImageGallery {
             'exclude' => ''
         ], $attr));
 
-        $id = \intval($id);
+        $id = (int)$id;
 
-        if('RAND' == $order) {
+        if ('RAND' === $order) {
             $orderby = 'none';
         }
 
-        if($include) {
-            $include = \preg_replace('/[^0-9,]+/', '', $include);
+        if ($include) {
+            $include = preg_replace('/[^0-9,]+/', '', $include);
 
-            $_attachments = \get_posts([
+            $_attachments = get_posts([
                 'include' => $include,
                 'post_status' => 'inherit',
                 'post_type' => 'attachment',
@@ -86,13 +85,13 @@ class BootstrapImageGallery {
 
             $attachments = [];
 
-            foreach($_attachments as $key => $val) {
-                $attachments[$val->ID] = $_attachments[$key];
+            foreach ($_attachments as $key => $val) {
+                $attachments[$val->ID] = $val;
             }
-        } elseif($exclude) {
-            $exclude = \preg_replace('/[^0-9,]+/', '', $exclude);
+        } elseif ($exclude) {
+            $exclude = preg_replace('/[^0-9,]+/', '', $exclude);
 
-            $attachments = \get_children([
+            $attachments = get_children([
                 'post_parent' => $id,
                 'exclude' => $exclude,
                 'post_status' => 'inherit',
@@ -102,7 +101,7 @@ class BootstrapImageGallery {
                 'orderby' => $orderby
             ]);
         } else {
-            $attachments = \get_children([
+            $attachments = get_children([
                 'post_parent' => $id,
                 'post_status' => 'inherit',
                 'post_type' => 'attachment',
@@ -112,43 +111,39 @@ class BootstrapImageGallery {
             ]);
         }
 
-        if(empty($attachments)) {
-            return;
+        if (empty($attachments)) {
+            return null;
         }
 
-        if(\is_feed()) {
+        if (is_feed()) {
             $output = "\n";
 
-            foreach($attachments as $att_id => $attachment) {
-                $output .= \wp_get_attachment_link($att_id, 'post-loop-thumbnail', true) . "\n";
+            foreach ($attachments as $att_id => $attachment) {
+                $output .= wp_get_attachment_link($att_id, 'post-loop-thumbnail', true) . "\n";
             }
 
             return $output;
         }
 
-        $itemtag = \tag_escape($itemtag);
-        $captiontag = \tag_escape($captiontag);
+        $itemtag = tag_escape($itemtag);
+        $captiontag = tag_escape($captiontag);
 
         $selector = 'image-gallery-' . $instance;
         $output = '<div class="gallery-row row">';
         $output .= '<ul class="bootstrap-gallery bootstrap-image-gallery bootstrap-' . $selector . ' clearfix">';
 
 
-        foreach($attachments as $id => $attachment) {
-            if(\function_exists('\fly_get_attachment_image')) {
-                $galleryImage = \fly_get_attachment_image($id, 'post-loop-thumbnail');
-            } else {
-                $galleryImage = \wp_get_attachment_image($id, 'post-loop-thumbnail');
-            }
+        foreach ($attachments as $id => $attachment) {
+            $galleryImage = wp_get_attachment_image($id, 'post-loop-thumbnail');
 
-            $fullImage = \wp_get_attachment_image_src($id, 'full');
-            $attachment = \wp_prepare_attachment_for_js($id);
+            $fullImage = wp_get_attachment_image_src($id, 'full');
+            $attachment = wp_prepare_attachment_for_js($id);
 
             $output .= '<li>';
             $output .= '<' . $itemtag . ' class="bootstrap-gallery-image" data-fullsizeImage="' . $fullImage['0'] . '">';
             $output .= $galleryImage;
 
-            if(!empty($attachment['caption'])) {
+            if (!empty($attachment['caption'])) {
                 $output .= '<' . $captiontag . '>';
                 $output .= $attachment['caption'];
                 $output .= '</' . $captiontag . '>';
@@ -176,7 +171,7 @@ class BootstrapImageGallery {
      *
      * @return array
      */
-    public function getGalleryPages() {
+    public function getGalleryPages(): array {
         $args = [
             'posts_per_page' => -1,
             'category' => 0,
@@ -187,26 +182,26 @@ class BootstrapImageGallery {
             'suppress_filters' => true
         ];
 
-        $result = new \WP_Query($args);
+        $result = new WP_Query($args);
 
-        $pattern = \get_shortcode_regex();
+        $pattern = get_shortcode_regex();
 
-        foreach($result->posts as $post) {
+        foreach ($result->posts as $post) {
             /**
              * Check if the gallery shortcode has been used
              */
-            if(\has_shortcode($post->post_content, 'gallery')) {
+            if (has_shortcode($post->post_content, 'gallery')) {
                 /**
                  * Check if it is really a gallery and not a hoax, in other
                  * words, if there are really some images in it.
                  */
-                if(\preg_match_all('/'. $pattern .'/s', $post->post_content, $matches) && \array_key_exists(2, $matches) && \in_array('gallery', $matches[2])) {
-                    $keys = \array_keys( $matches[2], 'gallery' );
+                if (preg_match_all('/' . $pattern . '/s', $post->post_content, $matches) && array_key_exists(2, $matches) && in_array('gallery', $matches[2])) {
+                    $keys = array_keys($matches[2], 'gallery');
 
-                    foreach($keys as $key) {
-                        $atts = \shortcode_parse_atts($matches[3][$key]);
+                    foreach ($keys as $key) {
+                        $atts = shortcode_parse_atts($matches[3][$key]);
 
-                        if(\is_array($atts) && \array_key_exists('ids', $atts)) {
+                        if (is_array($atts) && array_key_exists('ids', $atts)) {
                             $items[$post->ID] = $post->post_title;
                         }
                     }
@@ -214,7 +209,7 @@ class BootstrapImageGallery {
             }
         }
 
-        \wp_reset_postdata();
+        wp_reset_postdata();
 
         return $items;
     }
@@ -225,10 +220,10 @@ class BootstrapImageGallery {
      * @param int $postID
      * @return array
      */
-    public function getGalleryImages($postID) {
-        $post = \get_post($postID, \OBJECT);
+    public function getGalleryImages(int $postID): array {
+        $post = get_post($postID, OBJECT);
 
-        if(\has_shortcode($post->post_content, 'gallery')) {
+        if (has_shortcode($post->post_content, 'gallery')) {
             /**
              * Check if it is really a gallery and not a hoax, in other
              * words, if there are really some images in it.
@@ -236,31 +231,31 @@ class BootstrapImageGallery {
             $pattern = get_shortcode_regex();
             $galleryImages = null;
 
-            if(\preg_match_all('/'. $pattern .'/s', $post->post_content, $matches) && \array_key_exists(2, $matches) && \in_array('gallery', $matches[2])) {
-                $keys = \array_keys( $matches[2], 'gallery' );
+            if (preg_match_all('/' . $pattern . '/s', $post->post_content, $matches) && array_key_exists(2, $matches) && in_array('gallery', $matches[2])) {
+                $keys = array_keys($matches[2], 'gallery');
 
-                foreach($keys as $key) {
-                    $atts = \shortcode_parse_atts($matches[3][$key]);
+                foreach ($keys as $key) {
+                    $atts = shortcode_parse_atts($matches[3][$key]);
 
                     /**
                      * Only add the page to our array if it has some
                      * images in its gallery
                      */
-                    if(\is_array($atts) && \array_key_exists('ids', $atts)) {
-                        $images = new \WP_Query([
+                    if (is_array($atts) && array_key_exists('ids', $atts)) {
+                        $images = new WP_Query([
                             'post_type' => 'attachment',
                             'post_status' => 'inherit',
-                            'post__in' => \explode( ',', $atts['ids'] ),
+                            'post__in' => explode(',', $atts['ids']),
                             'orderby' => 'post__in'
                         ]);
 
-                        if($images->have_posts()) {
-                            foreach($images->posts as $image) {
+                        if ($images->have_posts()) {
+                            foreach ($images->posts as $image) {
                                 $galleryImages[$image->ID] = $image->guid;
                             }
                         }
 
-                        \wp_reset_query();
+                        wp_reset_query();
                     }
                 }
             }
