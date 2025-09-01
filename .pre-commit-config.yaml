@@ -1,0 +1,179 @@
+# Apply to all files without committing:
+#   pre-commit run --all-files
+# Update this file:
+#   pre-commit autoupdate --freeze
+
+# Set the default language versions for the hooks
+default_language_version:
+  python: python3  # Force all Python hooks to use Python 3
+  node: 22.13.1  # Force all Node hooks to use the latest Node LTS
+
+# https://pre-commit.ci/
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: false
+  autoupdate_branch: 'master'
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: monthly
+  skip:
+    - eslint  # Skip ESLint checks in CI due to missing node environment
+    - php-lint-all  # Skip PHP lint checks in CI due to missing PHP environment
+    - php-cs  # Skip PHP Code Sniffer checks in CI due to missing PHP environment
+  submodules: false
+
+# Globally exclude files
+# https://pre-commit.com/#top_level-exclude
+exclude: |
+  (?x)(
+    LICENSE|
+    .min(.css|.css.map|.js|.js.map)|
+    Sources/Libs/|
+    Assets/libs/|
+    .vscode/|
+    .idea/|
+    vendor/|
+    ISSUE_TEMPLATE/
+  )
+
+# pre-commit setup
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
+    hooks:
+      # Identify invalid files
+      - id: check-yaml
+        name: Check YAML
+        description: This hook checks that your YAML is parseable.
+
+      - id: check-json
+        name: Check JSON
+        description: This hook checks that your JSON is parseable.
+
+      - id: check-xml
+        name: Check XML
+        description: This hook checks that your XML is parseable.
+
+      # git checks
+      - id: check-merge-conflict
+        name: Check Merge Conflict
+        description: This hook checks for files that contain merge conflict strings.
+
+      - id: check-added-large-files
+        name: Check Added Large Files
+        description: This hook checks for large files that have been added to the repository.
+        args:
+          - --maxkb=1000
+
+      - id: detect-private-key
+        name: Detect Private Key
+        description: This hook detects private keys.
+
+      - id: check-case-conflict
+        name: Check Case Conflict
+        description: This hook checks for files with names that differ only in case.
+
+      # General quality checks
+      - id: mixed-line-ending
+        name: Mixed Line Ending
+        description: This hook checks for files that have mixed line endings.
+        args:
+          - --fix=lf
+
+      - id: trailing-whitespace
+        name: Trailing Whitespace
+        description: This hook removes trailing whitespace.
+        args:
+          - --markdown-linebreak-ext=md
+
+      - id: check-executables-have-shebangs
+        name: Check Executables Have Shebangs
+        description: This hook checks that all executable files have a shebang.
+
+      - id: end-of-file-fixer
+        name: End of File Fixer
+        description: This hook ensures that files end with a newline.
+
+  - repo: https://github.com/digitalpulp/pre-commit-php.git
+    rev: f9f30f819d34faa2375e7000822efab0ef677200  # frozen: 1.4.0
+    hooks:
+      - id: php-lint-all
+        name: PHP Lint (All)
+        description: This hook checks for PHP syntax errors in all PHP files.
+
+      - id: php-cs
+        name: PHP Code Sniffer
+        description: This hook checks for coding standard violations.
+        files: \.(php)$
+        args:
+          - --standard=PSR2,./phpcs.xml
+          - -p
+          - --colors
+          - --report=full
+
+  - repo: https://github.com/eslint/eslint
+    rev: 6fcb7c22adb3508a6809c63c20903190ac0b8994  # frozen: v9.32.0
+    hooks:
+      - id: eslint
+        name: ESLint
+        description: Check for problems in JavaScript files.
+        language: node
+        additional_dependencies:
+          # eslint itself needs to be here when using additional_dependencies.
+          - eslint@9.32.0 # https://github.com/eslint/eslint/releases/latest
+          - globals@16.3.0  # https://github.com/sindresorhus/globals/releases/latest
+
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: 5c31281b64ff045bad639f8f994dd48f0c0494cf  # frozen: v16.23.0
+    hooks:
+      - id: stylelint
+        name: Stylelint
+        description: Check for problems in CSS files.
+        language: node
+        args:
+          - --formatter=compact
+        additional_dependencies:
+          # stylelint itself needs to be here when using additional_dependencies.
+          - stylelint@16.23.0  # https://github.com/stylelint/stylelint/releases/latest
+          - stylelint-config-standard@39.0.0  # https://github.com/stylelint/stylelint-config-standard/releases/latest
+
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 3bea62898235acc3f05c1d9c33023345f6cd3c6f  # frozen: 3.2.1
+    hooks:
+      - id: editorconfig-checker
+        name: EditorConfig Checker
+        description: This hook checks for compliance with definitions made in EditorConfig files.
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: ff29be1a1ba8029d9375882aa2c812b62112a593  # frozen: 0.7.22
+    hooks:
+      - id: mdformat
+        name: Mdformat
+        description: This hook checks for Markdown formatting issues.
+        additional_dependencies:  # https://mdformat.readthedocs.io/en/stable/users/plugins.html#code-formatter-plugins
+          - mdformat-gfm==0.4.1  # Mdformat plugin for GitHub Flavored Markdown compatibility » https://github.com/hukkin/mdformat-gfm/tags
+          - mdformat-toc==0.3.0  # Mdformat plugin to generate a table of contents » https://github.com/hukkin/mdformat-toc/tags
+          - mdformat-shfmt==0.2.0  # Mdformat plugin to format shell code blocks » https://github.com/hukkin/mdformat-shfmt/tags
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 54da05914997e6b04e4db33ed6757d744984c68b  # frozen: 0.33.2
+    hooks:
+      - id: check-github-actions
+        name: Check GitHub Actions
+        description: This hook checks that GitHub Actions files are valid.
+        args:
+          - --verbose
+
+      - id: check-github-workflows
+        name: Check GitHub Workflows
+        description: This hook checks that GitHub Workflows files are valid.
+        args:
+          - --verbose
+
+      - id: check-dependabot
+        name: Check Dependabot Configuration
+        description: This hook checks that Dependabot configuration files are valid.
+        args:
+          - --verbose
