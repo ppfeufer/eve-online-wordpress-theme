@@ -41,7 +41,7 @@ exclude: |
 # pre-commit setup
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
     hooks:
       # Identify invalid files
       - id: check-yaml
@@ -114,7 +114,7 @@ repos:
           - --report=full
 
   - repo: https://github.com/eslint/eslint
-    rev: 6fcb7c22adb3508a6809c63c20903190ac0b8994  # frozen: v9.32.0
+    rev: d9a5ee2de55337d1fbe5897657b681e20d8a9825  # frozen: v9.34.0
     hooks:
       - id: eslint
         name: ESLint
@@ -122,11 +122,11 @@ repos:
         language: node
         additional_dependencies:
           # eslint itself needs to be here when using additional_dependencies.
-          - eslint@9.32.0 # https://github.com/eslint/eslint/releases/latest
+          - eslint@9.34.0  # https://github.com/eslint/eslint/releases/latest
           - globals@16.3.0  # https://github.com/sindresorhus/globals/releases/latest
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: 5c31281b64ff045bad639f8f994dd48f0c0494cf  # frozen: v16.23.0
+    rev: ac48b246d065e0ff6d35463ad8605870d4557779  # frozen: v16.23.1
     hooks:
       - id: stylelint
         name: Stylelint
@@ -136,11 +136,11 @@ repos:
           - --formatter=compact
         additional_dependencies:
           # stylelint itself needs to be here when using additional_dependencies.
-          - stylelint@16.23.0  # https://github.com/stylelint/stylelint/releases/latest
+          - stylelint@16.23.1  # https://github.com/stylelint/stylelint/releases/latest
           - stylelint-config-standard@39.0.0  # https://github.com/stylelint/stylelint-config-standard/releases/latest
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 3bea62898235acc3f05c1d9c33023345f6cd3c6f  # frozen: 3.2.1
+    rev: 61529b21391331d7cfd1f191df6293534a1fd79a  # frozen: 3.4.0
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Checker
@@ -158,7 +158,7 @@ repos:
           - mdformat-shfmt==0.2.0  # Mdformat plugin to format shell code blocks » https://github.com/hukkin/mdformat-shfmt/tags
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 54da05914997e6b04e4db33ed6757d744984c68b  # frozen: 0.33.2
+    rev: 9b9df9f1d3bd9a5e7a52d8f61a3be3e29e73d127  # frozen: 0.33.3
     hooks:
       - id: check-github-actions
         name: Check GitHub Actions
