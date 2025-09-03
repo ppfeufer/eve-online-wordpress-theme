@@ -4,8 +4,8 @@
 .DEFAULT_GOAL := help
 
 # Theme information
-theme_name = Theme Name
-theme_slug = theme-name
+theme_name = EVE Online
+theme_slug = eve-online
 
 # Git repository URLs
 theme_repo_url = https://github.com/ppfeufer/$(theme_slug)-wordpress-theme

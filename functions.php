@@ -25,9 +25,61 @@
 
 namespace Ppfeufer\Theme\EVEOnline;
 
+// Define a couple of constants we might need.
 // phpcs:disable
-require_once(trailingslashit(__DIR__) . 'inc/autoloader.php');
+// Theme name
+define(
+    constant_name: __NAMESPACE__ . '\THEME_NAME',
+    value: wp_get_theme()->get('Name')
+);
+
+// Theme version
+define(
+    constant_name: __NAMESPACE__ . '\THEME_VERSION',
+    value: wp_get_theme()->get('Version')
+);
+
+// Theme directory (without trailing slash)
+define(
+    constant_name: __NAMESPACE__ . '\THEME_DIRECTORY',
+    value: get_stylesheet_directory()
+);
+
+// Theme directory URI (without trailing slash)
+define(
+    constant_name: __NAMESPACE__ . '\THEME_DIRECTORY_URI',
+    value: get_stylesheet_directory_uri()
+);
+
+// Theme slug
+const THEME_SLUG = 'eve-online';
+
+// Theme Sources directory (without trailing slash)
+const THEME_SOURCES_DIRECTORY = THEME_DIRECTORY . '/Sources';
+
+// Theme Library directory (without trailing slash)
+const THEME_LIBRARY_DIRECTORY = THEME_SOURCES_DIRECTORY . '/Libs';
+
+// Theme GitHub URI
+const THEME_GITHUB_URI = 'https://github.com/ppfeufer/' . THEME_SLUG . '-wordpress-theme/';
 // phpcs:enable
+
+// phpcs:disable
+// Include the theme autoloader
+require_once THEME_SOURCES_DIRECTORY . '/autoload.php';
+
+// Include the library autoloader
+require_once THEME_LIBRARY_DIRECTORY . '/autoload.php';
+
+// Load the themes' main class.
+(new Main())->init();
+// phpcs:enable
+
+######
+######
+## OLD FUNCTIONS.PHP STARTS HERE
+######
+######
 
 /**
  * Just to make sure, if this line is not in wp-config, that our environment
@@ -43,17 +95,6 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', (str_contains(getenv('AP
 // phpcs:enable
 
 /**
- * EVE Online only works in WordPress 4.7 or later.
- */
-if (version_compare($GLOBALS['wp_version'], '4.7', '<')) {
-    // phpcs:disable
-    require_once(get_template_directory() . '/addons/Compatibility.php');
-
-    return false;
-    // phpcs:enable
-}
-
-/**
  * WP Filesystem API
  */
 // phpcs:disable
@@ -65,28 +106,28 @@ require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
  * Initiate needed general Classes
  */
 // phpcs:disable
-new Helper\UpdateHelper;
-new Plugins\Metaslider(true);
-new Plugins\Shortcodes;
-new Plugins\BootstrapImageGallery;
-new Plugins\BootstrapVideoGallery;
-new Plugins\BootstrapContentGrid;
-new Plugins\Corppage;
-new Plugins\Whitelabel;
-new Plugins\ChildpageMenu;
-new Plugins\LatestBlogPosts;
-new Plugins\EveOnlineAvatar;
+//new Helper\UpdateHelper;
+//new Plugins\Metaslider(true);
+//new Plugins\Shortcodes;
+//new Plugins\BootstrapImageGallery;
+//new Plugins\BootstrapVideoGallery;
+//new Plugins\BootstrapContentGrid;
+//new Plugins\Corppage;
+//new Plugins\Whitelabel;
+//new Plugins\ChildpageMenu;
+//new Plugins\LatestBlogPosts;
+//new Plugins\EveOnlineAvatar;
 // phpcs:enable
 
 /**
  * Initiate needed Backend Classes
  */
-if (is_admin()) {
-    // phpcs:disable
-    new Admin\ThemeSettings;
-    new Security\WordPressCoreUpdateCleaner;
-    // phpcs:enable
-}
+//if (is_admin()) {
+//    // phpcs:disable
+//    new Admin\ThemeSettings;
+//    new Security\WordPressCoreUpdateCleaner;
+//    // phpcs:enable
+//}
 
 /**
  * Maximal content width

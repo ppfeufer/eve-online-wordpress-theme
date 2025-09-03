@@ -27,7 +27,7 @@ use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 use WP_Post;
 
 class Metaslider {
-    public function __construct($init = false) {
+    public function __construct($init = true) {
         if ($init === true) {
             $this->registerMetaBox();
         }
