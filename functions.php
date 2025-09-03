@@ -654,30 +654,6 @@ function eve_link_pages(array $args = []): void {
     echo $output . $arguments['after'];
 }
 
-function eve_bootstrapDebug(): void {
-    $script = '<script type="text/javascript">'
-        . 'jQuery(function($) {'
-        . '     (function($, document, window, viewport) {'
-        . '         console.log(\'Current breakpoint:\', viewport.current());'
-        . '         $("footer").append("<span class=\"viewport-debug\"><span class=\"viewport-debug-inner\"></span></span>")'
-        . '         $(".viewport-debug-inner").html(viewport.current().toUpperCase());'
-        . '         $(window).resize(viewport.changed(function() {'
-        . '             console.log(\'Breakpoint changed to:\', viewport.current());'
-        . '             $(".viewport-debug-inner").html(viewport.current().toUpperCase());'
-        . '         }));'
-        . '     })(jQuery, document, window, ResponsiveBootstrapToolkit);'
-        . '});'
-        . '</script>';
-
-    echo $script;
-}
-
-if (str_contains(APPLICATION_ENV, 'development')) {
-    // phpcs:disable
-    add_action('wp_footer', '\\Ppfeufer\Theme\EVEOnline\eve_bootstrapDebug', 99);
-    // phpcs:enable
-}
-
 /**
  * Disable Smilies
  *
