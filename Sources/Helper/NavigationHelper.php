@@ -25,10 +25,10 @@ class NavigationHelper {
     /**
      * Display page next/previous navigation links.
      *
-     * @param int $nav_id
+     * @param string $nav_id
      * @global object $wp_query
      */
-    public static function getContentNav(int $nav_id): void {
+    public static function getContentNav(string $nav_id): void {
         global $wp_query;
 
         if ($wp_query->max_num_pages > 1) {
@@ -131,6 +131,8 @@ class NavigationHelper {
                 return '<a class="btn btn-default" href="' . previous_posts(false) . "\" $attr>" . preg_replace('/&([^#])(?![a-z]{1,8};)/i', '&#038;$1', $label) . '</a>';
             }
         }
+
+        return null;
     }
 
     /**
