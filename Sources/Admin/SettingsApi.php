@@ -901,7 +901,7 @@ class SettingsApi {
             wp_enqueue_script('jquery-ui-datepicker');
             wp_enqueue_script(
                 'settings-api',
-                get_template_directory_uri() . '/Admin/js/settings-api.min.js'
+                get_template_directory_uri() . '/Assets/js/settings-api.min.js'
             );
         }
     }
@@ -912,14 +912,14 @@ class SettingsApi {
     public function enqueueStyles() {
         if ($this->isSettingsPage() === true) {
             wp_enqueue_style('wp-color-picker');
-            wp_enqueue_style('jquery-ui', get_template_directory_uri() . '/Admin/css/jquery-ui.min.css');
+            wp_enqueue_style('jquery-ui', get_template_directory_uri() . '/Assets/libs/jQuery/jquery-ui/jquery-ui.min.css');
             wp_enqueue_style(
                 'font-awesome',
-                get_template_directory_uri() . 'Assets/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+                get_template_directory_uri() . '/Assets/libs/font-awesome/4.7.0/css/font-awesome.min.css'
             );
             wp_enqueue_style(
                 'settings-api',
-                get_template_directory_uri() . '/Admin/css/settings-api.min.css'
+                get_template_directory_uri() . '/Assets/css/settings-api.min.css'
             );
         }
     }

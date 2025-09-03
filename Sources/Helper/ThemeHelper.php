@@ -108,7 +108,7 @@ class ThemeHelper {
             /* Bootstrap's JS */
             'Bootstrap' => [
                 'handle' => 'bootstrap-js',
-                'source' => get_theme_file_uri('Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
+                'source' => get_theme_file_uri('/Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
                 'deps' => [
                     'jquery'
                 ],
@@ -118,7 +118,7 @@ class ThemeHelper {
             /* Bootstrap Toolkit */
             'Bootstrap Toolkit' => [
                 'handle' => 'bootstrap-toolkit-js',
-                'source' => get_theme_file_uri('Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
+                'source' => get_theme_file_uri('/Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
                 'deps' => [
                     'bootstrap-js'
                 ],
@@ -138,7 +138,7 @@ class ThemeHelper {
             /* The main JS */
             'EVE Online' => [
                 'handle' => 'eve-online-main-js',
-                'source' => get_theme_file_uri('Assets/js/eve-online.min.js'),
+                'source' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
                 'deps' => [
                     'jquery'
                 ],
@@ -158,7 +158,7 @@ class ThemeHelper {
             /* Normalize CSS */
             'Normalize CSS' => [
                 'handle' => 'normalize',
-                'source' => get_theme_file_uri('Assets/css/normalize.min.css'),
+                'source' => get_theme_file_uri('/Assets/css/normalize.min.css'),
                 'deps' => [],
                 'version' => '3.0.3',
                 'media' => 'all'
@@ -166,7 +166,7 @@ class ThemeHelper {
             /* Bootstrap */
             'Bootstrap' => [
                 'handle' => 'bootstrap',
-                'source' => get_theme_file_uri('Assets/libs//bootstrap/3.3.7/css/bootstrap.min.css'),
+                'source' => get_theme_file_uri('/Assets/libs//bootstrap/3.3.7/css/bootstrap.min.css'),
                 'deps' => [
                     'normalize'
                 ],
@@ -176,7 +176,7 @@ class ThemeHelper {
             /* Bootstrap Additional CSS */
             'Bootstrap Additional CSS' => [
                 'handle' => 'bootstrap-additional',
-                'source' => get_theme_file_uri('Assets/css/bootstrap-additional.min.css'),
+                'source' => get_theme_file_uri('/Assets/css/bootstrap-additional.min.css'),
                 'deps' => [
                     'bootstrap'
                 ],
@@ -197,7 +197,7 @@ class ThemeHelper {
             /* Theme Responsive CSS */
             'EVE Online Responsive Styles' => [
                 'handle' => 'eve-online-responsive-styles',
-                'source' => get_theme_file_uri('Assets/css/responsive.min.css'),
+                'source' => get_theme_file_uri('/Assets/css/responsive.min.css'),
                 'deps' => [
                     'eve-online'
                 ],
@@ -227,7 +227,7 @@ class ThemeHelper {
             /* Adjustment to Plugins */
             'EVE Online Admin Styles' => [
                 'handle' => 'eve-online-admin-styles',
-                'source' => get_template_directory_uri() . '/Admin/css/eve-online-admin-style.min.css',
+                'source' => get_template_directory_uri() . '/Assets/css/eve-online-admin-style.min.css',
                 'deps' => [],
                 'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'
@@ -283,7 +283,7 @@ class ThemeHelper {
      * @return array|null
      */
     public static function getDefaultBackgroundImages(bool $withThumbnail = false, string $baseClass = null): ?array {
-        $imagePath = get_template_directory() . 'Assets/img/background/';
+        $imagePath = get_template_directory() . '/Assets/img/background/';
         $handle = opendir($imagePath);
 
         if ($baseClass !== null) {
@@ -305,7 +305,7 @@ class ThemeHelper {
             if ($withThumbnail === true) {
                 foreach ($images as &$image) {
                     $imageName = ucwords(str_replace('-', ' ', preg_replace('/\\.[^.\\s]{3,4}$/', '', $image)));
-                    $image = '<figure class="bg-image' . $baseClass . '"><img src="' . get_template_directory_uri() . 'Assets/img/background/' . $image . '" style="width:100px; height:auto;" title="' . $imageName . '" alt="' . $imageName . '"><figcaption>' . $imageName . '</figcaption></figure>';
+                    $image = '<figure class="bg-image' . $baseClass . '"><img src="' . get_template_directory_uri() . '/Assets/img/background/' . $image . '" style="width:100px; height:auto;" title="' . $imageName . '" alt="' . $imageName . '"><figcaption>' . $imageName . '</figcaption></figure>';
                 }
 
                 unset($image);
