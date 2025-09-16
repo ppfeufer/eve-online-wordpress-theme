@@ -155,8 +155,9 @@ class BootstrapImageGallery {
 
         $output .= '</ul></div>' . "\n";
         $output .= '<script type="text/javascript">
-            jQuery(document).ready(function() {
-                jQuery("ul.bootstrap-' . $selector . '").bootstrapGallery({
+            $(document).ready(function() {
+                console.log(\'Bootstrap Gallery: \' + $("ul.bootstrap-' . $selector . '").length + " items found.");
+                $("ul.bootstrap-' . $selector . '").bootstrapGallery({
                     "classes" : "' . PostHelper::getInstance()->getLoopContentClasses() . '",
                     "hasModal" : true
                 });

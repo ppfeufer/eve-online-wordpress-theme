@@ -109,7 +109,7 @@ class Corppage {
      * @return string
      */
     private function getCorporationPagesLoop(object $corpPages): string {
-        $uniqueID = uniqid('', true);
+        $uniqueID = uniqid('', false);
         $corplistHTML = '<div class="gallery-row row">';
         $corplistHTML .= '<ul class="bootstrap-gallery bootstrap-corporationlist bootstrap-corporationlist-' . $uniqueID . ' clearfix">';
 

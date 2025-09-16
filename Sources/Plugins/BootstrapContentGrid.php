@@ -36,7 +36,7 @@ class BootstrapContentGrid {
             'classes' => PostHelper::getInstance()->getLoopContentClasses(),
         ], $atts);
 
-        $uniqueID = uniqid('', true);
+        $uniqueID = uniqid('', false);
         $gridHtml = '<div class="content-grid-row row">';
         $gridHtml .= '<ul class="bootstrap-content-grid bootstrap-content-grid-' . $uniqueID . ' clearfix">';
         $gridHtml .= $this->removeAutopInShortcode($content);
