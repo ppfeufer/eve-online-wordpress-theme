@@ -1,190 +1,162 @@
 <?php
 
-/*
- * Copyright (C) 2018 p.pfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Error;
 
+/**
+ * Class EsiError
+ *
+ * Represents an error response from the EVE Online ESI API.
+ * Provides methods to retrieve and set error details such as type, response code, SSO status, timeout, and error message.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Error
+ */
 class EsiError {
     /**
-     * error
-     *
-     * @var string
+     * @var string $error
+     * The error message.
      */
-    protected $error = null;
+    protected string $error;
 
     /**
-     * responseCode
-     *
-     * @var int
+     * @var int $responseCode
+     * The HTTP response code associated with the error.
      */
-    protected $responseCode = null;
+    protected int $responseCode;
 
     /**
-     * ssoStatus
-     *
-     * @var int
+     * @var int $ssoStatus
+     * The status of the Single Sign-On (SSO) process.
      */
-    protected $ssoStatus = null;
+    protected int $ssoStatus;
 
     /**
-     * timeout
-     *
-     * @var int
+     * @var int $timeout
+     * The timeout duration for the request.
      */
-    protected $timeout = null;
+    protected int $timeout;
 
     /**
-     * type
-     *
-     * @var string
+     * @var string $type
+     * The type of error.
      */
-    protected $type = null;
+    protected string $type;
 
-    public function __construct($errorCode) {
-        switch ($errorCode) {
-            case 400:
-                $errorType = 'Bad request';
-                break;
+    /**
+     * Constructor
+     *
+     * Initializes the error object with a specific error code and sets the corresponding error type.
+     *
+     * @param int $errorCode The HTTP error code.
+     */
+    public function __construct(int $errorCode) {
+        $errorType = match ($errorCode) {
+            400 => 'Bad request',
+            401 => 'Unauthorized',
+            403 => 'Forbidden',
+            404 => 'Not found',
+            420 => 'Error limited',
+            500 => 'Internal server error',
+            503 => 'Service unavailable',
+            504 => 'Gateway timeout',
+            default => 'General error',
+        };
 
-            case 401:
-                $errorType = 'Unauthorized';
-                break;
-
-            case 403:
-                $errorType = 'Forbidden';
-                break;
-
-            case 404:
-                $errorType = 'Not found';
-                break;
-
-            case 420:
-                $errorType = 'Error limited';
-                break;
-
-            case 500:
-                $errorType = 'Internal server error';
-                break;
-
-            case 503:
-                $errorType = 'Service unavailable';
-                break;
-
-            case 504:
-                $errorType = 'Gateway timeout';
-                break;
-
-            default:
-                $errorType = 'General error';
-                break;
-        }
-
-        $this->type = $this->setType($errorType);
-        $this->responseCode = $this->setResponseCode($errorCode);
+        $this->setType($errorType);
+        $this->setResponseCode($errorCode);
     }
 
     /**
-     * getError
+     * Get the error message.
      *
-     * @return string
+     * @return string The error message.
      */
-    public function getError() {
+    public function getError(): string {
         return $this->error;
     }
 
     /**
-     * setError
+     * Set the error message.
      *
-     * @param string $error
+     * @param string $error The error message to set.
+     * @return void
      */
-    protected function setError(string $error) {
+    protected function setError(string $error): void {
         $this->error = $error;
     }
 
     /**
-     * getSsoStatus
+     * Get the SSO status.
      *
-     * @return int
+     * @return int The SSO status.
      */
-    public function getSsoStatus() {
+    public function getSsoStatus(): int {
         return $this->ssoStatus;
     }
 
     /**
-     * setSsoStatus
+     * Set the SSO status.
      *
-     * @param int $ssoStatus
+     * @param int $ssoStatus The SSO status to set.
+     * @return void
      */
-    protected function setSsoStatus(int $ssoStatus) {
+    protected function setSsoStatus(int $ssoStatus): void {
         $this->ssoStatus = $ssoStatus;
     }
 
     /**
-     * getTimeout
+     * Get the timeout duration.
      *
-     * @return int
+     * @return int The timeout duration.
      */
-    public function getTimeout() {
+    public function getTimeout(): int {
         return $this->timeout;
     }
 
     /**
-     * setTimeout
+     * Set the timeout duration.
      *
-     * @param int $timeout
+     * @param int $timeout The timeout duration to set.
+     * @return void
      */
-    protected function setTimeout(int $timeout) {
+    protected function setTimeout(int $timeout): void {
         $this->timeout = $timeout;
     }
 
     /**
-     * getType
+     * Get the type of error.
      *
-     * @return string
+     * @return string The error type.
      */
-    public function getType() {
+    public function getType(): string {
         return $this->type;
     }
 
     /**
-     * setType
+     * Set the type of error.
      *
-     * @param string $type
+     * @param string $type The error type to set.
+     * @return void
      */
-    protected function setType(string $type) {
+    protected function setType(string $type): void {
         $this->type = $type;
     }
 
     /**
-     * getResponseCode
+     * Get the HTTP response code.
      *
-     * @return int
+     * @return int The HTTP response code.
      */
-    public function getResponseCode() {
+    public function getResponseCode(): int {
         return $this->responseCode;
     }
 
     /**
-     * setResponseCode
+     * Set the HTTP response code.
      *
-     * @param int $responsecode
+     * @param int $responseCode The HTTP response code to set.
+     * @return void
      */
-    protected function setResponseCode(int $responsecode) {
-        $this->responseCode = $responsecode;
+    protected function setResponseCode(int $responseCode): void {
+        $this->responseCode = $responseCode;
     }
 }
