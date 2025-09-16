@@ -1,49 +1,38 @@
 <?php
 
-/*
- * Copyright (C) 2018 ppfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Alliances\AllianceId;
 
+/**
+ * Class Corporations
+ *
+ * Represents a collection of corporation IDs associated with an alliance.
+ * Provides methods to retrieve and set the list of corporation IDs.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Alliances\AllianceId
+ */
 class Corporations {
     /**
-     * corporations
-     *
-     * List of corporation IDs
-     *
-     * @var array
+     * @var array $corporations
+     * List of corporation IDs.
      */
-    protected $corporations = null;
+    protected array $corporations = [];
 
     /**
-     * getCorporations
+     * Retrieve the list of corporation IDs.
      *
-     * @return array
+     * @return array The list of corporation IDs.
      */
-    public function getCorporations() {
+    public function getCorporations(): array {
         return $this->corporations;
     }
 
     /**
-     * setCorporations
+     * Set the list of corporation IDs.
      *
-     * @param array $corporations
+     * @param array $corporations The list of corporation IDs to set.
+     * @return void
      */
-    protected function setCorporations(array $corporations) {
+    protected function setCorporations(array $corporations): void {
         $this->corporations = $corporations;
     }
 }

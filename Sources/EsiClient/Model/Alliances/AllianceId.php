@@ -1,211 +1,183 @@
 <?php
 
-/*
- * Copyright (C) 2018 ppfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Alliances;
 
-use \DateTime;
+use DateTime;
 
+/**
+ * Class AllianceId
+ *
+ * Represents an alliance with various attributes such as creator, founding date, executor corporation, and faction.
+ * Provides getter and setter methods for each attribute.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Alliances
+ */
 class AllianceId {
     /**
-     * creatorCorpId
-     *
-     * ID of the corporation that created the alliance
-     *
-     * @var int
+     * @var int $creatorCorporationId
+     * ID of the corporation that created the alliance.
      */
-    protected $creatorCorporationId = null;
+    protected int $creatorCorporationId;
 
     /**
-     * creatorId
-     *
-     * ID of the character that created the alliance
-     *
-     * @var int
+     * @var int $creatorId
+     * ID of the character that created the alliance.
      */
-    protected $creatorId = null;
+    protected int $creatorId;
 
     /**
-     * dateFounded
-     *
-     * @var DateTime
+     * @var DateTime $dateFounded
+     * The date when the alliance was founded.
      */
-    protected $dateFounded = null;
+    protected DateTime $dateFounded;
 
     /**
-     * executorCorpId
-     *
-     * The executor corporation ID, if this alliance is not closed
-     *
-     * @var int
+     * @var int $executorCorporationId
+     * The executor corporation ID, if this alliance is not closed.
      */
-    protected $executorCorporationId = null;
+    protected int $executorCorporationId;
 
     /**
-     * factionId
-     *
-     * Faction ID this alliance is fighting for, if this alliance is enlisted in factional warfare
-     *
-     * @var int
+     * @var int $factionId
+     * Faction ID this alliance is fighting for, if enlisted in factional warfare.
      */
-    protected $factionId = null;
+    protected int $factionId;
 
     /**
-     * name
-     *
-     * The full name of the alliance
-     *
-     * @var string
+     * @var string $name
+     * The full name of the alliance.
      */
-    protected $name = null;
+    protected string $name;
 
     /**
-     * ticker
-     *
-     * The short name of the alliance
-     *
-     * @var string
+     * @var string $ticker
+     * The short name (ticker) of the alliance.
      */
-    protected $ticker = null;
+    protected string $ticker;
 
     /**
-     * getCreatorCorpId
+     * Get the ID of the corporation that created the alliance.
      *
-     * @return int
+     * @return int The creator corporation ID.
      */
-    public function getCreatorCorporationId() {
+    public function getCreatorCorporationId(): int {
         return $this->creatorCorporationId;
     }
 
     /**
-     * setCreatorCorpId
+     * Set the ID of the corporation that created the alliance.
      *
-     * @param int $creatorCorpId
+     * @param int $creatorCorpId The creator corporation ID.
      */
-    protected function setCreatorCorporationId(int $creatorCorpId) {
+    protected function setCreatorCorporationId(int $creatorCorpId): void {
         $this->creatorCorporationId = $creatorCorpId;
     }
 
     /**
-     * getCreatorId
+     * Get the ID of the character that created the alliance.
      *
-     * @return int
+     * @return int The creator ID.
      */
-    public function getCreatorId() {
+    public function getCreatorId(): int {
         return $this->creatorId;
     }
 
     /**
-     * setCreatorId
+     * Set the ID of the character that created the alliance.
      *
-     * @param int $creatorId
+     * @param int $creatorId The creator ID.
      */
-    protected function setCreatorId(int $creatorId) {
+    protected function setCreatorId(int $creatorId): void {
         $this->creatorId = $creatorId;
     }
 
     /**
-     * getDateFounded
+     * Get the date when the alliance was founded.
      *
-     * @return DateTime
+     * @return DateTime The founding date.
      */
-    public function getDateFounded() {
+    public function getDateFounded(): DateTime {
         return $this->dateFounded;
     }
 
     /**
-     * setDateFounded
+     * Set the date when the alliance was founded.
      *
-     * @param DateTime $dateFounded
+     * @param DateTime $dateFounded The founding date.
      */
-    protected function setDateFounded(DateTime $dateFounded) {
+    protected function setDateFounded(DateTime $dateFounded): void {
         $this->dateFounded = $dateFounded;
     }
 
     /**
-     * getExecutorCorpId
+     * Get the executor corporation ID.
      *
-     * @return int
+     * @return int The executor corporation ID.
      */
-    public function getExecutorCorporationId() {
+    public function getExecutorCorporationId(): int {
         return $this->executorCorporationId;
     }
 
     /**
-     * setExecutorCorpId
+     * Set the executor corporation ID.
      *
-     * @param int $executorCorpId
+     * @param int $executorCorpId The executor corporation ID.
      */
-    protected function setExecutorCorporationId(int $executorCorpId) {
+    protected function setExecutorCorporationId(int $executorCorpId): void {
         $this->executorCorporationId = $executorCorpId;
     }
 
     /**
-     * getFactionId
+     * Get the faction ID this alliance is fighting for.
      *
-     * @return int
+     * @return int The faction ID.
      */
-    public function getFactionId() {
+    public function getFactionId(): int {
         return $this->factionId;
     }
 
     /**
-     * setFactionId
+     * Set the faction ID this alliance is fighting for.
      *
-     * @param int $factionId
+     * @param int $factionId The faction ID.
      */
-    protected function setFactionId(int $factionId) {
+    protected function setFactionId(int $factionId): void {
         $this->factionId = $factionId;
     }
 
     /**
-     * getName
+     * Get the full name of the alliance.
      *
-     * @return string
+     * @return string The full name of the alliance.
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
-     * setName
+     * Set the full name of the alliance.
      *
-     * @param string $name
+     * @param string $name The full name of the alliance.
      */
-    protected function setName(string $name) {
+    protected function setName(string $name): void {
         $this->name = $name;
     }
 
     /**
-     * getTicker
+     * Get the short name (ticker) of the alliance.
      *
-     * @return string
+     * @return string The ticker of the alliance.
      */
-    public function getTicker() {
+    public function getTicker(): string {
         return $this->ticker;
     }
 
     /**
-     * setTicker
+     * Set the short name (ticker) of the alliance.
      *
-     * @param string $ticker
+     * @param string $ticker The ticker of the alliance.
      */
-    protected function setTicker(string $ticker) {
+    protected function setTicker(string $ticker): void {
         $this->ticker = $ticker;
     }
 }

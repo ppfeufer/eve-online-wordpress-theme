@@ -1,355 +1,328 @@
 <?php
 
-/*
- * Copyright (C) 2018 ppfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Corporations;
 
-use \DateTime;
+use DateTime;
 
+/**
+ * Class CorporationId
+ *
+ * Represents a corporation in the EVE Online universe with various attributes such as alliance, CEO, creator, and more.
+ * Provides getter and setter methods for each attribute.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Corporations
+ */
 class CorporationId {
     /**
-     * allianceId
-     *
-     * ID of the alliance that corporation is a member of, if any
-     *
-     * @var int
+     * @var int $allianceId
+     * ID of the alliance that the corporation is a member of, if any.
      */
-    protected $allianceId = null;
+    protected int $allianceId;
 
     /**
-     * ceoId
-     *
-     * @var int
+     * @var int $ceoId
+     * ID of the CEO of the corporation.
      */
-    protected $ceoId = null;
+    protected int $ceoId;
 
     /**
-     * creatorId
-     *
-     * @var int
+     * @var int $creatorId
+     * ID of the creator of the corporation.
      */
-    protected $creatorId = null;
+    protected int $creatorId;
 
     /**
-     * dateFounded
-     *
-     * @var DateTime
+     * @var DateTime $dateFounded
+     * The date the corporation was founded.
      */
-    protected $dateFounded = null;
+    protected DateTime $dateFounded;
 
     /**
-     * description
-     *
-     * @var string
+     * @var string $description
+     * A description of the corporation.
      */
-    protected $description = null;
+    protected string $description;
 
     /**
-     * factionId
-     *
-     * @var int
+     * @var int $factionId
+     * ID of the faction the corporation is associated with, if any.
      */
-    protected $factionId = null;
+    protected int $factionId;
 
     /**
-     * homeStationId
-     *
-     * @var int
+     * @var int $homeStationId
+     * ID of the corporation's home station.
      */
-    protected $homeStationId = null;
+    protected int $homeStationId;
 
     /**
-     * memberCount
-     *
-     * @var int
+     * @var int $memberCount
+     * The number of members in the corporation.
      */
-    protected $memberCount = null;
+    protected int $memberCount;
 
     /**
-     * name
-     *
-     * The full name of the corporation
-     *
-     * @var string
+     * @var string $name
+     * The full name of the corporation.
      */
-    protected $name = null;
+    protected string $name;
 
     /**
-     * shares
-     *
-     * @var int
+     * @var int $shares
+     * The number of shares owned by the corporation.
      */
-    protected $shares = null;
+    protected int $shares;
 
     /**
-     * taxRate
-     *
-     * @var float
+     * @var float $taxRate
+     * The tax rate of the corporation.
      */
-    protected $taxRate = null;
+    protected float $taxRate;
 
     /**
-     * ticker
-     *
-     * The short name of the corporation
-     *
-     * @var string
+     * @var string $ticker
+     * The short name (ticker) of the corporation.
      */
-    protected $ticker = null;
+    protected string $ticker;
 
     /**
-     * url
-     *
-     * @var string
+     * @var string $url
+     * The URL of the corporation's website.
      */
-    protected $url = null;
+    protected string $url;
 
     /**
-     * getAllianceId
+     * Get the ID of the alliance the corporation is a member of.
      *
-     * @return int
+     * @return int The alliance ID.
      */
-    public function getAllianceId() {
+    public function getAllianceId(): int {
         return $this->allianceId;
     }
 
     /**
-     * setAllianceId
+     * Set the ID of the alliance the corporation is a member of.
      *
-     * @param int $allianceId
+     * @param int $allianceId The alliance ID to set.
      */
-    protected function setAllianceId(int $allianceId) {
+    protected function setAllianceId(int $allianceId): void {
         $this->allianceId = $allianceId;
     }
 
     /**
-     * getCeoId
+     * Get the ID of the CEO of the corporation.
      *
-     * @return int
+     * @return int The CEO ID.
      */
-    public function getCeoId() {
+    public function getCeoId(): int {
         return $this->ceoId;
     }
 
     /**
-     * setCeoId
+     * Set the ID of the CEO of the corporation.
      *
-     * @param int $ceoId
+     * @param int $ceoId The CEO ID to set.
      */
-    protected function setCeoId(int $ceoId) {
+    protected function setCeoId(int $ceoId): void {
         $this->ceoId = $ceoId;
     }
 
     /**
-     * getCreatorId
+     * Get the ID of the creator of the corporation.
      *
-     * @return int
+     * @return int The creator ID.
      */
-    public function getCreatorId() {
+    public function getCreatorId(): int {
         return $this->creatorId;
     }
 
     /**
-     * setCreatorId
+     * Set the ID of the creator of the corporation.
      *
-     * @param int $creatorId
+     * @param int $creatorId The creator ID to set.
      */
-    protected function setCreatorId(int $creatorId) {
+    protected function setCreatorId(int $creatorId): void {
         $this->creatorId = $creatorId;
     }
 
     /**
-     * getDateFounded
+     * Get the date the corporation was founded.
      *
-     * @return DateTime
+     * @return DateTime The founding date.
      */
-    public function getDateFounded() {
+    public function getDateFounded(): DateTime {
         return $this->dateFounded;
     }
 
     /**
-     * setDateFounded
+     * Set the date the corporation was founded.
      *
-     * @param DateTime $dateFounded
+     * @param DateTime $dateFounded The founding date to set.
      */
-    protected function setDateFounded(DateTime $dateFounded) {
+    protected function setDateFounded(DateTime $dateFounded): void {
         $this->dateFounded = $dateFounded;
     }
 
     /**
-     * getDescription
+     * Get the description of the corporation.
      *
-     * @return string
+     * @return string The description.
      */
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
 
     /**
-     * setDescription
+     * Set the description of the corporation.
+     * Strips HTML tags from the input.
      *
-     * @param string $description
+     * @param string $description The description to set.
      */
-    protected function setDescription(string $description) {
-        $this->description = \strip_tags($description);
+    protected function setDescription(string $description): void {
+        $this->description = strip_tags($description);
     }
 
     /**
-     * getFactionId
+     * Get the ID of the faction the corporation is associated with.
      *
-     * @return int
+     * @return int The faction ID.
      */
-    public function getFactionId() {
+    public function getFactionId(): int {
         return $this->factionId;
     }
 
     /**
-     * setFactionId
+     * Set the ID of the faction the corporation is associated with.
      *
-     * @param int $factionId
+     * @param int $factionId The faction ID to set.
      */
-    protected function setFactionId(int $factionId) {
+    protected function setFactionId(int $factionId): void {
         $this->factionId = $factionId;
     }
 
     /**
-     * getHomeStationId
+     * Get the ID of the corporation's home station.
      *
-     * @return int
+     * @return int The home station ID.
      */
-    public function getHomeStationId() {
+    public function getHomeStationId(): int {
         return $this->homeStationId;
     }
 
     /**
-     * setHomeStationId
+     * Set the ID of the corporation's home station.
      *
-     * @param int $homeStationId
+     * @param int $homeStationId The home station ID to set.
      */
-    protected function setHomeStationId(int $homeStationId) {
+    protected function setHomeStationId(int $homeStationId): void {
         $this->homeStationId = $homeStationId;
     }
 
     /**
-     * getMembercount
+     * Get the number of members in the corporation.
      *
-     * @return int
+     * @return int The member count.
      */
-    public function getMembercount() {
+    public function getMembercount(): int {
         return $this->memberCount;
     }
 
     /**
-     * setMemberCount
+     * Set the number of members in the corporation.
      *
-     * @param int $memberCount
+     * @param int $memberCount The member count to set.
      */
-    protected function setMemberCount(int $memberCount) {
+    protected function setMemberCount(int $memberCount): void {
         $this->memberCount = $memberCount;
     }
 
     /**
-     * getName
+     * Get the full name of the corporation.
      *
-     * @return string
+     * @return string The name.
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
-     * setName
+     * Set the full name of the corporation.
      *
-     * @param string $name
+     * @param string $name The name to set.
      */
-    protected function setName(string $name) {
+    protected function setName(string $name): void {
         $this->name = $name;
     }
 
     /**
-     * getShares
+     * Get the number of shares owned by the corporation.
      *
-     * @return int
+     * @return int The number of shares.
      */
-    public function getShares() {
+    public function getShares(): int {
         return $this->shares;
     }
 
     /**
-     * setShares
+     * Set the number of shares owned by the corporation.
      *
-     * @param int $shares
+     * @param int $shares The number of shares to set.
      */
-    protected function setShares(int $shares) {
+    protected function setShares(int $shares): void {
         $this->shares = $shares;
     }
 
     /**
-     * getTaxRate
+     * Get the tax rate of the corporation.
      *
-     * @return float
+     * @return float The tax rate.
      */
-    public function getTaxRate() {
+    public function getTaxRate(): float {
         return $this->taxRate;
     }
 
     /**
-     * setTaxRate
+     * Set the tax rate of the corporation.
      *
-     * @param float $taxRate
+     * @param float $taxRate The tax rate to set.
      */
-    protected function setTaxRate(float $taxRate) {
+    protected function setTaxRate(float $taxRate): void {
         $this->taxRate = $taxRate;
     }
 
     /**
-     * getTicker
+     * Get the short name (ticker) of the corporation.
      *
-     * @return string
+     * @return string The ticker.
      */
-    public function getTicker() {
+    public function getTicker(): string {
         return $this->ticker;
     }
 
     /**
-     * setTicker
+     * Set the short name (ticker) of the corporation.
      *
-     * @param string $ticker
+     * @param string $ticker The ticker to set.
      */
-    protected function setTicker(string $ticker) {
+    protected function setTicker(string $ticker): void {
         $this->ticker = $ticker;
     }
 
     /**
-     * getUrl
+     * Get the URL of the corporation's website.
      *
-     * @return string
+     * @return string The URL.
      */
-    public function getUrl() {
+    public function getUrl(): string {
         return $this->url;
     }
 
     /**
-     * setUrl
+     * Set the URL of the corporation's website.
      *
-     * @param string $url
+     * @param string $url The URL to set.
      */
-    protected function setUrl(string $url) {
+    protected function setUrl(string $url): void {
         $this->url = $url;
     }
 }
