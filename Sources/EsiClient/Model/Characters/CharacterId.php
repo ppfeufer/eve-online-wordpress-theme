@@ -1,332 +1,304 @@
 <?php
 
-/*
- * Copyright (C) 2018 ppfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters;
 
-use \DateTime;
+use DateTime;
 
+/**
+ * Class CharacterId
+ *
+ * Represents a character in the EVE Online universe with various attributes such as alliance, ancestry, birthday, and more.
+ * Provides getter and setter methods for each attribute.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters
+ */
 class CharacterId {
     /**
-     * allianceId
-     *
-     * The character's alliance ID
-     *
-     * @var int
+     * @var int $allianceId
+     * The character's alliance ID.
      */
-    protected $allianceId = null;
+    protected int $allianceId;
 
     /**
-     * ancestryId
-     *
-     * @var int
+     * @var int $ancestryId
+     * The character's ancestry ID.
      */
-    protected $ancestryId = null;
+    protected int $ancestryId;
 
     /**
-     * birthday
-     *
-     * Creation date of the character
-     *
-     * @var DateTime
+     * @var DateTime $birthday
+     * The creation date of the character.
      */
-    protected $birhday = null;
+    protected DateTime $birthday;
 
     /**
-     * bloodlineId
-     *
-     * @var int
+     * @var int $bloodlineId
+     * The character's bloodline ID.
      */
-    protected $bloodlineId = null;
+    protected int $bloodlineId;
 
     /**
-     * corporationId
-     *
-     * The character's corporation ID
-     *
-     * @var int
+     * @var int $corporationId
+     * The character's corporation ID.
      */
-    protected $corporationId = null;
+    protected int $corporationId;
 
     /**
-     * description
-     *
-     * @var string
+     * @var string $description
+     * A description of the character.
      */
-    protected $description = null;
+    protected string $description;
 
     /**
-     * factionId
-     *
-     * ID of the faction the character is fighting for, if the character is enlisted in Factional Warfare
-     *
-     * @var int
+     * @var int $factionId
+     * The ID of the faction the character is fighting for, if enlisted in Factional Warfare.
      */
-    protected $factionId = null;
+    protected int $factionId;
 
     /**
-     * gender
-     *
-     * @var string
+     * @var string $gender
+     * The gender of the character.
      */
-    protected $gender = null;
+    protected string $gender;
 
     /**
-     * name
-     *
-     * @var string
+     * @var string $name
+     * The name of the character.
      */
-    protected $name = null;
+    protected string $name;
 
     /**
-     * raceId
-     *
-     * @var int
+     * @var int $raceId
+     * The character's race ID.
      */
-    protected $raceId = null;
+    protected int $raceId;
 
     /**
-     * securityStatus
-     *
-     * @var float
+     * @var float $securityStatus
+     * The security status of the character.
      */
-    protected $securityStatus = null;
+    protected float $securityStatus;
 
     /**
-     * title
-     *
-     * @var string
+     * @var string $title
+     * The title of the character.
      */
-    protected $title = null;
+    protected string $title;
 
     /**
-     * getAllianceId
+     * Get the character's alliance ID.
      *
-     * @return int
+     * @return int The alliance ID.
      */
-    public function getAllianceId() {
+    public function getAllianceId(): int {
         return $this->allianceId;
     }
 
     /**
-     * setAllianceId
+     * Set the character's alliance ID.
      *
-     * @param int $allianceId
+     * @param int $allianceId The alliance ID to set.
      */
-    protected function setAllianceId(int $allianceId) {
+    protected function setAllianceId(int $allianceId): void {
         $this->allianceId = $allianceId;
     }
 
     /**
-     * getAncestryId
+     * Get the character's ancestry ID.
      *
-     * @return int
+     * @return int The ancestry ID.
      */
-    public function getAncestryId() {
+    public function getAncestryId(): int {
         return $this->ancestryId;
     }
 
     /**
-     * setAncestryId
+     * Set the character's ancestry ID.
      *
-     * @param int $ancestryId
+     * @param int $ancestryId The ancestry ID to set.
      */
-    protected function setAncestryId(int $ancestryId) {
+    protected function setAncestryId(int $ancestryId): void {
         $this->ancestryId = $ancestryId;
     }
 
     /**
-     * getBirthday
+     * Get the character's birthday.
      *
-     * @return DateTime
+     * @return DateTime The birthday.
      */
-    public function getBirthday() {
-        return $this->birhday;
+    public function getBirthday(): DateTime {
+        return $this->birthday;
     }
 
     /**
-     * setBirthday
+     * Set the character's birthday.
      *
-     * @param DateTime $birthday
+     * @param DateTime $birthday The birthday to set.
      */
-    protected function setBirthday(DateTime $birthday) {
-        $this->birhday = $birthday;
+    protected function setBirthday(DateTime $birthday): void {
+        $this->birthday = $birthday;
     }
 
     /**
-     * getBloodlineId
+     * Get the character's bloodline ID.
      *
-     * @return int
+     * @return int The bloodline ID.
      */
-    public function getBloodlineId() {
+    public function getBloodlineId(): int {
         return $this->bloodlineId;
     }
 
     /**
-     * setBloodlineId
+     * Set the character's bloodline ID.
      *
-     * @param int $bloodlineId
+     * @param int $bloodlineId The bloodline ID to set.
      */
-    protected function setBloodlineId(int $bloodlineId) {
+    protected function setBloodlineId(int $bloodlineId): void {
         $this->bloodlineId = $bloodlineId;
     }
 
     /**
-     * getCorporationId
+     * Get the character's corporation ID.
      *
-     * @return int
+     * @return int The corporation ID.
      */
-    public function getCorporationId() {
+    public function getCorporationId(): int {
         return $this->corporationId;
     }
 
     /**
-     * setCorporationId
+     * Set the character's corporation ID.
      *
-     * @param int $corporationId
+     * @param int $corporationId The corporation ID to set.
      */
-    protected function setCorporationId(int $corporationId) {
+    protected function setCorporationId(int $corporationId): void {
         $this->corporationId = $corporationId;
     }
 
     /**
-     * getDescription
+     * Get the character's description.
      *
-     * @return string
+     * @return string The description.
      */
-    public function getDescription() {
+    public function getDescription(): string {
         return $this->description;
     }
 
     /**
-     * setDescription
+     * Set the character's description.
+     * Strips HTML tags from the input.
      *
-     * @param string $description
+     * @param string $description The description to set.
      */
-    protected function setDescription(string $description) {
-        $this->description = \strip_tags($description);
+    protected function setDescription(string $description): void {
+        $this->description = strip_tags($description);
     }
 
     /**
-     * getFactionId
+     * Get the character's faction ID.
      *
-     * @return int
+     * @return int The faction ID.
      */
-    public function getFactionId() {
+    public function getFactionId(): int {
         return $this->factionId;
     }
 
     /**
-     * setFactionId
+     * Set the character's faction ID.
      *
-     * @param int $factionId
+     * @param int $factionId The faction ID to set.
      */
-    protected function setFactionId(int $factionId) {
+    protected function setFactionId(int $factionId): void {
         $this->factionId = $factionId;
     }
 
     /**
-     * getGender
+     * Get the character's gender.
      *
-     * @return string
+     * @return string The gender.
      */
-    public function getGender() {
+    public function getGender(): string {
         return $this->gender;
     }
 
     /**
-     * setGender
+     * Set the character's gender.
      *
-     * @param string $gender
+     * @param string $gender The gender to set.
      */
-    protected function setGender(string $gender) {
+    protected function setGender(string $gender): void {
         $this->gender = $gender;
     }
 
     /**
-     * getName
+     * Get the character's name.
      *
-     * @return string
+     * @return string The name.
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
     /**
-     * setName
+     * Set the character's name.
      *
-     * @param string $name
+     * @param string $name The name to set.
      */
-    protected function setName(string $name) {
+    protected function setName(string $name): void {
         $this->name = $name;
     }
 
     /**
-     * getRaceId
+     * Get the character's race ID.
      *
-     * @return int
+     * @return int The race ID.
      */
-    public function getRaceId() {
+    public function getRaceId(): int {
         return $this->raceId;
     }
 
     /**
-     * setRaceId
+     * Set the character's race ID.
      *
-     * @param int $raceId
+     * @param int $raceId The race ID to set.
      */
-    protected function setRaceId(int $raceId) {
+    protected function setRaceId(int $raceId): void {
         $this->raceId = $raceId;
     }
 
     /**
-     * getSecurityStatus
+     * Get the character's security status.
      *
-     * @return float
+     * @return float The security status.
      */
-    public function getSecurityStatus() {
+    public function getSecurityStatus(): float {
         return $this->securityStatus;
     }
 
     /**
-     * setSecurityStatus
+     * Set the character's security status.
      *
-     * @param float $securityStatus
+     * @param float $securityStatus The security status to set.
      */
-    protected function setSecurityStatus(float $securityStatus) {
+    protected function setSecurityStatus(float $securityStatus): void {
         $this->securityStatus = $securityStatus;
     }
 
     /**
-     * getTitle
+     * Get the character's title.
      *
-     * @return string
+     * @return string The title.
      */
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
     /**
-     * setTitle
+     * Set the character's title.
      *
-     * @param string $title
+     * @param string $title The title to set.
      */
-    protected function setTitle(string $title) {
+    protected function setTitle(string $title): void {
         $this->title = $title;
     }
 }
