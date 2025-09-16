@@ -42,9 +42,9 @@ defined('ABSPATH') or die();
                 <div class="container">
                     <div class="row">
                         <!-- Logo -->
-                        <div class="<?php echo PostHelper::getHeaderColClasses(); ?> brand clearfix">
+                        <div class="<?php echo PostHelper::getInstance()->getHeaderColClasses(); ?> brand clearfix">
                             <?php
-                            $options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+                            $options = get_option('eve_theme_options', ThemeHelper::getInstance()->getThemeDefaultOptions());
 
                             if (!empty($options['name'])) {
                                 $eveApi = EsiHelper::getInstance();
@@ -88,7 +88,7 @@ defined('ABSPATH') or die();
 
                         <!-- Header Widget from Theme options -->
                         <?php
-                        if (ThemeHelper::hasSidebar('header-widget-area')) {
+                        if (ThemeHelper::getInstance()->hasSidebar('header-widget-area')) {
                             ?>
                             <div class="col-md-3 col-sm-12">
                                 <div class="row">
@@ -206,7 +206,7 @@ defined('ABSPATH') or die();
 
         <?php
         if ((is_front_page()) && !is_paged()) {
-            if (ThemeHelper::hasSidebar('home-column-1') || ThemeHelper::hasSidebar('home-column-2') || ThemeHelper::hasSidebar('home-column-3') || ThemeHelper::hasSidebar('home-column-4')) {
+            if (ThemeHelper::getInstance()->hasSidebar('home-column-1') || ThemeHelper::getInstance()->hasSidebar('home-column-2') || ThemeHelper::getInstance()->hasSidebar('home-column-3') || ThemeHelper::getInstance()->hasSidebar('home-column-4')) {
                 ?>
                 <!--
                 // Marketing Stuff / Home Widgets

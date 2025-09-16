@@ -33,7 +33,7 @@ class BootstrapContentGrid {
 
     public function shortcodeContentGrid($atts, $content = null): string {
         $args = shortcode_atts([
-            'classes' => PostHelper::getLoopContentClasses(),
+            'classes' => PostHelper::getInstance()->getLoopContentClasses(),
         ], $atts);
 
         $uniqueID = uniqid('', true);

@@ -2,6 +2,7 @@
 
 namespace Ppfeufer\Theme\EVEOnline;
 
+use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 use Ppfeufer\Theme\EVEOnline\Libs\YahnisElsts\PluginUpdateChecker\v5p6\PucFactory;
 
 /**
@@ -14,6 +15,16 @@ use Ppfeufer\Theme\EVEOnline\Libs\YahnisElsts\PluginUpdateChecker\v5p6\PucFactor
  */
 class Main {
     /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
+    /**
      * Constructor
      *
      * Initializes the theme by performing an update check and setting up hooks.
@@ -22,6 +33,8 @@ class Main {
      * @access public
      */
     public function __construct() {
+        $this->themeHelper = ThemeHelper::getInstance();
+
         $this->doUpdateCheck();
         $this->initializeHooks();
     }
@@ -79,21 +92,21 @@ class Main {
          * This ensures that the theme's options are synchronized with the latest
          * database version and default options.
          */
-        Helper\ThemeHelper::updateOptions(
+        $this->themeHelper->updateOptions(
             optionsName: 'eve_theme_options',
             dbVersionFieldName: 'eve_theme_db_version',
-            newDbVersion: Helper\ThemeHelper::getThemeDbVersion(),
-            defaultOptions: Helper\ThemeHelper::getThemeDefaultOptions()
+            newDbVersion: $this->themeHelper->getThemeDbVersion(),
+            defaultOptions: $this->themeHelper->getThemeDefaultOptions()
         );
 
         // Add support for various WordPress features such as post thumbnails and HTML5.
-        Helper\ThemeHelper::addThemeSupport();
+        $this->themeHelper->addThemeSupport();
 
         // Register the theme's navigation menus.
-        Helper\ThemeHelper::registerNavMenus();
+        $this->themeHelper->registerNavMenus();
 
         // Define custom thumbnail sizes for the theme.
-        Helper\ThemeHelper::addThumbnailSizes();
+        $this->themeHelper->addThumbnailSizes();
 
         /**
          * Load the theme's text domain for localization.

@@ -33,8 +33,8 @@ defined('ABSPATH') or die();
         <aside class="entry-details">
             <p class="meta">
                 <?php
-                PostHelper::getPostMetaInformation();
-                PostHelper::getPostCategoryAndTags();
+                PostHelper::getInstance()->getPostMetaInformation();
+                PostHelper::getInstance()->getPostCategoryAndTags();
                 edit_post_link(__('Edit', 'eve-online'));
                 ?>
             </p>
@@ -53,7 +53,7 @@ defined('ABSPATH') or die();
             ?>
             <div class="entry-content clearfix">
                 <?php
-                $options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+                $options = get_option('eve_theme_options', ThemeHelper::getInstance()->getThemeDefaultOptions());
 
                 if (has_post_thumbnail()) {
                     ?>

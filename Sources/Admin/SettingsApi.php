@@ -375,7 +375,7 @@ class SettingsApi {
      */
     public function get() {
         if (!empty($this->args['get'])) {
-            $item_array = call_user_func_array([$this, 'get_' . StringHelper::camelCase($this->args['get'], true)], [$this->args]);
+            $item_array = call_user_func_array([$this, 'get_' . StringHelper::getInstance()->camelCase($this->args['get'], true)], [$this->args]);
         } elseif (!empty($this->args['choices'])) {
             $item_array = $this->selectChoices($this->args);
         } else {

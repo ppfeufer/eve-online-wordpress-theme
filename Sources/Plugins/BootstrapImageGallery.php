@@ -157,7 +157,7 @@ class BootstrapImageGallery {
         $output .= '<script type="text/javascript">
             jQuery(document).ready(function() {
                 jQuery("ul.bootstrap-' . $selector . '").bootstrapGallery({
-                    "classes" : "' . PostHelper::getLoopContentClasses() . '",
+                    "classes" : "' . PostHelper::getInstance()->getLoopContentClasses() . '",
                     "hasModal" : true
                 });
             });

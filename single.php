@@ -28,7 +28,7 @@ get_header();
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+    $breadcrumbNavigation = NavigationHelper::getInstance()->getBreadcrumbNavigation();
 
     if (!empty($breadcrumbNavigation)) {
         ?>
@@ -47,7 +47,7 @@ get_header();
 
     <!--<div class="row main-content">-->
     <div class="main-content clearfix">
-        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getInstance()->getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner single">
                 <?php
                 if (have_posts()) {
@@ -61,15 +61,15 @@ get_header();
         </div> <!-- /.col-lg-9 /.col-md-9 /.col-sm-9 /.col-9 -->
 
         <?php
-        if (ThemeHelper::hasSidebar('sidebar-post') || ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::getInstance()->hasSidebar('sidebar-post') || ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
                 <?php
-                if (ThemeHelper::hasSidebar('sidebar-general')) {
+                if (ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
                     get_sidebar('general');
                 }
 
-                if (ThemeHelper::hasSidebar('sidebar-post')) {
+                if (ThemeHelper::getInstance()->hasSidebar('sidebar-post')) {
                     get_sidebar('post');
                 }
                 ?>

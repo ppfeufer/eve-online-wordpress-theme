@@ -19,45 +19,9 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-class RemoteHelper {
-    /**
-     * instance
-     *
-     * static variable to keep the current (and only!) instance of this class
-     */
-    protected static $instance = null;
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
 
-    /**
-     * Returning the instance
-     *
-     * @return \Ppfeufer\Theme\EVEOnline\Helper\RemoteHelper
-     */
-    public static function getInstance() {
-        if (null === self::$instance) {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * clone
-     *
-     * no cloning allowed
-     */
-    protected function __clone() {
-        ;
-    }
-
-    /**
-     * constructor
-     *
-     * no external instanciation allowed
-     */
-    protected function __construct() {
-        ;
-    }
-
+class RemoteHelper extends GenericSingleton {
     /**
      * Getting data from a remote source
      *

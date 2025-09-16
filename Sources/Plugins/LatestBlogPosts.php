@@ -28,7 +28,20 @@ use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
 use WP_Query;
 
 class LatestBlogPosts {
+    /**
+     * Post Helper Instance
+     *
+     * An instance of the PostHelper class to assist with post-related tasks.
+     *
+     * @var PostHelper
+     * @access private
+     */
+    private PostHelper $postHelper;
+
+
     public function __construct() {
+        $this->postHelper = PostHelper::getInstance();
+
         $this->registerShortcodes();
     }
 
@@ -38,8 +51,8 @@ class LatestBlogPosts {
 
     public function shortcodeLatestBlogPosts($attributes): false|string {
         $args = shortcode_atts([
-            'number' => PostHelper::getContentColumnCount(),
-            'classes' => PostHelper::getLoopContentClasses(),
+            'number' => $this->postHelper->getContentColumnCount(),
+            'classes' => $this->postHelper->getLoopContentClasses(),
             'headline_type' => 'h2',
             'headline_text' => ''
         ], $attributes);

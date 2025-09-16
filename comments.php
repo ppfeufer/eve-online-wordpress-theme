@@ -32,7 +32,7 @@ if (post_password_required()) {
         <ul class="media-list">
             <?php
             wp_list_comments([
-                'callback' => '\Ppfeufer\Theme\EVEOnline\Helper\CommentHelper::getComments'
+                'callback' => '\Ppfeufer\Theme\EVEOnline\Helper\CommentHelper::getInstance()->getComments'
             ]);
             ?>
         </ul>

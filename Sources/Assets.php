@@ -16,6 +16,26 @@ use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
  */
 class Assets {
     /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
+    /**
+     * String Helper Instance
+     *
+     * An instance of the StringHelper class to assist with string-related tasks.
+     *
+     * @var StringHelper
+     * @access private
+     */
+    private StringHelper $stringHelper;
+
+    /**
      * Constructor
      *
      * Registers WordPress actions to enqueue styles and scripts for both
@@ -25,6 +45,9 @@ class Assets {
      * @access public
      */
     public function __construct() {
+        $this->themeHelper = ThemeHelper::getInstance();
+        $this->stringHelper = StringHelper::getInstance();
+
         add_action(hook_name: 'wp_enqueue_scripts', callback: [$this, 'loadStyles']);
         add_action(hook_name: 'wp_enqueue_scripts', callback: [$this, 'themeCustomStyle']);
         add_action(hook_name: 'wp_enqueue_scripts', callback: [$this, 'loadScripts']);
@@ -40,7 +63,7 @@ class Assets {
      * @return void
      */
     public function loadStyles(): void {
-        foreach (ThemeHelper::getThemeStyleSheets() as $style) {
+        foreach ($this->themeHelper->getThemeStyleSheets() as $style) {
             wp_enqueue_style(
                 handle: $style['handle'],
                 src: $style['src'],
@@ -60,7 +83,7 @@ class Assets {
      * @return void
      */
     public function loadAdminStyles(): void {
-        foreach (ThemeHelper::getThemeAdminStyleSheets() as $style) {
+        foreach ($this->themeHelper->getThemeAdminStyleSheets() as $style) {
             wp_enqueue_style(
                 handle: $style['handle'],
                 src: $style['src'],
@@ -85,7 +108,7 @@ class Assets {
             wp_enqueue_script(handle: 'comment-reply');
         }
 
-        foreach (ThemeHelper::getThemeJavaScripts() as $script) {
+        foreach ($this->themeHelper->getThemeJavaScripts() as $script) {
             wp_enqueue_script(
                 handle: $script['handle'],
                 src: $script['src'],
@@ -110,18 +133,18 @@ class Assets {
      * @return void
      */
     public function themeCustomStyle(): void {
-        $themeSettings = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $themeSettings = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
         $themeCustomStyle = '';
 
         // Add background image if enabled in theme settings
-        $backgroundImage = ThemeHelper::getThemeBackgroundImage();
+        $backgroundImage = $this->themeHelper->getThemeBackgroundImage();
         if (!empty($backgroundImage) && ($themeSettings['use_background_image']['yes'] ?? '') === 'yes') {
             $themeCustomStyle .= 'body {background-image:url("' . esc_url($backgroundImage) . '")}' . "\n";
         }
 
         // Add background color if specified in theme settings
         if (!empty($themeSettings['background_color'])) {
-            $rgbValues = StringHelper::hextoRgb($themeSettings['background_color'], '0.8');
+            $rgbValues = $this->stringHelper->hextoRgb($themeSettings['background_color'], '0.8');
             $themeCustomStyle .= '.container {background-color:rgba(' . implode(',', $rgbValues) . ');}' . "\n";
         }
 

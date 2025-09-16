@@ -166,7 +166,7 @@ class Metaslider {
              * No slider set, check for our default slider
              */
             if (empty($page_slider)) {
-                $themeOptions = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+                $themeOptions = get_option('eve_theme_options', ThemeHelper::getInstance()->getThemeDefaultOptions());
 
                 if (!empty($themeOptions['default_slider'])) {
                     if (isset($themeOptions['default_slider_on']['frontpage_only']) && !is_front_page()) {

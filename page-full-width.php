@@ -30,7 +30,7 @@ get_header();
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+    $breadcrumbNavigation = NavigationHelper::getInstance()->getBreadcrumbNavigation();
 
     if (!empty($breadcrumbNavigation)) {
         ?>
