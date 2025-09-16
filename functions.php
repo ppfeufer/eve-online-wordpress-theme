@@ -103,33 +103,6 @@ require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 // phpcs:enable
 
 /**
- * Initiate needed general Classes
- */
-// phpcs:disable
-//new Helper\UpdateHelper;
-//new Plugins\Metaslider(true);
-//new Plugins\Shortcodes;
-//new Plugins\BootstrapImageGallery;
-//new Plugins\BootstrapVideoGallery;
-//new Plugins\BootstrapContentGrid;
-//new Plugins\Corppage;
-//new Plugins\Whitelabel;
-//new Plugins\ChildpageMenu;
-//new Plugins\LatestBlogPosts;
-//new Plugins\EveOnlineAvatar;
-// phpcs:enable
-
-/**
- * Initiate needed Backend Classes
- */
-//if (is_admin()) {
-//    // phpcs:disable
-//    new Admin\ThemeSettings;
-//    new Security\WordPressCoreUpdateCleaner;
-//    // phpcs:enable
-//}
-
-/**
  * Maximal content width
  */
 // phpcs:disable
@@ -138,83 +111,6 @@ if (!isset($content_width)) {
 }
 // phpcs:enable
 
-/**
- * Enqueue JavaScripts
- */
-if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_scripts')) {
-    function eve_enqueue_scripts(): void {
-        /**
-         * Adds JavaScript to pages with the comment form to support
-         * sites with threaded comments (when in use).
-         */
-        if (is_singular() && comments_open() && get_option('thread_comments')) {
-            wp_enqueue_script('comment-reply');
-        }
-
-        $enqueue_script = eve_get_javascripts();
-
-        /**
-         * Loop through the JS array and load the scripts
-         */
-        foreach ($enqueue_script as $script) {
-            wp_enqueue_script($script['handle'], $script['source'], $script['deps'], $script['version'], $script['in_footer']);
-
-            if (!empty($script['condition'])) {
-                wp_script_add_data($script['handle'], 'conditional', $script['condition']);
-            }
-        }
-    }
-} // END if(!\function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_scripts'))
-// phpcs:disable
-add_action('wp_enqueue_scripts', '\\Ppfeufer\Theme\EVEOnline\eve_enqueue_scripts');
-// phpcs:enable
-
-if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_get_javascripts')) {
-    function eve_get_javascripts(): array {
-        return Helper\ThemeHelper::getThemeJavaScripts();
-    }
-}
-
-/**
- * Enqueue Styles
- */
-if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_styles')) {
-    function eve_enqueue_styles(): void {
-        $enqueue_style = eve_get_stylesheets();
-
-        /**
-         * Loop through the CSS array and load the styles
-         */
-        foreach ($enqueue_style as $style) {
-            wp_enqueue_style($style['handle'], $style['source'], $style['deps'], $style['version'], $style['media']);
-        }
-    }
-} // END if(!\function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_styles'))
-// phpcs:disable
-add_action('wp_enqueue_scripts', '\\Ppfeufer\Theme\EVEOnline\eve_enqueue_styles');
-// phpcs:enable
-
-if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_get_stylesheets')) {
-    function eve_get_stylesheets(): array {
-        return Helper\ThemeHelper::getThemeStyleSheets();
-    }
-}
-
-if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_admin_styles')) {
-    function eve_enqueue_admin_styles(): void {
-        $enqueue_style = Helper\ThemeHelper::getThemeAdminStyleSheets();
-
-        /**
-         * Loop through the CSS array and load the styles
-         */
-        foreach ($enqueue_style as $style) {
-            wp_enqueue_style($style['handle'], $style['source'], $style['deps'], $style['version'], $style['media']);
-        }
-    }
-} // END if(!function_exists('\Ppfeufer\Theme\EVEOnline\eve_enqueue_styles'))
-// phpcs:disable
-add_action('admin_init', '\\Ppfeufer\Theme\EVEOnline\eve_enqueue_admin_styles');
-// phpcs:enable
 
 /**
  * Theme Setup
@@ -663,39 +559,7 @@ function eve_link_pages(array $args = []): void {
 add_filter('option_use_smilies', '__return_false');
 // phpcs:enable
 
-/**
- * Adding the custom style to the theme
- */
-function eve_get_theme_custom_style(): void {
-    $themeSettings = get_option('eve_theme_options', Helper\ThemeHelper::getThemeDefaultOptions());
-    $themeCustomStyle = null;
 
-    // background image
-    $backgroundImage = Helper\ThemeHelper::getThemeBackgroundImage();
-
-    if (!empty($backgroundImage) && (isset($themeSettings['use_background_image']['yes']) && $themeSettings['use_background_image']['yes'] === 'yes')) {
-        $themeCustomStyle .= 'body {background-image:url("' . $backgroundImage . '")}' . "\n";
-    }
-
-    if (!empty($themeSettings['background_color'])) {
-        $rgbValues = Helper\StringHelper::hextoRgb($themeSettings['background_color'], '0.8');
-
-        $themeCustomStyle .= '.container {background-color:rgba(' . implode(',', $rgbValues) . ');}' . "\n";
-    }
-
-    // main navigation
-    if (!empty($themeSettings['navigation']['even_cells'])) {
-        $themeCustomStyle .= '@media all and (min-width: 768px) {' . "\n";
-        $themeCustomStyle .= '  ul.main-navigation {display:table; width:100%;}' . "\n";
-        $themeCustomStyle .= '  ul.main-navigation > li {display:table-cell; text-align:center; float:none;}' . "\n";
-        $themeCustomStyle .= '}' . "\n";
-    }
-
-    wp_add_inline_style('eve-online', $themeCustomStyle);
-}
-// phpcs:disable
-add_action('wp_enqueue_scripts', '\\Ppfeufer\Theme\EVEOnline\eve_get_theme_custom_style');
-// phpcs:enable
 
 /* comment form
  * -------------------------------------------------------------------------- */
@@ -775,22 +639,7 @@ function eve_enable_youtube_jsapi(string $html): string {
 add_filter('oembed_result', '\\Ppfeufer\Theme\EVEOnline\eve_enable_youtube_jsapi');
 // phpcs:enable
 
-/**
- * Removing the version string from any enqueued css and js source
- *
- * @param string $src the css or js source
- * @return string
- */
-function eve_remove_wp_ver_css_js(string $src): string {
-    if (strpos($src, 'ver=')) {
-        $src = remove_query_arg('ver', $src);
-    }
 
-    return $src;
-}
-// phpcs:disable
-add_filter('style_loader_src', '\\Ppfeufer\Theme\EVEOnline\eve_remove_wp_ver_css_js', 9999);
-add_filter('script_loader_src', '\\Ppfeufer\Theme\EVEOnline\eve_remove_wp_ver_css_js', 9999);
 // phpcs:enable
 
 /**
