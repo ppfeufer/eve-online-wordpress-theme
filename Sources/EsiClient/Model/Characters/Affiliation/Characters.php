@@ -1,130 +1,113 @@
 <?php
 
-/*
- * Copyright (C) 2018 p.pfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\Affiliation;
 
+/**
+ * Class Characters
+ *
+ * Represents a character's affiliation details, including alliance, corporation, and faction IDs.
+ * Provides getter and setter methods for each property.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\Affiliation
+ */
 class Characters {
     /**
-     * allianceId
-     *
-     * The character's alliance ID, if their corporation is in an alliance
-     *
-     * @var int
+     * @var int $allianceId
+     * The character's alliance ID, if their corporation is in an alliance.
      */
-    protected $allianceId = null;
+    protected int $allianceId;
 
     /**
-     * characterId
-     *
-     * The character's ID
-     *
-     * @var int
+     * @var int $characterId
+     * The character's unique ID.
      */
-    protected $characterId = null;
+    protected int $characterId;
 
     /**
-     * corporationId
-     *
-     * The character's corporation ID
-     *
-     * @var int
+     * @var int $corporationId
+     * The character's corporation ID.
      */
-    protected $corporationId = null;
+    protected int $corporationId;
 
     /**
-     * factionId
-     *
-     * The character's faction ID, if their corporation is in a faction
-     *
-     * @var int
+     * @var int $factionId
+     * The character's faction ID, if their corporation is in a faction.
      */
-    protected $factionId = null;
+    protected int $factionId;
 
     /**
-     * getAllianceId
+     * Get the character's alliance ID.
      *
-     * @return int
+     * @return int The alliance ID.
      */
-    public function getAllianceId() {
+    public function getAllianceId(): int {
         return $this->allianceId;
     }
 
     /**
-     * setAllianceId
+     * Set the character's alliance ID.
      *
-     * @param int $allianceId
+     * @param int $allianceId The alliance ID to set.
+     * @return void
      */
-    protected function setAllianceId(int $allianceId) {
+    protected function setAllianceId(int $allianceId): void {
         $this->allianceId = $allianceId;
     }
 
     /**
-     * getCharacterId
+     * Get the character's unique ID.
      *
-     * @return int
+     * @return int The character ID.
      */
-    public function getCharacterId() {
+    public function getCharacterId(): int {
         return $this->characterId;
     }
 
     /**
-     * setCharacterId
+     * Set the character's unique ID.
      *
-     * @param int $characterId
+     * @param int $characterId The character ID to set.
+     * @return void
      */
-    protected function setCharacterId(int $characterId) {
+    protected function setCharacterId(int $characterId): void {
         $this->characterId = $characterId;
     }
 
     /**
-     * getCorporationId
+     * Get the character's corporation ID.
      *
-     * @return int
+     * @return int The corporation ID.
      */
-    public function getCorporationId() {
+    public function getCorporationId(): int {
         return $this->corporationId;
     }
 
     /**
-     * setCorporationId
+     * Set the character's corporation ID.
      *
-     * @param int $corporationId
+     * @param int $corporationId The corporation ID to set.
+     * @return void
      */
-    protected function setCorporationId(int $corporationId) {
+    protected function setCorporationId(int $corporationId): void {
         $this->corporationId = $corporationId;
     }
 
     /**
-     * getFactionId
+     * Get the character's faction ID.
      *
-     * @return int
+     * @return int The faction ID.
      */
-    public function getFactionId() {
+    public function getFactionId(): int {
         return $this->factionId;
     }
 
     /**
-     * setFactionId
+     * Set the character's faction ID.
      *
-     * @param int $factionId
+     * @param int $factionId The faction ID to set.
+     * @return void
      */
-    protected function setFactionId(int $factionId) {
+    protected function setFactionId(int $factionId): void {
         $this->factionId = $factionId;
     }
 }

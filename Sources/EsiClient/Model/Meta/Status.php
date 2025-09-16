@@ -1,160 +1,141 @@
 <?php
 
-/*
- * Copyright (C) 2018 ppfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Meta;
 
+/**
+ * Class Status
+ *
+ * Represents the status of an ESI route, including its endpoint, method, route, status, and tags.
+ * Provides getter and setter methods for each property.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Model\Meta
+ */
 class Status {
     /**
-     * endpoint
+     * The ESI endpoint cluster advertising this route.
      *
      * @var string
      */
-    protected $endpoint = null;
+    protected string $endpoint;
 
     /**
-     * method
+     * The Swagger-defined method for this route.
      *
      * @var string
      */
-    protected $method = null;
+    protected string $method;
 
     /**
-     * route
+     * The Swagger-defined route, not including the version prefix.
      *
      * @var string
      */
-    protected $route = null;
+    protected string $route;
 
     /**
-     * status
+     * The vague status of the route.
+     * Green: Good.
+     * Yellow: Degraded (slow or potentially dropping requests).
+     * Red: Most requests are failing or very slow (5s+ on average).
      *
      * @var string
      */
-    protected $status = null;
+    protected string $status;
 
     /**
-     * tags
+     * The Swagger tags applicable to this route.
      *
      * @var array
      */
-    protected $tags = null;
+    protected array $tags;
 
     /**
-     * getEndpoint
+     * Get the ESI endpoint cluster advertising this route.
      *
-     * ESI Endpoint cluster advertising this route
-     *
-     * @return string
+     * @return string The endpoint.
      */
-    public function getEndpoint() {
+    public function getEndpoint(): string {
         return $this->endpoint;
     }
 
     /**
-     * setEndpoint
+     * Set the ESI endpoint cluster advertising this route.
      *
-     * @param string $endpoint
+     * @param string $endpoint The endpoint to set.
      */
-    protected function setEndpoint(string $endpoint) {
+    protected function setEndpoint(string $endpoint): void {
         $this->endpoint = $endpoint;
     }
 
     /**
-     * getMethod
+     * Get the Swagger-defined method for this route.
      *
-     * Swagger defined method
-     *
-     * @return string
+     * @return string The method.
      */
-    public function getMethod() {
+    public function getMethod(): string {
         return $this->method;
     }
 
     /**
-     * setMethod
+     * Set the Swagger-defined method for this route.
      *
-     * @param string $method
+     * @param string $method The method to set.
      */
-    protected function setMethod(string $method) {
+    protected function setMethod(string $method): void {
         $this->method = $method;
     }
 
     /**
-     * getRoute
+     * Get the Swagger-defined route, not including the version prefix.
      *
-     * Swagger defined route, not including version prefix
-     *
-     * @return string
+     * @return string The route.
      */
-    public function getRoute() {
+    public function getRoute(): string {
         return $this->route;
     }
 
     /**
-     * setRoute
+     * Set the Swagger-defined route, not including the version prefix.
      *
-     * @param string $route
+     * @param string $route The route to set.
      */
-    protected function setRoute(string $route) {
+    protected function setRoute(string $route): void {
         $this->route = $route;
     }
 
     /**
-     * getStatus
+     * Get the vague status of the route.
      *
-     * Vague route status.
-     * Green is good
-     * Yellow is degraded, meaning slow or potentially dropping requests
-     * Red means most requests are not succeeding and/or are very slow (5s+) on average.
-     *
-     * @return string
+     * @return string The status.
      */
-    public function getStatus() {
+    public function getStatus(): string {
         return $this->status;
     }
 
     /**
-     * setStatus
+     * Set the vague status of the route.
      *
-     * @param string $status
+     * @param string $status The status to set.
      */
-    public function setStatus(string $status) {
+    public function setStatus(string $status): void {
         $this->status = $status;
     }
 
     /**
-     * getTags
+     * Get the Swagger tags applicable to this route.
      *
-     * Swagger tags applicable to this route
-     *
-     * @return array
+     * @return array The tags.
      */
-    public function getTags() {
+    public function getTags(): array {
         return $this->tags;
     }
 
     /**
-     * setTags
+     * Set the Swagger tags applicable to this route.
      *
-     * @param array $tags
+     * @param array $tags The tags to set.
      */
-    public function setTags(array $tags) {
+    public function setTags(array $tags): void {
         $this->tags = $tags;
     }
 }
