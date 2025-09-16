@@ -108,42 +108,54 @@ class ThemeHelper {
             /* Bootstrap's JS */
             'Bootstrap' => [
                 'handle' => 'bootstrap-js',
-                'source' => get_theme_file_uri('/Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
+                'src' => get_theme_file_uri('/Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
                 'deps' => [
                     'jquery'
                 ],
-                'version' => '3.3.7',
-                'in_footer' => true
+                'ver' => '3.3.7',
+                'args' => [
+                    'strategy' => 'async',
+                    'in_footer' => true
+                ]
             ],
             /* Bootstrap Toolkit */
             'Bootstrap Toolkit' => [
                 'handle' => 'bootstrap-toolkit-js',
-                'source' => get_theme_file_uri('/Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
+                'src' => get_theme_file_uri('/Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
                 'deps' => [
                     'bootstrap-js'
                 ],
-                'version' => '2.6.3',
-                'in_footer' => true
+                'ver' => '2.6.3',
+                'args' => [
+                    'strategy' => 'async',
+                    'in_footer' => true
+                ]
             ],
             /* Bootstrap Gallery */
             'Bootstrap Gallery' => [
                 'handle' => 'bootstrap-gallery-js',
-                'source' => get_theme_file_uri('/Assets/libs/jQuery/bootstrap-gallery/jquery.bootstrap-gallery.min.js'),
+                'src' => get_theme_file_uri('/Assets/libs/jQuery/bootstrap-gallery/jquery.bootstrap-gallery.min.js'),
                 'deps' => [
                     'jquery'
                 ],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-                'in_footer' => true
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'args' => [
+                    'strategy' => 'async',
+                    'in_footer' => true
+                ]
             ],
             /* The main JS */
             'EVE Online' => [
                 'handle' => 'eve-online-main-js',
-                'source' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
+                'src' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
                 'deps' => [
                     'jquery'
                 ],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-                'in_footer' => true
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'args' => [
+                    'strategy' => 'async',
+                    'in_footer' => true
+                ]
             ]
         ];
     }
@@ -158,60 +170,60 @@ class ThemeHelper {
             /* Normalize CSS */
             'Normalize CSS' => [
                 'handle' => 'normalize',
-                'source' => get_theme_file_uri('/Assets/css/normalize.min.css'),
+                'src' => get_theme_file_uri('/Assets/css/normalize.min.css'),
                 'deps' => [],
-                'version' => '3.0.3',
+                'ver' => '3.0.3',
                 'media' => 'all'
             ],
             /* Bootstrap */
             'Bootstrap' => [
                 'handle' => 'bootstrap',
-                'source' => get_theme_file_uri('/Assets/libs//bootstrap/3.3.7/css/bootstrap.min.css'),
+                'src' => get_theme_file_uri('/Assets/libs//bootstrap/3.3.7/css/bootstrap.min.css'),
                 'deps' => [
                     'normalize'
                 ],
-                'version' => '3.3.7',
+                'ver' => '3.3.7',
                 'media' => 'all'
             ],
             /* Bootstrap Additional CSS */
             'Bootstrap Additional CSS' => [
                 'handle' => 'bootstrap-additional',
-                'source' => get_theme_file_uri('/Assets/css/bootstrap-additional.min.css'),
+                'src' => get_theme_file_uri('/Assets/css/bootstrap-additional.min.css'),
                 'deps' => [
                     'bootstrap'
                 ],
-                'version' => '3.3.7',
+                'ver' => '3.3.7',
                 'media' => 'all'
             ],
             /* Theme Main CSS */
             'EVE Online Theme Styles' => [
                 'handle' => 'eve-online',
-                'source' => get_theme_file_uri('/style.min.css'),
+                'src' => get_theme_file_uri('/style.min.css'),
                 'deps' => [
                     'normalize',
                     'bootstrap'
                 ],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'
             ],
             /* Theme Responsive CSS */
             'EVE Online Responsive Styles' => [
                 'handle' => 'eve-online-responsive-styles',
-                'source' => get_theme_file_uri('/Assets/css/responsive.min.css'),
+                'src' => get_theme_file_uri('/Assets/css/responsive.min.css'),
                 'deps' => [
                     'eve-online'
                 ],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'
             ],
             /* Adjustment to Plugins */
             'EVE Online Plugin Styles' => [
                 'handle' => 'eve-online-plugin-styles',
-                'source' => get_theme_file_uri('Assets/css/plugin-tweaks.min.css'),
+                'src' => get_theme_file_uri('Assets/css/plugin-tweaks.min.css'),
                 'deps' => [
                     'eve-online'
                 ],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'
             ],
         ];
@@ -227,9 +239,9 @@ class ThemeHelper {
             /* Adjustment to Plugins */
             'EVE Online Admin Styles' => [
                 'handle' => 'eve-online-admin-styles',
-                'source' => get_template_directory_uri() . '/Assets/css/eve-online-admin-style.min.css',
+                'src' => get_template_directory_uri() . '/Assets/css/eve-online-admin-style.min.css',
                 'deps' => [],
-                'version' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
                 'media' => 'all'
             ],
         ];

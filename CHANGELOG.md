@@ -37,6 +37,12 @@ Section Order:
 
 ### Added
 
+- Asset loader class for easier management of CSS and JS files
+- Linting via phpcs and phpmd
+- Linting via stylelint for CSS files
+- Linting via eslint for JS files
+- Composer for dependency management
+- GitHub Actions for CI/CD
 - Makefiles for easier development and deployment
 
 ## [v0.1-r20210929]
