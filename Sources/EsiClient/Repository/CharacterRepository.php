@@ -20,7 +20,7 @@
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Repository;
 
 use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\CharacterId;
-use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\CharacterId\Corporationhistory;
+use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\CharacterId\CorporationHistory;
 use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Characters\CharacterId\Portrait;
 use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Error\EsiError;
 use Ppfeufer\Theme\EVEOnline\EsiClient\Swagger;
@@ -77,7 +77,7 @@ class CharacterRepository extends Swagger {
      * Get a list of all the corporations a character has been a member of
      *
      * @param int $characterID An EVE character ID
-     * @return Corporationhistory|EsiError
+     * @return CorporationHistory|EsiError
      */
     public function charactersCharacterIdCorporationhistory(int $characterID) {
         $returnValue = null;
@@ -94,7 +94,7 @@ class CharacterRepository extends Swagger {
         if (!is_null($esiData)) {
             switch ($esiData['responseCode']) {
                 case 200:
-                    $returnValue = $this->map($esiData['responseBody'], new Corporationhistory);
+                    $returnValue = $this->map($esiData['responseBody'], new CorporationHistory);
                     break;
 
                 // Error ...
