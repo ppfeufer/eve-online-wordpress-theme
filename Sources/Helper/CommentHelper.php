@@ -19,12 +19,14 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-class CommentHelper {
-    public static function getComments($comment, $args, $depth) {
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
+
+class CommentHelper extends GenericSingleton {
+    public function getComments($comment, $args, $depth) {
         switch ($comment->comment_type) {
             case 'pingback':
             case 'trackback':
-                echo self::getTrackbackTemplate();
+                echo $this->getTrackbackTemplate();
                 break;
             default:
                 // Proceed with normal comments.
@@ -33,24 +35,24 @@ class CommentHelper {
             <li class="comment media" id="comment-<?php
             comment_ID(); ?>">
                 <?php
-                echo self::getCommenterAvatar($comment); ?>
+                echo $this->getCommenterAvatar($comment); ?>
                 <div class="media-body">
                     <h4 class="media-heading comment-author vcard">
                         <?php
-                        echo self::getCommentAuthor($post, $comment); ?>
+                        echo $this->getCommentAuthor($post, $comment); ?>
                     </h4>
                     <?php
-                    echo self::getCommentModerated($comment);
+                    echo $this->getCommentModerated($comment);
 
                     comment_text();
                     ?>
                     <p class="meta">
                         <?php
-                        echo self::getCommentMeta($comment); ?>
+                        echo $this->getCommentMeta($comment); ?>
                     </p>
                     <p class="reply">
                         <?php
-                        echo self::getCommentReply($args, $depth); ?>
+                        echo $this->getCommentReply($args, $depth); ?>
                     </p>
                 </div> <!--/.media-body -->
                 <?php
@@ -63,7 +65,7 @@ class CommentHelper {
      *
      * @return string
      */
-    public static function getTrackbackTemplate() {
+    public function getTrackbackTemplate() {
         $returnValue = '<li class="comment media" id="comment-' . get_comment_ID() . '">';
         $returnValue .= '<div class="media-body">';
         $returnValue .= '<p>' . __('Pingback:', 'eve-online') . ' ' . get_comment_author_link() . '</p>';
@@ -78,7 +80,7 @@ class CommentHelper {
      * @param object $comment
      * @return string
      */
-    public static function getCommenterAvatar($comment) {
+    public function getCommenterAvatar($comment) {
         $returnValue = null;
 
         if (!empty($comment->comment_author_url)) {
@@ -97,7 +99,7 @@ class CommentHelper {
      * @param object $comment
      * @return string
      */
-    public static function getCommentAuthor($post, $comment) {
+    public function getCommentAuthor($post, $comment) {
         return sprintf(
             '<cite class="fn">%1$s %2$s</cite>',
             get_comment_author_link(),
@@ -112,7 +114,7 @@ class CommentHelper {
      * @param object $comment
      * @return string
      */
-    public static function getCommentModerated($comment) {
+    public function getCommentModerated($comment) {
         $returnValue = '';
 
         if ('0' === $comment->comment_approved) {
@@ -128,7 +130,7 @@ class CommentHelper {
      * @param object $comment
      * @return string
      */
-    public static function getCommentMeta($comment) {
+    public function getCommentMeta($comment) {
         return sprintf(
             '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
             esc_url(get_comment_link($comment->comment_ID)),
@@ -144,7 +146,7 @@ class CommentHelper {
      * @param int $depth
      * @return string
      */
-    public static function getCommentReply($args, $depth) {
+    public function getCommentReply($args, $depth) {
         return get_comment_reply_link(array_merge($args, [
             'reply_text' => __('Reply <span>&darr;</span>', 'eve-online'),
             'depth' => $depth,

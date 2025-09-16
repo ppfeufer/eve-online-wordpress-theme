@@ -2,6 +2,8 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
+
 /**
  * ThemeHelper
  *
@@ -10,21 +12,21 @@ namespace Ppfeufer\Theme\EVEOnline\Helper;
  *
  * @package Ppfeufer\Theme\EVEOnline\Helper
  */
-class ThemeHelper {
+class ThemeHelper extends GenericSingleton {
     /**
      * The database version for the theme's settings.
      *
      * @var string
      */
-    protected static string $themeDbVersion = '20170803';
+    protected string $themeDbVersion = '20170803';
 
     /**
      * Get the current database version used for the theme's settings.
      *
      * @return string The database version.
      */
-    public static function getThemeDbVersion(): string {
-        return self::$themeDbVersion;
+    public function getThemeDbVersion(): string {
+        return $this->themeDbVersion;
     }
 
     /**
@@ -32,7 +34,7 @@ class ThemeHelper {
      *
      * @return array An array of JavaScript files with their configurations.
      */
-    public static function getThemeJavaScripts(): array {
+    public function getThemeJavaScripts(): array {
         return [
             // Bootstrap's JavaScript
             'Bootstrap' => [
@@ -55,7 +57,7 @@ class ThemeHelper {
                 'handle' => 'bootstrap-gallery-js',
                 'src' => get_theme_file_uri('/Assets/libs/jQuery/bootstrap-gallery/jquery.bootstrap-gallery.min.js'),
                 'deps' => ['jquery'],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'args' => ['strategy' => 'async', 'in_footer' => true]
             ],
             // Main JavaScript for the theme
@@ -63,7 +65,7 @@ class ThemeHelper {
                 'handle' => 'eve-online-main-js',
                 'src' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
                 'deps' => ['jquery'],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'args' => ['strategy' => 'async', 'in_footer' => true]
             ]
         ];
@@ -74,8 +76,8 @@ class ThemeHelper {
      *
      * @return string The version string.
      */
-    private static function getThemeVersionForAssets(): string {
-        return sanitize_title(self::getThemeName()) . '-' . self::getThemeVersion();
+    private function getThemeVersionForAssets(): string {
+        return sanitize_title($this->getThemeName()) . '-' . $this->getThemeVersion();
     }
 
     /**
@@ -83,8 +85,8 @@ class ThemeHelper {
      *
      * @return string The theme name.
      */
-    public static function getThemeName(): string {
-        return self::getThemeData('Name');
+    public function getThemeName(): string {
+        return $this->getThemeData('Name');
     }
 
     /**
@@ -95,7 +97,7 @@ class ThemeHelper {
      *
      * @link https://developer.wordpress.org/reference/functions/wp_get_theme/
      */
-    public static function getThemeData(string $parameter): string {
+    public function getThemeData(string $parameter): string {
         return wp_get_theme()->get($parameter);
     }
 
@@ -104,8 +106,8 @@ class ThemeHelper {
      *
      * @return string The theme version.
      */
-    public static function getThemeVersion(): string {
-        return self::getThemeData('Version');
+    public function getThemeVersion(): string {
+        return $this->getThemeData('Version');
     }
 
     /**
@@ -113,7 +115,7 @@ class ThemeHelper {
      *
      * @return array An array of stylesheets with their configurations.
      */
-    public static function getThemeStyleSheets(): array {
+    public function getThemeStyleSheets(): array {
         return [
             // Normalize CSS
             'Normalize CSS' => [
@@ -144,7 +146,7 @@ class ThemeHelper {
                 'handle' => 'eve-online',
                 'src' => get_theme_file_uri('/style.min.css'),
                 'deps' => ['normalize', 'bootstrap'],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'media' => 'all'
             ],
             // Responsive styles
@@ -152,7 +154,7 @@ class ThemeHelper {
                 'handle' => 'eve-online-responsive-styles',
                 'src' => get_theme_file_uri('/Assets/css/responsive.min.css'),
                 'deps' => ['eve-online'],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'media' => 'all'
             ],
             // Plugin-specific styles
@@ -160,7 +162,7 @@ class ThemeHelper {
                 'handle' => 'eve-online-plugin-styles',
                 'src' => get_theme_file_uri('Assets/css/plugin-tweaks.min.css'),
                 'deps' => ['eve-online'],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'media' => 'all'
             ],
         ];
@@ -171,14 +173,14 @@ class ThemeHelper {
      *
      * @return array An array of admin stylesheets with their configurations.
      */
-    public static function getThemeAdminStyleSheets(): array {
+    public function getThemeAdminStyleSheets(): array {
         return [
             // Admin-specific styles
             'EVE Online Admin Styles' => [
                 'handle' => 'eve-online-admin-styles',
                 'src' => get_template_directory_uri() . '/Assets/css/eve-online-admin-style.min.css',
                 'deps' => [],
-                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'ver' => sanitize_title($this->getThemeVersionForAssets()),
                 'media' => 'all'
             ],
         ];
@@ -189,7 +191,7 @@ class ThemeHelper {
      *
      * @return void
      */
-    public static function addThemeSupport(): void {
+    public function addThemeSupport(): void {
         add_theme_support('automatic-feed-links');
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
@@ -206,7 +208,7 @@ class ThemeHelper {
      *
      * @return void
      */
-    public static function registerNavMenus(): void {
+    public function registerNavMenus(): void {
         register_nav_menus([
             'main-menu' => __('Main Menu', 'eve-online'),
             'header-menu' => __('Header Menu', 'eve-online'),
@@ -219,7 +221,7 @@ class ThemeHelper {
      *
      * @return void
      */
-    public static function addThumbnailSizes(): void {
+    public function addThumbnailSizes(): void {
         set_post_thumbnail_size(1680, 500);
         add_image_size('header-image', 1680, 500, true);
         add_image_size('post-loop-thumbnail', 768, 432, true);
@@ -234,7 +236,7 @@ class ThemeHelper {
      * @param array $defaultOptions The default options array.
      * @return void
      */
-    public static function updateOptions(string $optionsName, string $dbVersionFieldName, string $newDbVersion, array $defaultOptions): void {
+    public function updateOptions(string $optionsName, string $dbVersionFieldName, string $newDbVersion, array $defaultOptions): void {
         $currentDbVersion = get_option($dbVersionFieldName);
 
         if ($currentDbVersion !== $newDbVersion) {
@@ -252,7 +254,7 @@ class ThemeHelper {
      * @param string $sidebarPosition The sidebar position identifier.
      * @return bool True if the sidebar is active, false otherwise.
      */
-    public static function hasSidebar(string $sidebarPosition): bool {
+    public function hasSidebar(string $sidebarPosition): bool {
         return is_active_sidebar($sidebarPosition);
     }
 
@@ -263,7 +265,7 @@ class ThemeHelper {
      * @param string|null $baseClass An optional base class for thumbnails.
      * @return array|null An array of background images or null if none found.
      */
-    public static function getDefaultBackgroundImages(bool $withThumbnail = false, string $baseClass = null): ?array {
+    public function getDefaultBackgroundImages(bool $withThumbnail = false, string $baseClass = null): ?array {
         $imagePath = get_template_directory() . '/Assets/img/background/';
         $handle = opendir($imagePath);
 
@@ -303,8 +305,8 @@ class ThemeHelper {
      *
      * @return string The URL of the background image.
      */
-    public static function getThemeBackgroundImage(): string {
-        $themeSettings = get_option('eve_theme_options', self::getThemeDefaultOptions());
+    public function getThemeBackgroundImage(): string {
+        $themeSettings = get_option('eve_theme_options', $this->getThemeDefaultOptions());
         $backgroundImage = get_template_directory_uri() . '/img/background/' . $themeSettings['background_image'];
 
         if ($themeSettings['background_image'] === 'current-eve-expansion') {
@@ -323,7 +325,7 @@ class ThemeHelper {
      *
      * @return array The default options array.
      */
-    public static function getThemeDefaultOptions(): array {
+    public function getThemeDefaultOptions(): array {
         $defaultOptions = [
             'type' => '',
             'name' => '',

@@ -32,8 +32,8 @@ defined('ABSPATH') or die();
         <aside class="entry-details">
             <p class="meta">
                 <?php
-                PostHelper::getPostMetaInformation();
-                PostHelper::getPostCategoryAndTags();
+                PostHelper::getInstance()->getPostMetaInformation();
+                PostHelper::getInstance()->getPostCategoryAndTags();
                 edit_post_link(__('Edit', 'eve-online'));
                 ?>
             </p>
@@ -89,7 +89,7 @@ defined('ABSPATH') or die();
     }
     ?>
     <hr>
-    <?php NavigationHelper::getArticleNavigation(true); ?>
+    <?php NavigationHelper::getInstance()->getArticleNavigation(true); ?>
     <hr>
     <?php comments_template(); ?>
 </article><!-- /.post-->

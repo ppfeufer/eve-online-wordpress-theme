@@ -152,7 +152,7 @@ class Corppage {
         $corplistHTML .= '<figure><a href="' . get_permalink($page->ID) . '"><img src="' . $corpLogo . '" alt="' . $page->post_title . '"></a></figure>';
         $corplistHTML .= '<header><h2 class="corporationlist-title"><a href="' . get_permalink($page->ID) . '">' . $page->post_title . '</a></h2></header>';
 
-        $corplistHTML .= '<p>' . StringHelper::cutString(strip_shortcodes($page->post_content), '200') . '</p>';
+        $corplistHTML .= '<p>' . StringHelper::getInstance()->cutString(strip_shortcodes($page->post_content), '200') . '</p>';
 
         $corplistHTML .= '</li>';
 

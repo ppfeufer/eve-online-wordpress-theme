@@ -28,6 +28,16 @@ use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 use Ppfeufer\Theme\EVEOnline\Plugins\Metaslider;
 
 class ThemeSettings {
+    /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
     private $eveApi = null;
     private $metaSlider = null;
     private $themeOptions = null;
@@ -36,9 +46,10 @@ class ThemeSettings {
     private $settingsFilter = null;
 
     public function __construct() {
+        $this->themeHelper = ThemeHelper::getInstance();
         $this->eveApi = EsiHelper::getInstance();
         $this->metaSlider = new Metaslider(false);
-        $this->themeOptions = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $this->themeOptions = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
 
         // trigger the settings API
         $this->fireSettingsApi();
@@ -46,7 +57,7 @@ class ThemeSettings {
 
     private function fireSettingsApi() {
         $this->settingsFilter = 'register_eve_online_theme_settings';
-        $this->settingsApi = new SettingsApi($this->settingsFilter, ThemeHelper::getThemeDefaultOptions());
+        $this->settingsApi = new SettingsApi($this->settingsFilter, $this->themeHelper->getThemeDefaultOptions());
         $this->settingsApi->init();
 
         add_filter($this->settingsFilter, [$this, 'renderSettingsPage']);
@@ -176,7 +187,7 @@ class ThemeSettings {
             ],
             'background_image' => [
                 'type' => 'radio',
-                'choices' => ThemeHelper::getDefaultBackgroundImages(true),
+                'choices' => $this->themeHelper->getDefaultBackgroundImages(true),
                 'empty' => __('Please Select', 'eve-online'),
                 'title' => __('Background Image', 'eve-online'),
                 'description' => __('Select one of the default Background images ... (Default: Amarr)', 'eve-online'),
@@ -237,7 +248,7 @@ class ThemeSettings {
         return [
             'eve_theme_options_sane' => [
                 'type' => 'custom',
-                'content' => '<pre>' . print_r(ThemeHelper::getThemeDefaultOptions(), true) . '</pre>',
+                'content' => '<pre>' . print_r($this->themeHelper->getThemeDefaultOptions(), true) . '</pre>',
                 'title' => __('Options Array<br>(sane from functions.php)', 'eve-online'),
                 'callback' => null,
                 'description' => __('This are the sane options defined in functions.php via <code>\Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper::getThemeDefaultOptions()</code>', 'eve-online')
@@ -251,7 +262,7 @@ class ThemeSettings {
             ],
             'eve_theme_options_merged' => [
                 'type' => 'custom',
-                'content' => '<pre>' . print_r(get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions()), true) . '</pre>',
+                'content' => '<pre>' . print_r(get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions()), true) . '</pre>',
                 'title' => __('Options Array<br>(merged / used for Theme)', 'eve-online'),
                 'callback' => null,
                 'description' => __('This are the options used for the theme via <code>\get_option(\'eve_theme_options\', \Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper::getThemeDefaultOptions())</code>', 'eve-online')

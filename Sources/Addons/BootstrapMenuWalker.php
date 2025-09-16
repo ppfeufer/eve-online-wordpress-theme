@@ -36,13 +36,24 @@ use Ppfeufer\Theme\EVEOnline\Helper\PostHelper;
 use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 
 class BootstrapMenuWalker extends Walker_Nav_Menu {
+    /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
     private $themeOptions = null;
     private $eveApi = null;
 
     public function __construct() {
         parent::__construct();
 
-        $this->themeOptions = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $this->themeHelper = ThemeHelper::getInstance();
+        $this->themeOptions = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
         $this->eveApi = EsiHelper::getInstance();
     }
 

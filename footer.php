@@ -22,7 +22,7 @@ use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
 
 defined('ABSPATH') or die();
 
-$options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+$options = get_option('eve_theme_options', ThemeHelper::getInstance()->getThemeDefaultOptions());
 ?>
         </main>
 
@@ -31,7 +31,7 @@ $options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions()
                 <div class="row">
                     <div class="container">
                         <?php
-                        if (ThemeHelper::hasSidebar('footer-column-1') || ThemeHelper::hasSidebar('footer-column-2') || ThemeHelper::hasSidebar('footer-column-3') || ThemeHelper::hasSidebar('footer-column-4')) {
+                        if (ThemeHelper::getInstance()->hasSidebar('footer-column-1') || ThemeHelper::getInstance()->hasSidebar('footer-column-2') || ThemeHelper::getInstance()->hasSidebar('footer-column-3') || ThemeHelper::getInstance()->hasSidebar('footer-column-4')) {
                             get_sidebar('footer');
                         }
                         ?>

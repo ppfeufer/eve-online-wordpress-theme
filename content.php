@@ -46,8 +46,8 @@ defined('ABSPATH') or die();
         <aside class="entry-details">
             <p class="meta">
                 <?php
-                PostHelper::getPostMetaInformation();
-                PostHelper::getPostCategoryAndTags();
+                PostHelper::getInstance()->getPostMetaInformation();
+                PostHelper::getInstance()->getPostCategoryAndTags();
 
                 edit_post_link(__('Edit', 'eve-online'));
                 ?>
@@ -67,7 +67,7 @@ defined('ABSPATH') or die();
             ?>
             <div class="entry-content clearfix">
                 <?php
-                echo wpautop(do_shortcode(Ppfeufer\Theme\EVEOnline\Helper\StringHelper::cutString(get_the_content(), '140')));
+                echo wpautop(do_shortcode(Ppfeufer\Theme\EVEOnline\Helper\StringHelper::getInstance()->cutString(get_the_content(), '140')));
                 printf('<a href="%1$s"><span class="read-more">' . __('Read more', 'eve-online') . '</span></a>', get_the_permalink());
                 ?>
             </div><!-- end .entry-content -->

@@ -19,9 +19,27 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-class PostHelper {
-    public static function getPostMetaInformation(): void {
-        $options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
+
+class PostHelper extends GenericSingleton {
+    /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
+    public function __construct() {
+        parent::__construct();
+
+        $this->themeHelper = ThemeHelper::getInstance();
+    }
+
+    public function getPostMetaInformation(): void {
+        $options = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
 
         if (!empty($options['post_meta']['show'])) {
             printf(
@@ -45,8 +63,8 @@ class PostHelper {
     /**
      * Display template for post categories and tags
      */
-    public static function getPostCategoryAndTags(): void {
-        $options = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+    public function getPostCategoryAndTags(): void {
+        $options = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
 
         if (!empty($options['show_post_meta']['yes'])) {
             printf('<span class="cats_tags"><span class="glyphicon glyphicon-folder-open" title="My tip"></span><span class="cats">');
@@ -76,8 +94,8 @@ class PostHelper {
         return trim(str_replace('&nbsp;', '', strip_tags($content))) !== '';
     }
 
-    public static function getHeaderColClasses($echo = false): ?string {
-        if (ThemeHelper::hasSidebar('header-widget-area')) {
+    public function getHeaderColClasses($echo = false): ?string {
+        if ($this->themeHelper->hasSidebar('header-widget-area')) {
             $contentColClass = 'col-xs-12 col-sm-9 col-md-6 col-lg-6';
         } else {
             $contentColClass = 'col-xs-12 col-sm-9 col-md-9 col-lg-9';
@@ -92,15 +110,15 @@ class PostHelper {
         return null;
     }
 
-    public static function getMainContentColClasses($echo = false): ?string {
+    public function getMainContentColClasses($echo = false): ?string {
         if (is_page() || is_home()) {
-            if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+            if ($this->themeHelper->hasSidebar('sidebar-page') || $this->themeHelper->hasSidebar('sidebar-general')) {
                 $contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
             } else {
                 $contentColClass = 'col-lg-12 col-md-12 col-sm-12 col-12';
             }
         } else {
-            if (ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+            if ($this->themeHelper->hasSidebar('sidebar-general') || $this->themeHelper->hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-9 col-md-9 col-sm-9 col-9';
             } else {
                 $contentColClass = 'col-lg-12 col-md-12 col-sm-12 col-12';
@@ -116,15 +134,15 @@ class PostHelper {
         return null;
     }
 
-    public static function getLoopContentClasses($echo = false): ?string {
+    public function getLoopContentClasses($echo = false): ?string {
         if (is_page() || is_home()) {
-            if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+            if ($this->themeHelper->hasSidebar('sidebar-page') || $this->themeHelper->hasSidebar('sidebar-general')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
             }
         } else {
-            if (ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+            if ($this->themeHelper->hasSidebar('sidebar-general') || $this->themeHelper->hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-12';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-12';
@@ -140,15 +158,15 @@ class PostHelper {
         return null;
     }
 
-    public static function getArticleNavigationPanelClasses($echo = false): ?string {
+    public function getArticleNavigationPanelClasses($echo = false): ?string {
         if (is_page() || is_home()) {
-            if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+            if ($this->themeHelper->hasSidebar('sidebar-page') || $this->themeHelper->hasSidebar('sidebar-general')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
             }
         } else {
-            if (ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+            if ($this->themeHelper->hasSidebar('sidebar-general') || $this->themeHelper->hasSidebar('sidebar-post')) {
                 $contentColClass = 'col-lg-4 col-md-6 col-sm-6 col-xs-6';
             } else {
                 $contentColClass = 'col-lg-3 col-md-4 col-sm-6 col-xs-6';
@@ -164,15 +182,15 @@ class PostHelper {
         return null;
     }
 
-    public static function getContentColumnCount($echo = false): ?int {
+    public function getContentColumnCount($echo = false): ?int {
         if (is_page() || is_home()) {
-            if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+            if ($this->themeHelper->hasSidebar('sidebar-page') || $this->themeHelper->hasSidebar('sidebar-general')) {
                 $columnCount = 3;
             } else {
                 $columnCount = 4;
             }
         } else {
-            if (ThemeHelper::hasSidebar('sidebar-general') || ThemeHelper::hasSidebar('sidebar-post')) {
+            if ($this->themeHelper->hasSidebar('sidebar-general') || $this->themeHelper->hasSidebar('sidebar-post')) {
                 $columnCount = 3;
             } else {
                 $columnCount = 4;
@@ -188,7 +206,7 @@ class PostHelper {
         return null;
     }
 
-    public static function getExcerptById($postID, $excerptLength = 35): string {
+    public function getExcerptById($postID, $excerptLength = 35): string {
         $the_post = get_post($postID); //Gets post ID
         $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
         $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images

@@ -127,7 +127,7 @@ class BootstrapVideoGallery {
                     $videoGalleryHtml .= '<header><h2 class="video-gallery-title"><a href="' . get_permalink($child->ID) . '">' . $child->post_title . '</a></h2></header>';
 
                     if ($child->post_content) {
-                        $videoGalleryHtml .= '<p>' . StringHelper::cutString($child->post_content, '140') . '</p>';
+                        $videoGalleryHtml .= '<p>' . StringHelper::getInstance()->cutString($child->post_content, '140') . '</p>';
                     }
 
                     $videoGalleryHtml .= '</li>';
@@ -163,7 +163,7 @@ class BootstrapVideoGallery {
         $videoGalleryHtml .= '</div>';
 
         if (empty($classes)) {
-            $classes = PostHelper::getLoopContentClasses();
+            $classes = PostHelper::getInstance()->getLoopContentClasses();
         }
 
         $videoGalleryHtml .= '<script type="text/javascript">
@@ -179,10 +179,10 @@ class BootstrapVideoGallery {
             $videoGalleryHtml .= '<nav id="nav-videogallery" class="navigation post-navigation clearfix" role="navigation">';
             $videoGalleryHtml .= '<h3 class="assistive-text">' . __('Video Navigation', 'eve-online') . '</h3>';
             $videoGalleryHtml .= '<div class="nav-previous pull-left">';
-            $videoGalleryHtml .= NavigationHelper::getNextPostsLink(__('<span class="meta-nav">&larr;</span> Older Videos', 'eve-online'), 0, false, $videoPages);
+            $videoGalleryHtml .= NavigationHelper::getInstance()->getNextPostsLink(__('<span class="meta-nav">&larr;</span> Older Videos', 'eve-online'), 0, false, $videoPages);
             $videoGalleryHtml .= '</div>';
             $videoGalleryHtml .= '<div class="nav-next pull-right">';
-            $videoGalleryHtml .= NavigationHelper::getPreviousPostsLink(__('Newer Videos <span class="meta-nav">&rarr;</span>', 'eve-online'), false);
+            $videoGalleryHtml .= NavigationHelper::getInstance()->getPreviousPostsLink(__('Newer Videos <span class="meta-nav">&rarr;</span>', 'eve-online'), false);
             $videoGalleryHtml .= '</div>';
             $videoGalleryHtml .= '</nav><!-- #nav-videogallery .navigation -->';
         }

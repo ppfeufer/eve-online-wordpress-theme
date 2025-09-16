@@ -23,12 +23,13 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
 use WordPress\EsiClient\Repository\AllianceRepository;
 use WordPress\EsiClient\Repository\CharacterRepository;
 use WordPress\EsiClient\Repository\CorporationRepository;
 use WordPress\EsiClient\Repository\UniverseRepository;
 
-class EsiHelper {
+class EsiHelper extends GenericSingleton {
     /**
      * instance
      *
@@ -81,6 +82,8 @@ class EsiHelper {
      * no external instanciation allowed
      */
     protected function __construct() {
+        parent::__construct();
+
         $this->imageserverUrl = 'https://images.evetech.net/';
 
         /**
@@ -101,19 +104,6 @@ class EsiHelper {
             'typeIcon' => 'types/%d/icon',
             'typeRender' => 'types/%d/render'
         ];
-    }
-
-    /**
-     * Returning the instance
-     *
-     * @return \Ppfeufer\Theme\EVEOnline\Helper\EsiHelper|null
-     */
-    public static function getInstance(): ?EsiHelper {
-        if (null === self::$instance) {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
     }
 
     public function getImageServerEndpoint($group): string {
@@ -227,13 +217,5 @@ class EsiHelper {
         }
 
         return $returnData;
-    }
-
-    /**
-     * clone
-     *
-     * no cloning allowed
-     */
-    protected function __clone() {
     }
 }

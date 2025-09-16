@@ -19,7 +19,9 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-class FilesystemHelper {
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
+
+class FilesystemHelper extends GenericSingleton {
     /**
      * Removing either the content of a directory or the directory recursively
      *
@@ -27,7 +29,7 @@ class FilesystemHelper {
      * @param boolean $removeDirectory Remove the given Directoy as well? (true or false)
      * @return void
      */
-    public static function deleteDirectoryRecursive(string $directory, bool $removeDirectory = false): void {
+    public function deleteDirectoryRecursive(string $directory, bool $removeDirectory = false): void {
         // open dir and save it in a handle
         $entry = opendir($directory);
 
@@ -38,7 +40,7 @@ class FilesystemHelper {
             if ($file !== '.' && $file !== '..') {
                 // check if handle is a dir or a file
                 if (is_dir($path)) {
-                    self::deleteDirectoryRecursive($path);
+                    $this->deleteDirectoryRecursive($path);
                 } else {
                     unlink($path);
                 }

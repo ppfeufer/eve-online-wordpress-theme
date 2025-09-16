@@ -23,8 +23,10 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-class StringHelper {
-    public static function cutString($string, $pos): string {
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
+
+class StringHelper extends GenericSingleton {
+    public function cutString($string, $pos): string {
         $string = strip_tags($string);
 
         if ($pos < strlen($string)) {
@@ -48,7 +50,7 @@ class StringHelper {
      * @param array $noStrip
      * @return string
      */
-    public static function camelCase(string $string, bool $ucFirst = false, array $noStrip = []): string {
+    public function camelCase(string $string, bool $ucFirst = false, array $noStrip = []): string {
         // First we make sure all is lower case
         $string = strtolower($string);
 
@@ -74,7 +76,7 @@ class StringHelper {
      * @param string $alpha
      * @return array
      */
-    public static function hextoRgb(string $hex, string $alpha = ''): array {
+    public function hextoRgb(string $hex, string $alpha = ''): array {
         $hex = str_replace('#', '', $hex);
 
         if (strlen($hex) === 6) {
@@ -105,7 +107,7 @@ class StringHelper {
      * @return string
      * @throws \Random\RandomException
      */
-    public static function encodeMailString(string $string): string {
+    public function encodeMailString(string $string): string {
         $chars = str_split($string);
         $seed = random_int(0, (int)abs(crc32($string) / strlen($string)));
 

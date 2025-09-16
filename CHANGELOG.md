@@ -45,6 +45,10 @@ Section Order:
 - GitHub Actions for CI/CD
 - Makefiles for easier development and deployment
 
+### Changed
+
+- Static classes to Singletons
+
 ## [v0.1-r20210929]
 
 ### Changed

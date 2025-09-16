@@ -19,16 +19,17 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
 use WP_Query;
 
-class NavigationHelper {
+class NavigationHelper extends GenericSingleton {
     /**
      * Display page next/previous navigation links.
      *
      * @param string $nav_id
      * @global object $wp_query
      */
-    public static function getContentNav(string $nav_id): void {
+    public function getContentNav(string $nav_id): void {
         global $wp_query;
 
         if ($wp_query->max_num_pages > 1) {
@@ -36,10 +37,10 @@ class NavigationHelper {
             <nav id="<?php echo $nav_id; ?>" class="navigation post-navigation clearfix" role="navigation">
                 <h3 class="assistive-text"><?php _e('Post navigation', 'eve-online'); ?></h3>
                 <div class="nav-previous pull-left">
-                    <?php self::getNextPostsLink(__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
+                    <?php $this->getNextPostsLink(__('<span class="meta-nav">&larr;</span> Older posts', 'eve-online'), 0, true); ?>
                 </div>
                 <div class="nav-next pull-right">
-                    <?php self::getPreviousPostsLink(__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
+                    <?php $this->getPreviousPostsLink(__('Newer posts <span class="meta-nav">&rarr;</span>', 'eve-online'), true); ?>
                 </div>
             </nav><!-- #<?php echo $nav_id; ?> .navigation -->
             <?php
@@ -59,7 +60,7 @@ class NavigationHelper {
      *
      * @global int $paged
      */
-    public static function getNextPostsLink(string $label = null, int $max_page = 0, bool $echo = false, object $wp_query = null): ?string {
+    public function getNextPostsLink(string $label = null, int $max_page = 0, bool $echo = false, object $wp_query = null): ?string {
         global $paged;
 
         if ($wp_query === null) {
@@ -108,7 +109,7 @@ class NavigationHelper {
      * @return string|null HTML-formatted previous page link.
      * @global int $paged
      */
-    public static function getPreviousPostsLink(string $label = null, bool $echo = false): ?string {
+    public function getPreviousPostsLink(string $label = null, bool $echo = false): ?string {
         global $paged;
 
         if (null === $label) {
@@ -142,7 +143,7 @@ class NavigationHelper {
      * @param boolean $echo
      * @return string|null
      */
-    public static function getBreadcrumbNavigation(bool $addTexts = true, bool $echo = false): ?string {
+    public function getBreadcrumbNavigation(bool $addTexts = true, bool $echo = false): ?string {
         $home = __('Home', 'eve-online'); // text for the 'Home' link
         $before = '<li class="active">'; // tag before the current crumb
         $sep = '';
@@ -268,7 +269,7 @@ class NavigationHelper {
      * @package WordPress
      * @subpackage EVE Online Theme
      */
-    public static function getArticleNavigation($echo = false): ?string {
+    public function getArticleNavigation($echo = false): ?string {
         $htmlOutput = null;
         $previousPostObject = get_previous_post();
         $nextPostObject = get_next_post();
@@ -278,7 +279,7 @@ class NavigationHelper {
 
         $htmlOutput .= '<div class="row clearfix">';
         if ($previousPostObject) {
-            $htmlOutput .= '<div class="nav-previous ' . PostHelper::getArticleNavigationPanelClasses() . ' pull-left clearfix">';
+            $htmlOutput .= '<div class="nav-previous ' . PostHelper::getInstance()->getArticleNavigationPanelClasses() . ' pull-left clearfix">';
             $htmlOutput .= '<div class="nav-previous-link">' . get_previous_post_link('%link', __('<span class="meta-nav">&larr;</span> Previous', 'eve-online')) . '</div>';
 
             if (has_post_thumbnail($previousPostObject->ID)) {
@@ -301,7 +302,7 @@ class NavigationHelper {
         }
 
         if ($nextPostObject) {
-            $htmlOutput .= '<div class="nav-next ' . PostHelper::getArticleNavigationPanelClasses() . ' pull-right text-align-right clearfix">';
+            $htmlOutput .= '<div class="nav-next ' . PostHelper::getInstance()->getArticleNavigationPanelClasses() . ' pull-right text-align-right clearfix">';
             $htmlOutput .= '<div class="nav-next-link">' . get_next_post_link('%link', __('Next <span class="meta-nav">&rarr;</span>', 'eve-online')) . '</div>';
 
             if (has_post_thumbnail($nextPostObject->ID)) {

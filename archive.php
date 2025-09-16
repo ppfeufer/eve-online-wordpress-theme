@@ -28,7 +28,7 @@ get_header();
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+    $breadcrumbNavigation = NavigationHelper::getInstance()->getBreadcrumbNavigation();
 
     if (!empty($breadcrumbNavigation)) {
         ?>
@@ -46,7 +46,7 @@ get_header();
 
     <!--<div class="row main-content">-->
     <div class="main-content clearfix">
-        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getInstance()->getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-archive">
                 <header class="page-title">
                     <h1>
@@ -110,7 +110,7 @@ get_header();
                         echo '<script type="text/javascript">
                                 jQuery(document).ready(function() {
                                     jQuery("ul.bootstrap-post-loop-gallery-' . $uniqueID . '").bootstrapGallery({
-                                        "classes" : "' . PostHelper::getLoopContentClasses() . '",
+                                        "classes" : "' . PostHelper::getInstance()->getLoopContentClasses() . '",
                                         "hasModal" : false
                                     });
                                 });
@@ -121,22 +121,22 @@ get_header();
                 if (function_exists('wp_pagenavi')) {
                     wp_pagenavi();
                 } else {
-                    NavigationHelper::getContentNav('nav-below');
+                    NavigationHelper::getInstance()->getContentNav('nav-below');
                 }
                 ?>
             </div> <!-- /.content -->
         </div> <!-- /.col -->
 
         <?php
-        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::getInstance()->hasSidebar('sidebar-page') || ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
             <?php
-            if (ThemeHelper::hasSidebar('sidebar-general')) {
+            if (ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
                 get_sidebar('general');
             }
 
-            if (ThemeHelper::hasSidebar('sidebar-page')) {
+            if (ThemeHelper::getInstance()->hasSidebar('sidebar-page')) {
                 get_sidebar('page');
             }
             ?>

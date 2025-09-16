@@ -28,7 +28,7 @@ get_header();
 
 <div class="container main">
     <?php
-    $breadcrumbNavigation = NavigationHelper::getBreadcrumbNavigation();
+    $breadcrumbNavigation = NavigationHelper::getInstance()->getBreadcrumbNavigation();
 
     if (!empty($breadcrumbNavigation)) {
         ?>
@@ -45,7 +45,7 @@ get_header();
     ?>
 
     <div class="row main-top">
-        <div class="<?php echo PostHelper::getMainContentColClasses(); ?>">
+        <div class="<?php echo PostHelper::getInstance()->getMainContentColClasses(); ?>">
             <header>
                 <h1>
                     <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
@@ -55,7 +55,7 @@ get_header();
     </div><!--/.row -->
 
     <div class="row main-content">
-        <div class="<?php echo PostHelper::getMainContentColClasses(); ?> content-wrapper">
+        <div class="<?php echo PostHelper::getInstance()->getMainContentColClasses(); ?> content-wrapper">
             <div class="content content-inner content-404">
                 <header class="page-title">
                     <h1><?php _e('This is Embarrassing', 'eve-online'); ?></h1>
@@ -93,15 +93,15 @@ get_header();
         </div> <!-- /.col -->
 
         <?php
-        if (ThemeHelper::hasSidebar('sidebar-page') || ThemeHelper::hasSidebar('sidebar-general')) {
+        if (ThemeHelper::getInstance()->hasSidebar('sidebar-page') || ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
             ?>
             <div class="col-lg-3 col-md-3 col-sm-3 col-3 sidebar-wrapper">
             <?php
-            if (ThemeHelper::hasSidebar('sidebar-general')) {
+            if (ThemeHelper::getInstance()->hasSidebar('sidebar-general')) {
                 get_sidebar('general');
             }
 
-            if (ThemeHelper::hasSidebar('sidebar-page')) {
+            if (ThemeHelper::getInstance()->hasSidebar('sidebar-page')) {
                 get_sidebar('page');
             }
             ?>

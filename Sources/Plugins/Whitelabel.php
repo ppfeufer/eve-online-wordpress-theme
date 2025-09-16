@@ -42,12 +42,24 @@ class Whitelabel {
     private EsiHelper|null $eveApi;
 
     /**
+     * Theme Helper Instance
+     *
+     * An instance of the ThemeHelper class to assist with theme-related tasks.
+     *
+     * @var ThemeHelper
+     * @access private
+     */
+    private ThemeHelper $themeHelper;
+
+    /**
      * Fire the actions to whitelabel WordPress
      *
      * Maybe edit the .htaccess file aswell
      *      RewriteRule ^login$ http://www.website.de/wp-login.php [NC,L]
      */
     public function __construct() {
+        $this->themeHelper = ThemeHelper::getInstance();
+
         /**
          * Setting Theme Informations
          */
@@ -67,7 +79,7 @@ class Whitelabel {
         /**
          * Getting theme settings
          */
-        $this->themeSettings = get_option('eve_theme_options', ThemeHelper::getThemeDefaultOptions());
+        $this->themeSettings = get_option('eve_theme_options', $this->themeHelper->getThemeDefaultOptions());
 
         /**
          * Starting the helper classes
@@ -79,7 +91,7 @@ class Whitelabel {
     }
 
     private function getBackgroundImage(): string {
-        return ThemeHelper::getThemeBackgroundImage();
+        return $this->themeHelper->getThemeBackgroundImage();
     }
 
     public function initActions(): void {

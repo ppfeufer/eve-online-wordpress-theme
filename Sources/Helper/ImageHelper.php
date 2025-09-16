@@ -19,11 +19,12 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
+use Ppfeufer\Theme\EVEOnline\Singletons\GenericSingleton;
 use WP_Query;
 use WP_Post;
 
-class ImageHelper {
-    public static function getAttachmentId($url): int|WP_Post {
+class ImageHelper extends GenericSingleton {
+    public function getAttachmentId($url): int|WP_Post {
         $attachment_id = 0;
         $dir = wp_upload_dir();
 
