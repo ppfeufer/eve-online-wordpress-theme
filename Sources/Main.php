@@ -54,23 +54,56 @@ class Main {
     private function initializeHooks(): void {
         add_action(
             hook_name: 'after_setup_theme', // Hook to set up theme defaults
-            callback: [$this, 'loadTextDomain'] // Callback to load the theme's text domain
+            callback: [$this, 'afterThemeSetup'] // Callback to load the theme's text domain
         );
     }
 
     /**
-     * Load text domain
+     * Load text domain and initialize theme settings
      *
-     * Loads the theme's text domain for localization, enabling translation of
-     * theme strings.
+     * This method is executed during the 'after_setup_theme' WordPress hook. It performs
+     * the following tasks:
+     * - Updates theme options if the database version has changed.
+     * - Adds support for various WordPress features.
+     * - Registers navigation menus for the theme.
+     * - Defines custom thumbnail sizes.
+     * - Loads the theme's text domain for localization, enabling translation of theme strings.
      *
      * @return void
      * @access public
      */
-    public function loadTextDomain(): void {
+    public function afterThemeSetup(): void {
+        /**
+         * Update theme options if the database version has changed.
+         *
+         * This ensures that the theme's options are synchronized with the latest
+         * database version and default options.
+         */
+        Helper\ThemeHelper::updateOptions(
+            optionsName: 'eve_theme_options',
+            dbVersionFieldName: 'eve_theme_db_version',
+            newDbVersion: Helper\ThemeHelper::getThemeDbVersion(),
+            defaultOptions: Helper\ThemeHelper::getThemeDefaultOptions()
+        );
+
+        // Add support for various WordPress features such as post thumbnails and HTML5.
+        Helper\ThemeHelper::addThemeSupport();
+
+        // Register the theme's navigation menus.
+        Helper\ThemeHelper::registerNavMenus();
+
+        // Define custom thumbnail sizes for the theme.
+        Helper\ThemeHelper::addThumbnailSizes();
+
+        /**
+         * Load the theme's text domain for localization.
+         *
+         * This enables the translation of theme strings using the specified text domain
+         * and localization file path.
+         */
         load_child_theme_textdomain(
-            domain: THEME_SLUG, // Text domain for the theme
-            path: THEME_DIRECTORY . '/l10n' // Path to the localization files
+            domain: THEME_SLUG, // The text domain identifier for the theme.
+            path: THEME_DIRECTORY . '/l10n' // Path to the directory containing localization files.
         );
     }
 

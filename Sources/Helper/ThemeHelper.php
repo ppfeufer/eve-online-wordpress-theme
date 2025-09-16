@@ -1,96 +1,97 @@
 <?php
 
-/*
- * Copyright (C) 2018 p.pfeufer
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
+/**
+ * ThemeHelper
+ *
+ * A helper class for various theme-related functionality, such as managing
+ * theme assets, settings, and configurations.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\Helper
+ */
 class ThemeHelper {
     /**
-     * themeDbVersion
+     * The database version for the theme's settings.
      *
      * @var string
      */
     protected static string $themeDbVersion = '20170803';
 
     /**
-     * Return the current DB version used for the themes settings
+     * Get the current database version used for the theme's settings.
      *
-     * @return string
+     * @return string The database version.
      */
     public static function getThemeDbVersion(): string {
         return self::$themeDbVersion;
     }
 
     /**
-     * Returning the theme's default options
+     * Get the theme's JavaScript files.
      *
-     * @return array
+     * @return array An array of JavaScript files with their configurations.
      */
-    public static function getThemeDefaultOptions(): array {
-        $defaultOptions = [
-            // generel settings tab
-            'type' => '',
-            'name' => '',
-            'corp_logos_in_menu' => [
-                'show' => 'show'
+    public static function getThemeJavaScripts(): array {
+        return [
+            // Bootstrap's JavaScript
+            'Bootstrap' => [
+                'handle' => 'bootstrap-js',
+                'src' => get_theme_file_uri('/Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
+                'deps' => ['jquery'],
+                'ver' => '3.3.7',
+                'args' => ['strategy' => 'async', 'in_footer' => true]
             ],
-            'navigation' => [
-                'even_cells' => ''
+            // Bootstrap Toolkit
+            'Bootstrap Toolkit' => [
+                'handle' => 'bootstrap-toolkit-js',
+                'src' => get_theme_file_uri('/Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
+                'deps' => ['bootstrap-js'],
+                'ver' => '2.6.3',
+                'args' => ['strategy' => 'async', 'in_footer' => true]
             ],
-            'post_meta' => [
-                'show' => ''
+            // Bootstrap Gallery
+            'Bootstrap Gallery' => [
+                'handle' => 'bootstrap-gallery-js',
+                'src' => get_theme_file_uri('/Assets/libs/jQuery/bootstrap-gallery/jquery.bootstrap-gallery.min.js'),
+                'deps' => ['jquery'],
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'args' => ['strategy' => 'async', 'in_footer' => true]
             ],
-            'cache' => [
-                'remote-image-cache' => 'remote-image-cache'
-            ],
-            'remote_image_cache_time' => '86400',
-
-            // background settings tab
-            'use_background_image' => [
-                'yes' => 'yes'
-            ],
-            'background_image' => 'amarr.jpg',
-            'background_image_upload' => '',
-            'background_color' => '',
-
-            // slider settings tab
-            'default_slider' => '',
-            'default_slider_on' => [
-                'frontpage_only' => 'frontpage_only'
-            ],
-
-            // performance tab
-            'minify_html_output' => [
-                'yes' => ''
-            ],
-
-            // footer settings tab
-            'footertext' => '',
+            // Main JavaScript for the theme
+            'EVE Online' => [
+                'handle' => 'eve-online-main-js',
+                'src' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
+                'deps' => ['jquery'],
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
+                'args' => ['strategy' => 'async', 'in_footer' => true]
+            ]
         ];
-
-        return apply_filters('eve_theme_options', $defaultOptions);
     }
 
     /**
-     * Returning some theme related data
+     * Get a string for versioning assets.
      *
-     * @param string $parameter
-     * @return string
+     * @return string The version string.
+     */
+    private static function getThemeVersionForAssets(): string {
+        return sanitize_title(self::getThemeName()) . '-' . self::getThemeVersion();
+    }
+
+    /**
+     * Get the theme's name.
+     *
+     * @return string The theme name.
+     */
+    public static function getThemeName(): string {
+        return self::getThemeData('Name');
+    }
+
+    /**
+     * Get theme-related data based on a parameter.
+     *
+     * @param string $parameter The parameter to retrieve (e.g., 'Name', 'Version').
+     * @return string The requested theme data.
      *
      * @link https://developer.wordpress.org/reference/functions/wp_get_theme/
      */
@@ -99,75 +100,22 @@ class ThemeHelper {
     }
 
     /**
-     * Return the theme's javascripts
+     * Get the theme's version.
      *
-     * @return array
+     * @return string The theme version.
      */
-    public static function getThemeJavaScripts(): array {
-        return [
-            /* Bootstrap's JS */
-            'Bootstrap' => [
-                'handle' => 'bootstrap-js',
-                'src' => get_theme_file_uri('/Assets/libs/bootstrap/3.3.7/js/bootstrap.min.js'),
-                'deps' => [
-                    'jquery'
-                ],
-                'ver' => '3.3.7',
-                'args' => [
-                    'strategy' => 'async',
-                    'in_footer' => true
-                ]
-            ],
-            /* Bootstrap Toolkit */
-            'Bootstrap Toolkit' => [
-                'handle' => 'bootstrap-toolkit-js',
-                'src' => get_theme_file_uri('/Assets/libs/bootstrap/toolkit/bootstrap-toolkit.min.js'),
-                'deps' => [
-                    'bootstrap-js'
-                ],
-                'ver' => '2.6.3',
-                'args' => [
-                    'strategy' => 'async',
-                    'in_footer' => true
-                ]
-            ],
-            /* Bootstrap Gallery */
-            'Bootstrap Gallery' => [
-                'handle' => 'bootstrap-gallery-js',
-                'src' => get_theme_file_uri('/Assets/libs/jQuery/bootstrap-gallery/jquery.bootstrap-gallery.min.js'),
-                'deps' => [
-                    'jquery'
-                ],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-                'args' => [
-                    'strategy' => 'async',
-                    'in_footer' => true
-                ]
-            ],
-            /* The main JS */
-            'EVE Online' => [
-                'handle' => 'eve-online-main-js',
-                'src' => get_theme_file_uri('/Assets/js/eve-online.min.js'),
-                'deps' => [
-                    'jquery'
-                ],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
-                'args' => [
-                    'strategy' => 'async',
-                    'in_footer' => true
-                ]
-            ]
-        ];
+    public static function getThemeVersion(): string {
+        return self::getThemeData('Version');
     }
 
     /**
-     * Return the theme's stylesheets
+     * Get the theme's stylesheets.
      *
-     * @return array
+     * @return array An array of stylesheets with their configurations.
      */
     public static function getThemeStyleSheets(): array {
         return [
-            /* Normalize CSS */
+            // Normalize CSS
             'Normalize CSS' => [
                 'handle' => 'normalize',
                 'src' => get_theme_file_uri('/Assets/css/normalize.min.css'),
@@ -175,124 +123,145 @@ class ThemeHelper {
                 'ver' => '3.0.3',
                 'media' => 'all'
             ],
-            /* Bootstrap */
+            // Bootstrap CSS
             'Bootstrap' => [
                 'handle' => 'bootstrap',
                 'src' => get_theme_file_uri('/Assets/libs//bootstrap/3.3.7/css/bootstrap.min.css'),
-                'deps' => [
-                    'normalize'
-                ],
+                'deps' => ['normalize'],
                 'ver' => '3.3.7',
                 'media' => 'all'
             ],
-            /* Bootstrap Additional CSS */
+            // Additional Bootstrap CSS
             'Bootstrap Additional CSS' => [
                 'handle' => 'bootstrap-additional',
                 'src' => get_theme_file_uri('/Assets/css/bootstrap-additional.min.css'),
-                'deps' => [
-                    'bootstrap'
-                ],
+                'deps' => ['bootstrap'],
                 'ver' => '3.3.7',
                 'media' => 'all'
             ],
-            /* Theme Main CSS */
+            // Main theme styles
             'EVE Online Theme Styles' => [
                 'handle' => 'eve-online',
                 'src' => get_theme_file_uri('/style.min.css'),
-                'deps' => [
-                    'normalize',
-                    'bootstrap'
-                ],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'deps' => ['normalize', 'bootstrap'],
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
                 'media' => 'all'
             ],
-            /* Theme Responsive CSS */
+            // Responsive styles
             'EVE Online Responsive Styles' => [
                 'handle' => 'eve-online-responsive-styles',
                 'src' => get_theme_file_uri('/Assets/css/responsive.min.css'),
-                'deps' => [
-                    'eve-online'
-                ],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'deps' => ['eve-online'],
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
                 'media' => 'all'
             ],
-            /* Adjustment to Plugins */
+            // Plugin-specific styles
             'EVE Online Plugin Styles' => [
                 'handle' => 'eve-online-plugin-styles',
                 'src' => get_theme_file_uri('Assets/css/plugin-tweaks.min.css'),
-                'deps' => [
-                    'eve-online'
-                ],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'deps' => ['eve-online'],
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
                 'media' => 'all'
             ],
         ];
     }
 
     /**
-     * Return the theme's admin stylesheets
+     * Get the theme's admin stylesheets.
      *
-     * @return array
+     * @return array An array of admin stylesheets with their configurations.
      */
     public static function getThemeAdminStyleSheets(): array {
         return [
-            /* Adjustment to Plugins */
+            // Admin-specific styles
             'EVE Online Admin Styles' => [
                 'handle' => 'eve-online-admin-styles',
                 'src' => get_template_directory_uri() . '/Assets/css/eve-online-admin-style.min.css',
                 'deps' => [],
-                'ver' => sanitize_title(self::getThemeData('Name')) . '-' . self::getThemeData('Version'),
+                'ver' => sanitize_title(self::getThemeVersionForAssets()),
                 'media' => 'all'
             ],
         ];
     }
 
     /**
-     * Update the options array for our theme, if needed
+     * Add theme support for various WordPress features.
      *
-     * @param string $optionsName
-     * @param string $dbVersionFieldName
-     * @param string $newDbVersion
-     * @param array $defaultOptions
+     * @return void
+     */
+    public static function addThemeSupport(): void {
+        add_theme_support('automatic-feed-links');
+        add_theme_support('post-thumbnails');
+        add_theme_support('title-tag');
+        add_theme_support('post-formats', [
+            'aside', 'image', 'gallery', 'link', 'quote', 'status', 'video', 'audio', 'chat'
+        ]);
+        add_theme_support('html5', [
+            'comment-form', 'comment-list', 'gallery', 'caption',
+        ]);
+    }
+
+    /**
+     * Register the theme's navigation menus.
+     *
+     * @return void
+     */
+    public static function registerNavMenus(): void {
+        register_nav_menus([
+            'main-menu' => __('Main Menu', 'eve-online'),
+            'header-menu' => __('Header Menu', 'eve-online'),
+            'footer-menu' => __('Footer Menu', 'eve-online'),
+        ]);
+    }
+
+    /**
+     * Add custom thumbnail sizes for the theme.
+     *
+     * @return void
+     */
+    public static function addThumbnailSizes(): void {
+        set_post_thumbnail_size(1680, 500);
+        add_image_size('header-image', 1680, 500, true);
+        add_image_size('post-loop-thumbnail', 768, 432, true);
+    }
+
+    /**
+     * Update the theme's options if the database version has changed.
+     *
+     * @param string $optionsName The name of the options.
+     * @param string $dbVersionFieldName The name of the database version field.
+     * @param string $newDbVersion The new database version.
+     * @param array $defaultOptions The default options array.
+     * @return void
      */
     public static function updateOptions(string $optionsName, string $dbVersionFieldName, string $newDbVersion, array $defaultOptions): void {
         $currentDbVersion = get_option($dbVersionFieldName);
 
-        // Check if the DB needs to be updated
         if ($currentDbVersion !== $newDbVersion) {
             $currentOptions = get_option($optionsName);
+            $newOptions = is_array($currentOptions) ? array_merge($defaultOptions, $currentOptions) : $defaultOptions;
 
-            if (is_array($currentOptions)) {
-                $newOptions = array_merge($defaultOptions, $currentOptions);
-            } else {
-                $newOptions = $defaultOptions;
-            }
-
-            // Update the options
             update_option($optionsName, $newOptions);
-
-            // Update the DB Version
             update_option($dbVersionFieldName, $newDbVersion);
         }
     }
 
     /**
-     * Alias for is_active_sidebar()
+     * Check if a sidebar is active.
      *
-     * @param string $sidebarPosition
-     * @return boolean
-     * @uses is_active_sidebar() Whether a sidebar is in use.
+     * @param string $sidebarPosition The sidebar position identifier.
+     * @return bool True if the sidebar is active, false otherwise.
      */
     public static function hasSidebar(string $sidebarPosition): bool {
         return is_active_sidebar($sidebarPosition);
     }
 
     /**
-     * Getting the default background mages that are shipped with the theme
+     * Get the default background images shipped with the theme.
      *
-     * @param boolean $withThumbnail
-     * @param string|null $baseClass
-     * @return array|null
+     * @param bool $withThumbnail Whether to include thumbnails.
+     * @param string|null $baseClass An optional base class for thumbnails.
+     * @return array|null An array of background images or null if none found.
      */
     public static function getDefaultBackgroundImages(bool $withThumbnail = false, string $baseClass = null): ?array {
         $imagePath = get_template_directory() . '/Assets/img/background/';
@@ -308,8 +277,6 @@ class ThemeHelper {
             }
 
             closedir($handle);
-
-            // we are only looking for images
             $images = preg_grep('/\.(jpg|jpeg|png|gif)(?:[?#].*)?$/i', $files);
 
             $currentEveExpansionThemeImage = 'https://web.ccpgamescdn.com/aws/eveonline/sso/background.jpg';
@@ -325,10 +292,6 @@ class ThemeHelper {
                 $currentEveExpansionThemeImage = '<figure class="bg-image' . $baseClass . '"><img src="' . $currentEveExpansionThemeImage . '" style="width:100px; height:auto;" title="' . __('Current EVE Online Expansion', 'eve-online') . '" alt="' . __('Current EVE Online Expansion', 'eve-online') . '"><figcaption>' . __('Current EVE Expansion', 'eve-online') . '</figcaption></figure>';
             }
 
-            /**
-             * Special case:
-             *  Current EVE Expansion theme Image
-             */
             return ['current-eve-expansion' => $currentEveExpansionThemeImage] + $images;
         }
 
@@ -336,23 +299,19 @@ class ThemeHelper {
     }
 
     /**
-     * Getting the themes background image
+     * Get the theme's background image.
      *
-     * @return string
+     * @return string The URL of the background image.
      */
     public static function getThemeBackgroundImage(): string {
         $themeSettings = get_option('eve_theme_options', self::getThemeDefaultOptions());
-
         $backgroundImage = get_template_directory_uri() . '/img/background/' . $themeSettings['background_image'];
 
         if ($themeSettings['background_image'] === 'current-eve-expansion') {
             $backgroundImage = 'https://web.ccpgamescdn.com/aws/eveonline/sso/background.jpg';
         }
 
-        $uploadedBackground = !empty($themeSettings['background_image_upload']);
-
-        // we have an uploaded image, so overwrite the background
-        if ($uploadedBackground === true) {
+        if (!empty($themeSettings['background_image_upload'])) {
             $backgroundImage = wp_get_attachment_url($themeSettings['background_image_upload']);
         }
 
@@ -360,11 +319,29 @@ class ThemeHelper {
     }
 
     /**
-     * Getting the theme's name
+     * Get the theme's default options.
      *
-     * @return string Theme Name
+     * @return array The default options array.
      */
-    public static function getThemeName(): string {
-        return 'EVE Online';
+    public static function getThemeDefaultOptions(): array {
+        $defaultOptions = [
+            'type' => '',
+            'name' => '',
+            'corp_logos_in_menu' => ['show' => 'show'],
+            'navigation' => ['even_cells' => ''],
+            'post_meta' => ['show' => ''],
+            'cache' => ['remote-image-cache' => 'remote-image-cache'],
+            'remote_image_cache_time' => '86400',
+            'use_background_image' => ['yes' => 'yes'],
+            'background_image' => 'amarr.jpg',
+            'background_image_upload' => '',
+            'background_color' => '',
+            'default_slider' => '',
+            'default_slider_on' => ['frontpage_only' => 'frontpage_only'],
+            'minify_html_output' => ['yes' => ''],
+            'footertext' => '',
+        ];
+
+        return apply_filters('eve_theme_options', $defaultOptions);
     }
 }
