@@ -82,7 +82,7 @@ get_header();
                 </header>
                 <?php
                 if (have_posts()) {
-                    $uniqueID = uniqid('', true);
+                    $uniqueID = uniqid('', false);
 
                     if (get_post_type() === 'post') {
                         echo '<div class="gallery-row row">';

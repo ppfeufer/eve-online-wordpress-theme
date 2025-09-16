@@ -105,7 +105,7 @@ class BootstrapVideoGallery {
         $perPage = $args['per_page'];
 
         // loop through the pages and build the gallery code ....
-        $uniqueID = uniqid('', true);
+        $uniqueID = uniqid('', false);
         $videoGalleryHtml = null;
         $videoGalleryHtml .= '<div class="gallery-row row">';
         $videoGalleryHtml .= '<ul class="bootstrap-gallery bootstrap-video-gallery bootstrap-video-gallery-' . $uniqueID . ' clearfix">';

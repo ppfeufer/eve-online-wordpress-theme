@@ -51,7 +51,7 @@ get_header();
             <div class="content content-inner content-index content-loop">
                 <?php
                 if (have_posts()) {
-                    $uniqueID = uniqid('', true);
+                    $uniqueID = uniqid('', false);
 
                     if (get_post_type() === 'post') {
                         echo '<div class="gallery-row row">';
@@ -105,7 +105,7 @@ get_header();
                     get_sidebar('general');
                 }
 
-                if (ThemeHelper::hasSidebar('sidebar-page')) {
+                if (ThemeHelper::getInstance()->hasSidebar('sidebar-page')) {
                     get_sidebar('page');
                 }
                 ?>
