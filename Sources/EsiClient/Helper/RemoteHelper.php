@@ -1,54 +1,46 @@
 <?php
 
-/**
- * Copyright (C) 2017 Rounon Dax
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Helper;
 
-use function count;
-use function defined;
-use function http_build_query;
-use function is_array;
-use function json_encode;
-use function wp_remote_get;
-use function wp_remote_post;
+use WP_Error;
 
+/**
+ * Class RemoteHelper
+ *
+ * A helper class to facilitate remote data retrieval using HTTP GET and POST methods.
+ *
+ * @package Ppfeufer\Theme\EVEOnline\EsiClient\Helper
+ */
 class RemoteHelper {
     /**
-     * Getting data from a remote source
+     * Retrieve data from a remote source using HTTP GET or POST methods.
      *
-     * @param string $url
-     * @param array $parameter
-     * @return mixed
+     * This method allows fetching data from a remote URL using either the GET or POST HTTP method.
+     * It supports passing parameters for both methods and handles the response accordingly.
+     *
+     * @param string $url The URL to fetch data from.
+     * @param string $method The HTTP method to use ('get' or 'post'). Defaults to 'get'.
+     * @param array $parameter Parameters to include in the request. For GET, they are appended as query parameters.
+     *                         For POST, they are included in the request body.
+     * @return array|WP_Error|null Returns the response data as an array, a WP_Error on failure, or null if no response.
      */
-    public function getRemoteData(string $url, string $method = 'get', array $parameter = []) {
+    public function getRemoteData(string $url, string $method = 'get', array $parameter = []): array|null|WP_Error {
         $returnValue = null;
         $params = '';
 
         switch ($method) {
             case 'get':
+                // Append parameters as a query string for GET requests.
                 if (count($parameter) > 0) {
                     $params = '?' . http_build_query($parameter);
                 }
 
+                // Perform the GET request.
                 $remoteData = wp_remote_get($url . $params);
                 break;
 
             case 'post':
+                // Perform the POST request with JSON-encoded parameters.
                 $remoteData = wp_remote_post($url, [
                     'headers' => [
                         'Content-Type' => 'application/json; charset=utf-8'
@@ -59,6 +51,7 @@ class RemoteHelper {
                 break;
         }
 
+        // Check if the response is an array and assign it to the return value.
         if (is_array($remoteData)) {
             $returnValue = $remoteData;
         }

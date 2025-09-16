@@ -20,22 +20,8 @@
 namespace Ppfeufer\Theme\EVEOnline\EsiClient;
 
 use Ppfeufer\Theme\EVEOnline\EsiClient\Helper\RemoteHelper;
-use Ppfeufer\Theme\EVEOnline\EsiClient\Mapper\JsonMapper;
 use Ppfeufer\Theme\EVEOnline\EsiClient\Model\Error\EsiError;
-use function array_keys;
-use function array_values;
-use function count;
-use function defined;
-use function get_class;
-use function get_class_vars;
-use function is_a;
-use function is_null;
-use function json_decode;
-use function preg_replace;
-use function trailingslashit;
-use function wp_remote_retrieve_body;
-use function wp_remote_retrieve_headers;
-use function wp_remote_retrieve_response_code;
+use Ppfeufer_Theme_EVEOnline_JsonMapper;
 
 class Swagger {
     /**
@@ -161,7 +147,7 @@ class Swagger {
         $returnValue = null;
 
         if (!is_null($jSon)) {
-            $jsonMapper = new JsonMapper;
+            $jsonMapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
             $returnValue = $jsonMapper->map(json_decode($jSon), $object);
         }
@@ -337,7 +323,7 @@ class Swagger {
         $returnValue = null;
 
         if (!is_null($jSon)) {
-            $jsonMapper = new JsonMapper;
+            $jsonMapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
             $returnValue = $jsonMapper->mapArray(json_decode($jSon), $array, $class);
         }

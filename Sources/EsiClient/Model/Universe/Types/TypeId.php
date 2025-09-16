@@ -19,7 +19,7 @@
 
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Types;
 
-use \Ppfeufer\Theme\EVEOnline\EsiClient\Mapper\JsonMapper;
+use Ppfeufer_Theme_EVEOnline_JsonMapper;
 
 class TypeId {
     /**
@@ -187,7 +187,7 @@ class TypeId {
      * @param array $dogmaAttributes
      */
     protected function setDogmaAttributes(array $dogmaAttributes) {
-        $mapper = new JsonMapper;
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->dogmaAttributes = $mapper->mapArray($dogmaAttributes, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Types\TypeId\Dogma\Attributes');
     }
@@ -207,7 +207,7 @@ class TypeId {
      * @param array $dogmaEffects
      */
     protected function setDogmaEffects(array $dogmaEffects) {
-        $mapper = new JsonMapper;
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->dogmaEffects = $mapper->mapArray($dogmaEffects, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Types\TypeId\Dogma\Effects');
     }

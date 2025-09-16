@@ -19,7 +19,8 @@
 
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe;
 
-use \Ppfeufer\Theme\EVEOnline\EsiClient\Mapper\JsonMapper;
+use Ppfeufer_Theme_EVEOnline_JsonMapper;
+use Ppfeufer_Theme_EVEOnline_JsonMapper_Exception;
 
 class Ids {
     /**
@@ -27,77 +28,77 @@ class Ids {
      *
      * @var array
      */
-    protected $agents = null;
+    protected array $agents = [];
 
     /**
      * alliances
      *
      * @var array
      */
-    protected $alliances = null;
+    protected array $alliances = [];
 
     /**
      * characters
      *
      * @var array
      */
-    protected $characters = null;
+    protected array $characters = [];
 
     /**
      * constellations
      *
      * @var array
      */
-    protected $constellations = null;
+    protected array $constellations = [];
 
     /**
      * corporations
      *
      * @var array
      */
-    protected $corporations = null;
+    protected array $corporations = [];
 
     /**
      * factions
      *
      * @var array
      */
-    protected $factions = null;
+    protected array $factions = [];
 
     /**
      * inventoryTypes
      *
      * @var array
      */
-    protected $inventoryTypes = null;
+    protected array $inventoryTypes = [];
 
     /**
      * regions
      *
      * @var array
      */
-    protected $regions = null;
+    protected array $regions = [];
 
     /**
      * stations
      *
      * @var array
      */
-    protected $stations = null;
+    protected array $stations = [];
 
     /**
      * systems
      *
      * @var array
      */
-    protected $systems = null;
+    protected array $systems = [];
 
     /**
      * getAgents
      *
      * @return array
      */
-    public function getAgents() {
+    public function getAgents(): array {
         return $this->agents;
     }
 
@@ -105,9 +106,10 @@ class Ids {
      * setAgents
      *
      * @param array $agents
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setAgents(array $agents) {
-        $mapper = new JsonMapper;
+    protected function setAgents(array $agents): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->agents = $mapper->mapArray($agents, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Agents');
     }
@@ -117,7 +119,7 @@ class Ids {
      *
      * @return array
      */
-    public function getAlliances() {
+    public function getAlliances(): array {
         return $this->alliances;
     }
 
@@ -125,9 +127,10 @@ class Ids {
      * setAlliances
      *
      * @param array $alliances
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setAlliances(array $alliances) {
-        $mapper = new JsonMapper;
+    protected function setAlliances(array $alliances): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->alliances = $mapper->mapArray($alliances, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Alliances');
     }
@@ -137,7 +140,7 @@ class Ids {
      *
      * @return array
      */
-    public function getCharacters() {
+    public function getCharacters(): array {
         return $this->characters;
     }
 
@@ -145,9 +148,10 @@ class Ids {
      * setCharacters
      *
      * @param array $characters
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setCharacters(array $characters) {
-        $mapper = new JsonMapper;
+    protected function setCharacters(array $characters): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->characters = $mapper->mapArray($characters, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Characters');
     }
@@ -157,7 +161,7 @@ class Ids {
      *
      * @return array
      */
-    public function getConstellations() {
+    public function getConstellations(): array {
         return $this->constellations;
     }
 
@@ -165,9 +169,10 @@ class Ids {
      * setConstellations
      *
      * @param array $constellations
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setConstellations(array $constellations) {
-        $mapper = new JsonMapper;
+    protected function setConstellations(array $constellations): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->constellations = $mapper->mapArray($constellations, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Constellations');
     }
@@ -177,7 +182,7 @@ class Ids {
      *
      * @return array
      */
-    public function getCorporations() {
+    public function getCorporations(): array {
         return $this->corporations;
     }
 
@@ -185,9 +190,10 @@ class Ids {
      * setCorporations
      *
      * @param array $corporations
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setCorporations(array $corporations) {
-        $mapper = new JsonMapper;
+    protected function setCorporations(array $corporations): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->corporations = $mapper->mapArray($corporations, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Corporations');
     }
@@ -197,7 +203,7 @@ class Ids {
      *
      * @return array
      */
-    public function getFactions() {
+    public function getFactions(): array {
         return $this->factions;
     }
 
@@ -205,9 +211,10 @@ class Ids {
      * setFactions
      *
      * @param array $factions
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setFactions(array $factions) {
-        $mapper = new JsonMapper;
+    protected function setFactions(array $factions): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->factions = $mapper->mapArray($factions, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Factions');
     }
@@ -217,7 +224,7 @@ class Ids {
      *
      * @return array
      */
-    public function getInventoryTypes() {
+    public function getInventoryTypes(): array {
         return $this->inventoryTypes;
     }
 
@@ -225,9 +232,10 @@ class Ids {
      * setInventoryTypes
      *
      * @param array $inventoryTypes
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setInventoryTypes(array $inventoryTypes) {
-        $mapper = new JsonMapper;
+    protected function setInventoryTypes(array $inventoryTypes): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->inventoryTypes = $mapper->mapArray($inventoryTypes, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\InventoryTypes');
     }
@@ -237,7 +245,7 @@ class Ids {
      *
      * @return array
      */
-    public function getRegions() {
+    public function getRegions(): array {
         return $this->regions;
     }
 
@@ -245,9 +253,10 @@ class Ids {
      * setRegions
      *
      * @param array $regions
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setRegions(array $regions) {
-        $mapper = new JsonMapper;
+    protected function setRegions(array $regions): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->regions = $mapper->mapArray($regions, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Regions');
     }
@@ -255,9 +264,9 @@ class Ids {
     /**
      * getStations
      *
-     * @return array
+     * @return array|null
      */
-    public function getStations() {
+    public function getStations(): ?array {
         return $this->stations;
     }
 
@@ -265,9 +274,10 @@ class Ids {
      * setStations
      *
      * @param array $stations
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setStations(array $stations) {
-        $mapper = new JsonMapper;
+    protected function setStations(array $stations): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->stations = $mapper->mapArray($stations, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Stations');
     }
@@ -275,9 +285,9 @@ class Ids {
     /**
      * getSystems
      *
-     * @return array
+     * @return array|null
      */
-    public function getSystems() {
+    public function getSystems(): ?array {
         return $this->systems;
     }
 
@@ -285,9 +295,10 @@ class Ids {
      * setSystems
      *
      * @param array $systems
+     * @throws Ppfeufer_Theme_EVEOnline_JsonMapper_Exception
      */
-    protected function setSystems(array $systems) {
-        $mapper = new JsonMapper;
+    protected function setSystems(array $systems): void {
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->systems = $mapper->mapArray($systems, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Ids\Systems');
     }

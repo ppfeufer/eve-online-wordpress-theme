@@ -19,8 +19,8 @@
 
 namespace Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Systems;
 
-use \Ppfeufer\Theme\EVEOnline\EsiClient\Mapper\JsonMapper;
 use \Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Systems\SystemId\Position;
+use Ppfeufer_Theme_EVEOnline_JsonMapper;
 
 class SystemId {
     /**
@@ -146,7 +146,7 @@ class SystemId {
      * @param array $planets
      */
     protected function setPlanets(array $planets) {
-        $mapper = new JsonMapper;
+        $mapper = new Ppfeufer_Theme_EVEOnline_JsonMapper;
 
         $this->planets = $mapper->mapArray($planets, [], '\\Ppfeufer\Theme\EVEOnline\EsiClient\Model\Universe\Systems\SystemId\Planets');
     }
