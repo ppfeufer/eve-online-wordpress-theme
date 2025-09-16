@@ -91,7 +91,7 @@ require_once THEME_LIBRARY_DIRECTORY . '/autoload.php';
  *      SetEnv APPLICATION_ENV "development"
  */
 // phpcs:disable
-defined('APPLICATION_ENV') || define('APPLICATION_ENV', (str_contains(getenv('APPLICATION_ENV'), 'development') || str_contains(getenv('APPLICATION_ENV'), 'staging')) ? getenv('APPLICATION_ENV') : 'production');
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', getenv('APPLICATION_ENV') && (str_contains(getenv('APPLICATION_ENV'), 'development') || str_contains(getenv('APPLICATION_ENV'), 'staging')) ? getenv('APPLICATION_ENV') : 'production');
 // phpcs:enable
 
 /**
@@ -101,93 +101,6 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', (str_contains(getenv('AP
 require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php');
 require_once(ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php');
 // phpcs:enable
-
-/**
- * Maximal content width
- */
-// phpcs:disable
-if (!isset($content_width)) {
-    $content_width = 1680;
-}
-// phpcs:enable
-
-
-/**
- * Theme Setup
- */
-function eve_theme_setup(): void {
-    /**
-     * Check if options have to be updated
-     */
-    Helper\ThemeHelper::updateOptions('eve_theme_options', 'eve_theme_db_version', Helper\ThemeHelper::getThemeDbVersion(), Helper\ThemeHelper::getThemeDefaultOptions());
-
-    /**
-     * Loading our textdomain
-     */
-    load_theme_textdomain('eve-online', get_template_directory() . '/l10n');
-
-    eve_add_theme_support();
-    eve_register_nav_menus();
-    eve_add_thumbnail_sizes();
-}
-// phpcs:disable
-add_action('after_setup_theme', '\\Ppfeufer\Theme\EVEOnline\eve_theme_setup');
-// phpcs:enable
-
-/**
- * Adding the theme supprt stuff
- */
-function eve_add_theme_support(): void {
-    add_theme_support('automatic-feed-links');
-    add_theme_support('post-thumbnails');
-    add_theme_support('title-tag');
-    add_theme_support('post-formats', [
-        'aside',
-        'image',
-        'gallery',
-        'link',
-        'quote',
-        'status',
-        'video',
-        'audio',
-        'chat'
-    ]);
-
-    add_theme_support('html5', [
-        'comment-form',
-        'comment-list',
-        'gallery',
-        'caption',
-    ]);
-}
-
-/**
- * registering nav menus
- */
-function eve_register_nav_menus(): void {
-    register_nav_menus([
-        'main-menu' => __('Main Menu', 'eve-online'),
-        'footer-menu' => __('Footer Menu', 'eve-online'),
-        'header-menu' => __('Header Menu', 'eve-online'),
-    ]);
-}
-
-/**
- * adding the thumbnail sizes
- */
-function eve_add_thumbnail_sizes(): void {
-    /**
-     * Define post thumbnail size.
-     * Add two additional image sizes.
-     */
-    set_post_thumbnail_size(1680, 500);
-
-    /**
-     * Thumbnails used for the theme
-     */
-    add_image_size('header-image', 1680, 500, true);
-    add_image_size('post-loop-thumbnail', 768, 432, true);
-}
 
 if (!function_exists('\Ppfeufer\Theme\EVEOnline\eve_title_separator')) {
     function eve_title_separator($separator): string {
