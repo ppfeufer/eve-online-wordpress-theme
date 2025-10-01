@@ -15,7 +15,7 @@
     "require-dev": {
         "roave/security-advisories": "dev-latest",
         "wp-cli/wp-cli-bundle": "^2.12",
-        "squizlabs/php_codesniffer": "^3.13",
+        "squizlabs/php_codesniffer": "^4.0",
         "brianhenryie/strauss": "=0.21.1"
     },
     "extra": {
