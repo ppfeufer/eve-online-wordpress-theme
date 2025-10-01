@@ -34,7 +34,7 @@ jobs:
 #          composer-options: install --no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader --classmap-authoritative
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm install
