@@ -1,9 +1,8 @@
-import globals from 'globals';
-import js from '@eslint/js';
+import globals from 'globals'; // Import the globals package
+import js from '@eslint/js'; // Import the ESLint JavaScript configuration
+import { defineConfig } from 'eslint/config'; // Import the defineConfig function from ESLint
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-
-export default [
+export default defineConfig([
     {
         languageOptions: {
             globals: {
@@ -30,4 +29,4 @@ export default [
             semi: [2, 'always'],
         },
     }
-];
+]);
