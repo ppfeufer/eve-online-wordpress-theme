@@ -122,8 +122,8 @@ repos:
         language: node
         additional_dependencies:
           # eslint itself needs to be here when using additional_dependencies.
-          - eslint@9.34.0  # https://github.com/eslint/eslint/releases/latest
-          - globals@16.3.0  # https://github.com/sindresorhus/globals/releases/latest
+          - eslint@9.37.0  # https://github.com/eslint/eslint/releases/latest
+          - globals@16.4.0  # https://github.com/sindresorhus/globals/releases/latest
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
     rev: 9b7d7bf350be72b9ba00c5577475f721b4adfa58  # frozen: v16.25.0
@@ -136,8 +136,8 @@ repos:
           - --formatter=compact
         additional_dependencies:
           # stylelint itself needs to be here when using additional_dependencies.
-          - stylelint@16.23.1  # https://github.com/stylelint/stylelint/releases/latest
-          - stylelint-config-standard@39.0.0  # https://github.com/stylelint/stylelint-config-standard/releases/latest
+          - stylelint@16.25.0  # https://github.com/stylelint/stylelint/releases/latest
+          - stylelint-config-standard@39.0.1  # https://github.com/stylelint/stylelint-config-standard/releases/latest
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: 61529b21391331d7cfd1f191df6293534a1fd79a  # frozen: 3.4.0
