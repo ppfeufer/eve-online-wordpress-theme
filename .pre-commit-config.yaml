@@ -114,7 +114,7 @@ repos:
           - --report=full
 
   - repo: https://github.com/eslint/eslint
-    rev: 840140f27a115a5d5f16c2dfc4fbe7af9160adb2  # frozen: v9.39.0
+    rev: 1b4215f2b93d9946da409ae2cdd0b8f6b5c0e253  # frozen: v9.39.1
     hooks:
       - id: eslint
         name: ESLint
@@ -122,8 +122,8 @@ repos:
         language: node
         additional_dependencies:
           # eslint itself needs to be here when using additional_dependencies.
-          - eslint@9.37.0  # https://github.com/eslint/eslint/releases/latest
-          - globals@16.4.0  # https://github.com/sindresorhus/globals/releases/latest
+          - eslint@9.39.1  # https://github.com/eslint/eslint/releases/latest
+          - globals@16.5.0  # https://github.com/sindresorhus/globals/releases/latest
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
     rev: 9b7d7bf350be72b9ba00c5577475f721b4adfa58  # frozen: v16.25.0
@@ -153,8 +153,8 @@ repos:
         name: Mdformat
         description: This hook checks for Markdown formatting issues.
         additional_dependencies:  # https://mdformat.readthedocs.io/en/stable/users/plugins.html#code-formatter-plugins
-          - mdformat-gfm==0.4.1  # Mdformat plugin for GitHub Flavored Markdown compatibility » https://github.com/hukkin/mdformat-gfm/tags
-          - mdformat-toc==0.3.0  # Mdformat plugin to generate a table of contents » https://github.com/hukkin/mdformat-toc/tags
+          - mdformat-gfm==1.0.0  # Mdformat plugin for GitHub Flavored Markdown compatibility » https://github.com/hukkin/mdformat-gfm/tags
+          - mdformat-toc==0.5.0  # Mdformat plugin to generate a table of contents » https://github.com/hukkin/mdformat-toc/tags
           - mdformat-shfmt==0.2.0  # Mdformat plugin to format shell code blocks » https://github.com/hukkin/mdformat-shfmt/tags
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
