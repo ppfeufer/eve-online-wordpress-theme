@@ -4,7 +4,7 @@
         "csso-cli": "^4.0.2",
         "eslint": "^9.39.1",
         "globals": "^16.5.0",
-        "stylelint": "^16.25.0",
+        "stylelint": "^16.26.1",
         "stylelint-config-standard": "^39.0.1",
         "terser": "^5.44.1"
     }
