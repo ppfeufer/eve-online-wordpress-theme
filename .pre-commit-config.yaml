@@ -114,7 +114,7 @@ repos:
           - --report=full
 
   - repo: https://github.com/eslint/eslint
-    rev: 1947d9dbda7d9e0701eac3661d4ff4b53071d603  # frozen: v10.0.0-alpha.1
+    rev: 1b4215f2b93d9946da409ae2cdd0b8f6b5c0e253  # frozen: v9.39.1
     hooks:
       - id: eslint
         name: ESLint
@@ -136,7 +136,7 @@ repos:
           - --formatter=compact
         additional_dependencies:
           # stylelint itself needs to be here when using additional_dependencies.
-          - stylelint@16.25.0  # https://github.com/stylelint/stylelint/releases/latest
+          - stylelint@16.26.1  # https://github.com/stylelint/stylelint/releases/latest
           - stylelint-config-standard@39.0.1  # https://github.com/stylelint/stylelint-config-standard/releases/latest
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
