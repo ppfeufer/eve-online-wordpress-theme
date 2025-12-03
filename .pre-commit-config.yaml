@@ -126,7 +126,7 @@ repos:
           - globals@16.5.0  # https://github.com/sindresorhus/globals/releases/latest
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: 9b7d7bf350be72b9ba00c5577475f721b4adfa58  # frozen: v16.25.0
+    rev: 5550a364f2b5d3a9e731a9f4e231c5dc8c5f2e5b  # frozen: v16.26.1
     hooks:
       - id: stylelint
         name: Stylelint
@@ -136,11 +136,11 @@ repos:
           - --formatter=compact
         additional_dependencies:
           # stylelint itself needs to be here when using additional_dependencies.
-          - stylelint@16.25.0  # https://github.com/stylelint/stylelint/releases/latest
+          - stylelint@16.26.1  # https://github.com/stylelint/stylelint/releases/latest
           - stylelint-config-standard@39.0.1  # https://github.com/stylelint/stylelint-config-standard/releases/latest
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 62dcf364a52192458d66c0dba3a0a1fdb78e4fbe  # frozen: 3.4.1
+    rev: 11ea70506fd878d26129b2b87746fd1a1f6b561b  # frozen: 3.6.0
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Checker
@@ -158,7 +158,7 @@ repos:
           - mdformat-shfmt==0.2.0  # Mdformat plugin to format shell code blocks » https://github.com/hukkin/mdformat-shfmt/tags
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 83b816d020105076daac266dbf6bfed199a2da93  # frozen: 0.34.1
+    rev: 16a6ad2fead09286ee6eb6b0a3fab55655a6c22a  # frozen: 0.35.0
     hooks:
       - id: check-github-actions
         name: Check GitHub Actions
