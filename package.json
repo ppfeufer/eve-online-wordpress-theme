@@ -2,7 +2,7 @@
     "type": "module",
     "devDependencies": {
         "csso-cli": "^4.0.2",
-        "eslint": "^9.39.1",
+        "eslint": "^9.39.2",
         "globals": "^16.5.0",
         "stylelint": "^16.26.1",
         "stylelint-config-standard": "^39.0.1",
