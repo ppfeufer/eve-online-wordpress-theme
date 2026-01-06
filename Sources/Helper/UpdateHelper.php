@@ -19,11 +19,7 @@
 
 namespace Ppfeufer\Theme\EVEOnline\Helper;
 
-use Exception;
-use PclZip;
-use WordPress\EsiClient\Swagger;
 use wpdb;
-use ZipArchive;
 
 class UpdateHelper {
     /**
@@ -41,22 +37,6 @@ class UpdateHelper {
     protected int $databaseVersion = 20190611;
 
     /**
-     * Database version
-     *
-     * @var int
-     */
-    protected int $esiClientVersion = 20210929;
-
-    /**
-     * hasZipArchive
-     *
-     * Set true if ZipArchive PHP lib is installed
-     *
-     * @var bool
-     */
-    protected bool $hasZipArchive = false;
-
-    /**
      * WordPress Database Instance
      *
      * @var wpdb|null
@@ -70,106 +50,8 @@ class UpdateHelper {
         global $wpdb;
 
         $this->wpdb = $wpdb;
-        $this->hasZipArchive = class_exists('ZipArchive');
 
-        $this->checkEsiClient();
         $this->checkDatabaseForUpdates();
-    }
-
-    /**
-     * Check if the ESI client needs to be updated
-     * @throws \Exception
-     */
-    protected function checkEsiClient(): void {
-        $esiClientCurrentVersion = 0;
-
-        /**
-         * Check for current ESI client version
-         */
-        if (class_exists('\WordPress\EsiClient\Swagger')) {
-            $esiClient = new Swagger;
-
-            if (method_exists($esiClient, 'getEsiClientVersion')) {
-                $esiClientCurrentVersion = $esiClient->getEsiClientVersion();
-            }
-        }
-
-        // backwards compatibility with older ESI clients
-        if (is_null($esiClientCurrentVersion)) {
-            if (file_exists(WP_CONTENT_DIR . '/EsiClient/client_version')) {
-                $esiClientCurrentVersion = trim(file_get_contents(WP_CONTENT_DIR . '/EsiClient/client_version'));
-            }
-        }
-
-        if (version_compare($esiClientCurrentVersion, $this->getNewEsiClientVersion()) < 0) {
-            $this->updateEsiClient($this->getNewEsiClientVersion());
-        }
-    }
-
-    /**
-     * getNewEsiClientVersion
-     *
-     * @return int
-     */
-    protected function getNewEsiClientVersion(): int {
-        return $this->esiClientVersion;
-    }
-
-    /**
-     * Update the ESI client
-     *
-     * @throws Exception
-     */
-    protected function updateEsiClient(string $version = null): void {
-        $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/master.zip';
-        $dirInZipFile = '/wp-esi-client-master';
-
-        if (!is_null($version)) {
-            $remoteZipFile = 'https://github.com/ppfeufer/wp-esi-client/archive/v' . $version . '.zip';
-            $dirInZipFile = '/wp-esi-client-' . $version;
-        }
-
-        $esiClientZipFile = WP_CONTENT_DIR . '/uploads/EsiClient.zip';
-
-        wp_remote_get($remoteZipFile, [
-            'timeout' => 300,
-            'stream' => true,
-            'filename' => $esiClientZipFile
-        ]);
-
-        if (is_dir(WP_CONTENT_DIR . '/EsiClient/')) {
-            $this->rrmdir(WP_CONTENT_DIR . '/EsiClient/');
-        }
-
-        // extract using ZipArchive
-        if ($this->hasZipArchive === true) {
-            $zip = new ZipArchive;
-
-            if (!$zip->open($esiClientZipFile)) {
-                throw new Exception('PHP-ZIP: Unable to open the Esi Client zip file');
-            }
-
-            if (!$zip->extractTo(WP_CONTENT_DIR)) {
-                throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
-            }
-
-            $zip->close();
-        }
-
-        // extract using PclZip
-        if ($this->hasZipArchive === false) {
-            require_once(ABSPATH . 'wp-admin/includes/class-pclzip.php');
-
-            $zip = new PclZip($esiClientZipFile);
-
-            if (!$zip->extract(PCLZIP_OPT_PATH, WP_CONTENT_DIR)) {
-                throw new Exception('PHP-ZIP: Unable to extract Esi Client zip file');
-            }
-        }
-
-        rename(WP_CONTENT_DIR . $dirInZipFile, WP_CONTENT_DIR . '/EsiClient/');
-
-        unlink($esiClientZipFile);
     }
 
     /**

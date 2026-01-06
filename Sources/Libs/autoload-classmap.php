@@ -5,6 +5,8 @@
 $strauss_src = dirname(__FILE__);
 
 return array(
+   'Ppfeufer_Theme_EVEOnline_JsonMapper' => $strauss_src . '/netresearch/jsonmapper/src/JsonMapper.php',
+   'Ppfeufer_Theme_EVEOnline_JsonMapper_Exception' => $strauss_src . '/netresearch/jsonmapper/src/JsonMapper/Exception.php',
    'PucReadmeParser' => $strauss_src . '/yahnis-elsts/plugin-update-checker/vendor/PucReadmeParser.php',
    'Parsedown' => $strauss_src . '/yahnis-elsts/plugin-update-checker/vendor/ParsedownModern.php',
    'YahnisElsts\PluginUpdateChecker\v5\PucFactory' => $strauss_src . '/yahnis-elsts/plugin-update-checker/Puc/v5/PucFactory.php',

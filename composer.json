@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "netresearch/jsonmapper": "^5.0",
         "yahnis-elsts/plugin-update-checker": "^5.6"
     },
     "require-dev": {
