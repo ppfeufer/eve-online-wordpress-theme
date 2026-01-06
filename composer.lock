@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c03f197187f6c7483d77f279427feba",
+    "content-hash": "6c4d1e467b823a05fe2bbf02a42a7cde",
     "packages": [
         {
             "name": "netresearch/jsonmapper",
