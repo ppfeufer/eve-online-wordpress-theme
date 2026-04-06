@@ -114,7 +114,7 @@ repos:
           - --report=full
 
   - repo: https://github.com/eslint/eslint
-    rev: v9.39.2
+    rev: v10.2.0
     hooks:
       - id: eslint
         name: ESLint
@@ -126,7 +126,7 @@ repos:
           - globals@17.0.0  # https://github.com/sindresorhus/globals/releases/latest
 
   - repo: https://github.com/thibaudcolas/pre-commit-stylelint
-    rev: 5550a364f2b5d3a9e731a9f4e231c5dc8c5f2e5b  # frozen: v16.26.1
+    rev: c5ea22efe1dcff25ec53dd5b88540d6e922e3076  # frozen: v17.6.0
     hooks:
       - id: stylelint
         name: Stylelint
@@ -140,7 +140,7 @@ repos:
           - stylelint-config-standard@39.0.1  # https://github.com/stylelint/stylelint-config-standard/releases/latest
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 11ea70506fd878d26129b2b87746fd1a1f6b561b  # frozen: 3.6.0
+    rev: bebfac867564fbd992e5b45379b4b0568d5cb85b  # frozen: 3.6.1
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Checker
@@ -158,7 +158,7 @@ repos:
           - mdformat-shfmt==0.2.0  # Mdformat plugin to format shell code blocks » https://github.com/hukkin/mdformat-shfmt/tags
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: b035497fb64e3f9faa91e833331688cc185891e6  # frozen: 0.36.0
+    rev: ed81924a8b1cecdaa570b072528fa80c9c4d6ccd  # frozen: 0.37.1
     hooks:
       - id: check-github-actions
         name: Check GitHub Actions
