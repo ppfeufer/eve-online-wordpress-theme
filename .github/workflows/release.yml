@@ -25,7 +25,7 @@ jobs:
 
       # Release
       - name: Add Release Asset
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # The name of the file(s) to upload
