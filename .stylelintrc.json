@@ -11,21 +11,38 @@
                 ],
                 "ignore": [
                     "after-comment"
-                ]
+                ],
+                "message": "Expected an empty line before at-rule"
             }
         ],
-        "number-max-precision": 5,
+        "number-max-precision": [
+            5,
+            {
+                "message": "Expected number to have a maximum of 5 decimal places"
+            }
+        ],
         "no-descending-specificity": null,
         "media-feature-range-notation": "prefix",
-        "selector-class-pattern": "_?[a-z0-9]+(-[a-z0-9]+)*$",
-        "selector-id-pattern": "_?[a-z0-9]+(-[a-z0-9]+)*$",
+        "selector-class-pattern": [
+            "_?[a-z0-9]+(-[a-z0-9]+)*$",
+            {
+                "message": "Expected class selector to be kebab-case"
+            }
+        ],
+        "selector-id-pattern": [
+            "_?[a-z0-9]+(-[a-z0-9]+)*$",
+            {
+                "message": "Expected id selector to be kebab-case"
+            }
+        ],
         "selector-type-case": [
             "lower",
             {
                 "ignoreTypes": [
                     "/regex/",
                     "non-regex"
-                ]
+                ],
+                "message": "Expected type selector to be lowercase"
             }
         ]
     }

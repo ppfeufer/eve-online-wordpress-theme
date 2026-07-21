@@ -13,7 +13,6 @@
         "yahnis-elsts/plugin-update-checker": "^5.6"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "wp-cli/wp-cli-bundle": "^2.12",
         "squizlabs/php_codesniffer": "^4.0",
         "brianhenryie/strauss": "=0.21.1"

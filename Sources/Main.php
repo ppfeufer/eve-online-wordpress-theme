@@ -3,7 +3,7 @@
 namespace Ppfeufer\Theme\EVEOnline;
 
 use Ppfeufer\Theme\EVEOnline\Helper\ThemeHelper;
-use Ppfeufer\Theme\EVEOnline\Libs\YahnisElsts\PluginUpdateChecker\v5p6\PucFactory;
+use Ppfeufer\Theme\EVEOnline\Libs\YahnisElsts\PluginUpdateChecker\v5p7\PucFactory;
 
 /**
  * Main Theme Class
